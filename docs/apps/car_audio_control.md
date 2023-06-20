@@ -1,0 +1,131 @@
+---
+sidebar_position: 6
+---
+
+# 5.6 语音控制小车运动
+
+## 功能介绍
+
+语音控制小车运动功能通过语音控制机器人向前、向后、向左、向右运动，需要搭配地平线机器人操作系统的智能语音模块一起使用。流程如下图：
+
+![](./image/car_audio_control/audio_control.jpg)
+
+APP以PC端Gazebo仿真环境下的虚拟小车举例，发布的控制指令也可以直接用于控制实物小车。
+
+代码仓库：<https://github.com/HorizonRDK/audio_control.git>
+
+## 支持平台
+
+| 平台     | 运行方式      | 示例功能                       |
+| -------- | ------------ | ------------------------------ |
+| 地平线RDK | Ubuntu 20.04 | 启动智能语音模块解析语音信息并进行语音控制，通过Gazebo展示控制效果 |
+
+**注意：仅支持RDK X3，RDK X3 Module暂不支持。**
+
+## 准备工作
+
+### 地平线RDK平台
+
+1. 地平线RDK已烧录好地平线提供的Ubuntu 20.04镜像。
+
+2. 地平线RDK已成功安装TogetheROS.Bot。
+
+3. 地平线RDK已成功安装智能语音算法包，安装命令：`apt update; apt install tros-hobot-audio`。
+
+4. 地平线RDK已成功接好适配的线性四麦的音频板（可参考地平线机器人操作系统智能语音模块）。
+
+5. 和地平线RDK在同一网段（有线或者连接同一无线网，IP地址前三段需保持一致）的PC，PC端需要安装的环境包括：
+
+   - 地平线RDK
+   - [ROS2 Foxy桌面版](https://docs.ros.org/en/foxy/Installation/Ubuntu-Install-Debians.html)
+   - Gazebo和Turtlebot3相关的功能包，安装方法：
+
+   ```shell
+   sudo apt-get install ros-foxy-gazebo-*
+   sudo apt install ros-foxy-turtlebot3
+   sudo apt install ros-foxy-turtlebot3-simulations
+   ```
+
+## 使用介绍
+
+```shell
+# 配置tros.b环境
+source /opt/tros/setup.bash
+
+# 从tros.b的安装路径中拷贝出运行示例需要的配置文件。
+cp -r /opt/tros/lib/hobot_audio/config/ .
+
+# 加载音频驱动，设备启动之后只需要加载一次
+bash config/audio.sh
+
+#启动launch文件
+ros2 launch audio_control audio_control.launch.py
+```
+
+## 结果分析
+
+在地平线RDK运行终端输出如下信息：
+
+```shell
+        This is audio control package.
+
+============================================
+        audio control usage
+
+Wake up device is "地平线你好".
+Audio control commnad word definitions are:
+        "向前走": move front.
+        "向后退": move back.
+        "向右转": rotate robot to right.
+        "向左转": rotate robot to left. 
+============================================
+
+```
+
+以上log截取了一段音频控制pkg启动后的输出。log内容显示，此语音控制模块配置的设备唤醒词是“地平线你好”，控制小车运动的命令词有：“向前走”、“向后退”、“向左转”，“向右转”。
+
+PC端在终端使用`ros2 topic list`命令可以查询到地平线RDK的topic信息：
+
+```shell
+$ ros2 topic list
+/audio_smart
+/cmd_vel
+```
+
+其中`/audio_smart`是X3发布的包含智能语音结果的算法msg，`/cmd_vel`是地平线RDK发布的运动控制指令。
+
+PC端在终端使用`ros2 topic echo /cmd_vel`命令可以查看到地平线RDK发布的运动控制指令：
+
+```shell
+linear:
+  x: 0.30000001192092896
+  y: 0.0
+  z: 0.0
+angular:
+  x: 0.0
+  y: 0.0
+  z: 0.0
+---
+linear:
+  x: 0.0
+  y: -0.30000001192092896
+  z: 0.0
+angular:
+  x: 0.0
+  y: 0.0
+  z: -0.5
+---
+linear:
+  x: 0.0
+  y: 0.30000001192092896
+  z: 0.0
+angular:
+  x: 0.0
+  y: 0.0
+  z: 0.5
+---
+```
+
+PC端仿真环境中小车跟随语音控制命令词的指示进行运动，仿真小车运动效果如下：
+
+![](./image/car_audio_control/move.gif)
