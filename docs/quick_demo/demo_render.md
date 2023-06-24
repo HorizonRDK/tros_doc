@@ -2,7 +2,7 @@
 sidebar_position: 2
 ---
 
-# 3.2 数据展示
+# 2.2 数据展示
 
 ## Web展示
 

@@ -2,7 +2,7 @@
 sidebar_position: 2
 ---
 
-# 5.2 Nav2
+# 4.2 Navigation2
 
 ## 功能介绍
 

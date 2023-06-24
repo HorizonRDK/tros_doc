@@ -2,7 +2,7 @@
 sidebar_position: 2
 ---
 
-# 2.2 apt安装与升级
+# 1.2 apt安装与升级
 
 本章节介绍地平线RDK和X86平台如何使用apt安装TogetheROS.Bot。
 

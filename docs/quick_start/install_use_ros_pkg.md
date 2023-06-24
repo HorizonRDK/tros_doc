@@ -2,7 +2,7 @@
 sidebar_position: 5
 ---
 
-# 2.5 使用ROS2 package
+# 1.5 使用ROS2 package
 
 前提：已成功安装TogetheROS.Bot
 

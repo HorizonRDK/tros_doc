@@ -2,7 +2,7 @@
 sidebar_position: 4
 ---
 
-# 2.4 运行“Hello World”
+# 1.4 运行“Hello World”
 
 前提：已通过deb包或者源码安装的方式成功安装TogetheROS.Bot
 

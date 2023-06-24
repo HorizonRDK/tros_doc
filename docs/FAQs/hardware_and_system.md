@@ -2,7 +2,7 @@
 sidebar_position: 1
 ---
 
-# 7.1 硬件和系统
+# 6.1 硬件和系统
 
 认证配件及购买链接请参考[认证配件清单](https://developer.horizon.ai/api/v1/fileData/documents_rdk/hardware/rdk_x3_module.html#id5)
 

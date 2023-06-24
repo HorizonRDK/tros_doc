@@ -2,7 +2,7 @@
 sidebar_position: 1
 ---
 
-# 5.1 SLAM建图
+# 4.1 SLAM建图
 
 ## 功能介绍
 SLAM指即时定位与地图构建（Simultaneous Localization and Mapping，简称SLAM）。

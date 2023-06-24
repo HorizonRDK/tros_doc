@@ -2,7 +2,7 @@
 sidebar_position: 6
 ---
 
-# 6.6 深度学习巡线小车
+# 5.6 深度学习巡线小车
 
 ## 功能介绍
 ![](./image/line_follower/demo.png)

@@ -1,7 +1,7 @@
 ---
 sidebar_position: 2
 ---
-# 4.2 应用算法
+# 3.2 应用算法
 
 ## 人体检测和跟踪{#detection_and_track}
 

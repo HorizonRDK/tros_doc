@@ -2,7 +2,7 @@
 sidebar_position: 3
 ---
 
-# 2.3 源码安装
+# 1.3 源码安装
 
 本章节介绍地平线RDK和X86平台如何通过源码安装TogetheROS.Bot。
 
