@@ -10,7 +10,7 @@ Horizon Robotics Developer Kits，简称[地平线RDK平台](https://developer.h
 
 TogetheROS.Bot源码托管在GitHub地平线[HorizonRDK组织](https://github.com/HorizonRDK)。
 
-## Communication
+## Communication通信组件
 
 Communication是地平线在ROS2 Foxy版本通信核心组件基础上进行的功能优化和扩展。
 
@@ -28,7 +28,7 @@ Communication是地平线在ROS2 Foxy版本通信核心组件基础上进行的�
 - 与ROS2 foxy版本接口保持完全兼容，便于复用ROS丰富工具包，加快原型验证
 - 支持最小化和模块化剪裁，方便根据需要部署在资源受限的嵌入式产品中
 
-## Boxs
+## Boxs算法仓库
 
 Boxs是地平线面向机器人厂商和生态开发者推出的基于TogetheROS.Bot的智能算法包，旨在提升基于地平线机器人操作系统进行机器人智能算法集成和落地的效率。
 
@@ -37,7 +37,7 @@ Boxs是地平线面向机器人厂商和生态开发者推出的基于TogetheROS
 - 语义分割模型如Unet
 - 应用算法模型如人体检测与跟踪、手势识别、人手关键点检测、单目高程网络、单目3D检测、语音处理等
 
-## Apps
+## Apps应用示例
 
 Apps是基于地平线机器人操作系统Communication和Boxs开发的算法应用示例，旨在打通图像输入、感知、策略等完整链路，展示应用效果，加速客户demo开发效率。
 
