@@ -205,6 +205,39 @@ RDK X3上安装了tros.b之后，还可以安装使用其他版本的ROS，包�
 
 此外tros.b与ROS foxy版本接口完全兼容，不需要安装ROS foxy也能够复用ROS丰富工具包。
 
+## colcon编译报错
+
+如果使用`colcon build`命令编译pkg报如下错误：
+
+```shell
+root@ubuntu:~/hobot_cam# colcon build
+[4.933s] ERROR:colcon.colcon_core.package_identification:Exception in package identification extension 'ros' in 'hobot_cam': module 'pyparsing' has no attribute 'operatorPrecedence'
+Traceback (most recent call last):
+  File "/usr/lib/python3/dist-packages/catkin_pkg/condition.py", line 23, in evaluate_condition
+    expr = _get_condition_expression()
+  File "/usr/lib/python3/dist-packages/catkin_pkg/condition.py", line 44, in _get_condition_expression
+    _condition_expression = pp.operatorPrecedence(
+AttributeError: module 'pyparsing' has no attribute 'operatorPrecedence'
+```
+可能是`python3-catkin-pkg`版本较低，condition功能支持不完备。
+
+## 解决方法 ##
+
+升级`python3-catkin-pkg`版本，步骤如下：
+
+```shell
+# 添加ROS apt源
+sudo apt update && sudo apt install curl gnupg2 lsb-release
+sudo curl -sSL https://raw.githubusercontent.com/ros/rosdistro/master/ros.key  -o /usr/share/keyrings/ros-archive-keyring.gpg
+echo "deb [arch=$(dpkg --print-architecture) signed-by=/usr/share/keyrings/ros-archive-keyring.gpg] http://packages.ros.org/ros2/ubuntu $(source /etc/os-release && echo $UBUNTU_CODENAME) main" | sudo tee /etc/apt/sources.list.d/ros2.list > /dev/null
+
+# 删除老版本
+sudo apt remove python3-catkin-pkg
+
+# 安装新版本
+sudo apt update
+sudo apt install python3-catkin-pkg
+```
 
 ## 如何查看tros.b版本
 

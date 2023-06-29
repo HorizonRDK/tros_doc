@@ -6,7 +6,7 @@ const darkCodeTheme = require('prism-react-renderer/themes/dracula');
 
 /** @type {import('@docusaurus/types').Config} */
 const config = {
-  title: '旭日X3派用户手册',
+  title: '机器人开发平台用户手册',
   tagline: '最好用的机器人开发平台',
   favicon: 'img/logo.png',
 

@@ -99,6 +99,8 @@ sidebar_position: 1
     ros2 launch hobot_usb_cam hobot_usb_cam.launch.py usb_camera_calibration_file_path:=（实际标定文件绝对路径）
     ```
 
+3. 对于X86平台，如果Ubuntu 20.04系统运行在虚拟机中，需要在`虚拟机设置`中将`USB控制器`的`USB兼容性`设置为`USB 3.1`。
+
 ## MIPI图像采集
 
 ### 功能介绍

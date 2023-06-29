@@ -368,3 +368,89 @@ TogetheROS.Bot兼容ROS2 foxy版本，支持通过RQt预览压缩格式图像，
 
    - 检查PC和地平线RDK网络能否ping通；
    - PC和地平线RDK IP地址是否前三位相同；
+
+## Foxglove展示
+
+### 功能介绍
+
+Foxglove是一个开源的工具包，包括线上和线下版。旨在简化机器人系统的开发和调试。它提供了一系列用于构建机器人应用程序的功能。
+
+本章节主要用到Foxglove数据记录和回放功能：Foxglove允许将ROS2话题的数据记录到文件中，以便后续回放和分析。这对于系统故障诊断、性能优化和算法调试非常有用。
+
+演示中，我们会利用TogetheROS开发的hobot_visualization功能包，将智能推理结果转换为ROS2渲染的话题信息。
+
+代码仓库：<https://github.com/HorizonRDK/hobot_visualization>
+
+### 支持平台
+
+| 平台    | 运行方式      | 示例功能                       |
+| ------- | ------------- | ------------------------------ |
+| 地平线RDK | Ubuntu 20.04  | 启动本地回灌，通用物体检测并通过Foxglove展示图像和算法效果 |
+| X86     | Ubuntu 20.04  | 启动本地回灌，通用物体检测并通过Foxglove展示图像和算法效果 |
+
+### 准备工作
+
+#### 地平线RDK平台
+
+1. 确认摄像头F37正确接到旭日X3派上
+
+2. 确认PC可以通过网络访问旭日X3派
+
+3. 确认已成功安装TogetheROS.Bot
+
+#### X86平台
+
+1. 确认X86平台系统为Ubuntu 20.04，且已成功安装tros.b
+
+### 使用方式
+
+#### 地平线RDK平台 / X86平台
+
+1. 通过SSH登录地平线RDK平台，启动板端相关程序：
+
+```shell
+source /opt/tros/setup.bash
+
+export CAM_TYPE=fb
+
+ros2 launch hobot_visualization hobot_vis_render.launch.py
+```
+
+同时，利用ssh登录另一个终端，在板端记录话题信息：
+
+```shell
+source /opt/tros/setup.bash
+
+# 记录rosbag数据，会生成在当前工作目录下
+ros2 bag record -a
+```
+
+2. Foxglove在线页面播放rosbag数据
+
+1）PC浏览器（chrome/firefox/edge）输入<https://foxglove.dev/studio>，进入foxglove官网
+
+   ![foxglove](./image/demo_render/foxglove_guide_1.png "foxglove使用指导1")
+
+2）进入云端版
+
+   ![foxglove](./image/demo_render/foxglove_guide_2.png "foxglove使用指导2")
+
+3）点击选中本地rosbag文件
+
+   ![foxglove](./image/demo_render/foxglove_guide_3.png "foxglove使用指导3")
+
+4）打开布局界面，在布局界面右上角，点击设置，选中图标，打开播放maker渲染消息功能
+
+   ![foxglove](./image/demo_render/foxglove_guide_4.png "foxglove使用指导4")
+
+5）点击播放
+   ![foxglove](./image/demo_render/foxglove_guide_5.png "foxglove使用指导5")
+
+6）观看数据
+   ![foxglove](./image/demo_render/foxglove_guide_6.png "foxglove使用指导6")
+
+### 注意事项
+
+1. Foxglove可视化图像数据，需采用ROS2官方的消息格式，使用foxglove支持的图像编码格式，详情请见（https://foxglove.dev/docs/studio/panels/image）
+
+2. rosbag进行消息记录时，可能会录制其他设备的话题信息，因此为了保证rosbag数据的干净，可以通过设置'export ROS_DOMAIN_ID=xxx' ，如'export ROS_DOMAIN_ID=1'的方法。
