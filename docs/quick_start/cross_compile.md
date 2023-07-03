@@ -37,7 +37,6 @@ sudo docker run -it --entrypoint="/bin/bash" -v PC本地目录:docker目录 imag
 
 ```shell
 cd /mnt/test/cc_ws/tros_ws
-git config --global credential.helper store
 ## 获取配置文件
 git clone https://github.com/HorizonRDK/robot_dev_config.git -b develop 
 ## 执行cd robot_dev_config，使用 git tag --list 命令查看可用的发布版本
@@ -288,20 +287,12 @@ bash ./robot_dev_config/build.sh -p X86
 
 ## 常见问题
 
-Q1: git获取代码重复提示输入账户、密码
+Q1： 如何判断VCS是否成功拉取代码
 
-A1: 尝试通过git clone拉一个repo，输入账户和token后系统会记住账号token，后面不再需要重复输入token
-
-```bash
-git config --global credential.helper store
-```
-
-Q2： 如何判断VCS是否成功拉取代码
-
-A2：如下图所示，vcs import过程中打印.表示成功拉取repo，如果打印E表示该repo拉取失败可以通过执行后的log看到具体失败的repo，碰到这种情况可以尝试删除src里面的内容重新vcs import或者手动拉取失败的repo.
+A1：如下图所示，vcs import过程中打印.表示成功拉取repo，如果打印E表示该repo拉取失败可以通过执行后的log看到具体失败的repo，碰到这种情况可以尝试删除src里面的内容重新vcs import或者手动拉取失败的repo.
 
 ![vcs_import](./image/cross_compile/vcs_import_error.png "vcs_import")
 
-Q3：条件受限无法从github拉取代码
+Q2：条件受限无法从github拉取代码
 
-A3：可以直接在[TogetheROS文件服务器](http://archive.sunrisepi.tech/TogetheROS/source_code/)中选择下载需要的版本代码。例如`tros_2.0.0_source_code.tar.gz`文件对应于tros.b 2.0.0版本。
+A2：可以直接在[TogetheROS文件服务器](http://archive.sunrisepi.tech/TogetheROS/source_code/)中选择下载需要的版本代码。例如`tros_2.0.0_source_code.tar.gz`文件对应于tros.b 2.0.0版本。
