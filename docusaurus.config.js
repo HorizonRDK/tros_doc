@@ -135,24 +135,24 @@ const config = {
       },
     }),
 
-    // themes: [
-    //   // ... Your other themes.
-    //   [
-    //     require.resolve("@easyops-cn/docusaurus-search-local"),
-    //     {
-    //       // ... Your options.
-    //       // `hashed` is recommended as long-term-cache of index file is possible.
-    //       hashed: true,
-    //       // language: ["en", "zh"],
-    //       highlightSearchTermsOnTargetPage: true,
-    //       explicitSearchResultPath: true,
-    //       // For Docs using Chinese, The `language` is recommended to set to:
-    //       // ```
-    //       // language: ["en", "zh"],
-    //       // ```
-    //     },
-    //   ],
-    // ],
+    themes: [
+      // ... Your other themes.
+      [
+        require.resolve("@easyops-cn/docusaurus-search-local"),
+        {
+          // ... Your options.
+          // `hashed` is recommended as long-term-cache of index file is possible.
+          hashed: true,
+          language: ["en", "zh"],
+          highlightSearchTermsOnTargetPage: true,
+          explicitSearchResultPath: true,
+          // For Docs using Chinese, The `language` is recommended to set to:
+          // ```
+          // language: ["en", "zh"],
+          // ```
+        },
+      ],
+    ],
 };
 
 module.exports = config;
