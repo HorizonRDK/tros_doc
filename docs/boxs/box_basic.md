@@ -23,7 +23,7 @@ FCOS是地平线开源的Onnx模型，使用[COCO数据集](http://cocodataset.o
 
 | 平台    | 运行方式     | 示例功能                       |
 | ------- | ------------ | ------------------------------ |
-| 地平线RDK| Ubuntu 20.04 | · 启动MIPI/USB摄像头，并通过web展示推理渲染结果<br/>· 使用本地回灌，渲染结果保存在本地 |
+| RDK X3, RDK X3 Module| Ubuntu 20.04 | · 启动MIPI/USB摄像头，并通过web展示推理渲染结果<br/>· 使用本地回灌，渲染结果保存在本地 |
 | X86     | Ubuntu 20.04 | · 使用本地回灌，渲染结果保存在本地 |
 
 #### 准备工作
@@ -154,7 +154,7 @@ ros2 launch dnn_node_example dnn_node_example_feedback.launch.py dnn_example_con
 
 #### 功能介绍
 
-YOLO目标检测算法示例使用图片作为输入，利用BPU进行算法推理，发布包含目标类别和检测框的算法msg。目前支持yolov2、yolov3、yolov5三个版本。
+YOLO目标检测算法示例使用图片作为输入，利用BPU进行算法推理，发布包含目标类别和检测框的算法msg。目前支持yolov2、yolov3、yolov5、yolov5x四个版本。
 
 模型使用[COCO数据集](http://cocodataset.org/)进行训练，支持的目标检测类型包括人、动物、水果、交通工具等共80种类型。
 
@@ -169,7 +169,8 @@ YOLO目标检测算法示例使用图片作为输入，利用BPU进行算法推�
 
 | 平台    | 运行方式      | 支持算法 |示例功能                       |
 | ------- | ------------ | ---------| ------------------------------ |
-| 地平线RDK| Ubuntu 20.04 | yolov2/yolov3/yolov5 | · 启动MIPI/USB摄像头，并通过web展示推理渲染结果<br/>· 使用本地回灌，渲染结果保存在本地 |
+| RDK X3, RDK X3 Module| Ubuntu 20.04 | yolov2/yolov3/yolov5 | · 启动MIPI/USB摄像头，并通过web展示推理渲染结果<br/>· 使用本地回灌，渲染结果保存在本地 |
+| RDK J5| Ubuntu 20.04 | yolov5x | · 启动MIPI/USB摄像头，并通过web展示推理渲染结果<br/>· 使用本地回灌，渲染结果保存在本地 |
 | X86     | Ubuntu 20.04 | yolov2/yolov3 | · 使用本地回灌，渲染结果保存在本地 |
 
 #### 准备工作
@@ -192,11 +193,11 @@ YOLO目标检测算法示例使用图片作为输入，利用BPU进行算法推�
 
 #### 使用介绍
 
-##### 地平线RDK平台
+##### 地平线RDK X3和RDK X3 Module平台
 
 ###### 使用MIPI摄像头发布图片
 
-YOLOv2目标检测算法示例订阅sensor package发布的图片，经过算法推理后发布算法msg，通过websocket package实现在PC端浏览器上渲染显示发布的图片和对应的算法结果。
+YOLOv2目标检测算法示例订阅MIPI摄像头发布的图片，经过算法推理后发布算法msg，通过websocket package实现在PC端浏览器上渲染显示发布的图片和对应的算法结果。
 
 ```shell
 # 配置tros.b环境
@@ -211,6 +212,8 @@ ros2 launch dnn_node_example dnn_node_example.launch.py dnn_example_config_file:
 
 ###### 使用USB摄像头发布图片
 
+YOLOv2目标检测算法示例订阅USB摄像头发布的图片，经过算法推理后发布算法msg，通过websocket package实现在PC端浏览器上渲染显示发布的图片和对应的算法结果。
+
 ```shell
 # 配置tros.b环境
 source /opt/tros/setup.bash
@@ -222,7 +225,7 @@ export CAM_TYPE=usb
 ros2 launch dnn_node_example dnn_node_example.launch.py dnn_example_config_file:=config/yolov2workconfig.json dnn_example_image_width:=480 dnn_example_image_height:=272
 ```
 
-##### 使用本地图片回灌
+###### 使用本地图片回灌
 
 YOLOv2目标检测算法示例使用本地JPEG/PNG格式图片回灌，经过推理后将算法结果渲染后的图片存储在本地的运行路径下。
 
@@ -236,9 +239,55 @@ ros2 launch dnn_node_example dnn_node_example_feedback.launch.py dnn_example_con
 
 除了YOLOv2算法，还支持YOLOv3和YOLOv5算法。启动命令中使用参数config_file切换算法，如使用YOLOv3算法的启动配置为`dnn_example_config_file:="config/yolov3workconfig.json"`，使用YOLOv5算法的启动配置为`dnn_example_config_file:="config/yolov5workconfig.json"`。
 
+除了YOLOv2算法，还支持YOLOv3和YOLOv5算法。启动命令中使用参数config_file切换算法，如使用YOLOv3算法的启动配置为`dnn_example_config_file:="config/yolov3workconfig.json"`，使用YOLOv5算法的启动配置为`dnn_example_config_file:="config/yolov5workconfig.json"`。
+
+##### 地平线RDK J5平台
+
+###### 使用MIPI摄像头发布图片
+
+YOLOv5x目标检测算法示例订阅MIPI摄像头发布的图片，经过算法推理后发布算法msg，通过websocket package实现在PC端浏览器上渲染显示发布的图片和对应的算法结果。
+
+```shell
+# 配置tros.b环境
+source /opt/tros/setup.bash
+
+# 配置MIPI摄像头
+export CAM_TYPE=mipi
+
+# 启动launch文件
+ros2 launch dnn_node_example dnn_node_example.launch.py dnn_example_config_file:=config/yolov5xworkconfig.json dnn_example_image_width:=672 dnn_example_image_height:=672
+```
+
+###### 使用USB摄像头发布图片
+
+YOLOv5x目标检测算法示例订阅USB摄像头发布的图片，经过算法推理后发布算法msg，通过websocket package实现在PC端浏览器上渲染显示发布的图片和对应的算法结果。
+
+```shell
+# 配置tros.b环境
+source /opt/tros/setup.bash
+
+# 配置USB摄像头
+export CAM_TYPE=usb
+
+# 启动launch文件
+ros2 launch dnn_node_example dnn_node_example.launch.py dnn_example_config_file:=config/yolov5xworkconfig.json dnn_example_image_width:=672 dnn_example_image_height:=672
+```
+
+###### 使用本地图片回灌
+
+YOLOv5x目标检测算法示例使用本地JPEG/PNG格式图片回灌，经过推理后将算法结果渲染后的图片存储在本地的运行路径下。
+
+```shell
+# 配置tros.b环境
+source /opt/tros/setup.bash
+
+# 启动launch文件
+ros2 launch dnn_node_example dnn_node_example_feedback.launch.py dnn_example_config_file:=config/yolov5xworkconfig.json dnn_example_image:=config/target.jpg
+```
+
 ##### X86平台
 
-##### 使用本地图片回灌
+###### 使用本地图片回灌
 
 YOLOv2目标检测算法示例使用本地JPEG/PNG格式图片回灌，经过推理后将算法结果渲染后的图片存储在本地的运行路径下。
 
@@ -314,7 +363,7 @@ Mobilenet_SSD是从 <https://github.com/chuanqi305/MobileNet-SSD> 获得的 caff
 
 | 平台    | 运行方式      | 示例功能                       |
 | ------- | ------------ | ------------------------------ |
-| 地平线RDK| Ubuntu 20.04 | · 启动MIPI/USB摄像头，并通过web展示推理渲染结果<br/>· 使用本地回灌，渲染结果保存在本地 |
+| RDK X3, RDK X3 Module| Ubuntu 20.04 | · 启动MIPI/USB摄像头，并通过web展示推理渲染结果<br/>· 使用本地回灌，渲染结果保存在本地 |
 | X86     | Ubuntu 20.04 | · 使用本地回灌，渲染结果保存在本地 |
 
 #### 准备工作
@@ -450,7 +499,7 @@ EfficientNet_Det是从 <https://github.com/HorizonRobotics-Platform/ModelZoo/tre
 
 | 平台    | 运行方式      | 示例功能                       |
 | ------- | ------------- | ------------------------------ |
-| 地平线RDK| Ubuntu 20.04  | · 启动MIPI/USB摄像头，并通过web展示推理渲染结果<br/>· 使用本地回灌，渲染结果保存在本地 |
+| RDK X3, RDK X3 Module| Ubuntu 20.04  | · 启动MIPI/USB摄像头，并通过web展示推理渲染结果<br/>· 使用本地回灌，渲染结果保存在本地 |
 
 #### 准备工作
 
@@ -572,7 +621,8 @@ mobilenetv2是使用[ImageNet data](http://www.image-net.org/)数据集训练出
 
 | 平台    | 运行方式      | 示例功能                       |
 | ------- | ------------ | ------------------------------ |
-| 地平线RDK| Ubuntu 20.04 | · 启动MIPI/USB摄像头，并通过web展示推理渲染结果<br/>· 使用本地回灌，渲染结果保存在本地 |
+| RDK X3, RDK X3 Module| Ubuntu 20.04 | · 启动MIPI/USB摄像头，并通过web展示推理渲染结果<br/>· 使用本地回灌，渲染结果保存在本地 |
+| RDK J5| Ubuntu 20.04 | · 启动USB摄像头，并通过web展示推理渲染结果<br/>· 使用本地回灌，渲染结果保存在本地 |
 | X86     | Ubuntu 20.04 | · 使用本地回灌，渲染结果保存在本地 |
 
 #### 准备工作
@@ -595,11 +645,11 @@ mobilenetv2是使用[ImageNet data](http://www.image-net.org/)数据集训练出
 
 #### 使用介绍
 
-##### 地平线RDK平台
-
-###### 使用MIPI摄像头发布图片
+##### 地平线RDK X3和RDK X3 Module平台
 
 mobilenetv2图片分类订阅sensor package发布的图片，经过推理后发布算法msg，通过websocket package实现在PC端浏览器上渲染显示发布的图片和对应的算法结果。
+
+###### 使用MIPI摄像头发布图片
 
 ```shell
 # 配置TogetheROS环境
@@ -635,6 +685,51 @@ source /opt/tros/setup.bash
 
 # 启动launch文件
 ros2 launch dnn_node_example dnn_node_example_feedback.launch.py dnn_example_config_file:=config/mobilenetv2workconfig.json dnn_example_image:=config/target_class.jpg
+```
+
+##### 地平线RDK J5平台
+
+###### 使用MIPI摄像头发布图片
+
+mobilenetv2图片分类算法node订阅MIPI摄像头发布的图片，经过推理后发布算法msg，通过websocket package实现在PC端浏览器上渲染显示发布的图片和对应的算法结果。
+
+```shell
+# 配置TogetheROS环境
+source /opt/tros/setup.bash
+
+# 配置MIPI摄像头
+export CAM_TYPE=mipi
+
+# 启动launch文件
+ros2 launch dnn_node_example dnn_node_example.launch.py dnn_example_config_file:=config/mobilenetv2workconfig.json dnn_example_image_width:=224 dnn_example_image_height:=224
+```
+
+###### 使用USB摄像头发布图片
+
+mobilenetv2图片分类算法node订阅USB摄像头发布的图片，经过推理后发布算法msg，通过websocket package实现在PC端浏览器上渲染显示发布的图片和对应的算法结果。
+
+```shell
+# 配置TogetheROS环境
+source /opt/tros/setup.bash
+
+# 配置USB摄像头
+export CAM_TYPE=usb
+
+# 启动launch文件
+ros2 launch dnn_node_example dnn_node_example.launch.py dnn_example_config_file:=config/mobilenetv2workconfig.json dnn_example_image_width:=224 dnn_example_image_height:=224
+
+```
+
+###### 使用本地图片回灌
+
+mobilenetv2图片分类算法示例使用本地JPEG/PNG格式图片回灌，经过推理后将算法结果渲染后的图片存储在本地的运行路径下。
+
+```shell
+# 配置TogetheROS环境
+source /opt/tros/setup.bash
+
+# 启动launch文件
+ros2 launch dnn_node_example dnn_node_example_feedback.launch.py dnn_example_config_file:=config/mobilenetv2workconfig.json dnn_example_image:=config/target_class.jpg 
 ```
 
 ##### X86平台
@@ -716,7 +811,7 @@ mobilenet_unet是使用[Cityscapes](https://www.cityscapes-dataset.com/)数据�
 
 | 平台    | 运行方式      | 示例功能                       |
 | ------- | ------------ | ------------------------------ |
-| 地平线RDK| Ubuntu 20.04 | · 启动MIPI/USB摄像头/本地回灌，渲染结果保存在本地 |
+| RDK X3, RDK X3 Module| Ubuntu 20.04 | · 启动MIPI/USB摄像头/本地回灌，渲染结果保存在本地 |
 | X86     | Ubuntu 20.04 | · 使用本地回灌，渲染结果保存在本地 |
 
 #### 准备工作

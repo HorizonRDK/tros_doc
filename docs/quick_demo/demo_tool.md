@@ -16,7 +16,7 @@ sidebar_position: 7
 
 | 平台    | 运行方式     |
 | ------- | ------------ |
-| 地平线RDK| Ubuntu 20.04 |
+| RDK X3, RDK X3 Module, RDK J5| Ubuntu 20.04 |
 | X86     | Ubuntu 20.04 |
 
 ### 准备工作
@@ -140,7 +140,7 @@ trigger_node package 是地平线基于ROS2开发的Trigger基础模块，用于
 
 | 平台    | 运行方式      | 示例功能                       |
 | ------- | ------------ | ------------------------------ |
-| 地平线RDK| Ubuntu 20.04 | · 启动MIPI/USB摄像头，触发记录的rosbag数据记录在本地 |
+| RDK X3, RDK X3 Module, RDK J5| Ubuntu 20.04 | · 启动MIPI/USB摄像头，触发记录的rosbag数据记录在本地 |
 
 ### 使用说明
 

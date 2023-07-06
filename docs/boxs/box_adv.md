@@ -28,15 +28,15 @@ sidebar_position: 2
 
 应用场景：人体检测和跟踪算法是人体运动视觉分析的重要组成部分，可实现人体姿态分析以及人流量统计等功能，主要应用于人机交互、游戏娱乐等领域。
 
-姿态检测案例：[5.3. 姿态检测 — 地平线机器人平台用户手册 1.0 文档](../apps/fall_detection)    
-小车人体跟随案例：[5.4. 小车人体跟随 — 地平线机器人平台用户手册 1.0 文档](../apps/car_tracking)  
+姿态检测案例：[5.3. 姿态检测](../apps/fall_detection)    
+小车人体跟随案例：[5.4. 小车人体跟随](../apps/car_tracking)  
 基于人体姿态分析以及手势识别实现游戏人物控制案例：[玩转X3派，健身游戏两不误](https://developer.horizon.ai/forumDetail/112555512834430487)
 
 ### 支持平台
 
 | 平台    | 运行方式      | 示例功能                       |
 | ------- | ------------ | ------------------------------ |
-| 地平线RDK| Ubuntu 20.04 | · 启动MIPI/USB摄像头/本地回灌，并通过Web展示推理渲染结果 |
+| RDK X3, RDK X3 Module, RDK J5| Ubuntu 20.04 | · 启动MIPI/USB摄像头/本地回灌，并通过Web展示推理渲染结果 |
 | X86     | Ubuntu 20.04 | · 启动本地回灌，并通过Web展示推理渲染结果 |
 
 ### 准备工作
@@ -198,7 +198,7 @@ ros2 launch mono2d_body_detection mono2d_body_detection.launch.py
 
 | 平台    | 运行方式      | 示例功能                       |
 | ------- | ------------ | ------------------------------ |
-| 地平线RDK| Ubuntu 20.04 | · 启动MIPI/USB摄像头，并通过web展示推理渲染结果 |
+| RDK X3, RDK X3 Module, RDK J5| Ubuntu 20.04 | · 启动MIPI/USB摄像头，并通过web展示推理渲染结果 |
 
 ### 准备工作
 
@@ -322,7 +322,7 @@ ros2 launch hand_lmk_detection hand_lmk_detection.launch.py
 
 | 平台    | 运行方式      | 示例功能                       |
 | ------- | ------------- | ------------------------------ |
-| 地平线RDK| Ubuntu 20.04  | · 启动MIPI/USB摄像头，并通过Web展示推理渲染结果 |
+| RDK X3, RDK X3 Module, RDK J5| Ubuntu 20.04  | · 启动MIPI/USB摄像头，并通过Web展示推理渲染结果 |
 
 ### 准备工作
 
@@ -448,7 +448,7 @@ mono3d_indoor_detection package是基于hobot_dnn package开发的室内物体3D
 
 | 平台     | 运行方式     | 示例功能                       |
 | -------- | ------------ | ------------------------------ |
-| 地平线RDK | Ubuntu 20.04 | · 启动MIPI/USB摄像头/本地回灌，推理渲染结果保存在本地 |
+| RDK X3, RDK X3 Module | Ubuntu 20.04 | · 启动MIPI/USB摄像头/本地回灌，推理渲染结果保存在本地 |
 | X86      | Ubuntu       | · 启动本地回灌，推理渲染结果保存在本地 |
 
 ### 准备工作
@@ -544,7 +544,7 @@ elevation_net是基于hobot_dnn package开发的高程网络检测算法示例�
 
 | 平台    | 运行方式     | 示例功能                       |
 | ------- | ------------ | ------------------------------ |
-| 地平线RDK| Ubuntu 20.04 | · 启动本地回灌，推理渲染结果保存在本地 |
+| RDK X3, RDK X3 Module| Ubuntu 20.04 | · 启动本地回灌，推理渲染结果保存在本地 |
 | X86     | Ubuntu 20.04 | · 启动本地回灌，推理渲染结果保存在本地 |
 
 ### 准备工作
@@ -686,7 +686,7 @@ log显示，读取本地图片推理之后输出image基于像素的深度和高
 
 | 平台    | 运行方式     | 示例功能                       |
 | ------- | ------------ | ------------------------------ |
-| 地平线RDK| Ubuntu 20.04 | 启动音频模块算法，并在终端显示结果 |
+| RDK X3| Ubuntu 20.04 | 启动音频模块算法，并在终端显示结果 |
 
 **注意：仅支持RDK X3，RDK X3 Module暂不支持。**
 
@@ -912,7 +912,13 @@ SLAM指定位与地图构建（Simultaneous Localization and Mapping，简称SLA
 
 应用场景：视觉SLAM算法能够在计算自身位置和姿态的同时计算出环境的三维结构，可实现即时定位以及构建地图的功能，主要应用于自动驾驶、智能家居、三维重建等领域。
 
-SLAM建图案例：[5.1. SLAM建图 — 地平线机器人平台用户手册 1.0 文档](../apps/slam)
+SLAM建图案例：[5.1. SLAM建图](../apps/slam)
+
+### 支持平台
+
+| 平台    | 运行方式      |
+| ------- | ------------ |
+| RDK X3, RDK X3 Module | Ubuntu 20.04 |
 
 ### 准备工作
 
@@ -1062,13 +1068,13 @@ parking_perception package 是基于 hobot_dnn package开发的路面结构化�
 
 应用场景：室外停车区检测算法基于语义分割，识别出图片中的停车区域，可实现自动泊车的功能，主要应用于自动驾驶领域。
 
-小车车位寻找案例：[5.8. 小车车位寻找 — 地平线机器人平台用户手册 1.0 文档](../apps/parking_search)
+小车车位寻找案例：[5.8. 小车车位寻找](../apps/parking_search)
 
 ### 支持平台
 
 | 平台    | 运行方式      | 示例功能                       |
 | ------- | ------------ | ------------------------------ |
-| 地平线RDK| Ubuntu 20.04 | · 启动MIPI/USB摄像头/本地回灌，推理渲染结果在Web显示/保存在本地 |
+| RDK X3, RDK X3 Module| Ubuntu 20.04 | · 启动MIPI/USB摄像头/本地回灌，推理渲染结果在Web显示/保存在本地 |
 | X86     | Ubuntu 20.04 | · 启动本地回灌，推理渲染结果在Web显示/保存在本地 |
 
 ### 准备工作
@@ -1212,3 +1218,268 @@ package初始化后，在运行终端输出如下信息：
 ![](./image/box_adv/render.png)
 
 "dump_render_img"设置为"1"时，渲染效果保存在当前路径的result目录下。
+
+
+
+## 激光雷达目标检测
+
+### 功能介绍
+
+激光雷达目标检测算法示例使用激光雷达点云作为输入，利用BPU进行算法推理，并发布包含点云数据，检测框和目标朝向的渲染图片msg。
+
+CenterPoint为地平线开源的雷达检测模型。模型输出信息包括目标的3D检测框、置信度、类别。支持的目标检测类型包括car、truck、bus、barrier、motorcycle、pedestrian等六大类别。
+
+代码仓库：<https://github.com/HorizonRDK/hobot_centerpoint>
+
+### 支持平台
+
+| 平台    | 运行方式      | 示例功能                       |
+| ------- | ------------ | ------------------------------ |
+| RDK J5| Ubuntu 20.04 | 使用本地回灌，并通过web展示推理渲染结果 |
+
+### 准备工作
+
+#### 地平线RDK平台
+
+1. 地平线RDK已烧录好地平线提供的Ubuntu 20.04系统镜像。
+
+2. 地平线RDK已成功安装TogetheROS.Bot。
+
+3. 确认PC机能够通过网络访问地平线RDK。
+
+### 使用介绍
+
+#### 地平线RDK平台
+
+#### 使用本地点云文件回灌
+
+激光雷达物体检测算法示例使用激光雷达点云文件回灌，经过推理后将算法结果渲染后的图片msg，通过websocket package实现在PC端浏览器上渲染显示发布的图片和对应的算法结果。
+
+```shell
+# 板端下载回灌的点云文件
+wget http://archive.sunrisepi.tech/TogetheROS/data/hobot_centerpoint_data.tar.gz
+
+# 解压缩
+mkdir config
+tar -zxvf hobot_centerpoint_data.tar.gz -C config
+# 解压完成后数据在config/hobot_centerpoint_data路径下
+
+# 配置tros.b环境
+source /opt/tros/setup.bash
+
+# 启动launch文件
+ros2 launch hobot_centerpoint hobot_centerpoint_websocket.launch.py lidar_pre_path:=config/hobot_centerpoint_data
+```
+
+### 结果分析
+
+#### 使用本地图片回灌
+
+在运行终端输出如下信息：
+
+```text
+root@j5dvb:/userdata/zhenwei.liu# ros2 launch hobot_centerpoint hobot_centerpoint_websocket.launch.py
+[INFO] [launch]: All log files can be found below /home/root/.ros/log/2000-01-22-04-15-57-964765-j5dvb-22212
+[INFO] [launch]: Default logging verbosity is set to INFO
+hobot_centerpoint_path is  /userdata/zhenwei.liu/nfs/install/lib/hobot_centerpoint
+cp_cmd is  cp -r /userdata/zhenwei.liu/nfs/install/lib/hobot_centerpoint/config .
+[INFO] [hobot_centerpoint-1]: process started with pid [22470]
+[INFO] [websocket-2]: process started with pid [22472]
+[hobot_centerpoint-1] [WARN] [0948485758.916907430] [centerpoint_node]:
+[hobot_centerpoint-1]  preprocess_config: config/centerpoint_preprocess_5dim.json
+[hobot_centerpoint-1]  model_file: config/model/model.hbm
+[hobot_centerpoint-1]  lidar_list_file: ./config/nuscenes_lidar_val.lst
+[hobot_centerpoint-1]  is_show: 1
+[hobot_centerpoint-1]  is_loop: 1
+[hobot_centerpoint-1]  pub_topic_name: /hobot_centerpoint
+[hobot_centerpoint-1]  lidar_pre_path: ./config/hobot_centerpoint_data
+[hobot_centerpoint-1] [BPU_PLAT]BPU Platform Version(1.3.3)!
+[hobot_centerpoint-1] [HBRT] set log level as 0. version = 3.14.25.0
+[hobot_centerpoint-1] [DNN] Runtime version = 1.12.3_(3.14.25 HBRT)
+[hobot_centerpoint-1] [WARN] [0948485759.205674972] [dnn]: Run default SetOutputParser.
+[hobot_centerpoint-1] [WARN] [0948485759.205820889] [dnn]: Set output parser with default dnn node parser, you will get all output tensors and should parse output_tensors in PostProcess.
+[hobot_centerpoint-1] [WARN] [0948485759.208895472] [hobot_centerpoint]: A total of 81 files were fetched!
+[hobot_centerpoint-1] [WARN] [0948485759.400904472] [CenterPoint_Node]: input fps: -1.00, out fps: -1.00, infer time ms: 61, post process time ms: 57
+[hobot_centerpoint-1] [WARN] [0948485759.839328014] [CenterPoint_Node]: input fps: -1.00, out fps: -1.00, infer time ms: 27, post process time ms: 53
+[hobot_centerpoint-1] [WARN] [0948485760.281992264] [CenterPoint_Node]: input fps: -1.00, out fps: -1.00, infer time ms: 28, post process time ms: 53
+[hobot_centerpoint-1] [WARN] [0948485760.731948223] [CenterPoint_Node]: input fps: 2.93, out fps: 3.01, infer time ms: 27, post process time ms: 56
+[hobot_centerpoint-1] [WARN] [0948485761.155906223] [CenterPoint_Node]: input fps: 2.93, out fps: 3.01, infer time ms: 28, post process time ms: 56
+[hobot_centerpoint-1] [WARN] [0948485761.572980640] [CenterPoint_Node]: input fps: 2.93, out fps: 3.01, infer time ms: 27, post process time ms: 53
+[hobot_centerpoint-1] [WARN] [0948485761.983718973] [CenterPoint_Node]: input fps: 2.40, out fps: 2.40, infer time ms: 28, post process time ms: 55
+[hobot_centerpoint-1] [WARN] [0948485762.396930973] [CenterPoint_Node]: input fps: 2.40, out fps: 2.40, infer time ms: 28, post process time ms: 55
+[hobot_centerpoint-1] [WARN] [0948485762.816782057] [CenterPoint_Node]: input fps: 2.40, out fps: 2.40, infer time ms: 27, post process time ms: 56
+[hobot_centerpoint-1] [WARN] [0948485763.239294099] [CenterPoint_Node]: input fps: 2.39, out fps: 2.39, infer time ms: 27, post process time ms: 57
+[hobot_centerpoint-1] [WARN] [0948485763.661555807] [CenterPoint_Node]: input fps: 2.39, out fps: 2.39, infer time ms: 27, post process time ms: 57
+[hobot_centerpoint-1] [WARN] [0948485764.084410183] [CenterPoint_Node]: input fps: 2.39, out fps: 2.39, infer time ms: 27, post process time ms: 57
+[hobot_centerpoint-1] [WARN] [0948485764.502788849] [CenterPoint_Node]: input fps: 2.37, out fps: 2.37, infer time ms: 27, post process time ms: 55
+```
+
+输出log显示，发布算法推理结果的topic为`/hobot_centerpoint`, 获取的回灌点云文件为81个。算法经过推理，后处理(包含推理结果的渲染和发布)，帧率约为2.4fps。
+
+在PC端的浏览器输入http://IP:8000 即可查看图像和算法渲染效果（IP为J5的IP地址）：
+
+![](./image/box_adv/render_centerpoint_det.jpg)
+
+## BEV感知
+
+### 功能介绍
+
+BEV感知算法使用地平线开源的BEV感知算法模型，以6组图像作为输入，利用BPU进行算法推理，发布渲染图片msg。
+
+模型使用的训练数据集为[Nuscenes](https://www.nuscenes.org/nuscenes)，输入的6组图像分别是前视，左前，右前，后视，左后，右后。模型输出10个类别的目标以及对应的3D检测框，包括障碍物、多种类型车辆、交通标志等，以及车道线、人行道、马路边缘的语义分割。
+
+代码仓库：<https://github.com/HorizonRDK/hobot_bev.git>
+
+### 支持平台
+
+| 平台    | 运行方式      | 示例功能                       |
+| ------- | ------------ | ------------------------------ |
+| RDK J5| Ubuntu 20.04 | 使用本地回灌，并通过web展示推理渲染结果 |
+
+### 准备工作
+
+1. RDK J5已烧录好地平线提供的Ubuntu 20.04系统镜像。
+
+2. RDK J5已成功安装TogetheROS.Bot。
+
+3. 确认PC机能够通过网络访问RDK J5。
+
+### 使用介绍
+
+#### 使用本地数据集回灌
+
+BEV算法示例使用本地数据集回灌，经过推理后发布算法结果渲染后的图片msg，通过websocket package实现在PC端浏览器上渲染显示发布的图片和对应的算法结果。
+
+***准备回灌数据集***
+
+```shell
+# 板端下载数据集
+wget http://archive.sunrisepi.tech/TogetheROS/data/hobot_bev_data.tar.gz
+
+# 解压缩
+mkdir -p hobot_bev_data
+tar -zxvf hobot_bev_data.tar.gz -C hobot_bev_data
+
+# 解压完成后数据集在hobot_bev_data/data路径下
+```
+
+***使用数据集回灌***
+
+```shell
+# 配置TogetheROS·Bot环境
+source /opt/tros/setup.bash
+
+# 启动运行脚本，并指定数据集路径
+ros2 launch hobot_bev hobot_bev.launch.py image_pre_path:=hobot_bev_data/data
+```
+
+### 结果分析
+
+在运行终端输出如下信息：
+
+```text
+[INFO] [launch]: All log files can be found below /root/.ros/log/2023-07-05-17-47-07-232907-hobot-2627970
+[INFO] [launch]: Default logging verbosity is set to INFO
+hobot_bev path is  /mnt/nfs/github/tros/j5/tros_ws/install/lib/hobot_bev
+[INFO] [hobot_bev-1]: process started with pid [2627972]
+[INFO] [websocket-2]: process started with pid [2627974]
+[hobot_bev-1] [WARN] [1688579227.907268364] [bev_node]:
+[hobot_bev-1]  config_file: /mnt/nfs/github/tros/j5/tros_ws/install/lib/hobot_bev/config/bev_ipm_base/bev_ipm_base_config.json
+[hobot_bev-1]  model_file: /mnt/nfs/github/tros/j5/tros_ws/install/lib/hobot_bev/config/model/model-c359f50c.hbm
+[hobot_bev-1]  pkg_path: /mnt/nfs/github/tros/j5/tros_ws/install/lib/hobot_bev
+[hobot_bev-1]  image_pre_path: hobot_bev_data/data
+[hobot_bev-1] [BPU_PLAT]BPU Platform Version(1.3.3)!
+[hobot_bev-1] [HBRT] set log level as 0. version = 3.14.25.0
+[hobot_bev-1] [DNN] Runtime version = 1.12.3_(3.14.25 HBRT)
+[hobot_bev-1] [WARN] [1688579228.714778531] [dnn]: Run default SetOutputParser.
+[hobot_bev-1] [WARN] [1688579228.714925489] [dnn]: Set output parser with default dnn node parser, you will get all output tensors and should parse output_tensors in PostProcess.
+[hobot_bev-1] [WARN] [1688579228.886846489] [bev_node]: loop 0/1002
+[hobot_bev-1] [WARN] [1688579229.474568573] [bev_node]: loop 1/1002
+[hobot_bev-1] [WARN] [1688579230.058551781] [bev_node]: loop 2/1002
+[hobot_bev-1] [WARN] [1688579230.691667198] [bev_node]: loop 3/1002
+[hobot_bev-1] [WARN] [1688579231.324658782] [bev_node]: loop 4/1002
+[hobot_bev-1] [WARN] [1688579231.365145532] [bev_node]: input fps: 2.47, out fps: 2.52, infer time ms: 12, post process time ms: 659
+[hobot_bev-1] [WARN] [1688579231.915645741] [bev_node]: loop 5/1002
+[hobot_bev-1] [WARN] [1688579231.996993824] [bev_node]: input fps: 2.47, out fps: 2.52, infer time ms: 12, post process time ms: 658
+```
+
+在PC端的浏览器输入http://IP:8000 即可查看图像和算法渲染效果（IP为RDK J5的IP地址）：
+
+![](./image/box_adv/render_bev.jpeg)
+
+## 双目深度估计
+
+### 功能介绍
+
+双目深度估计算法使用地平线开源的`stereonet`算法模型，订阅包含双目图像的话题消息，利用BPU进行算法推理，发布包含双目图像左图和感知结果的话题消息。
+
+代码仓库：<https://github.com/HorizonRDK/hobot_stereonet.git>
+
+### 支持平台
+
+| 平台    | 运行方式      | 示例功能                       |
+| ------- | ------------ | ------------------------------ |
+| RDK J5| Ubuntu 20.04 | 使用本地回灌，并通过web展示推理渲染结果 |
+
+### 准备工作
+
+1. RDK J5已烧录好地平线提供的Ubuntu 20.04系统镜像。
+
+2. RDK J5已成功安装TogetheROS.Bot。
+
+3. ZED 2i双目相机。
+
+4. 确认PC机能够通过网络访问RDK J5。
+
+### 使用介绍
+
+双目深度估计算法示例使用从ZED 2i双目相机采集到的图像数据作为输入，经过推理后发布包含双目图像左图和感知结果的话题消息，通过websocket package实现在PC端浏览器上渲染显示发布的图片和对应的算法结果。
+
+```shell
+# 配置TogetheROS·Bot环境
+source /opt/tros/setup.bash
+
+ros2 launch hobot_stereonet hobot_stereonet_demo.launch.py 
+```
+
+### 结果分析
+
+在运行终端输出如下信息：
+
+```text
+[INFO] [launch]: All log files can be found below /root/.ros/log/2023-07-05-18-23-51-350999-hobot-2628272
+[INFO] [launch]: Default logging verbosity is set to INFO
+webserver has launch
+[INFO] [hobot_stereo_usb_cam-1]: process started with pid [2628275]
+[INFO] [talker-2]: process started with pid [2628277]
+[INFO] [websocket-3]: process started with pid [2628279]
+[INFO] [hobot_stereonet-4]: process started with pid [2628281]
+[hobot_stereo_usb_cam-1] [WARN] [1688581432.042569331] [stereo_usb_cam_node]: Get params complete.
+[hobot_stereo_usb_cam-1]  camera_name: default_cam
+[hobot_stereo_usb_cam-1]  video_device index: 0
+[hobot_stereo_usb_cam-1]  image_width: 1280
+[hobot_stereo_usb_cam-1]  image_height: 720
+[hobot_stereo_usb_cam-1]  io_method_name: shared_mem
+[hobot_stereo_usb_cam-1]  pub_topic_name: hbmem_stereo_img
+[hobot_stereo_usb_cam-1]  out_format: nv12
+[hobot_stereo_usb_cam-1]  enable_fb: 0
+[hobot_stereo_usb_cam-1]  enable_dump: 0
+[hobot_stereonet-4] [WARN] [1688581432.071555206] [stereonet_node]:
+[hobot_stereonet-4]  sub_hbmem_topic_name: hbmem_stereo_img
+[hobot_stereonet-4]  ros_img_topic_name: /stereonet_node_output
+[hobot_stereo_usb_cam-1] [sl_oc::video::VideoCapture] INFO: ZED Open Capture - Camera module - Version: 0.6.0
+[hobot_stereo_usb_cam-1] [sl_oc::video::VideoCapture] INFO: Camera resolution: 2560x720@30Hz
+[hobot_stereo_usb_cam-1] [sl_oc::video::VideoCapture] INFO: Trying to open the device '/dev/video0'
+[hobot_stereonet-4] [BPU_PLAT]BPU Platform Version(1.3.3)!
+[hobot_stereonet-4] [HBRT] set log level as 0. version = 3.14.25.0
+[hobot_stereonet-4] [DNN] Runtime version = 1.12.3_(3.14.25 HBRT)
+[hobot_stereo_usb_cam-1] [sl_oc::video::VideoCapture] INFO: Opened camera with SN: 38085162
+[hobot_stereo_usb_cam-1] [sl_oc::video::VideoCapture] INFO: Device '/dev/video0' opened
+[hobot_stereonet-4] [WARN] [1688581432.344738873] [dnn]: Run default SetOutputParser.
+[hobot_stereonet-4] [WARN] [1688581432.344880957] [dnn]: Set output parser with default dnn node parser, you will get all output tensors and should parse output_tensors in PostProcess.
+[hobot_stereonet-4] [WARN] [1688581432.347218373] [stereonet_node]: model_input_count: 1, model_input_width: 1280, model_input_height: 720
+[hobot_stereo_usb_cam-1] [WARN] [1688581432.412578248] [stereo_usb_cam_node]: Open video device 0 success.
+[hobot_stereo_usb_cam-1] camera sn: 38085162[/dev/video0]
+[hobot_stereonet-4] [WARN] [1688581434.992634291] [stereonet_node]: input fps: 1.60, out fps: 1.60, preprocess time ms: 1191, infer time ms: 48, msg preparation for pub time cost ms: 8
+[hobot_stereonet-4] [WARN] [1688581436.203778417] [stereonet_node]: input fps: 0.82, out fps: 0.82, preprocess time ms: 1157, infer time ms: 47, msg preparation for pub time cost ms: 2
+```

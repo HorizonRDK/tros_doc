@@ -14,8 +14,10 @@ sidebar_position: 6
 
 | 平台    | 运行方式     |
 | ------- | ------------ |
-| 地平线RDK| Ubuntu 20.04 |
+| RDK X3, RDK X3 Module| Ubuntu 20.04 |
 | X86     | Ubuntu 20.04 |
+
+`RDK J5`平台的模型推理功能体验参考[3.1 工具链参考算法](../boxs/box_basic)  
 
 ## 准备工作
 

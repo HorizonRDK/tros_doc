@@ -13,7 +13,7 @@ SLAM指即时定位与地图构建（Simultaneous Localization and Mapping，简
 
 | 平台    | 运行方式     | 示例功能                       |
 | ------- | ------------ | ------------------------------ |
-| 地平线RDK| Ubuntu 20.04 | PC端启动仿真环境，并在地平线RDK进行SLAM建图，最后通过Rviz2展示建图效果 |
+| RDK X3, RDK X3 Module, RDK J5| Ubuntu 20.04 | PC端启动仿真环境，并在地平线RDK进行SLAM建图，最后通过Rviz2展示建图效果 |
 
 ## 准备工作
 

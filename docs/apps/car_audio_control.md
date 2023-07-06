@@ -18,7 +18,7 @@ APP以PC端Gazebo仿真环境下的虚拟小车举例，发布的控制指令也
 
 | 平台     | 运行方式      | 示例功能                       |
 | -------- | ------------ | ------------------------------ |
-| 地平线RDK | Ubuntu 20.04 | 启动智能语音模块解析语音信息并进行语音控制，通过Gazebo展示控制效果 |
+| RDK X3 | Ubuntu 20.04 | 启动智能语音模块解析语音信息并进行语音控制，通过Gazebo展示控制效果 |
 
 **注意：仅支持RDK X3，RDK X3 Module暂不支持。**
 
@@ -36,7 +36,6 @@ APP以PC端Gazebo仿真环境下的虚拟小车举例，发布的控制指令也
 
 5. 和地平线RDK在同一网段（有线或者连接同一无线网，IP地址前三段需保持一致）的PC，PC端需要安装的环境包括：
 
-   - 地平线RDK
    - [ROS2 Foxy桌面版](https://docs.ros.org/en/foxy/Installation/Ubuntu-Install-Debians.html)
    - Gazebo和Turtlebot3相关的功能包，安装方法：
 

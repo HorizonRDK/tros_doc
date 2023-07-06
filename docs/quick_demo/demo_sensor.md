@@ -9,13 +9,13 @@ sidebar_position: 1
 
 为实现环境感知能力，机器人产品中通常会搭载摄像头以获取图像信息。USB摄像头易于获取，使用方便，通用性好，TogetheROS.Bot添加了对USB摄像头的支持，支持ROS2标准图像消息。
 
-代码仓库：<https://github.com/HorizonRDK/hobot_sensors>
+代码仓库：<https://github.com/HorizonRDK/hobot_usb_cam.git>
 
 ### 支持平台
 
 | 平台    | 运行方式     |
 | ------- | ------------ |
-| 地平线RDK| Ubuntu 20.04 |
+| RDK X3, RDK X3 Module, RDK J5| Ubuntu 20.04 |
 | X86     | Ubuntu 20.04 |
 
 ### 准备工作
@@ -107,21 +107,21 @@ sidebar_position: 1
 
 为实现环境感知能力，机器人产品中通常会搭载摄像头、ToF等类型的传感器。为降低用户传感器适配和使用成本，TogetheROS.Bot会对多种常用传感器进行封装，并抽象成hobot_sensor模块，支持ROS标准图像消息。当配置的传感器参数与接入的摄像头不符时，程序会自动适应正确的传感器类型。目前已支持的MIPI传感器类型如下所示：
 
-| 类型 | 型号 | 规格 |
-| ------ | ------ | ------ |
-| 摄像头| F37 | 200W |
-| 摄像头| GC4663 | 400W |
-| 摄像头| IMX219 | 200W |
-| 摄像头| IMX477 | 200W |
-| 摄像头| OV5647 | 200W |
+| 类型 | 型号 | 规格 | 支持平台 |
+| ------ | ------ | ------ | ------ |
+| 摄像头| F37 | 200W | RDK X3, RDK X3 Module |
+| 摄像头| GC4663 | 400W | RDK X3, RDK X3 Module |
+| 摄像头| IMX219 | 200W | RDK X3, RDK X3 Module, RDK J5 |
+| 摄像头| IMX477 | 200W | RDK X3, RDK X3 Module |
+| 摄像头| OV5647 | 200W | RDK X3, RDK X3 Module |
 
-代码仓库：<https://github.com/HorizonRDK/hobot_sensors>
+代码仓库：<https://github.com/HorizonRDK/hobot_mipi_cam.git>
 
 ### 支持平台
 
 | 平台   | 运行方式      | 示例功能                          |
 | ------ | ------------- | --------------------------------- |
-|地平线RDK| Ubuntu 20.04  | 启动MIPI摄像头，并通过Web展示图像 |
+|RDK X3, RDK X3 Module, RDK J5| Ubuntu 20.04  | 启动MIPI摄像头，并通过Web展示图像 |
 
 ### 准备工作
 
@@ -273,13 +273,13 @@ sidebar_position: 1
 | ------ | ------ | ------ |
 | 摄像头| CP3AM | 200W |
 
-代码仓库：<https://github.com/HorizonRDK/hobot_sensors>
+代码仓库：<https://github.com/HorizonRDK/hobot_rgbd_cam.git>
 
 ### 支持平台
 
 | 平台   | 运行方式      | 示例功能                                           |
 | ------ | ------------- | -------------------------------------------------- |
-|地平线RDK| Ubuntu 20.04  | 启动RGBD摄像头，并在PC端通过rviz2预览RGB图和深度图 |
+|RDK X3| Ubuntu 20.04  | 启动RGBD摄像头，并在PC端通过rviz2预览RGB图和深度图 |
 
 **注意：仅支持RDK X3，RDK X3 Module暂不支持。**
 

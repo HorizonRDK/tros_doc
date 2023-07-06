@@ -28,7 +28,7 @@ mono2d_trash_detection package 是基于 hobot_dnn package 开发的2D垃圾目�
 
 | 平台    | 运行方式      | 示例功能                       |
 | ------- | ------------ | ------------------------------ |
-| 地平线RDK| Ubuntu 20.04 | · 启动MIPI/USB摄像头/本地回灌，推理渲染结果在Web显示/保存在本地 |
+| RDK X3, RDK X3 Module| Ubuntu 20.04 | · 启动MIPI/USB摄像头/本地回灌，推理渲染结果在Web显示/保存在本地 |
 | X86     | Ubuntu 20.04 | · 启动本地回灌，推理渲染结果在Web显示/保存在本地 |
 
 ## 准备工作
