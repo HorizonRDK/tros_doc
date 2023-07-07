@@ -1221,13 +1221,15 @@ package初始化后，在运行终端输出如下信息：
 
 
 
-## 激光雷达目标检测
+## 激光雷达目标检测算法
 
 ### 功能介绍
 
-激光雷达目标检测算法示例使用激光雷达点云作为输入，利用BPU进行算法推理，并发布包含点云数据、目标检测框和朝向的渲染图片msg。
+激光雷达目标检测算法是使用地平线[OpenExplorer](https://developer.horizon.ai/api/v1/fileData/horizon_j5_open_explorer_cn_doc/hat/source/examples/centerpoint.html)在[nuscenes](https://www.nuscenes.org/nuscenes)数据集上训练出来的`CenterPoint`算法模型。
 
-CenterPoint为地平线开源的基于雷达点云的目标检测算法。算法输出信息包括目标的3D检测框、置信度、类别。支持的目标检测类型包括car、truck、bus、barrier、motorcycle、pedestrian共六大类别。
+算法输入为32线激光雷达点云数据，输出信息包括目标的3D检测框、置信度、类别。支持的目标检测类型包括car、truck、bus、barrier、motorcycle、pedestrian共六大类别。
+
+此示例使用本地激光雷达点云文件作为输入，利用BPU进行算法推理，发布包含点云数据、目标检测框和朝向的渲染图片消息，在PC端浏览器上渲染显示算法结果。
 
 代码仓库：<https://github.com/HorizonRDK/hobot_centerpoint>
 
@@ -1316,13 +1318,15 @@ ros2 launch hobot_centerpoint hobot_centerpoint_websocket.launch.py lidar_pre_pa
 
 ![](./image/box_adv/render_centerpoint_det.jpg)
 
-## BEV感知
+## BEV感知算法
 
 ### 功能介绍
 
-BEV感知算法使用地平线开源的BEV感知算法模型，以6组图像作为输入，利用BPU进行算法推理，发布渲染图片msg。
+BEV感知算法是使用地平线[OpenExplorer](https://developer.horizon.ai/api/v1/fileData/horizon_j5_open_explorer_cn_doc/hat/source/examples/bev.html)在[nuscenes](https://www.nuscenes.org/nuscenes)数据集上训练出来的`BEV`多任务模型。
 
-模型使用的训练数据集为[Nuscenes](https://www.nuscenes.org/nuscenes)，输入的6组图像分别是前视，左前，右前，后视，左后，右后。模型输出10个类别的目标以及对应的3D检测框，包括障碍物、多种类型车辆、交通标志等，以及车道线、人行道、马路边缘的语义分割。
+算法输入为6组图像数据，分别是前视，左前，右前，后视，左后，右后图。模型输出为10个类别的目标以及对应的3D检测框，包括障碍物、多种类型车辆、交通标志等，以及车道线、人行道、马路边缘的语义分割。
+
+此示例使用本地图像数据作为输入，利用BPU进行算法推理，发布算法感知结果渲染的图片消息，在PC端浏览器上渲染显示算法结果。
 
 代码仓库：<https://github.com/HorizonRDK/hobot_bev.git>
 
@@ -1344,7 +1348,7 @@ BEV感知算法使用地平线开源的BEV感知算法模型，以6组图像作�
 
 #### 使用本地数据集回灌
 
-BEV算法示例使用本地数据集回灌，经过推理后发布算法结果渲染后的图片msg，通过websocket package实现在PC端浏览器上渲染显示发布的图片和对应的算法结果。
+使用本地数据集回灌，经过推理后发布算法结果渲染后的图片消息，通过websocket package实现在PC端浏览器上渲染显示发布的图片和对应的算法结果。
 
 ***准备回灌数据集***
 
@@ -1403,11 +1407,15 @@ hobot_bev path is  /mnt/nfs/github/tros/j5/tros_ws/install/lib/hobot_bev
 
 ![](./image/box_adv/render_bev.jpeg)
 
-## 双目深度估计
+## 双目深度估计算法
 
 ### 功能介绍
 
-双目深度估计算法使用地平线开源的`stereonet`算法模型，订阅包含双目图像的话题消息，利用BPU进行算法推理，发布包含双目图像左图和感知结果的话题消息。
+双目深度估计算法是使用地平线[OpenExplorer](https://developer.horizon.ai/api/v1/fileData/horizon_j5_open_explorer_cn_doc/hat/source/examples/stereonet.html)在[SceneFlow](https://lmb.informatik.uni-freiburg.de/resources/datasets/SceneFlowDatasets.en.html)数据集上训练出来的`StereoNet`模型。
+
+算法输入为双目图像数据，分别是左右视图。算法输出为左视图的视差。
+
+此示例使用ZED 2i双目相机作为图像数据输入源，利用BPU进行算法推理，发布包含双目图像左图和感知结果的话题消息，在PC端浏览器上渲染显示算法结果。
 
 代码仓库：<https://github.com/HorizonRDK/hobot_stereonet.git>
 
@@ -1423,13 +1431,13 @@ hobot_bev path is  /mnt/nfs/github/tros/j5/tros_ws/install/lib/hobot_bev
 
 2. RDK J5已成功安装TogetheROS.Bot。
 
-3. ZED 2i双目相机。
+3. ZED 2i双目相机，连接到RDK J5的USB 3.0接口。
 
 4. 确认PC机能够通过网络访问RDK J5。
 
 ### 使用介绍
 
-双目深度估计算法示例订阅从ZED 2i双目相机采集到的图像数据作为输入，经过推理后发布包含双目图像左图和感知结果的话题消息，通过websocket package实现在PC端浏览器上渲染显示发布的图片和对应的算法结果。
+订阅从ZED 2i双目相机采集到的图像数据作为输入，经过推理后发布包含双目图像左图和感知结果的话题消息，通过websocket package实现在PC端浏览器上渲染显示发布的图片和对应的算法结果。
 
 启动命令：
 
