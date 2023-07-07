@@ -10,7 +10,7 @@ sidebar_position: 2
 
 前提
 
-- 已完成2.1章节环境准备工作
+- 已完成1.1章节环境准备工作
 - 地平线RDK已安装2.x版本系统
 - 地平线RDK能够正常访问互联网
 - 地平线RDK能够远程ssh
@@ -26,7 +26,7 @@ sidebar_position: 2
 
 - **如果您使用的是1.x版本系统镜像，需要将[系统升级](./sdb_manual)到2.x版本。**
 
-- **系统和tros.b版本号查看方法以及详细说明，请查看第7章节的[FAQs](../../docs/category/FAQs)。**
+- **系统和tros.b版本号查看方法以及详细说明，请查看第6章节的[FAQs](../../docs/category/FAQs)。**
 
 
 ### 安装tros.b

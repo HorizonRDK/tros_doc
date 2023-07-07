@@ -355,7 +355,7 @@ ros2 launch hobot_cv hobot_cv_resize.launch.py
 
 ### 结果分析
 
-#### 地平线RDK平台resize
+#### 地平线RDK X3平台resize
 
 ```shell
 [INFO] [launch]: Default logging verbosity is set to INFO
@@ -379,7 +379,7 @@ ros2 launch hobot_cv hobot_cv_resize.launch.py
 
 ![](./image/demo_cv/ori-resize.png)
 
-#### 地平线RDK平台性能对比
+#### 地平线RDK X3平台性能对比
 
 使用top命令查看cpu占用，cpu占用为测试进程cpu占比。
 耗时统计单位为ms，循环处理1000次取平均值。

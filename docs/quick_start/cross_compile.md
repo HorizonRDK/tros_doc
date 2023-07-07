@@ -45,8 +45,6 @@ git clone https://github.com/HorizonRDK/robot_dev_config.git -b develop
 vcs-import src < ./robot_dev_config/ros2_release.repos 
 ```
 
-**首次拉取代码如果要求多次输入git账户和密码提示，请参考本章常见问题第一条**
-
 整个工程目录结构如下
 
 ```text
@@ -73,8 +71,11 @@ vcs-import src < ./robot_dev_config/ros2_release.repos
 ## 拷贝create_soft_link.py
 mkdir -p install && cp ./robot_dev_config/create_soft_link.py install/
 
-## 使用build.sh编译
+## 使用build.sh编译X3版本tros.b
 bash ./robot_dev_config/build.sh -p X3
+
+## 使用build.sh编译J5版本tros.b
+bash ./robot_dev_config/build.sh -p J5
 ```
 
 编译成功后会提示总计N packages编译通过。

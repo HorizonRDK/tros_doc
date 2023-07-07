@@ -1225,9 +1225,9 @@ package初始化后，在运行终端输出如下信息：
 
 ### 功能介绍
 
-激光雷达目标检测算法示例使用激光雷达点云作为输入，利用BPU进行算法推理，并发布包含点云数据，检测框和目标朝向的渲染图片msg。
+激光雷达目标检测算法示例使用激光雷达点云作为输入，利用BPU进行算法推理，并发布包含点云数据、目标检测框和朝向的渲染图片msg。
 
-CenterPoint为地平线开源的雷达检测模型。模型输出信息包括目标的3D检测框、置信度、类别。支持的目标检测类型包括car、truck、bus、barrier、motorcycle、pedestrian等六大类别。
+CenterPoint为地平线开源的基于雷达点云的目标检测算法。算法输出信息包括目标的3D检测框、置信度、类别。支持的目标检测类型包括car、truck、bus、barrier、motorcycle、pedestrian共六大类别。
 
 代码仓库：<https://github.com/HorizonRDK/hobot_centerpoint>
 
@@ -1278,11 +1278,7 @@ ros2 launch hobot_centerpoint hobot_centerpoint_websocket.launch.py lidar_pre_pa
 在运行终端输出如下信息：
 
 ```text
-root@j5dvb:/userdata/zhenwei.liu# ros2 launch hobot_centerpoint hobot_centerpoint_websocket.launch.py
-[INFO] [launch]: All log files can be found below /home/root/.ros/log/2000-01-22-04-15-57-964765-j5dvb-22212
 [INFO] [launch]: Default logging verbosity is set to INFO
-hobot_centerpoint_path is  /userdata/zhenwei.liu/nfs/install/lib/hobot_centerpoint
-cp_cmd is  cp -r /userdata/zhenwei.liu/nfs/install/lib/hobot_centerpoint/config .
 [INFO] [hobot_centerpoint-1]: process started with pid [22470]
 [INFO] [websocket-2]: process started with pid [22472]
 [hobot_centerpoint-1] [WARN] [0948485758.916907430] [centerpoint_node]:
@@ -1366,7 +1362,7 @@ tar -zxvf hobot_bev_data.tar.gz -C hobot_bev_data
 ***使用数据集回灌***
 
 ```shell
-# 配置TogetheROS·Bot环境
+# 配置tros.b环境
 source /opt/tros/setup.bash
 
 # 启动运行脚本，并指定数据集路径
@@ -1433,10 +1429,12 @@ hobot_bev path is  /mnt/nfs/github/tros/j5/tros_ws/install/lib/hobot_bev
 
 ### 使用介绍
 
-双目深度估计算法示例使用从ZED 2i双目相机采集到的图像数据作为输入，经过推理后发布包含双目图像左图和感知结果的话题消息，通过websocket package实现在PC端浏览器上渲染显示发布的图片和对应的算法结果。
+双目深度估计算法示例订阅从ZED 2i双目相机采集到的图像数据作为输入，经过推理后发布包含双目图像左图和感知结果的话题消息，通过websocket package实现在PC端浏览器上渲染显示发布的图片和对应的算法结果。
+
+启动命令：
 
 ```shell
-# 配置TogetheROS·Bot环境
+# 配置tros.b环境
 source /opt/tros/setup.bash
 
 ros2 launch hobot_stereonet hobot_stereonet_demo.launch.py 
@@ -1483,3 +1481,5 @@ webserver has launch
 [hobot_stereonet-4] [WARN] [1688581434.992634291] [stereonet_node]: input fps: 1.60, out fps: 1.60, preprocess time ms: 1191, infer time ms: 48, msg preparation for pub time cost ms: 8
 [hobot_stereonet-4] [WARN] [1688581436.203778417] [stereonet_node]: input fps: 0.82, out fps: 0.82, preprocess time ms: 1157, infer time ms: 47, msg preparation for pub time cost ms: 2
 ```
+
+在PC端的浏览器输入http://IP:8000 即可查看图像和算法渲染效果（IP为RDK J5的IP地址）。

@@ -17,6 +17,8 @@ sidebar_position: 3
 | RDK X3, RDK X3 Module, RDK J5| Ubuntu 20.04 | 启动MIPI摄像头获取图像，然后进行图像编码，最后通过Web展示 |
 | X86     | Ubuntu 20.04 | 使用图像发布工具发布YUV图像，然后进行图像编码，最后通过Web展示 |
 
+***RDK J5不支持H.264视频解码格式。***
+
 ## 准备工作
 
 ### 地平线RDK平台
