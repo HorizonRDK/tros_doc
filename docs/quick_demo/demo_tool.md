@@ -136,7 +136,7 @@ webserver has launch
 
 所谓Trigger，是在设定好已有Trigger机制基础上，监测Trigger模块订阅的消息变化，例如检测框结果数量变化，小车控制信息变化等，触发对应Trigger事件，记录指定时间区间内的ROS2消息，从而帮助开发人员定位和复现机器人场景中的感知、规控等问题。
 
-trigger_node package 是地平线基于ROS2开发的Trigger基础模块，用于在触发Trigger事件后，获取指定rosbag数据的功能包。package支持直接订阅ai_msg/msg/PerceptionTargets类型的话题，在话题回调函数中，判断是否触发Trigger事件，并记录Trigger事件相关的rosbag包，最后将Trigger事件信息保存，并通过std_msg/msg/String类型的Trigger事件话题。
+trigger_node package 是地平线基于ROS2开发的Trigger基础模块，用于在触发Trigger事件后，获取指定rosbag数据的功能包。package支持直接订阅ai_msg/msg/PerceptionTargets类型的话题，在话题回调函数中，判断是否触发Trigger事件，并记录Trigger事件相关的rosbag包，最后将Trigger事件信息保存，并发布std_msg/msg/String类型的Trigger事件话题。
 
 本章节展示的示例，是地平线在自定义trigger基础模块基础上，开发的Trigger模块使用示例。本示例展示的功能，是订阅垃圾检测框信息，根据垃圾检测框的数量是否大于等于3，判断是否触发Trigger事件。若检测框数量大于等于3，则触发Trigger事件。
 
@@ -160,31 +160,31 @@ config_file配置文件格式为json格式，具体配置如下：
 
 ```bash
 { 
-  "domain": Trigger事件domain
+  "domain": Trigger事件domain。如扫地机、人型机等，Trigger类型不同，通过domain区分不同领域类型机器人Trigger。
 
-  "desc": Trigger描述信息
+  "desc": Trigger模块描述信息。
 
-  "duration_ts_back": 录制Trigger发生后持续时长
+  "duration_ts_back": 录制Trigger发生后持续时长。
 
-  "duration_ts_front": 录制Tirgger发生前持续时长
+  "duration_ts_front": 录制Tirgger发生前持续时长。
   
-  "level": 优先级 
+  "level": Trigger事件的优先级, 多个不同Trigger发生时, 可利用一个总节点，筛选一些高优或低优的Trigger事件。
   
-  "src_module_id": 发生Trigger的模块 
+  "src_module_id": 发生Trigger的模块ID, 用于管理不同的Trigger模块, 满足业务不同Trigger模块管理需求。
   
-  "status": Trigger状态 
+  "status": Trigger状态, '0': 关闭, '1': 打开。
   
-  "strategy_version": Trigger策略版本 
+  "strategy_version": Trigger模块策略的版本号。
   
-  "topics": 需要记录的话题list，包含话题名 
+  "topics": 需要记录的话题list，包含话题名。
   
-  "trigger_type": Trigger类型 
+  "trigger_type": Trigger类型ID。每个Trigger模块并不是只有一种触发情况，比如检测到2个垃圾触发是一种类型，检测到3个垃圾是一种类型。
   
-  "unique_id": 设备唯一标识 
+  "unique_id": 设备唯一标识。
   
-  "version": Trigger module 版本 
+  "version": Trigger模块版本信息。
   
-  "extra_kv": 冗余扩展信息
+  "extra_kv": 其他冗余扩展信息可记录在此。
 }
   ```
 
