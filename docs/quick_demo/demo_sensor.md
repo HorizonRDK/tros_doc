@@ -54,25 +54,10 @@ sidebar_position: 1
 3. 如程序输出如下信息，说明节点已成功启动
 
     ```text
-    [ERROR] [1662017254.558565200] [hobot_usb_cam]: Camera calibration file:  not exist!
-    [WARN] [1662017254.559233995] [hobot_usb_cam]: get camera calibration parameters failed
-    [INFO] [1662017254.773617972] [hobot_usb_cam]: Set resolution to 640x480
-
-    [INFO] [1662017254.803259017] [hobot_usb_cam]: Set framerate to be 30
-
-    [WARN] [1662017255.036681491] [hobot_usb_cam]: Unable to publish camera info.
-
-    [INFO] [1662017255.037049326] [hobot_usb_cam]: publish image 640x480 encoding:2 size:98583
-
-    [WARN] [1662017255.072076018] [hobot_usb_cam]: Unable to publish camera info.
-
-    [INFO] [1662017255.072359603] [hobot_usb_cam]: publish image 640x480 encoding:2 size:98562
-
-    [WARN] [1662017255.103836613] [hobot_usb_cam]: Unable to publish camera info.
-
-    [INFO] [1662017255.104098489] [hobot_usb_cam]: publish image 640x480 encoding:2 size:98643
-    ...
-
+    [INFO] [launch]: All log files can be found below_/root/.ros/log/2023-06-28-15-57-55-803135-ubuntu-4740
+    [INFO] [launch]: Default logging verbosity is set to INFO
+    [INFO] [hobot_usb_cam-1]: process started with pid [4742]
+    [hobot_usb_cam-1] [ERROR] [1687939076.180076645] [hobot_usb_cam]: Camera calibration file: /opt/tros/lib/hobot_usb_cam/config/usb_camera_calibration.yaml does not exist! Please makee sure the calibration file path is correct andthe calibration file exists!
     ```
 
 4. Web端查看USB摄像头图像，另起一个终端：
