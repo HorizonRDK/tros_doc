@@ -1257,6 +1257,8 @@ package初始化后，在运行终端输出如下信息：
 
 激光雷达物体检测算法示例使用激光雷达点云文件回灌，经过推理后将算法结果渲染后的图片msg，通过websocket package实现在PC端浏览器上渲染显示发布的图片和对应的算法结果。
 
+准备激光雷达点云文件：
+
 ```shell
 # 板端下载回灌的点云文件
 wget http://archive.sunrisepi.tech/TogetheROS/data/hobot_centerpoint_data.tar.gz
@@ -1265,7 +1267,11 @@ wget http://archive.sunrisepi.tech/TogetheROS/data/hobot_centerpoint_data.tar.gz
 mkdir config
 tar -zxvf hobot_centerpoint_data.tar.gz -C config
 # 解压完成后数据在config/hobot_centerpoint_data路径下
+```
 
+启动算法示例：
+
+```shell
 # 配置tros.b环境
 source /opt/tros/setup.bash
 
@@ -1275,9 +1281,7 @@ ros2 launch hobot_centerpoint hobot_centerpoint_websocket.launch.py lidar_pre_pa
 
 ### 结果分析
 
-#### 使用本地图片回灌
-
-在运行终端输出如下信息：
+启动算法示例后在运行终端输出如下信息：
 
 ```text
 [INFO] [launch]: Default logging verbosity is set to INFO
