@@ -1494,7 +1494,15 @@ webserver has launch
 [hobot_stereonet-4] [WARN] [1688581436.203778417] [stereonet_node]: input fps: 0.82, out fps: 0.82, preprocess time ms: 1157, infer time ms: 47, msg preparation for pub time cost ms: 2
 ```
 
-在PC端的浏览器输入http://IP:8000 即可查看图像和算法渲染效果（IP为RDK J5的IP地址）。
+在PC端的浏览器输入http://IP:8000 即可查看图像和算法渲染效果（IP为RDK J5的IP地址）：
+
+![](./image/box_adv/stereonet_rdk.png)
+
+相同场景下ZED的深度估计可视化效果如下：
+
+![](./image/box_adv/stereonet_zed.png)
+
+可以看到对于有光线变化区域，深度学习方法的深度估计准确率更高。
 
 ## 视觉惯性里程计算法
 
