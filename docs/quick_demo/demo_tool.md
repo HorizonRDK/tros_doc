@@ -20,12 +20,12 @@ sidebar_position: 7
 
 | 平台    | 运行方式     |
 | ------- | ------------ |
-| RDK X3, RDK X3 Module, RDK J5| Ubuntu 20.04 |
+| RDK X3, RDK X3 Module, RDK X5 Ultra| Ubuntu 20.04 |
 | X86     | Ubuntu 20.04 |
 
 ***X86平台不支持将H.264、H.265视频解码为NV12格式，因此H.264、H.265视频发布功能无法在X86平台展示。***
 
-***RDK J5不支持将H.264视频解码为NV12格式，因此H.264视频发布功能无法在J5平台展示。***
+***RDK X5 Ultra不支持将H.264视频解码为NV12格式，因此H.264视频发布功能无法在RDK X5 Ultra平台展示。***
 
 ### 准备工作
 

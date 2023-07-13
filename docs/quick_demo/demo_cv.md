@@ -323,7 +323,7 @@ ros2 launch hobot_cv hobot_cv_crop.launch.py
 
 | 平台    | 运行方式      | 示例功能                       |
 | ------- | ------------- | ------------------------------ |
-| RDK X3, RDK X3 Module, RDK J5| Ubuntu 20.04  | 读取图片，进行缩放 |
+| RDK X3, RDK X3 Module, RDK X5 Ultra| Ubuntu 20.04  | 读取图片，进行缩放 |
 | X86     | Ubuntu 20.04 | 读取图片，进行缩放 |
 
 ### 准备工作

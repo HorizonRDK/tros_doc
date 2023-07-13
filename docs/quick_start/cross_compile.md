@@ -74,7 +74,7 @@ mkdir -p install && cp ./robot_dev_config/create_soft_link.py install/
 ## 使用build.sh编译X3版本tros.b
 bash ./robot_dev_config/build.sh -p X3
 
-## 使用build.sh编译J5版本tros.b
+## 使用build.sh编译RDK X5 Ultra版本tros.b
 bash ./robot_dev_config/build.sh -p J5
 ```
 

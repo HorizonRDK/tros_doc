@@ -15,7 +15,7 @@ sidebar_position: 1
 
 | 平台    | 运行方式     |
 | ------- | ------------ |
-| RDK X3, RDK X3 Module, RDK J5| Ubuntu 20.04 |
+| RDK X3, RDK X3 Module, RDK X5 Ultra| Ubuntu 20.04 |
 | X86     | Ubuntu 20.04 |
 
 ### 准备工作
@@ -96,7 +96,7 @@ sidebar_position: 1
 | ------ | ------ | ------ | ------ |
 | 摄像头| F37 | 200W | RDK X3, RDK X3 Module |
 | 摄像头| GC4663 | 400W | RDK X3, RDK X3 Module |
-| 摄像头| IMX219 | 200W | RDK X3, RDK X3 Module, RDK J5 |
+| 摄像头| IMX219 | 200W | RDK X3, RDK X3 Module, RDK X5 Ultra |
 | 摄像头| IMX477 | 200W | RDK X3, RDK X3 Module |
 | 摄像头| OV5647 | 200W | RDK X3, RDK X3 Module |
 
@@ -106,7 +106,7 @@ sidebar_position: 1
 
 | 平台   | 运行方式      | 示例功能                          |
 | ------ | ------------- | --------------------------------- |
-|RDK X3, RDK X3 Module, RDK J5| Ubuntu 20.04  | 启动MIPI摄像头，并通过Web展示图像 |
+|RDK X3, RDK X3 Module, RDK X5 Ultra| Ubuntu 20.04  | 启动MIPI摄像头，并通过Web展示图像 |
 
 ### 准备工作
 

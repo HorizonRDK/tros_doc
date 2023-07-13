@@ -170,7 +170,7 @@ YOLO目标检测算法示例使用图片作为输入，利用BPU进行算法推�
 | 平台    | 运行方式      | 支持算法 |示例功能                       |
 | ------- | ------------ | ---------| ------------------------------ |
 | RDK X3, RDK X3 Module| Ubuntu 20.04 | yolov2/yolov3/yolov5 | · 启动MIPI/USB摄像头，并通过web展示推理渲染结果<br/>· 使用本地回灌，渲染结果保存在本地 |
-| RDK J5| Ubuntu 20.04 | yolov5x | · 启动MIPI/USB摄像头，并通过web展示推理渲染结果<br/>· 使用本地回灌，渲染结果保存在本地 |
+| RDK X5 Ultra| Ubuntu 20.04 | yolov5x | · 启动MIPI/USB摄像头，并通过web展示推理渲染结果<br/>· 使用本地回灌，渲染结果保存在本地 |
 | X86     | Ubuntu 20.04 | yolov2/yolov3 | · 使用本地回灌，渲染结果保存在本地 |
 
 #### 准备工作
@@ -241,7 +241,7 @@ ros2 launch dnn_node_example dnn_node_example_feedback.launch.py dnn_example_con
 
 除了YOLOv2算法，还支持YOLOv3和YOLOv5算法。启动命令中使用参数config_file切换算法，如使用YOLOv3算法的启动配置为`dnn_example_config_file:="config/yolov3workconfig.json"`，使用YOLOv5算法的启动配置为`dnn_example_config_file:="config/yolov5workconfig.json"`。
 
-##### 地平线RDK J5平台
+##### 地平线RDK X5 Ultra平台
 
 ###### 使用MIPI摄像头发布图片
 
@@ -621,7 +621,7 @@ mobilenetv2是使用[ImageNet data](http://www.image-net.org/)数据集训练出
 
 | 平台    | 运行方式      | 示例功能                       |
 | ------- | ------------ | ------------------------------ |
-| RDK X3, RDK X3 Module, RDK J5| Ubuntu 20.04 | · 启动MIPI/USB摄像头，并通过web展示推理渲染结果<br/>· 使用本地回灌，渲染结果保存在本地 |
+| RDK X3, RDK X3 Module, RDK X5 Ultra| Ubuntu 20.04 | · 启动MIPI/USB摄像头，并通过web展示推理渲染结果<br/>· 使用本地回灌，渲染结果保存在本地 |
 | X86     | Ubuntu 20.04 | · 使用本地回灌，渲染结果保存在本地 |
 
 #### 准备工作
@@ -686,7 +686,7 @@ source /opt/tros/setup.bash
 ros2 launch dnn_node_example dnn_node_example_feedback.launch.py dnn_example_config_file:=config/mobilenetv2workconfig.json dnn_example_image:=config/target_class.jpg
 ```
 
-##### 地平线RDK J5平台
+##### 地平线RDK X5 Ultra平台
 
 ###### 使用MIPI摄像头发布图片
 
