@@ -1024,7 +1024,7 @@ X3端的视觉SLAM节点启动并接收到相机图像数据后开始打印当�
 订阅话题后，可以从RVIZ2 软件观察到特征点的渲染结果，
 同时随着相机的运动也可以观察到窗口右侧生成的白色地图点云和绿色的相机轨迹信息。
 ![](./image/box_adv/rviz2_2.png)
-### 使用基于SuperPoint优化的ORB-SLAM3
+#### 使用基于SuperPoint优化的ORB-SLAM3
 
 众所周知，深度学习方法具有传统算法无法比拟的优势和潜力，尤其是在检测和分类任务的稳定性、效率和精度方面，深度学习方法表现出了惊人的优势。在视觉SLAM领域，也涌现出了很多使用深度学习方法代替传统SLAM前端和后端的工作，并表现出明显的优势。
 
@@ -1527,7 +1527,7 @@ webserver has launch
 
 算法订阅realsense相机的图像和IMU数据作为算法的输入，经过计算得到相机的轨迹信息，并通过ROS2的话题机制发布相机的运动轨迹，轨迹结果可在PC的rviz2软件查看。算法的输入和输出topic如下表所示：
 
-## 输入topic
+#### 输入topic
 | 参数名 | 类型 | 解释  | 是否必须 | 默认值 |
 | ----- | ----| -----| ------- | -----|
 | path_config  | std::string | vio算法配置文件路径 | 是        | /opt/tros/lib/hobot_vio/config/realsenseD435i.yaml |
@@ -1535,7 +1535,7 @@ webserver has launch
 | imu_topic    | std::string | vio算法订阅的IMU数据话题名  | 是 | /camera/imu  |
 | sample_gap  | std::string | vio算法处理频率，1表示每帧图像都会参与轨迹计算，2表示每两帧图像计算一次，依此类推 | 是  | 2 |
 
-## 输出topic
+#### 输出topic
 
 | topic名 | 类型 | 解释  |
 | ----- | ----| -----| 
