@@ -6,11 +6,11 @@ sidebar_position: 2
 
 ## 第三方库在RDK X3上的安装/交叉编译和使用
 
-如需交叉编译部署，请参考[交叉编译环境部署](https://developer.horizon.ai/forumDetail/112555549341653662)
+如需交叉编译部署，请参考[交叉编译环境部署](https://developer.horizon.cc/forumDetail/112555549341653662)
 
 ## 编译大型程序过程中提示编译进程被kill错误日志如何解决？
 
-参考[Swap使用教程](https://developer.horizon.ai/forumDetail/98129467158916281)
+参考[Swap使用教程](https://developer.horizon.cc/forumDetail/98129467158916281)
 
 ```shell
 sudo mkdir -p /swapfile 
@@ -287,6 +287,6 @@ root@ubuntu:~#
 
 - 2.x版本tros.b：仅支持2.x版本系统；支持RDK X3、RDK X3 Module等全系列硬件；未来tros.b的新增功能将会发布在2.x版本tros.b；代码托管在github。
 
-- [1.x版本tros.b](https://developer.horizon.ai/api/v1/fileData/TogetherROS/index.html)：历史版本；仅支持1.x版本系统和RDK X3；未来1.x版本tros.b仅发布问题修复版本；代码托管在gitlab。
+- [1.x版本tros.b](https://developer.horizon.cc/api/v1/fileData/TogetherROS/index.html)：历史版本；仅支持1.x版本系统和RDK X3；未来1.x版本tros.b仅发布问题修复版本；代码托管在gitlab。
 
-**注意：1.x版本tros.b无法通过apt命令直接升级到2.x版本tros.b，需要以烧录镜像的方式重新[安装系统](https://developer.horizon.ai/api/v1/fileData/documents_rdk/getting_start/quick_start.html#id3)后再安装2.x版本tros.b。**
+**注意：1.x版本tros.b无法通过apt命令直接升级到2.x版本tros.b，需要以烧录镜像的方式重新[安装系统](https://developer.horizon.cc/api/v1/fileData/documents_rdk/getting_start/quick_start.html#id3)后再安装2.x版本tros.b。**

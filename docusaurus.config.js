@@ -84,7 +84,7 @@ const config = {
             label: '用户手册',
           },
           {
-            href: 'https://developer.horizon.ai/',
+            href: 'https://developer.horizon.cc/',
             label: '开发者社区',
             position: 'left',
           },
@@ -112,7 +112,7 @@ const config = {
             items: [
               {
                 label: '地平线开发者社区',
-                href: 'https://developer.horizon.ai/',
+                href: 'https://developer.horizon.cc/',
               },
             ],
           },

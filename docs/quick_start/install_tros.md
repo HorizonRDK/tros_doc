@@ -22,7 +22,7 @@ sidebar_position: 2
 | 1.x系统镜像 |       √     |       x     |
 | 2.x系统镜像 |       x     |       √     |
 
-- **2.x版本tros.b仅支持2.x版本系统镜像，[1.x版本tros.b](https://developer.horizon.ai/api/v1/fileData/TogetherROS/index.html)仅支持1.x版本系统。**
+- **2.x版本tros.b仅支持2.x版本系统镜像，[1.x版本tros.b](https://developer.horizon.cc/api/v1/fileData/TogetherROS/index.html)仅支持1.x版本系统。**
 
 - **如果您使用的是1.x版本系统镜像，需要将[系统升级](./sdb_manual)到2.x版本。**
 

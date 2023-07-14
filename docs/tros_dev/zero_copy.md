@@ -10,7 +10,7 @@ sidebar_position: 1
 
 ## 前置条件
 
-已按照[安装](https://developer.horizon.ai/api/v1/fileData/TogetherROS/quick_start/index.html)成功安装tros.b，并已掌握ROS2 node，topic，qos等基础知识，以及如何创建package和使用自定义消息，具体教程可见[ROS2官方文档](https://docs.ros.org/en/foxy/Tutorials.html)。
+已按照[安装](../quick_start/install_tros.md)成功安装tros.b，并已掌握ROS2 node，topic，qos等基础知识，以及如何创建package和使用自定义消息，具体教程可见[ROS2官方文档](https://docs.ros.org/en/foxy/Tutorials.html)。
 
 已安装ROS2软件包构建系统ament_cmake。安装命令：`apt update; apt-get install python3-catkin-pkg; pip3 install empy`
 

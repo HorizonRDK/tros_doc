@@ -14,4 +14,4 @@ sidebar_position: 1
 
 ### 地平线机器人平台社区
 
-访问地平线机器人平台专栏<https://developer.horizon.ai/forum?module=5> ， 在社区上发帖反馈。
+访问地平线机器人平台专栏<https://developer.horizon.cc/forum?module=5> ， 在社区上发帖反馈。
