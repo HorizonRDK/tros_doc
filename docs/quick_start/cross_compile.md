@@ -75,7 +75,7 @@ mkdir -p install && cp ./robot_dev_config/create_soft_link.py install/
 bash ./robot_dev_config/build.sh -p X3
 
 ## 使用build.sh编译RDK X5 Ultra版本tros.b
-bash ./robot_dev_config/build.sh -p J5
+bash ./robot_dev_config/build.sh -p X5ultra
 ```
 
 编译成功后会提示总计N packages编译通过。
