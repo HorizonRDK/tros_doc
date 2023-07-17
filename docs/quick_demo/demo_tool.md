@@ -296,7 +296,7 @@ package初始化后，在终端输出如下信息：
 
 ```
 
-运行后Trigger触发产生的rosbag数据，将记录在当前运行目录 "trigger" 目录下。记录的rosbag数据，可以在foxglove中播放。在foxglove中播放rosbag文件的方法，可以参考手册 3.2 数据展示——foxglove展示。
+运行后Trigger触发产生的rosbag数据，将记录在当前运行目录 "trigger" 目录下。记录的rosbag数据，可以在foxglove中播放。在foxglove中播放rosbag文件的方法，可以参考手册 2.2 数据展示——foxglove展示。
 
 foxglove中播放效果：
 
