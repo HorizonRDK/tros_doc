@@ -12,13 +12,7 @@ tros.b foxy版本接口完全兼容，能够复用ROS丰富工具包，这里以
 
 ### 1 添加ROS apt源
 
-添加ROS apt源
-
-```shell
-sudo apt update && sudo apt install curl gnupg2 lsb-release
-sudo curl -sSL https://raw.githubusercontent.com/ros/rosdistro/master/ros.key  -o /usr/share/keyrings/ros-archive-keyring.gpg
-echo "deb [arch=$(dpkg --print-architecture) signed-by=/usr/share/keyrings/ros-archive-keyring.gpg] http://packages.ros.org/ros2/ubuntu $(source /etc/os-release && echo $UBUNTU_CODENAME) main" | sudo tee /etc/apt/sources.list.d/ros2.list > /dev/null
-```
+安装tros.b时，已自动添加ROS apt源，无需手动添加。
 
 更新apt仓库
 

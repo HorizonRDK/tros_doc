@@ -10,7 +10,6 @@ Nav2（Navigation2）是ROS2中自带的导航框架，旨在寻找一种安全�
 
 [SLAM建图](./slam)介绍了如何运行SLAM算法进行建图，本章节介绍如何基于建立的地图使用Nav2进行导航。同样使用Gazebo在PC端创建虚拟环境和小车，使用Rviz2设置导航目的地，地平线RDK运行Nav2程序导航。
 
-目前TogetheROS.Bot已内置Nav2，不需要额外下载或编译即可使用。
 
 ## 支持平台
 
@@ -24,20 +23,14 @@ Nav2（Navigation2）是ROS2中自带的导航框架，旨在寻找一种安全�
 
 1. 地平线RDK已烧录好地平线提供的Ubuntu 20.04镜像。
 
-2. 地平线RDK已成功安装tros.b，并且已经添加ROS2的apt源，添加apt源的方法参见TogetheROS.Bot用户手册第二章2.5一节[使用ROS2 package](../quick_start/install_use_ros_pkg)。
+2. 地平线RDK已成功安装tros.b。
 
-3. tros.b成功安装后，安装Nav2依赖的软件包graphicsmagick++和SLAM-Toolbox。
+3. tros.b成功安装后，安装Nav2。
 
    ```shell
    sudo apt update 
-   # 安装graphicsmagick++
-   sudo apt install libgraphicsmagick++-q16-12
-
-   # 安装ros2 SLAM-Toolbox
-   sudo apt install ros-foxy-slam-toolbox
-   cd /opt/tros
-   # 使用/opt/tros目录下的create_soft_link.py创建ROS package至tros.b的软连接
-   sudo python3 create_soft_link.py --foxy /opt/ros/foxy/ --tros /opt/tros/
+   sudo apt install ros-foxy-navigation2
+   sudo apt install ros-foxy-nav2-bringup
    ```
 
 4. 和地平线RDK在同一网段的PC，PC已安装Ubuntu 20.04系统、ROS2 Foxy桌面版和仿真环境Gazebo，
@@ -63,11 +56,11 @@ Nav2（Navigation2）是ROS2中自带的导航框架，旨在寻找一种安全�
 
 1. **PC端**启动gazebo仿真环境
 
-   ~~~shell
+   ```shell
    source /opt/ros/foxy/setup.bash
    export TURTLEBOT3_MODEL=waffle
    ros2 launch turtlebot3_gazebo turtlebot3_world.launch.py
-   ~~~
+   ```
 
    仿真环境如下图所示：
 
@@ -75,11 +68,12 @@ Nav2（Navigation2）是ROS2中自带的导航框架，旨在寻找一种安全�
 
 2. **地平线RDK**启动导航功能
 
-   ~~~shell
+   ```shell
    source /opt/tros/setup.bash
+   source /opt/ros/foxy/setup.bash
 
-   ros2 launch nav2_bringup bringup_launch.py use_sim_time:=True map:=/opt/tros/share/nav2_bringup/maps/turtlebot3_world.yaml
-   ~~~
+   ros2 launch nav2_bringup bringup_launch.py use_sim_time:=True map:=/opt/ros/foxy/share/nav2_bringup/maps/turtlebot3_world.yaml
+   ```
 
 3. **PC端**启动Rviz2工具
 

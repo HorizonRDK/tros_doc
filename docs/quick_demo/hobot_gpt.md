@@ -6,7 +6,7 @@ sidebar_position: 8
 
 ## 功能介绍
 
-本章节介绍如何调用OpenAI的API，实现和GPT交互功能。
+本章节介绍如何调用OpenAI的API，实现和GPT交互功能。当前支持两种交互模式，一种是聊天模式，支持多轮对话，注意该方式消耗token较多，另一种方式是问答模式，该模式只支持单轮对话。交互模式可通过参数，默认模式为问答模式。
 
 代码仓库：<https://github.com/HorizonRDK/hobot_gpt.git>
 
@@ -14,7 +14,7 @@ sidebar_position: 8
 
 | 平台    | 运行方式     | 示例功能                       |
 | ------- | ------------ | ------------------------------ |
-| RDK X3, RDK X3 Module | Ubuntu 20.04 | 订阅文本消息，然后调用OpenAI API，将获取到的结果发布出去 |
+| RDK X3, RDK X3 Module | Ubuntu 20.04 | 订阅文本消息，然后调用OpenAI API，最后将获取到的结果发布出去 |
 
 ## 准备工作
 
@@ -35,7 +35,7 @@ sidebar_position: 8
     cp -rf /opt/tros/lib/hobot_gpt/config ./
     ```
 
-2. 修改 *config/gpt_config.json* ，将api_key字段设置为自己的OpenAI API key
+2. 修改 *config/gpt_config.json* ，将`api_key`字段设置为自己的OpenAI API key，同时设置交互模式，`chat_mode_enable`为`true`表示使用聊天模式，`false`表示问答模式。
 3. 设置网络代理，确保可以访问OpenAI服务
 4. 启动hobot_gpt程序
 
@@ -61,4 +61,4 @@ sidebar_position: 8
 
 ## 注意事项
 
-调用OpenAI API会消耗账户余额，确保账户有可用余额。
+调用OpenAI API会消耗账户余额，使用前需确认账户有可用余额。

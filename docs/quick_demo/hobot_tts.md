@@ -6,7 +6,7 @@ sidebar_position: 9
 
 ## 功能介绍
 
-该章节介绍如何将一段文本转化为语音信号，并播放。
+该章节介绍如何将一段文本转化为语音信号，并通过耳机输出接口播放。
 
 代码仓库：<https://github.com/HorizonRDK/hobot_tts.git>
 
@@ -24,7 +24,7 @@ sidebar_position: 9
 
 1. 地平线RDK已烧录好地平线提供的Ubuntu 20.04系统镜像。
 2. 地平线RDK已成功安装TogetheROS.Bot。
-3. 参考[智能语音章节](../boxs/box_adv#智能语音)搭建好硬件环境。
+3. 已有地平线专用音频驱动板，并参考[智能语音章节](../boxs/box_adv#智能语音)搭建好硬件环境。
 4. 音频板耳机接口连接耳机或音响。
 
 ## 使用方式
@@ -38,21 +38,57 @@ sidebar_position: 9
     sudo tar -xf tts_model.tar.gz -C /opt/tros/lib/hobot_tts/
     ```
 
-2. 启动hobot_gpt程序
+2. 上电后首次运行需要运行如下命令加载音频驱动：
+
+    ```bash
+    echo 112 >/sys/class/gpio/export
+    echo out >/sys/class/gpio/gpio112/direction
+    echo 1 >/sys/class/gpio/gpio112/value
+    echo 118 >/sys/class/gpio/export
+    echo out >/sys/class/gpio/gpio118/direction
+    echo 1 >/sys/class/gpio/gpio118/value
+
+    modprobe -r es7210
+    modprobe -r es8156
+    modprobe -r hobot-i2s-dma
+    modprobe -r hobot-cpudai
+    modprobe -r hobot-snd-7210
+
+    modprobe es7210
+    modprobe es8156
+    modprobe hobot-i2s-dma
+    modprobe hobot-cpudai
+    modprobe hobot-snd-7210 snd_card=5
+    ```
+
+    运行上述命令后使用如下命令可检查是否加载成功：
+
+    ```bash
+    root@ubuntu:~# ls /dev/snd/
+    by-path  controlC0  pcmC0D0c  pcmC0D1p  timer
+    ```
+
+    如果出现`pcmC0D1p`设备则表示加载成功。
+
+3. 启动hobot_gpt程序
 
     ```bash
     source /opt/tros/setup.bash
+
+    # 屏蔽调式打印信息
+    export GLOG_minloglevel=1
+
     ros2 run hobot_tts hobot_tts
     ```
 
-3. 新开一个终端，使用echo命令发布一条topic
+4. 新开一个终端，使用echo命令发布一条topic
 
    ```bash
    source /opt/tros/setup.bash
    ros2 topic pub --once /tts_text std_msgs/msg/String "{data: "你知道地平线吗？是的，我知道地平线。它是一条从地面延伸到天空的线，它定义了地面和天空之间的分界线。"}"
    ```
 
-4. 耳机或音响可以听到输出的声音
+5. 耳机或音响可以听到播放的声音
 
 ## 注意事项
 

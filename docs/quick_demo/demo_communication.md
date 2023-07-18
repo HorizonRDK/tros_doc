@@ -45,6 +45,7 @@ TogetheROS.Bot提供了灵活、高效的零拷贝功能，可以显著降低大
 1. 不开启零拷贝功能的4M数据传输测试，命令如下：
 
     ```bash
+    source /opt/tros/setup.bash
     ros2 run performance_test perf_test --reliable --keep-last --history-depth 10 -s 1 -m Array4m -r 100 --max-runtime 30
     ```
 
@@ -91,6 +92,7 @@ TogetheROS.Bot提供了灵活、高效的零拷贝功能，可以显著降低大
 2. 开启零拷贝功能(加入--zero-copy参数)的4M数据传输测试，命令如下：
 
       ```bash
+      source /opt/tros/setup.bash
       ros2 run performance_test perf_test --zero-copy --reliable --keep-last --history-depth 10 -s 1 -m Array4m -r 100 --max-runtime 30
       ```
 
