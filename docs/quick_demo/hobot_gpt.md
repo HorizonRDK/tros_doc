@@ -36,7 +36,7 @@ sidebar_position: 8
     ```
 
 2. 修改 *config/gpt_config.json* ，将`api_key`字段设置为自己的OpenAI API key，同时设置交互模式，`chat_mode_enable`为`true`表示使用聊天模式，`false`表示问答模式。
-3. 设置网络代理，确保可以访问OpenAI服务
+3. 确认网络可以访问OpenAI服务
 4. 启动hobot_gpt程序
 
     ```bash

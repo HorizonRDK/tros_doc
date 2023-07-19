@@ -52,7 +52,7 @@ sidebar_position: 9
 
     修改 *config/gpt_config.json* ，将`api_key`字段设置为自己的OpenAI API key。
 
-    设置网络代理，确保可以访问OpenAI服务。
+    确认网络可以访问OpenAI服务。
 
 3. 配置hobot_tts
 
