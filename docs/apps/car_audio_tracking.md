@@ -44,7 +44,7 @@ App以PC端Gazebo仿真环境下的虚拟小车举例，发布的控制指令也
 
 3. 地平线RDK已成功安装智能语音算法包，安装命令：`apt update; apt install tros-hobot-audio`。
 
-4. 地平线RDK已成功接好适配的线性四麦的音频板（可参考地平线机器人操作系统智能语音模块）。
+4. 地平线RDK已成功接好适配的音频板（可参考[智能语音章节](../boxs/box_adv#智能语音)）。
 
 5. 和地平线RDK在同一网段（有线或者连接同一无线网，IP地址前三段需保持一致）的PC，PC端需要安装的环境包括：
 
@@ -78,6 +78,8 @@ ros2 launch turtlebot3_gazebo empty_world.launch.py
 
 ![](./image/car_audio_tracking/gazebo.jpeg)
 
+地平线RDK平台启动程序：
+
 ```shell
 # 配置tros.n环境
 source /opt/tros/setup.bash
@@ -88,8 +90,8 @@ cp -r /opt/tros/lib/hobot_audio/config/ .
 # 加载音频驱动，设备启动之后只需要加载一次
 bash config/audio.sh
 
-#启动launch文件
-ros2 launch audio_tracking audio_tracking.launch.py
+# 启动launch文件，并指定小车正前方对应的语音DOA角度，以90为例
+ros2 launch audio_tracking audio_tracking.launch.py car_front_audio_angle:=90
 ```
 
 ## 结果分析
