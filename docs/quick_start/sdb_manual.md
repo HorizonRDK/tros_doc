@@ -12,7 +12,7 @@ TogetheROS.Bot支持在地平线RDK和X86平台的Ubuntu 20.04系统上安装。
 
 ### 系统安装
 
-安装tros.b之前，建议用户将地平线RDK系统镜像升级到最新版本，Ubuntu 20.04镜像烧录方法：[Ubuntu镜像烧录方法](https://developer.horizon.cc/api/v1/fileData/documents_rdk/getting_start/quick_start.html#id2)
+安装tros.b之前，建议用户将地平线RDK系统镜像升级到最新版本，Ubuntu 20.04镜像烧录方法：[Ubuntu镜像烧录方法](https://developer.horizon.cc/documents_rdk/getting_start/install_os)
 
 如果已经安装镜像，可以通过命令`sudo apt update`和`sudo apt upgrade`完成升级。
 
@@ -20,7 +20,7 @@ TogetheROS.Bot支持在地平线RDK和X86平台的Ubuntu 20.04系统上安装。
 
 - **如果您安装的是1.x版本系统，需要将系统升级到2.x版本。**
 
-- **系统版本号查看方法以及详细说明，请查看第7章节的[FAQs](../../category/FAQs)。**
+- **系统版本号查看方法以及详细说明，请查看[FAQs](../../category/FAQs)。**
 
 ### 系统配置
 
@@ -28,11 +28,7 @@ TogetheROS.Bot支持在地平线RDK和X86平台的Ubuntu 20.04系统上安装。
 
 **注意：为方便后续顺利安装和使用tros.b，请使用root账户进行登录。**
 
-体验和开发过程中经常需要使用scp/ssh等命令通过IP地址访问地平线RDK，因此这里推荐使用动态配置，配置请参考如下链接：
-
-[修改DHCP配置](https://developer.horizon.cc/api/v1/fileData/documents_rdk/configuration/configuration.html#id4)
-
-[配置DNS服务](https://developer.horizon.cc/api/v1/fileData/documents_rdk/configuration/configuration.html#dns)
+体验和开发过程中经常需要使用scp/ssh等命令通过IP地址访问地平线RDK，因此这里推荐使用动态配置，参考[网络配置](https://developer.horizon.cc/documents_rdk/configuration/network_configuration)。
 
 尝试ping百度服务器
 

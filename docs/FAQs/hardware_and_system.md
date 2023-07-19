@@ -4,13 +4,13 @@ sidebar_position: 1
 
 # 6.1 硬件和系统
 
-认证配件及购买链接请参考[认证配件清单](https://developer.horizon.cc/api/v1/fileData/documents_rdk/hardware/rdk_x3_module.html#id5)
+认证配件及购买链接请参考[认证配件清单](https://developer.horizon.cc/documents_rdk/hardware/rdk_x3_module#%E8%AE%A4%E8%AF%81%E9%85%8D%E4%BB%B6%E6%B8%85%E5%8D%95)
 
-详细请参考[地平线RDK套件用户手册FAQ](https://developer.horizon.cc/api/v1/fileData/documents_rdk/common_questions/faq.html)
+详细请参考[地平线RDK套件用户手册的常见问题](https://developer.horizon.cc/documents_rdk/category/common_questions)
 
-## 什么是地平线RDK平台？
+## 什么是地平线RDK套件？
 
-Horizon Robotics Developer Kits，简称[地平线RDK平台](https://developer.horizon.cc/api/v1/fileData/documents_rdk/index.html)，是基于地平线智能芯片打造的机器人开发者套件，包括**RDK X3（旭日X3派）**、**RDK X3 Module（旭日X3模组）**。
+Horizon Robotics Developer Kits，简称[地平线RDK套件](https://developer.horizon.cc/documents_rdk/)，是基于地平线智能芯片打造的机器人开发者套件，包括**RDK X3（旭日X3派）**、**RDK X3 Module（旭日X3模组）**、**RDK Ultra**。
 
 ## 如何查看系统版本号
 
@@ -87,7 +87,7 @@ root@ubuntu:~#
 
 **注意**
 
-- **1.x版本系统无法通过apt命令直接升级到2.x版本系统，需要以烧录镜像的方式重新[安装系统](https://developer.horizon.cc/api/v1/fileData/documents_rdk/getting_start/quick_start.html#id3)。**
+- **1.x版本系统无法通过apt命令直接升级到2.x版本系统，需要以烧录镜像的方式重新[安装系统](https://developer.horizon.cc/documents_rdk/getting_start/install_os)。**
 
 - **2.x版本tros.b仅支持2.x版本系统，1.x版本tros.b仅支持1.x版本系统。**
 

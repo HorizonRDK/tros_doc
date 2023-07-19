@@ -6,8 +6,8 @@ const darkCodeTheme = require('prism-react-renderer/themes/dracula');
 
 /** @type {import('@docusaurus/types').Config} */
 const config = {
-  title: '机器人开发平台用户手册',
-  tagline: '最好用的机器人开发平台',
+  title: 'TogetheROS.Bot用户手册',
+  tagline: '最好用的机器人操作系统',
   favicon: 'img/logo.png',
 
   // Set the production url of your site here
@@ -72,7 +72,7 @@ const config = {
         },
       },
       navbar: {
-        title: '机器人开发平台',
+        title: 'TogetheROS.Bot',
         logo: {
           alt: 'My Site Logo',
           src: 'img/logo.png',
@@ -98,36 +98,7 @@ const config = {
       },
       footer: {
         style: 'dark',
-        links: [
-          // {
-          //   title: 'Docs',
-          //   items: [
-          //     {
-          //       label: '手册',
-          //       to: 'docs/introduction/document_usage_guide',
-          //     },
-          //   ],
-          // },
-          {
-            title: '社区',
-            items: [
-              {
-                label: '地平线开发者社区',
-                href: 'https://developer.horizon.cc/',
-              },
-            ],
-          },
-          {
-            title: 'More',
-            items: [
-              {
-                label: 'GitHub',
-                href: 'https://github.com/HorizonRDK',
-              },
-            ],
-          },
-        ],
-        copyright: `Copyright © ${new Date().getFullYear()} 地平线机器人`,
+        copyright: `© 版权所有 ${new Date().getFullYear()}, Horizon Robotics`,
       },
       prism: {
         theme: lightCodeTheme,
@@ -147,6 +118,7 @@ const config = {
           language: ["en", "zh"],
           highlightSearchTermsOnTargetPage: true,
           explicitSearchResultPath: true,
+          docsRouteBasePath: '/',
           // For Docs using Chinese, The `language` is recommended to set to:
           // ```
           // language: ["en", "zh"],

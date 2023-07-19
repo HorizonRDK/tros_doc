@@ -289,4 +289,4 @@ root@ubuntu:~#
 
 - [1.x版本tros.b](https://developer.horizon.cc/api/v1/fileData/TogetherROS/index.html)：历史版本；仅支持1.x版本系统和RDK X3；未来1.x版本tros.b仅发布问题修复版本；代码托管在gitlab。
 
-**注意：1.x版本tros.b无法通过apt命令直接升级到2.x版本tros.b，需要以烧录镜像的方式重新[安装系统](https://developer.horizon.cc/api/v1/fileData/documents_rdk/getting_start/quick_start.html#id3)后再安装2.x版本tros.b。**
+**注意：1.x版本tros.b无法通过apt命令直接升级到2.x版本tros.b，需要以烧录镜像的方式重新[安装系统](https://developer.horizon.cc/documents_rdk/getting_start/install_os)后再安装2.x版本tros.b。**

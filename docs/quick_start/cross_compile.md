@@ -17,6 +17,8 @@ sidebar_position: 3
 
 #### 1 使用docker文件
 
+该部分操作均在开发机的docker内完成。
+
 ```shell
 ## 创建目录
 cd  /mnt/data/kairui.wang/test
@@ -33,7 +35,9 @@ sudo docker run -it --entrypoint="/bin/bash" -v PC本地目录:docker目录 imag
 
 #### 2 获取tros.b源码
 
-这里以docker中/mnt/test目录为例
+该部分操作均在开发机的docker内完成。
+
+这里以docker中/mnt/test目录为例。
 
 ```shell
 cd /mnt/test/cc_ws/tros_ws
@@ -65,7 +69,7 @@ vcs-import src < ./robot_dev_config/ros2_release.repos
 
 #### 3 交叉编译
 
-该部分操作均在docker内完成。
+该部分操作均在开发机的docker内完成。
 
 ```shell
 ## 拷贝create_soft_link.py
