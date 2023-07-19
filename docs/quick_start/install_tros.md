@@ -26,7 +26,7 @@ sidebar_position: 2
 
 - **如果您使用的是1.x版本系统镜像，需要将[系统升级](./sdb_manual)到2.x版本。**
 
-- **系统和tros.b版本号查看方法以及详细说明，请查看第6章节的[FAQs](../../category/FAQs)。**
+- **系统和tros.b版本号查看方法以及详细说明，请查看[FAQs](../../category/FAQs)。**
 
 
 ### 安装tros.b
@@ -130,4 +130,4 @@ Description: TogetheROS Bot
 
 - **如果您的X86平台已安装1.x版本tros.b，请先使用命令`sudo apt remove tros`删除后再安装2.x版本tros.b**。
 
-- **关于如何查看tros.b版本号，请查看第7章节的[FAQs](../../category/FAQs)**。
+- **关于如何查看tros.b版本号，请查看[FAQs](../../category/FAQs)**。
