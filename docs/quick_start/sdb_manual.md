@@ -26,7 +26,9 @@ TogetheROS.Bot支持在地平线RDK和X86平台的Ubuntu 20.04系统上安装。
 
 镜像成功烧写后，需要配置地平线RDK IP地址，方便日常使用。登录用户名：root 密码：root。
 
-**注意：为方便后续顺利安装和使用tros.b，请使用root账户进行登录。**
+:::caution **注意**
+为方便后续顺利安装和使用tros.b，请使用**root**账户进行登录。
+:::
 
 体验和开发过程中经常需要使用scp/ssh等命令通过IP地址访问地平线RDK，因此这里推荐使用动态配置，参考[网络配置](https://developer.horizon.cc/documents_rdk/configuration/network_configuration)。
 
