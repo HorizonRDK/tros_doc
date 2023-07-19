@@ -20,7 +20,7 @@ TogetheROS.Bot支持在地平线RDK和X86平台的Ubuntu 20.04系统上安装。
 
 - **如果您安装的是1.x版本系统，需要将系统升级到2.x版本。**
 
-- **系统版本号查看方法以及详细说明，请查看[FAQs](../../category/FAQs)。**
+- **系统版本号查看方法以及详细说明，请查看[FAQs](../FAQs/hardware_and_system.md)。**
 
 ### 系统配置
 
