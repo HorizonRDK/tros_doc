@@ -16,7 +16,7 @@ Web展示用于预览摄像头图像（JPEG格式）和算法效果，通过网�
 
 | 平台    | 运行方式      | 示例功能                       |
 | ------- | ------------- | ------------------------------ |
-| RDK X3, RDK X3 Module, RDK X5 Ultra| Ubuntu 20.04  | 启动MIPI摄像头人体检测并通过Web展示图像和算法效果 |
+| RDK X3, RDK X3 Module, RDK Ultra| Ubuntu 20.04  | 启动MIPI摄像头人体检测并通过Web展示图像和算法效果 |
 | X86     | Ubuntu 20.04  | 启动USB摄像头，并通过Web展示图像 |
 
 ### 准备工作
@@ -160,7 +160,7 @@ TogetheROS.Bot兼容ROS2 foxy版本，为了方便预览图像效果，可以通
 
 | 平台    | 运行方式      | 示例功能                       |
 | ------- | ------------- | ------------------------------ |
-| RDK X3, RDK X3 Module, RDK X5 Ultra| Ubuntu 20.04  | 启动MIPI摄像头获取图像，在PC上使用RViz2预览 |
+| RDK X3, RDK X3 Module, RDK Ultra| Ubuntu 20.04  | 启动MIPI摄像头获取图像，在PC上使用RViz2预览 |
 
 ### 准备工作
 
@@ -280,7 +280,7 @@ TogetheROS.Bot兼容ROS2 foxy版本，支持通过RQt预览压缩格式图像，
 
 | 平台    | 运行方式      | 示例功能                       |
 | ------- | ------------- | ------------------------------ |
-| RDK X3, RDK X3 Module, RDK X5 Ultra| Ubuntu 20.04  | 启动MIPI摄像头获取图像，在PC上使用RQt预览 |
+| RDK X3, RDK X3 Module, RDK Ultra| Ubuntu 20.04  | 启动MIPI摄像头获取图像，在PC上使用RQt预览 |
 
 ### 准备工作
 

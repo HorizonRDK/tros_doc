@@ -36,7 +36,7 @@ sidebar_position: 2
 
 | 平台    | 运行方式      | 示例功能                       |
 | ------- | ------------ | ------------------------------ |
-| RDK X3, RDK X3 Module, RDK X5 Ultra| Ubuntu 20.04 | · 启动MIPI/USB摄像头/本地回灌，并通过Web展示推理渲染结果 |
+| RDK X3, RDK X3 Module, RDK Ultra| Ubuntu 20.04 | · 启动MIPI/USB摄像头/本地回灌，并通过Web展示推理渲染结果 |
 | X86     | Ubuntu 20.04 | · 启动本地回灌，并通过Web展示推理渲染结果 |
 
 ### 准备工作
@@ -198,7 +198,7 @@ ros2 launch mono2d_body_detection mono2d_body_detection.launch.py
 
 | 平台    | 运行方式      | 示例功能                       |
 | ------- | ------------ | ------------------------------ |
-| RDK X3, RDK X3 Module, RDK X5 Ultra| Ubuntu 20.04 | · 启动MIPI/USB摄像头，并通过web展示推理渲染结果 |
+| RDK X3, RDK X3 Module, RDK Ultra| Ubuntu 20.04 | · 启动MIPI/USB摄像头，并通过web展示推理渲染结果 |
 
 ### 准备工作
 
@@ -322,7 +322,7 @@ ros2 launch hand_lmk_detection hand_lmk_detection.launch.py
 
 | 平台    | 运行方式      | 示例功能                       |
 | ------- | ------------- | ------------------------------ |
-| RDK X3, RDK X3 Module, RDK X5 Ultra| Ubuntu 20.04  | · 启动MIPI/USB摄像头，并通过Web展示推理渲染结果 |
+| RDK X3, RDK X3 Module, RDK Ultra| Ubuntu 20.04  | · 启动MIPI/USB摄像头，并通过Web展示推理渲染结果 |
 
 ### 准备工作
 
@@ -1237,7 +1237,7 @@ package初始化后，在运行终端输出如下信息：
 
 | 平台    | 运行方式      | 示例功能                       |
 | ------- | ------------ | ------------------------------ |
-| RDK X5 Ultra| Ubuntu 20.04 | 使用本地回灌，并通过web展示推理渲染结果 |
+| RDK Ultra| Ubuntu 20.04 | 使用本地回灌，并通过web展示推理渲染结果 |
 
 ### 准备工作
 
@@ -1318,7 +1318,7 @@ ros2 launch hobot_centerpoint hobot_centerpoint_websocket.launch.py lidar_pre_pa
 
 输出log显示，发布算法推理结果的topic为`/hobot_centerpoint`, 获取的回灌点云文件为81个。算法经过推理，后处理(包含推理结果的渲染和发布)，帧率约为2.4fps。
 
-在PC端的浏览器输入http://IP:8000 即可查看图像和算法渲染效果（IP为RDK X5 Ultra的IP地址）：
+在PC端的浏览器输入http://IP:8000 即可查看图像和算法渲染效果（IP为RDK的IP地址）：
 
 ![](./image/box_adv/render_centerpoint_det.jpg)
 
@@ -1338,15 +1338,15 @@ BEV感知算法是使用地平线[OpenExplorer](https://developer.horizon.cc/api
 
 | 平台    | 运行方式      | 示例功能                       |
 | ------- | ------------ | ------------------------------ |
-| RDK X5 Ultra| Ubuntu 20.04 | 使用本地回灌，并通过web展示推理渲染结果 |
+| RDK Ultra| Ubuntu 20.04 | 使用本地回灌，并通过web展示推理渲染结果 |
 
 ### 准备工作
 
-1. RDK X5 Ultra已烧录好地平线提供的Ubuntu 20.04系统镜像。
+1. RDK已烧录好地平线提供的Ubuntu 20.04系统镜像。
 
-2. RDK X5 Ultra已成功安装TogetheROS.Bot。
+2. RDK已成功安装TogetheROS.Bot。
 
-3. 确认PC机能够通过网络访问RDK X5 Ultra。
+3. 确认PC机能够通过网络访问RDK。
 
 ### 使用介绍
 
@@ -1403,7 +1403,7 @@ ros2 launch hobot_bev hobot_bev.launch.py image_pre_path:=hobot_bev_data/data
 [hobot_bev-1] [WARN] [1688579231.996993824] [bev_node]: input fps: 2.47, out fps: 2.52, infer time ms: 12, post process time ms: 658
 ```
 
-在PC端的浏览器输入http://IP:8000 即可查看图像和算法渲染效果（IP为RDK X5 Ultra的IP地址）：
+在PC端的浏览器输入http://IP:8000 即可查看图像和算法渲染效果（IP为RDK的IP地址）：
 
 ![](./image/box_adv/render_bev.jpeg)
 
@@ -1423,17 +1423,17 @@ ros2 launch hobot_bev hobot_bev.launch.py image_pre_path:=hobot_bev_data/data
 
 | 平台    | 运行方式      | 示例功能                       |
 | ------- | ------------ | ------------------------------ |
-| RDK X5 Ultra| Ubuntu 20.04 | 使用本地回灌，并通过web展示推理渲染结果 |
+| RDK Ultra| Ubuntu 20.04 | 使用本地回灌，并通过web展示推理渲染结果 |
 
 ### 准备工作
 
-1. RDK X5 Ultra已烧录好地平线提供的Ubuntu 20.04系统镜像。
+1. RDK已烧录好地平线提供的Ubuntu 20.04系统镜像。
 
-2. RDK X5 Ultra已成功安装TogetheROS.Bot。
+2. RDK已成功安装TogetheROS.Bot。
 
-3. ZED 2i双目相机，连接到RDK X5 Ultra的USB 3.0接口。
+3. ZED 2i双目相机，连接到RDK的USB 3.0接口。
 
-4. 确认PC机能够通过网络访问RDK X5 Ultra。
+4. 确认PC机能够通过网络访问RDK。
 
 ### 使用介绍
 
@@ -1490,7 +1490,7 @@ webserver has launch
 [hobot_stereonet-4] [WARN] [1688581436.203778417] [stereonet_node]: input fps: 0.82, out fps: 0.82, preprocess time ms: 1157, infer time ms: 47, msg preparation for pub time cost ms: 2
 ```
 
-在PC端的浏览器输入http://IP:8000 即可查看图像和算法渲染效果（IP为RDK X5 Ultra的IP地址）：
+在PC端的浏览器输入http://IP:8000 即可查看图像和算法渲染效果（IP为RDK的IP地址）：
 
 ![](./image/box_adv/stereonet_rdk.png)
 
