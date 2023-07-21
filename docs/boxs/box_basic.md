@@ -644,7 +644,7 @@ mobilenetv2是使用[ImageNet data](http://www.image-net.org/)数据集训练出
 
 #### 使用介绍
 
-##### 地平线RDK X3和RDK X3 Module平台
+##### 地平线RDK平台
 
 mobilenetv2图片分类订阅sensor package发布的图片，经过推理后发布算法msg，通过websocket package实现在PC端浏览器上渲染显示发布的图片和对应的算法结果。
 
@@ -684,51 +684,6 @@ source /opt/tros/setup.bash
 
 # 启动launch文件
 ros2 launch dnn_node_example dnn_node_example_feedback.launch.py dnn_example_config_file:=config/mobilenetv2workconfig.json dnn_example_image:=config/target_class.jpg
-```
-
-##### 地平线RDK Ultra平台
-
-###### 使用MIPI摄像头发布图片
-
-mobilenetv2图片分类算法node订阅MIPI摄像头发布的图片，经过推理后发布算法msg，通过websocket package实现在PC端浏览器上渲染显示发布的图片和对应的算法结果。
-
-```shell
-# 配置TogetheROS环境
-source /opt/tros/setup.bash
-
-# 配置MIPI摄像头
-export CAM_TYPE=mipi
-
-# 启动launch文件
-ros2 launch dnn_node_example dnn_node_example.launch.py dnn_example_config_file:=config/mobilenetv2workconfig.json dnn_example_image_width:=224 dnn_example_image_height:=224
-```
-
-###### 使用USB摄像头发布图片
-
-mobilenetv2图片分类算法node订阅USB摄像头发布的图片，经过推理后发布算法msg，通过websocket package实现在PC端浏览器上渲染显示发布的图片和对应的算法结果。
-
-```shell
-# 配置TogetheROS环境
-source /opt/tros/setup.bash
-
-# 配置USB摄像头
-export CAM_TYPE=usb
-
-# 启动launch文件
-ros2 launch dnn_node_example dnn_node_example.launch.py dnn_example_config_file:=config/mobilenetv2workconfig.json dnn_example_image_width:=224 dnn_example_image_height:=224
-
-```
-
-###### 使用本地图片回灌
-
-mobilenetv2图片分类算法示例使用本地JPEG/PNG格式图片回灌，经过推理后将算法结果渲染后的图片存储在本地的运行路径下。
-
-```shell
-# 配置TogetheROS环境
-source /opt/tros/setup.bash
-
-# 启动launch文件
-ros2 launch dnn_node_example dnn_node_example_feedback.launch.py dnn_example_config_file:=config/mobilenetv2workconfig.json dnn_example_image:=config/target_class.jpg 
 ```
 
 ##### X86平台
