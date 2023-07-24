@@ -1,8 +1,8 @@
 ---
-sidebar_position: 9
+sidebar_position: 8
 ---
 
-# 2.9 文本转语音
+# 2.8 文本转语音
 
 ## 功能介绍
 
@@ -70,7 +70,7 @@ sidebar_position: 9
 
     如果出现`pcmC0D1p`设备则表示加载成功。
 
-3. 启动hobot_gpt程序
+3. 启动hobot_tts程序
 
     ```bash
     source /opt/tros/setup.bash
