@@ -18,9 +18,7 @@ sidebar_position: 6
 - 新增Trigger事件触发并获取和可视化rosbag数据的`hobot_trigger`和`hobot_visalization`等node，帮助用户定位、复现和可视化机器人场景中的感知、规控等问题。同时用户可以二次开发实现数据触发、录制和实时回传的功能。
 - USB图像采集node自适应USB摄像头的设备号，降低用户使用USB摄像头的门槛。
 - 新增视觉惯性里程计（Visual Inertial Odometry，VIO）算法node，基于视觉实现低成本、鲁棒性高的机器人高精度定位算法。
-- 新增用于ChatGPT交互的`hobot_gpt` node，实现订阅文本消息，调用ChatGPT API进行交互，并发布交互结果（文本）消息的功能。
 - 新增文本转语音的`hobot_tts` node，实现将文本转化为语音进行播报的功能。
-- 新增智能语音聊天机器人应用`chat_robot` app，实现和机器人语音聊天的功能。
 - 新增激光雷达目标检测算法`hobot_centerpoint` node。
 - 新增BEV感知算法`hobot_bev` node。
 - 新增双目深度估计算法`hobot_stereonet` node。
