@@ -172,6 +172,17 @@ cp -r /opt/tros/lib/dnn_node_example/config/ .
 /opt/tros/lib/dnn_node_example/example --ros-args -p feed_type:=0 -p image_type:=0 -p dump_render_img:=1
 ```
 
+## 如何查找launch启动脚本所在路径
+
+手册中的示例使用`ros2 launch`启动脚本，例如**Boxs算法仓库**章节中**工具链参考算法**小节使用的启动脚本文件为`dnn_node_example.launch.py`，当需要修改log级别等配置时，需要先在RDK的`tros.b`安装路径`/opt/tros/`下查找此脚本文件所在路径。
+
+例如查找launch脚本`dnn_node_example.launch.py`所在路径命令如下：
+
+```shell
+# find /opt/tros/ -name dnn_node_example.launch.py
+/opt/tros/share/dnn_node_example/launch/dnn_node_example.launch.py
+```
+
 ## 交叉编译TogetheROS.Bot源码速度慢
 
 tros.b的package较多，源码编译需要一些时间（8核CPU & 32G内存配置下编译完成大概需要20分钟）。有两种加速方法：
@@ -201,7 +212,11 @@ tros.b的package较多，源码编译需要一些时间（8核CPU & 32G内存配
 
 支持。
 
-RDK X3上安装了tros.b之后，还可以安装使用其他版本的ROS，包括ROS1。使用时需要注意，一个终端下只能source一个版本的ROS。
+RDK X3上安装了tros.b之后，还可以安装使用其他版本的ROS，包括ROS1。
+
+:::caution **注意**
+一个终端下只能source一个版本的ROS。例如source了tros之后不能再source ROS2 Foxy或者ROS1，或者source了ROS2 Foxy或者ROS1之后不能再source tros。
+:::
 
 此外tros.b与ROS foxy版本接口完全兼容，不需要安装ROS foxy也能够复用ROS丰富工具包。
 
@@ -221,7 +236,7 @@ AttributeError: module 'pyparsing' has no attribute 'operatorPrecedence'
 ```
 可能是`python3-catkin-pkg`版本较低，condition功能支持不完备。
 
-## 解决方法 ##
+**解决方法**
 
 升级`python3-catkin-pkg`版本，步骤如下：
 
@@ -283,10 +298,27 @@ root@ubuntu:~#
 
 ```
 
-## 1.x和2.x版本tros.b说明，以及和系统版本、RDK平台硬件对应关系
+## 1.x和2.x版本tros.b说明
+
+**和系统版本、RDK平台硬件对应关系**
 
 - 2.x版本tros.b：仅支持2.x版本系统；支持RDK X3、RDK X3 Module等全系列硬件；未来tros.b的新增功能将会发布在2.x版本tros.b；代码托管在github。
 
 - [1.x版本tros.b](https://developer.horizon.cc/api/v1/fileData/TogetherROS/index.html)：历史版本；仅支持1.x版本系统和RDK X3；未来1.x版本tros.b仅发布问题修复版本；代码托管在gitlab。
 
-**注意：1.x版本tros.b无法通过apt命令直接升级到2.x版本tros.b，需要以烧录镜像的方式重新[安装系统](https://developer.horizon.cc/documents_rdk/getting_start/install_os)后再安装2.x版本tros.b。**
+:::caution **注意**
+1.x版本tros.b无法通过apt命令直接升级到2.x版本tros.b，需要以烧录镜像的方式重新[安装系统](https://developer.horizon.cc/documents_rdk/getting_start/install_os)后再安装2.x版本tros.b。
+:::
+
+**功能差异**
+
+- 基础功能相同。未来tros.b的新增功能将会只基于2.x版本发布。
+
+- 安装包管理方式不同。1.x版本tros.b只有一个安装包文件，2.x版本tros.b根据功能分别进行安装包的打包和发布。对于开发者，不需要关心安装包管理方式的变化。
+
+**使用差异**
+
+- apt安装和升级，以及源码编译方法不变（详见**系统安装**章节）。
+
+- **示例的launch启动脚本不同**。对启动脚本的文件名、依赖进行了优化，应用示例引用依赖模块的launch脚本并配置参数。2.x版本tros.b示例的启动脚本参考本手册。
+
