@@ -24,7 +24,7 @@ sidebar_position: 2
 
 - **2.x版本tros.b仅支持2.x版本系统镜像，[1.x版本tros.b](https://developer.horizon.cc/api/v1/fileData/TogetherROS/index.html)仅支持1.x版本系统。**
 
-- **如果您使用的是1.x版本系统镜像，需要将[系统升级](./sdb_manual)到2.x版本。**
+- **如果您使用的是1.x版本系统镜像，需要将[系统升级](./preparation)到2.x版本。**
 
 - **系统和tros.b版本号查看方法以及详细说明，请查看[FAQs](../FAQs/hardware_and_system.md)。**
 
