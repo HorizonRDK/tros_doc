@@ -303,3 +303,47 @@ foxglove中播放效果：
 ![](./image/demo_tool/trigger_example_trash_det.gif)
 
 说明：该Trigger示例记录了事件发生前5s和事件发生后5s的数据。同时看到在事件中间时刻，记录了Trigger事件发生的原因：即在场景中丢入了一个垃圾,使得场景中垃圾达到三个，触发Trigger。
+
+
+### 拓展功能
+
+#### 给Trigger模块下发任务
+
+Trigger模块支持由其他节点下发Trigger任务,控制Trigger配置。下发方式,通过发布std_msg的话题消息,消息数据为json格式的String数据。将任务协议发送到Trigger模块。
+
+##### Trigger任务协议
+```json
+{
+   "version": "v0.0.1_20230421",       // Trigger模块版本信息。
+   "trigger_status": true,             // Trigger状态, 'false': 关闭, 'true': 打开。
+   "strategy": [
+      {
+            "src_module_id": 203,      // 发生Trigger的模块ID
+            "trigger_type": 1110,      // Trigger类型ID。
+            "level": 1,                // Trigger事件的优先级
+            "desc": "",                // Trigger模块描述信息。
+            "duration_ts_back": 5000,  // 录制Trigger发生后持续时长
+            "duration_ts_front": 3000  // 录制Tirgger 发生前持续时长
+      }
+   ]
+}
+```
+
+
+##### 运行
+
+在前面启动Trigger节点基础上,在另一个终端,发布话题名为"/hobot_agent"的std_msg话题消息。
+```shell
+export COLCON_CURRENT_PREFIX=./install
+source ./install/setup.bash
+
+ros2 topic pub /hobot_agent std_msgs/String "data: '{\"version\":\"v0.0.1_20230421\",\"trigger_status\":true,\"strategy\":[{\"src_module_id\":203,\"trigger_type\":1110,\"status\":true,\"level\":1,\"desc\":\"test\",\"duration_ts_back\":5000,\"duration_ts_front\":3000}]}'"
+```
+
+##### 日志信息
+```shell
+   [WARN] [1691670626.026737642] [hobot_trigger]: TriggerNode Init Succeed!
+   [WARN] [1691670626.026859316] [example]: TriggerExampleNode Init.
+   [INFO] [1691670626.517232775] [TriggerNode]: Updated Trigger Config: {"domain":"robot","desc":"trigger lane","duration_ts_back":5000,"duration_ts_front":3000,"gps_pos":{"latitude":-1,"longitude":-1},"level":1,"rosbag_path":"","src_module_id":203,"strategy_version":"Robot_sweeper_V1.0_20230526","timestamp":0,"topic":["/image_raw/compressed","/ai_msg_mono2d_trash_detection","/hobot_visualization"],"trigger_type":1110,"unique_id":"OriginBot002","version":"v0.0.1_20230421","extra_kv":[]}
+```
+分析: 对Trigger模块下发配置任务的时候,可以成功更新Trigger节点的配置。（Trigger节点Log日志为INFO时可看到日志更新）
