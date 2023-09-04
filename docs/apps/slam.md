@@ -30,16 +30,7 @@ SLAM指即时定位与地图构建（Simultaneous Localization and Mapping，简
     sudo apt-get install ros-foxy-slam-toolbox
     ```
 
-4. 建立软连接
-
-    ```bash
-    cd /opt/tros
-    # 使用/opt/tros目录下的create_soft_link.py创建ROS package至tros.b的软连接
-    sudo python3 create_soft_link.py --foxy /opt/ros/foxy/ --tros /opt/tros/
-    ```
-
-5. 和地平线RDK在同一网段的PC，PC已安装Ubuntu 20.04系统、ROS2 Foxy桌面版和仿真环境Gazebo，
-数据可视化工具Rviz2。
+4. 和地平线RDK在同一网段的PC，PC已安装Ubuntu 20.04系统、ROS2 Foxy桌面版和仿真环境Gazebo，数据可视化工具Rviz2。
 
     ROS2 Foxy安装参考：https://docs.ros.org/en/foxy/Installation/Ubuntu-Install-Debians.html
 
@@ -85,7 +76,6 @@ ros2 launch turtlebot3_bringup rviz2.launch.py
 ```bash
 # 配置tros.b环境
 source /opt/tros/setup.bash
-source /opt/ros/foxy/local_setup.bash
 
 #启动SLAM launch文件
 ros2 launch slam_toolbox online_sync_launch.py

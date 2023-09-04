@@ -46,7 +46,7 @@ sidebar_position: 1
 
     ```bash
     # 配置 tros.b 环境：
-    source /opt/tros/local_setup.bash
+    source /opt/tros/setup.bash
     # launch方式启动：
     ros2 launch hobot_usb_cam hobot_usb_cam.launch.py usb_video_device:=/dev/video8
     ```
@@ -64,7 +64,7 @@ sidebar_position: 1
 
     ```bash
     # 配置 tros.b 环境：
-    source /opt/tros/local_setup.bash
+    source /opt/tros/setup.bash
     # 启动websocket
     ros2 launch websocket websocket.launch.py websocket_image_topic:=/image websocket_only_show_image:=true
     ```
@@ -79,7 +79,7 @@ sidebar_position: 1
 
     ```bash
     # 配置 tros.b 环境：
-    source /opt/tros/local_setup.bash
+    source /opt/tros/setup.bash
     # launch 方式启动
     ros2 launch hobot_usb_cam hobot_usb_cam.launch.py usb_camera_calibration_file_path:=（实际标定文件绝对路径）
     ```
@@ -134,7 +134,7 @@ sidebar_position: 1
 
     ```shell
     # 配置 tros.b 环境：
-    source /opt/tros/local_setup.bash
+    source /opt/tros/setup.bash
     # launch 方式启动
     ros2 launch mipi_cam mipi_cam.launch.py mipi_video_device:=F37 mipi_camera_calibration_file_path:=/opt/tros/lib/mipi_cam/config/F37_calibration.yaml
     ```
@@ -152,12 +152,12 @@ sidebar_position: 1
 
     ```shell
     # 一个终端编码
-    source /opt/tros/local_setup.bash
+    source /opt/tros/setup.bash
     # 启动编码
     ros2 launch hobot_codec hobot_codec_encode.launch.py
 
     # 再起一个终端
-    source /opt/tros/local_setup.bash
+    source /opt/tros/setup.bash
     # 启动websocket
     ros2 launch websocket websocket.launch.py websocket_image_topic:=/image_jpeg websocket_only_show_image:=true
     ```
@@ -168,7 +168,7 @@ sidebar_position: 1
 6. 在PC机上查询相机内参（具体数据以读取的相机标定文件为准），命令及结果如下:
 
     ```shell
-    root@ubuntu:~# source /opt/ros/foxy/local_setup.bash
+    root@ubuntu:~# source /opt/ros/foxy/setup.bash
     root@ubuntu:~# ros2 topic echo /camera_info
         header:
     stamp:
@@ -234,7 +234,7 @@ sidebar_position: 1
 
     ```shell
     # 配置 tros.b 环境：
-    source /opt/tros/local_setup.bash
+    source /opt/tros/setup.bash
     # launch 方式启动
     ros2 launch mipi_cam mipi_cam.launch.py mipi_video_device:=GC4663 mipi_camera_calibration_file_path:=/opt/tros/lib/mipi_cam/config/GC4663_calibration.yaml
     ```
@@ -299,7 +299,7 @@ sidebar_position: 1
 
     ```shell
     # 配置 tros.b 环境：
-    source /opt/tros/local_setup.bash
+    source /opt/tros/setup.bash
     cp -r /opt/tros/lib/rgbd_sensor/parameter .
     # lanuch 方式启动
     ros2 launch rgbd_sensor rgbd_sensor.launch.py
@@ -374,13 +374,13 @@ sidebar_position: 1
 3. PC机上查询当前话题，查询命令及返回结果如下：
 
     ```bash
-    source /opt/ros/foxy/local_setup.bash
+    source /opt/ros/foxy/setup.bash
     ros2 topic list
     ```
 
     输出：
 
-    ~~~text
+    ```text
     /rgbd_CP3AM/depth/image_rect_raw
     
     /rgbd_CP3AM/depth/color/points
@@ -396,12 +396,12 @@ sidebar_position: 1
     /parameter_events
     
     /rosout
-    ~~~
+    ```
 
 4. PC机上订阅话题，并预览摄像头数据
 
     ```bash
-    source /opt/ros/foxy/local_setup.bash
+    source /opt/ros/foxy/setup.bash
     ros2 run rviz2 rviz2
     ```
 
@@ -412,7 +412,7 @@ sidebar_position: 1
 5. 在PC机上查询相机内参
 
     ```bash
-    source /opt/ros/foxy/local_setup.bash
+    source /opt/ros/foxy/setup.bash
     ros2 topic echo /rgbd_CP3AM/color/camera_info
     ```
 

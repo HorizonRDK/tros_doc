@@ -88,7 +88,7 @@ sidebar_position: 3
 2. Web端查看JPEG编码图像，另起一个终端：
 
     ```shell
-    source /opt/tros/local_setup.bash
+    source /opt/tros/setup.bash
     ros2 launch websocket websocket.launch.py websocket_image_topic:=/image_jpeg websocket_only_show_image:=true
     ```
 

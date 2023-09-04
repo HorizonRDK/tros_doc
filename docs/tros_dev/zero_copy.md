@@ -18,13 +18,13 @@ sidebar_position: 1
 
 ## 任务内容
 
-### 1 创建package
+### 1. 创建package
 
 打开一个新的终端，source tros.b setup脚本，确保`ros2`命令可以运行。
 
-~~~shell
-source /opt/tros/local_setup.bash
-~~~
+```shell
+source /opt/tros/setup.bash
+```
 
 使用以下命令创建一个workspace，详细介绍可见ROS2 官方教程[Creating a workspace](https://docs.ros.org/en/foxy/Tutorials/Workspace/Creating-A-Workspace.html)。
 
@@ -39,7 +39,7 @@ cd ~/dev_ws/src
 ros2 pkg create --build-type ament_cmake hbmem_pubsub
 ```
 
-### 2 创建自定义消息
+### 2. 创建自定义消息
 
 #### 2.1 新建消息文件
 
@@ -52,13 +52,13 @@ mkdir msg
 
 在`msg`目录下新建`SampleMessage.msg`文件，具体内容如下:
 
-~~~idl
+```idl
 int32 index
 uint64 time_stamp
 uint8[4194304] data
 
 uint32 MAX_SIZE=4194304
-~~~
+```
 
 #### 2.2 编译依赖
 
@@ -81,13 +81,13 @@ rosidl_generate_interfaces(${PROJECT_NAME}
 )
 ```
 
-### 3 创建消息发布节点
+### 3. 创建消息发布节点
 
 #### 3.1 新建消息发布节点文件
 
 在`~/dev_ws/src/hbmem_pubsub/src`目录下新建` publisher_hbmem.cpp`文件，用来创建publisher node，具体代码和解释如下：
 
-~~~c++
+```c++
 #include <chrono>
 #include <functional>
 #include <memory>
@@ -160,7 +160,7 @@ int main(int argc, char * argv[])
   return 0;
 }
 
-~~~
+```
 
 #### 3.2 编译依赖
 
@@ -187,13 +187,13 @@ install(TARGETS
   DESTINATION lib/${PROJECT_NAME})
 ```
 
-### 4 创建消息接收节点
+### 4. 创建消息接收节点
 
 #### 4.1 新建消息接收节点文件
 
 在`~/dev_ws/src/hbmem_pubsub/src`目录下新建`  subscriber_hbmem.cpp`文件，用来创建subscriber node，具体代码和解释如下：
 
-~~~c++
+```c++
 #include <memory>
 
 #include "rclcpp/rclcpp.hpp"
@@ -241,7 +241,7 @@ int main(int argc, char * argv[])
   return 0;
 }
 
-~~~
+```
 
 #### 4.2 编译脚本
 
@@ -260,7 +260,7 @@ install(TARGETS
   DESTINATION lib/${PROJECT_NAME})
 ```
 
-### 5 编译和运行
+### 5. 编译和运行
 
 整个workspace目录结构如下：
 
@@ -383,14 +383,14 @@ colcon build --packages-select hbmem_pubsub
 
 若提示`colcon`命令未安装，使用以下命令安装即可：
 
-```
+```shell
 pip3 install -U colcon-common-extensions
 ```
 
 打开一个新的终端，`cd`到`dev_ws`目录，source tros.b和当前workspace setup文件：
 
 ```shell
-source /opt/tros/local_setup.bash
+source /opt/tros/setup.bash
 cd ~/dev_ws
 . install/setup.bash
 ```
@@ -403,7 +403,7 @@ ros2 run hbmem_pubsub talker
 
 终端上会出现如下打印：
 
-```
+```text
 [INFO] [1649227473.431381673] [minimal_hbmem_publisher]: message: 0
 [INFO] [1649227473.470746697] [minimal_hbmem_publisher]: message: 1
 [INFO] [1649227473.510923361] [minimal_hbmem_publisher]: message: 2
@@ -415,7 +415,7 @@ ros2 run hbmem_pubsub talker
 再打开一个新的终端，同样`cd`到`dev_ws`目录，然后souce setup文件，之后运行listener node:
 
 ```bash
-source /opt/tros/local_setup.bash
+source /opt/tros/setup.bash
 cd ~/dev_ws
 . install/setup.bash
 
@@ -424,7 +424,7 @@ ros2 run hbmem_pubsub listener
 
 终端上会有如下打印，表明subscriber已成功接收到publisher发送的消息：
 
-```
+```text
 [INFO] [1649227450.387089523] [minimal_hbmem_subscriber]: msg 10, time cost 1663us
 [INFO] [1649227450.427071280] [minimal_hbmem_subscriber]: msg 11, time cost 1713us
 [INFO] [1649227450.466993413] [minimal_hbmem_subscriber]: msg 12, time cost 1622us

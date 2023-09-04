@@ -967,7 +967,7 @@ cd ~/dev_ws
 source /opt/tros/setup.bash
 
 # 配置cpp_dnn_demo环境
-source ./install/local_setup.bash
+source ./install/setup.bash
 
 # 从tros.b的安装路径中拷贝出运行示例需要的配置文件。
 # 模型文件

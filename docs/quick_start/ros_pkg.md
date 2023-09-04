@@ -27,20 +27,12 @@ sudo apt install ros-foxy-image-transport
 sudo apt install ros-foxy-image-transport-plugins
 ```
 
-### 3 建立软连接
-
-```shell
-cd /opt/tros
-## 使用/opt/tros目录下的create_soft_link.py创建ROS package至tros.b的软连接
-sudo python3 create_soft_link.py --foxy /opt/ros/foxy/ --tros /opt/tros/
-```
-
 ## 使用ROS2 package
 
 与ROS使用一样
 
 ```shell
-source /opt/tros/local_setup.bash
+source /opt/tros/setup.bash
 ros2 run image_transport list_transports
 ```
 

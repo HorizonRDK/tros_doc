@@ -70,7 +70,6 @@ Nav2（Navigation2）是ROS2中自带的导航框架，旨在寻找一种安全�
 
    ```shell
    source /opt/tros/setup.bash
-   source /opt/ros/foxy/setup.bash
 
    ros2 launch nav2_bringup bringup_launch.py use_sim_time:=True map:=/opt/ros/foxy/share/nav2_bringup/maps/turtlebot3_world.yaml
    ```

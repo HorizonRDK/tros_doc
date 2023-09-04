@@ -35,7 +35,7 @@ parking_perception package 是基于 hobot_dnn package开发的路面结构化�
 
 应用场景：室外停车区检测算法基于语义分割，识别出图片中的停车区域，可实现自动泊车的功能，主要应用于自动驾驶领域。
 
-小车车位寻找案例：[5.8. 小车车位寻找](../apps/parking_search)
+小车车位寻找案例：[4.8. 小车车位寻找](../../apps/parking_search)
 
 ## 支持平台
 
@@ -61,8 +61,6 @@ parking_perception package 是基于 hobot_dnn package开发的路面结构化�
 ## 使用介绍
 
 package对外发布包含语义分割和目标检测信息的算法msg，用户可以订阅发布msg用于应用开发。
-
-运行命令：
 
 ### 地平线RDK平台
 

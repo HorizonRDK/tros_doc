@@ -220,7 +220,7 @@ TogetheROS.Bot兼容ROS2 foxy版本，为了方便预览图像效果，可以通
 
    ```shell
    # 配置ROS2环境
-   source /opt/ros/foxy/local_setup.bash
+   source /opt/ros/foxy/setup.bash
    ros2 topic list
    ```
 
@@ -236,7 +236,7 @@ TogetheROS.Bot兼容ROS2 foxy版本，为了方便预览图像效果，可以通
 
    ```shell
    # 配置ROS2环境
-   source /opt/ros/foxy/local_setup.bash
+   source /opt/ros/foxy/setup.bash
    ros2 run rviz2 rviz2
    ```
 
@@ -336,7 +336,7 @@ TogetheROS.Bot兼容ROS2 foxy版本，支持通过RQt预览压缩格式图像，
 
    ```shell
    # 配置ROS2环境
-   source /opt/ros/foxy/local_setup.bash
+   source /opt/ros/foxy/setup.bash
    ros2 run rqt_image_view rqt_image_view
    ```
 
