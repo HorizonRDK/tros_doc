@@ -48,17 +48,15 @@ App以PC端Gazebo仿真环境下的虚拟小车举例，发布的控制指令也
 
 5. 和地平线RDK在同一网段（有线或者连接同一无线网，IP地址前三段需保持一致）的PC，PC端需要安装的环境包括：
 
-- Ubuntu 20.04系统
+   - Ubuntu 20.04系统
+   - [ROS2 Foxy桌面版](https://docs.ros.org/en/foxy/Installation/Ubuntu-Install-Debians.html)
+   - Gazebo和Turtlebot3相关的功能包，安装方法：
 
-- [ROS2 Foxy桌面版](https://docs.ros.org/en/foxy/Installation/Ubuntu-Install-Debians.html)
-
-- Gazebo和Turtlebot3相关的功能包，安装方法：
-
-  ```shell
-  sudo apt-get install ros-foxy-gazebo-*
-  sudo apt install ros-foxy-turtlebot3
-  sudo apt install ros-foxy-turtlebot3-simulations
-  ```
+     ```shell
+     sudo apt-get install ros-foxy-gazebo-*
+     sudo apt install ros-foxy-turtlebot3
+     sudo apt install ros-foxy-turtlebot3-simulations
+     ```
 
 ## 使用介绍
 
@@ -80,19 +78,29 @@ ros2 launch turtlebot3_gazebo empty_world.launch.py
 
 地平线RDK平台启动程序：
 
-```shell
-# 配置tros.n环境
-source /opt/tros/setup.bash
+1. 拷贝音频配置文件和加载音频驱动
 
-# 从地平线RDK的安装路径中拷贝出运行示例需要的配置文件。
-cp -r /opt/tros/lib/hobot_audio/config/ .
+    ```shell
+    # 从tros.b的安装路径中拷贝出运行示例需要的配置文件。
+    cp -r /opt/tros/lib/hobot_audio/config/ .
 
-# 加载音频驱动，设备启动之后只需要加载一次
-bash config/audio.sh
+    # 加载音频驱动，设备启动之后只需要加载一次
+    bash config/audio.sh
+    ```
 
-# 启动launch文件，并指定小车正前方对应的语音DOA角度，以90为例
-ros2 launch audio_tracking audio_tracking.launch.py car_front_audio_angle:=90
-```
+2. 确认麦克风设备
+
+    麦克风设备号通过配置文件 *config/audio_config.json* 中 `micphone_name` 字段设置，默认为"hw:0,0"，表示音频设备Card0 Device0。若加载音频驱动时无其他音频设备连接，则无需修改该字段。若加载音频驱动时有其他音频设备连接，例如USB麦克风或带麦克风功能的USB摄像头，则需要修改该字段为对应的设备号，设备号可通过命令 `ls /dev/snd` 查看。
+
+3. 启动程序
+
+    ```shell
+    # 配置tros.b环境
+    source /opt/tros/setup.bash
+
+    # 启动launch文件，并指定小车正前方对应的语音DOA角度，以90为例
+    ros2 launch audio_tracking audio_tracking.launch.py car_front_audio_angle:=90
+    ```
 
 ## 结果分析
 
