@@ -211,6 +211,7 @@ TogetheROS.Bot兼容ROS2 foxy版本，为了方便预览图像效果，可以通
    输出：
 
    ```shell
+   /camera_info
    /image_raw
    /parameter_events
    /rosout
@@ -227,6 +228,7 @@ TogetheROS.Bot兼容ROS2 foxy版本，为了方便预览图像效果，可以通
    输出：
 
    ```shell
+   /camera_info
    /image_raw
    /parameter_events
    /rosout
@@ -262,6 +264,7 @@ TogetheROS.Bot兼容ROS2 foxy版本，为了方便预览图像效果，可以通
       输出：
 
       ```shell
+      /camera_info
       /image_raw
       /parameter_events
       /rosout
@@ -451,6 +454,6 @@ ros2 bag record -a
 
 ### 注意事项
 
-1. Foxglove可视化图像数据，需采用ROS2官方的消息格式，使用foxglove支持的图像编码格式，详情请见（https://foxglove.dev/docs/studio/panels/image）
+1. Foxglove可视化图像数据，需采用ROS2官方的消息格式，使用foxglove支持的图像编码格式，详情请见<https://foxglove.dev/docs/studio/panels/image>。
 
 2. rosbag进行消息记录时，可能会录制其他设备的话题信息，因此为了保证rosbag数据的干净，可以通过设置'export ROS_DOMAIN_ID=xxx' ，如'export ROS_DOMAIN_ID=1'的方法。
