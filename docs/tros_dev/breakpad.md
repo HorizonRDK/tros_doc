@@ -9,11 +9,11 @@ sidebar_position: 3
 Breakpad是一个比Linux core机制更强大的、用于记录程序崩溃时信息的工具套件，可用来查看被strip，也就是被剔除了编译器调试信息的应用程序的崩溃信息。在程序崩溃时，将崩溃信息记录在一个小巧的“ minidump”文件中，将其发送回服务器。并且可以从这些minidump和符号文件来生成C和C++堆栈跟踪。breakpad位于TogetheROS的tools文件夹内。
 ## 前置条件
 
-Breakpad位于源码tools目录下，目录内包含了经过交叉编译，可在地平线RDK上运行的bin，lib，includes等文件夹，分别包含了breakpad工具，静态链接库，头文件等内容。
+Breakpad位于代码仓库https://github.com/HorizonRDK/breakpad.git，分支为develop下，目录内包含了经过交叉编译，可在地平线RDK上运行的bin，lib，includes等文件夹，分别包含了breakpad工具，静态链接库，头文件等内容。
 
 ## 任务内容
 ### 1. 创建、编译并运行test程序
-在tools/breakpad目录下新建测试程序 test.cpp，并编译为可执行程序 test，其中要带上 -g 选项。新建目录 /tmp，再运行可执行程序 test
+在Breakpad目录下新建测试程序 test.cpp，并编译为可执行程序 test，其中要带上 -g 选项。新建目录 /tmp，再运行可执行程序 test
 
 ```c++
 //  test.cpp
