@@ -334,9 +334,10 @@ Trigger模块支持由其他节点下发Trigger任务,控制Trigger配置。下�
 
 在前面启动Trigger节点基础上,在另一个终端,发布话题名为"/hobot_agent"的std_msg话题消息。
 ```shell
-export COLCON_CURRENT_PREFIX=./install
-source ./install/setup.bash
+# 配置tros.b环境
+source /opt/tros/setup.bash
 
+# 发布话题名为"/hobot_agent"的std_msg话题消息
 ros2 topic pub /hobot_agent std_msgs/String "data: '{\"version\":\"v0.0.1_20230421\",\"trigger_status\":true,\"strategy\":[{\"src_module_id\":203,\"trigger_type\":1110,\"status\":true,\"level\":1,\"desc\":\"test\",\"duration_ts_back\":5000,\"duration_ts_front\":3000}]}'"
 ```
 

@@ -434,7 +434,11 @@ ros2 bag record -a
 
    ![foxglove](./image/demo_render/foxglove_guide_1.png "foxglove使用指导1")
 
-2）进入云端版
+PS: 首次使用需要注册, 可使用谷歌账号或第三方邮箱进行注册。
+
+   ![foxglove](./image/demo_render/foxglove_guide_11.png "foxglove使用指导11")
+
+2）进入可视化功能界面
 
    ![foxglove](./image/demo_render/foxglove_guide_2.png "foxglove使用指导2")
 
