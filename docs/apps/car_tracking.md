@@ -32,18 +32,15 @@ App以PC端Gazebo仿真环境下的虚拟小车举例，发布的控制指令也
 
 4. 和地平线RDK在同一网段（有线或者连接同一无线网，IP地址前三段需保持一致）的PC，PC端需要安装的环境包括：
 
-  - Ubuntu 20.04系统
+   - Ubuntu 20.04系统
+   - [ROS2 Foxy桌面版](https://docs.ros.org/en/foxy/Installation/Ubuntu-Install-Debians.html)
+   - Gazebo和Turtlebot3相关的功能包，安装方法：
 
-  - [ROS2 Foxy桌面版](https://docs.ros.org/en/foxy/Installation/Ubuntu-Install-Debians.html)
-
-  - Gazebo和Turtlebot3相关的功能包，安装方法：
-
-  ```
-  sudo apt-get install ros-foxy-gazebo-*
-  sudo apt install ros-foxy-turtlebot3
-  sudo apt install ros-foxy-turtlebot3-simulations
-  ```
-
+    ```shell
+    sudo apt-get install ros-foxy-gazebo-*
+    sudo apt install ros-foxy-turtlebot3
+    sudo apt install ros-foxy-turtlebot3-simulations
+    ```
 
 ## 使用介绍
 
@@ -55,7 +52,7 @@ APP启动后可以在PC端浏览器上渲染显示sensor发布的图片和对应
 
 PC端启动仿真环境：
 
-```
+```shell
 source /opt/ros/foxy/setup.bash
 export TURTLEBOT3_MODEL=burger
 ros2 launch turtlebot3_gazebo empty_world.launch.py
@@ -127,15 +124,16 @@ PC端在终端使用`ros2 topic list`命令可以查询到地平线RDK的topic�
 
 ```shell
 $ ros2 topic list
-/clock
+/camera_info
 /cmd_vel
 /hbmem_img04054242060426080500012020112713
 /hobot_mono2d_body_detection
-/image_jpeg
-/image_raw
+/image
+/parameter_events
+/rosout
 ```
 
-其中`/image_jpeg`是地平线RDK发布的从MIPI sensor采集图像后经过JPEG格式编码的图片，`/hobot_mono2d_body_detection`是地平线RDK发布的包含人体检测结果的算法msg，`/cmd_vel`是地平线RDK发布的运动控制指令。
+其中`/image`是地平线RDK发布的从MIPI sensor采集图像后经过JPEG格式编码的图片，`/hobot_mono2d_body_detection`是地平线RDK发布的包含人体检测结果的算法msg，`/cmd_vel`是地平线RDK发布的运动控制指令。
 
 PC端在终端使用`ros2 topic echo /cmd_vel`命令可以查看到地平线RDK发布的运动控制指令：
 

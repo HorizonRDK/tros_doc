@@ -11,14 +11,14 @@ sidebar_position: 4
 第一个终端运行
 
 ```shell
-source /opt/tros/local_setup.bash
+source /opt/tros/setup.bash
 ros2 run examples_rclcpp_minimal_subscriber subscriber_member_function
 ```
 
 第二个终端运行
 
 ```shell
-source /opt/tros/local_setup.bash
+source /opt/tros/setup.bash
 ros2 run examples_rclcpp_minimal_publisher publisher_member_function
 ```
 

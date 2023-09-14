@@ -11,7 +11,7 @@ sidebar_position: 6
 
 应用场景：智能语音算法能够识别音频中的唤醒词以及自定义的命令词，并将语音内容解读为对应指令或转化为文字，可实现语音控制以及语音翻译等功能，主要应用于智能家居、智能座舱、智能穿戴设备等领域。
 
-语音控制小车运动案例：[5.6. 语音控制小车运动](../apps/car_audio_control)
+语音控制小车运动案例：[4.6 语音控制小车运动](../../apps/car_audio_control)
 
 ## 支持平台
 
@@ -121,50 +121,54 @@ sidebar_position: 6
 
 地平线RDK板端运行hobot_audio package：
 
-1. 配置tros.b环境和拷贝配置文件
+1. 拷贝配置文件和加载音频驱动
+
+   ```shell
+   # 从tros.b的安装路径中拷贝出运行示例需要的配置文件，若已拷贝则可忽略
+   cp -r /opt/tros/lib/hobot_audio/config/ .
+
+   # 加载音频驱动，设备启动之后只需要加载一次
+   bash config/audio.sh
+   ```
+
+2. 确认配置文件
+
+   配置文件 *config/audio_config.json* 默认配置如下：
+
+   ```json
+   {
+      "micphone_enable": 1,
+      "micphone_name": "hw:0,0",
+      "micphone_rate": 16000,
+      "micphone_chn": 8,
+      "micphone_buffer_time": 0,
+      "micphone_nperiods": 4,
+      "micphone_period_size": 512,
+      "voip_mode": 0,
+      "mic_type": 0,
+      "asr_mode": 0,
+      "asr_channel": 3,
+      "save_audio": 0
+   }
+   ```
+
+   需要确认的配置有：麦克风设备号，麦克风阵列类型，以及是否需要发布ASR结果。
+   - **麦克风设备号**通过`micphone_name`字段设置，默认为"hw:0,0"，表示音频设备Card0 Device0。若加载音频驱动时无其他音频设备连接，则无需修改该字段。若加载音频驱动时有其他音频设备连接，例如USB麦克风或带麦克风功能的USB摄像头，则需要修改该字段为对应的设备号，设备号可通过命令 `ls /dev/snd` 查看。
+   - **麦克风阵列类型**通过`mic_type`字段设置，默认值为`0`，表示环形麦克风阵列。如果使用线形麦克风阵列，需要修改该字段为`1`。
+   - **ASR输出**通过`asr_mode`字段设置，默认值为`0`，表示不输出ASR结果。若要开启ASR结果输出，需要将该字段改为`1`或`2`，其中`1`表示唤醒后进行一次ASR识别并发布结果，`2`表示一直进行ASR识别并发布结果。
+
+3. 配置tros.b环境和启动应用
 
    ```shell
    # 配置tros.b环境
    source /opt/tros/setup.bash
-   
-   # 从tros.b的安装路径中拷贝出运行示例需要的配置文件。
-   cp -r /opt/tros/lib/hobot_audio/config/ .
-   ```
 
-2. 选择麦克风阵列类型以及是否开启ASR结果输出
+   # 屏蔽调式打印信息
+   export GLOG_minloglevel=3
 
-   麦克风阵列类型和ASR输出均通过配置文件*config/audio_config.json*设置，该文件默认配置如下：
-
-   ```json
-   {
-     "micphone_enable": 1,
-     "micphone_rate": 16000,
-     "micphone_chn": 8,  // mic+ref total num
-     "micphone_buffer_time": 0, // ring buffer length in us
-     "micphone_nperiods": 4,  // period time in us
-     "micphone_period_size": 512,  // period_size, how many frames one period contains
-     "voip_mode": 0,   // whether the call mode is voice
-     "mic_type": 0,    // 0: cir mic; 1: linear mic
-     "asr_mode": 0,   // 0: disable, 1: enable asr after wakeup, 2: enable asr anyway
-     "asr_channel": 3, // if asr_mode = 2, output specific channel asr, range(0-3)
-     "save_audio": 0
-   }
-   ```
-
-    - 麦克风阵列类型通过`mic_type`字段设置，默认值为`0`，表示环形麦克风阵列。如果使用线形麦克风阵列，需要修改该字段为`1`。
-    - ASR输出通过`asr_mode`字段设置，默认值为`0`，表示不输出ASR结果。若要开启ASR结果输出，需要将该字段改为`1`或`2`，其中`1`表示唤醒后输出一次ASR结果，`2`表示一直输出ASR结果。
-
-3. 加载音频驱动和启动应用
-
-   ```shell
-   # 加载音频驱动，设备启动之后只需要加载一次
-   bash config/audio.sh
-   
    #启动launch文件
    ros2 launch hobot_audio hobot_audio.launch.py
    ```
-
-   注意：加载音频驱动时确保无其他音频设备连接，例如USB麦克风或带麦克风功能的USB摄像头，否则会导致应用打开音频设备失败，报错退出。
 
 ## 结果分析
 

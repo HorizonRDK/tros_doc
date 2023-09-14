@@ -79,7 +79,7 @@ PC用于进行数据标注以及训练，为了提高效率这里采用地平线
 
 ```shell
 export RMW_IMPLEMENTATION=rmw_cyclonedds_cpp
-source /opt/tros/local_setup.bash
+source /opt/tros/setup.bash
 
 ros2 launch mipi_cam mipi_cam.launch.py mipi_out_format:=bgr8 mipi_io_method:=mmap
 ```
@@ -88,11 +88,11 @@ PC上运行
 
 ```shell
 export RMW_IMPLEMENTATION=rmw_cyclonedds_cpp
-source  /opt/ros/foxy/local_setup.bash
+source  /opt/ros/foxy/setup.bash
 # 编译line_follower_model，进入line_follower_model目录
 colcon build --packages-select line_follower_model
 # 加载编译出的line_follower_model
-source install/local_setup.bash
+source install/setup.bash
 # 运行PC端标注程序
 ros2 run line_follower_model annotation
 ```
@@ -112,7 +112,7 @@ ros2 run line_follower_model annotation
 在地平线RDK上ResNet18推理性能高达232FPS，ResNet50推理性能也超过100FPS，高帧率保证了数据处理的实时性，是后续提高车速以及实现更复杂应用的必要条件。这里先使用ResNet18网络结构，后期遇到瓶颈考虑更深的ResNet50网络结构。为了满足输出引导线坐标值x，y这里需要修改ResNet18网络FC输出为2，即直接输出引导线的x，y坐标值。ResNet18输入分辨率为224x224。
 训练框架选用最近比较火热的pytorch，这里安装CPU版本pytorch，若硬件上有GPU卡可选用GPU版本pytorch。安装命令如下：
 
-```powershell
+```shell
 pip3 install torch torchvision torchaudio --extra-index-url https://download.pytorch.org/whl/cpu
 ```
 
@@ -128,12 +128,12 @@ pip3 install torch torchvision torchaudio --extra-index-url https://download.pyt
 
 PC上运行
 
-```powershell
-source  /opt/ros/foxy/local_setup.bash
+```shell
+source  /opt/ros/foxy/setup.bash
 # 编译line_follower_model，进入line_follower_model目录
 colcon build --packages-select line_follower_model
 # 加载编译出的line_follower_model
-source install/local_setup.bash
+source install/setup.bash
 # 运行PC端标注程序
 ros2 run line_follower_model training
 ```
@@ -160,7 +160,7 @@ pytorch训练得到的浮点模型如果直接运行在地平线RDK上效率会�
 
    OE包目录结构如下：
 
-   ```powershell
+   ```shell
    .
    ├── bsp
    │   └── X3J3-Img-PL2.2-V1.1.0-20220324.tgz
@@ -196,7 +196,7 @@ pytorch训练得到的浮点模型如果直接运行在地平线RDK上效率会�
 
    生成校准数据。该步骤生成的校准数据主要供下一步模型编译进行校准用，可以使用训练模型的部分数据，没有特殊要求，只要确保标准正确即可，数量以100张左右为宜。
 
-   ```powershell
+   ```shell
    # docker中执行
    cd ddk/samples/ai_toolchain/horizon_model_convert_sample/03_classification/10_model_convert/mapper
    sh 02_preprocess.sh
@@ -208,7 +208,7 @@ pytorch训练得到的浮点模型如果直接运行在地平线RDK上效率会�
 
    模型编译,该步骤将生成定点模型文件。
 
-   ```powershell
+   ```shell
    # docker中执行
    cd ddk/samples/ai_toolchain/horizon_model_convert_sample/03_classification/10_model_convert/mapper
    sh 03_build.sh
@@ -232,8 +232,8 @@ pytorch训练得到的浮点模型如果直接运行在地平线RDK上效率会�
 
 将line_follower_perception文件夹和编译生成的定点模型拷贝至板端执行
 
-```powershell
-source /opt/tros/local_setup.bash
+```shell
+source /opt/tros/setup.bash
 #在line_follower_perception文件夹路径下执行
 clocon build --packages-select line_follower_perception
 ```
@@ -241,21 +241,21 @@ clocon build --packages-select line_follower_perception
 编译完成后，通过参数model_path和model_name指定模型的路径和名称
 
 ```shell
-source install/local_setup.bash
+source install/setup.bash
 ros2 run line_follower_perception line_follower_perception --ros-args -p model_path:=./resnet18_224x224_nv12.bin -p model_name:=resnet18_224x224_nv12 &
 ```
 
 运行mipi_cam
 
-```powershell
-source /opt/tros/local_setup.bash
+```shell
+source /opt/tros/setup.bash
 ros2 launch mipi_cam mipi_cam.launch.py &
 ```
 
 最后进入小车的运动控制package，originbot_base运行
 
-```powershell
-source install/local_setup.bash
+```shell
+source install/setup.bash
 ros2 run originbot_base originbot_base
 ```
 

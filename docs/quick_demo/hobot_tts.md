@@ -6,7 +6,7 @@ sidebar_position: 8
 
 ## 功能介绍
 
-该章节介绍如何将一段文本转化为语音信号，并通过耳机输出接口播放。
+本章节介绍如何将一段文本转化为语音信号，并通过音频输出接口播放。
 
 代码仓库：<https://github.com/HorizonRDK/hobot_tts.git>
 
@@ -68,7 +68,7 @@ sidebar_position: 8
     by-path  controlC0  pcmC0D0c  pcmC0D1p  timer
     ```
 
-    如果出现`pcmC0D1p`设备则表示加载成功。
+    如果出现类似`pcmC0D1p`新增音频播放设备则表示加载成功。
 
 3. 启动hobot_tts程序
 
@@ -81,11 +81,13 @@ sidebar_position: 8
     ros2 run hobot_tts hobot_tts
     ```
 
+    注意：加载音频驱动时，若新增音频设备不是`pcmC0D1p`，则需要使用参数`playback_device`指定播放音频设备。例如新增音频播放设备`pcmC1D1p`，启动命令为：`ros2 run hobot_tts hobot_tts --ros-args -p playback_device:="hw:1,1"`
+
 4. 新开一个终端，使用echo命令发布一条topic
 
    ```bash
    source /opt/tros/setup.bash
-   ros2 topic pub --once /tts_text std_msgs/msg/String "{data: "你知道地平线吗？是的，我知道地平线。它是一条从地面延伸到天空的线，它定义了地面和天空之间的分界线。"}"
+   ros2 topic pub --once /tts_text std_msgs/msg/String "{data: ""你知道地平线吗？是的，我知道地平线。它是一条从地面延伸到天空的线，它定义了地面和天空之间的分界线。""}"
    ```
 
 5. 耳机或音响可以听到播放的声音

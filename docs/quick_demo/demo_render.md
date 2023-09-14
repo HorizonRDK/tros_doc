@@ -211,6 +211,7 @@ TogetheROS.Bot兼容ROS2 foxy版本，为了方便预览图像效果，可以通
    输出：
 
    ```shell
+   /camera_info
    /image_raw
    /parameter_events
    /rosout
@@ -220,13 +221,14 @@ TogetheROS.Bot兼容ROS2 foxy版本，为了方便预览图像效果，可以通
 
    ```shell
    # 配置ROS2环境
-   source /opt/ros/foxy/local_setup.bash
+   source /opt/ros/foxy/setup.bash
    ros2 topic list
    ```
 
    输出：
 
    ```shell
+   /camera_info
    /image_raw
    /parameter_events
    /rosout
@@ -236,7 +238,7 @@ TogetheROS.Bot兼容ROS2 foxy版本，为了方便预览图像效果，可以通
 
    ```shell
    # 配置ROS2环境
-   source /opt/ros/foxy/local_setup.bash
+   source /opt/ros/foxy/setup.bash
    ros2 run rviz2 rviz2
    ```
 
@@ -262,6 +264,7 @@ TogetheROS.Bot兼容ROS2 foxy版本，为了方便预览图像效果，可以通
       输出：
 
       ```shell
+      /camera_info
       /image_raw
       /parameter_events
       /rosout
@@ -336,7 +339,7 @@ TogetheROS.Bot兼容ROS2 foxy版本，支持通过RQt预览压缩格式图像，
 
    ```shell
    # 配置ROS2环境
-   source /opt/ros/foxy/local_setup.bash
+   source /opt/ros/foxy/setup.bash
    ros2 run rqt_image_view rqt_image_view
    ```
 
@@ -431,7 +434,11 @@ ros2 bag record -a
 
    ![foxglove](./image/demo_render/foxglove_guide_1.png "foxglove使用指导1")
 
-2）进入云端版
+PS: 首次使用需要注册, 可使用谷歌账号或第三方邮箱进行注册。
+
+   ![foxglove](./image/demo_render/foxglove_guide_11.png "foxglove使用指导11")
+
+2）进入可视化功能界面
 
    ![foxglove](./image/demo_render/foxglove_guide_2.png "foxglove使用指导2")
 
@@ -451,6 +458,6 @@ ros2 bag record -a
 
 ### 注意事项
 
-1. Foxglove可视化图像数据，需采用ROS2官方的消息格式，使用foxglove支持的图像编码格式，详情请见（https://foxglove.dev/docs/studio/panels/image）
+1. Foxglove可视化图像数据，需采用ROS2官方的消息格式，使用foxglove支持的图像编码格式，详情请见<https://foxglove.dev/docs/studio/panels/image>。
 
 2. rosbag进行消息记录时，可能会录制其他设备的话题信息，因此为了保证rosbag数据的干净，可以通过设置'export ROS_DOMAIN_ID=xxx' ，如'export ROS_DOMAIN_ID=1'的方法。

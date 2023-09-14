@@ -72,9 +72,6 @@ vcs-import src < ./robot_dev_config/ros2_release.repos
 该部分操作均在开发机的docker内完成。
 
 ```shell
-## 拷贝create_soft_link.py
-mkdir -p install && cp ./robot_dev_config/create_soft_link.py install/
-
 ## 使用build.sh编译X3版本tros.b
 bash ./robot_dev_config/build.sh -p X3
 
@@ -277,9 +274,6 @@ sudo apt install --no-install-recommends -y \
 ### 编译
 
 ```shell
-## 拷贝create_soft_link.py
-mkdir -p install && cp ./robot_dev_config/create_soft_link.py install/
-
 # 使用build.sh编译
 bash ./robot_dev_config/build.sh -p X86
 ```

@@ -48,8 +48,7 @@ sidebar_position: 12
 
 ```shell
 # 配置tros.b环境
-source /opt/ros/foxy/setup.bash
-source /opt/tros/local_setup.bash
+source /opt/tros/setup.bash
 
 ros2 launch hobot_vio hobot_vio.launch.py 
 ```

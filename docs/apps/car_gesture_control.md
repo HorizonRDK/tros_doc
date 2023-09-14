@@ -12,21 +12,12 @@ sidebar_position: 5
 
 支持的控制手势，对应的手势功能定义和手势动作举例如下：
 
-666手势/Awesome —— 前进：
-
- ![](./image/car_gesture_control/image-awesome.jpeg)
-
-yeah/Victory —— 后退：
-
- ![](./image/car_gesture_control/image-victory.jpeg)
-
-大拇指向右/ThumbRight —— 右转：
-
- ![](./image/car_gesture_control/image-thumbright.jpeg)
-
-大拇指向左/ThumbLeft —— 左转：
-
- ![](./image/car_gesture_control/image-thumbleft.jpeg)
+| 控制手势              | 手势功能 | 手势动作举例                                                           |
+| --------------------- | -------- | ---------------------------------------------------------------------- |
+| 666手势/Awesome       | 前进     | ![image-awesome](./image/car_gesture_control/image-awesome.jpeg)       |
+| yeah/Victory          | 后退     | ![image-victory](./image/car_gesture_control/image-victory.jpeg)       |
+| 大拇指向右/ThumbRight | 右转     | ![image-thumbright](./image/car_gesture_control/image-thumbright.jpeg) |
+| 大拇指向左/ThumbLeft  | 左转     | ![image-thumbleft](./image/car_gesture_control/image-thumbleft.jpeg)   |
 
 App以PC端Gazebo仿真环境下的虚拟小车举例，发布的控制指令也可以直接用于控制实物小车。
 
@@ -34,8 +25,8 @@ App以PC端Gazebo仿真环境下的虚拟小车举例，发布的控制指令也
 
 ## 支持平台
 
-| 平台    | 运行方式      | 示例功能                       |
-| ------- | ------------ | ------------------------------ |
+| 平台                             | 运行方式     | 示例功能                                                                           |
+| -------------------------------- | ------------ | ---------------------------------------------------------------------------------- |
 | RDK X3, RDK X3 Module, RDK Ultra | Ubuntu 20.04 | 启动MIPI/USB摄像头获取图像，并进行手势识别以及手势控制，最后通过Gazebo展示控制效果 |
 
 ## 准备工作
@@ -50,17 +41,15 @@ App以PC端Gazebo仿真环境下的虚拟小车举例，发布的控制指令也
 
 4. 和地平线RDK在同一网段（有线或者连接同一无线网，IP地址前三段需保持一致）的PC，PC端需要安装的环境包括：
 
-- Ubuntu 20.04系统
+   - Ubuntu 20.04系统
+   - [ROS2 Foxy桌面版](https://docs.ros.org/en/foxy/Installation/Ubuntu-Install-Debians.html)
+   - Gazebo和Turtlebot3相关的功能包，安装方法：
 
-- [ROS2 Foxy桌面版](https://docs.ros.org/en/foxy/Installation/Ubuntu-Install-Debians.html)
-
-- Gazebo和Turtlebot3相关的功能包，安装方法：
-
-   ```shell
-   sudo apt-get install ros-foxy-gazebo-*
-   sudo apt install ros-foxy-turtlebot3
-   sudo apt install ros-foxy-turtlebot3-simulations
-   ```
+    ```shell
+    sudo apt-get install ros-foxy-gazebo-*
+    sudo apt install ros-foxy-turtlebot3
+    sudo apt install ros-foxy-turtlebot3-simulations
+    ```
 
 ## 使用介绍
 
@@ -68,7 +57,7 @@ App以PC端Gazebo仿真环境下的虚拟小车举例，发布的控制指令也
 
 运行小车手势控制App后，通过“666手势/Awesome”手势控制小车前进，“yeah/Victory”手势控制小车后退，“大拇指向右/ThumbRight”手势控制小车右转，“大拇指向左/ThumbLeft”手势控制小车左转。其中左转/右转分别是向人的左/右方向（大拇指的指向）转动。
 
-App启动后可以在PC端浏览器上渲染显示sensor发布的图片和对应的算法结果（浏览器输入http://IP:8000，IP为地平线RDK的IP地址）。
+App启动后可以在PC端浏览器上渲染显示sensor发布的图片和对应的算法结果（浏览器输入<http://IP:8000>，IP为地平线RDK的IP地址）。
 
 PC端启动仿真环境：
 
@@ -139,17 +128,18 @@ PC端在终端使用`ros2 topic list`命令可以查询到地平线RDK的topic�
 
 ```shell
 $ ros2 topic list
-/clock
+/camera_info
 /cmd_vel
 /hbmem_img04054242060426080500012020112713
 /hobot_hand_gesture_detection
 /hobot_hand_lmk_detection
 /hobot_mono2d_body_detection
-/image_jpeg
-/image_raw
+/image
+/parameter_events
+/rosout
 ```
 
-其中`/image_jpeg`是地平线RDK发布的从MIPI sensor采集图像后经过JPEG格式编码的图片，`/hobot_hand_gesture_detection`是地平线RDK发布的包含手势识别信息的算法msg，`/cmd_vel`是地平线RDK发布的运动控制指令。
+其中`/image`是地平线RDK发布的从MIPI sensor采集图像后经过JPEG格式编码的图片，`/hobot_hand_gesture_detection`是地平线RDK发布的包含手势识别信息的算法msg，`/cmd_vel`是地平线RDK发布的运动控制指令。
 
 PC端在终端使用`ros2 topic echo /cmd_vel`命令可以查看到地平线RDK发布的运动控制指令：
 

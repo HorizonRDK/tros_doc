@@ -40,11 +40,11 @@ mobilenet_unet是使用[Cityscapes](https://www.cityscapes-dataset.com/)数据�
 
 ## 使用介绍
 
-### 使用摄像头发布图片
-
 ### 地平线RDK平台
 
-## 使用MIPI摄像头发布图片
+#### 使用摄像头发布图片
+
+##### 使用MIPI摄像头发布图片
 
 mobilenet_unet分割示例订阅sensor package发布的图片，经过推理后发布算法msg，并在运行路径下自动保存渲染后的图片，命名方式为render_frameid_时间戳秒_时间戳纳秒.jpg。
 
@@ -59,7 +59,7 @@ export CAM_TYPE=mipi
 ros2 launch dnn_node_example dnn_node_example.launch.py dnn_example_dump_render_img:=1 dnn_example_config_file:=config/mobilenet_unet_workconfig.json dnn_example_image_width:=1920 dnn_example_image_height:=1080
 ```
 
-## 使用USB摄像头发布图片
+##### 使用USB摄像头发布图片
 
 ```shell
 # 配置tros.b环境
@@ -72,7 +72,7 @@ export CAM_TYPE=usb
 ros2 launch dnn_node_example dnn_node_example.launch.py dnn_example_dump_render_img:=1 dnn_example_config_file:=config/mobilenet_unet_workconfig.json dnn_example_image_width:=1920 dnn_example_image_height:=1080
 ```
 
-## 使用本地图片回灌
+#### 使用本地图片回灌
 
 mobilenet_unet分割示例使用本地JPEG/PNG格式图片回灌，经过推理后将算法结果渲染后的图片存储在本地的运行路径下。
 
@@ -86,7 +86,7 @@ ros2 launch dnn_node_example dnn_node_example_feedback.launch.py dnn_example_con
 
 ### X86平台
 
-## 使用本地图片回灌
+#### 使用本地图片回灌
 
 mobilenet_unet分割示例使用本地JPEG/PNG格式图片回灌，经过推理后将算法结果渲染后的图片存储在本地的运行路径下。
 

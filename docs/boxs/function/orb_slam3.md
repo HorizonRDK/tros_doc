@@ -21,7 +21,7 @@ SLAM指定位与地图构建（Simultaneous Localization and Mapping，简称SLA
 
 应用场景：视觉SLAM算法能够在计算自身位置和姿态的同时计算出环境的三维结构，可实现即时定位以及构建地图的功能，主要应用于自动驾驶、智能家居、三维重建等领域。
 
-SLAM建图案例：[5.1. SLAM建图](../apps/slam)
+SLAM建图案例：[4.1 SLAM建图](../../apps/slam)
 
 ## 支持平台
 
@@ -55,7 +55,7 @@ ORB-SLAM3项目本身集成了多种类型的测试程序，比如单/双目以�
 
 运行命令：
 
-```
+```bash
 # 配置tros.b环境
 source /opt/tros/setup.bash
 # X3 CPU超频至1.5GHz
@@ -81,7 +81,7 @@ sudo chmod +x ./Examples/Monocular/mono_euroc
 
 tros.b基于ORB-SLAM3和ROS2开发了一套示例程序，集成了图像和IMU数据的订阅以及地图点云、位姿、行驶轨迹的话题发布功能，可通过Rviz2可视化软件方便地观察程序运行结果，帮助开发者在ROS2开发、调试ORB-SLAM3。
 
-最新版本的镜像在内核打上了RealSense 系列相机的UVC和HID驱动补丁，直接使用apt命令安装RealSense SDK以及ROS2 package后即可直接使用测试程序。ROS2的package与tros.b的并存的安装方法见[1.5 使用ROS2 package](../quick_start/ros_pkg.md)
+最新版本的镜像在内核打上了RealSense 系列相机的UVC和HID驱动补丁，直接使用apt命令安装RealSense SDK以及ROS2 package后即可直接使用测试程序。ROS2的package与tros.b的并存的安装方法见[1.5 使用ROS2 package](../../quick_start/ros_pkg.md)
 
 ```bash
 # 显示ROS当前版本，如果显示为空，请source /opt/tros/setup.bash
@@ -98,7 +98,6 @@ sudo apt-get install ros-$ROS_DISTRO-realsense2-description -y
 接下来，我们使用root账户（密码：root）登录RDK X3，启动Realsense D435i相机，否则权限不足无法正常启动相机。
 
 ```bash
-source /opt/ros/foxy/setup.bash
 source /opt/tros/setup.bash
 
 # 启动D435i，发布图像数据
@@ -110,7 +109,7 @@ ros2 launch realsense2_camera rs_launch.py enable_depth:=false enable_color:=fal
 
 下一步，我们启动视觉SLAM节点：
 
-```
+```bash
 # 配置tros.b环境
 source /opt/tros/setup.bash
 # X3 CPU超频至1.5GHz
@@ -144,4 +143,3 @@ X3端的视觉SLAM节点启动并接收到相机图像数据后开始打印当�
 
 使用Superpoint特征提取算法的结果如下图所示，可以看到，特征点提取非常稠密，检测出了物体的轮廓。
 ![](./image/box_adv/superpoint_result.png)
-
