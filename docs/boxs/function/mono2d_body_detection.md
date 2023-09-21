@@ -108,6 +108,9 @@ export CAM_TYPE=fb
 
 # 启动launch文件
 ros2 launch mono2d_body_detection mono2d_body_detection.launch.py
+
+# RDK Ultra平台需要指定回灌图片，例如：
+# ros2 launch mono2d_body_detection mono2d_body_detection.launch.py picture:=./config/target.jpg
 ```
 
 ### X86平台
