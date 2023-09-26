@@ -52,6 +52,9 @@ tar -zxvf hobot_bev_data.tar.gz -C hobot_bev_data
 # 配置tros.b环境
 source /opt/tros/setup.bash
 
+# 启动websocket服务
+ros2 launch websocket websocket_service.launch.py
+
 # 启动运行脚本，并指定数据集路径
 ros2 launch hobot_bev hobot_bev.launch.py image_pre_path:=hobot_bev_data/data
 ```

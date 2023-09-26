@@ -55,6 +55,9 @@ tar -zxvf hobot_centerpoint_data.tar.gz -C config
 # 配置tros.b环境
 source /opt/tros/setup.bash
 
+# 启动websocket服务
+ros2 launch websocket websocket_service.launch.py
+
 # 启动launch文件
 ros2 launch hobot_centerpoint hobot_centerpoint_websocket.launch.py lidar_pre_path:=config/hobot_centerpoint_data
 ```
