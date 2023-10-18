@@ -39,6 +39,9 @@ sidebar_position: 11
 # 配置tros.b环境
 source /opt/tros/setup.bash
 
+# 启动websocket服务
+ros2 launch websocket websocket_service.launch.py
+
 ros2 launch hobot_stereonet hobot_stereonet_demo.launch.py 
 ```
 
