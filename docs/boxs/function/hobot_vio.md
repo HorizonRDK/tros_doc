@@ -13,17 +13,17 @@ sidebar_position: 12
 
 | 平台   | 运行方式     | 示例功能                                                     |
 | ------ | ------------ | ------------------------------------------------------------ |
-| X3 SDB | Ubuntu 20.04 | 使用realsense的图像和IMU数据作为算法输入，算法输出机器人运动轨迹，轨迹可在PC的rviz2上可视化 |
+| RDK X3 | Ubuntu 20.04 | 使用realsense的图像和IMU数据作为算法输入，算法输出机器人运动轨迹，轨迹可在PC的rviz2上可视化 |
 
 ## 准备工作
 
-1. X3 SDB已烧录好地平线提供的Ubuntu 20.04系统镜像。
+1. RDK X3已烧录好地平线提供的Ubuntu 20.04系统镜像。
 
-2. X3 SDB已成功安装TogetheROS.Bot和Realsense的ROS2 Package。
+2. RDK X3已成功安装TogetheROS.Bot和Realsense的ROS2 Package。
 
-3. realsense相机，连接到X3 SDB的USB 3.0接口。
+3. realsense相机，连接到RDK X3的USB 3.0接口。
 
-4. 确认PC机能够通过网络访问X3 SDB。
+4. 确认PC机能够通过网络访问RDK X3。
 
 ## 使用介绍
 
