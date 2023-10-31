@@ -36,7 +36,7 @@ sidebar_position: 9
 
 ```bash
 # 下载模型文件
-wget http://archive.sunrisepi.tech/llm-model/llm_model.tar.gz
+wget http://sunrise.horizon.cc/llm-model/llm_model.tar.gz
 
 # 解压
 sudo tar -xf llm_model.tar.gz -C /opt/tros/lib/hobot_llm/

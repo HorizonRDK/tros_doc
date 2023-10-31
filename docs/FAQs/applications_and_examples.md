@@ -269,7 +269,7 @@ Installed-Size: unknown
 Depends: hobot-models-basic, tros-ros-base, tros-ai-msgs, tros-audio-control, tros-audio-msg, tros-audio-tracking, tros-body-tracking, tros-dnn-benchmark-example, tros-dnn-node, tros-dnn-node-example, tros-dnn-node-sample, tros-elevation-net, tros-gesture-control, tros-hand-gesture-detection, tros-hand-lmk-detection, tros-hbm-img-msgs, tros-hobot-app-xrrobot-body-tracking, tros-hobot-app-xrrobot-gesture-control, tros-hobot-codec, tros-hobot-cv, tros-hobot-falldown-detection, tros-hobot-hdmi, tros-hobot-image-publisher, tros-hobot-mot, tros-hobot-usb-cam, tros-image-subscribe-example, tros-img-msgs, tros-imu-sensor, tros-line-follower-model, tros-line-follower-perception, tros-mipi-cam, tros-mono2d-body-detection, tros-mono2d-trash-detection, tros-mono3d-indoor-detection, tros-parking-perception, tros-parking-search, tros-rgbd-sensor, tros-websocket, tros-xrrobot, tros-xrrobot-msgs
 Download-Size: 980 B
 APT-Manual-Installed: yes
-APT-Sources: http://archive.sunrisepi.tech/ubuntu-rdk focal/main arm64 Packages
+APT-Sources: http://sunrise.horizon.cc/ubuntu-rdk focal/main arm64 Packages
 Description: TogetheROS Bot
 
 root@ubuntu:~#
@@ -287,7 +287,7 @@ Maintainer: kairui.wang <kairui.wang@horizon.ai>
 Installed-Size: 1,536 MB
 Pre-Depends: hhp-verify
 Depends: symlinks, locales, hhp-verify, hobot-models-basic, hobot-arm64-libs (>= 1.1.6)
-Apt-Sources: http://archive.sunrisepi.tech/ubuntu-ports focal/main arm64 Packages
+Apt-Sources: http://sunrise.horizon.cc/ubuntu-ports focal/main arm64 Packages
 Date: 2023-03-24_17-29-12
 Download-Size: 116 MB
 APT-Manual-Installed: yes
