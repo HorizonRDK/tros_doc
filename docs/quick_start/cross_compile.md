@@ -24,7 +24,7 @@ sidebar_position: 3
 cd  /mnt/data/kairui.wang/test
 mkdir -p cc_ws/tros_ws/src
 ## 获取交叉编译用docker
-wget http://archive.sunrisepi.tech/TogetheROS/cross_compile_docker/pc_tros_v1.0.5.tar.gz
+wget http://sunrise.horizon.cc/TogetheROS/cross_compile_docker/pc_tros_v1.0.5.tar.gz
 ## 加载docker镜像
 sudo docker load --input pc_tros_v1.0.5.tar.gz 
 ## 查看pc_tros对应的image ID
@@ -141,8 +141,8 @@ sudo curl -sSL https://raw.githubusercontent.com/ros/rosdistro/master/ros.key -o
 echo "deb [arch=$(dpkg --print-architecture) signed-by=/usr/share/keyrings/ros-archive-keyring.gpg] http://packages.ros.org/ros2/ubuntu $(. /etc/os-release && echo $UBUNTU_CODENAME) main" | sudo tee /etc/apt/sources.list.d/ros2.list > /dev/null
 
 # 添加tros.b官方源
-sudo curl -sSL http://archive.sunrisepi.tech/keys/sunrise.gpg -o /usr/share/keyrings/sunrise.gpg
-echo "deb [arch=amd64 signed-by=/usr/share/keyrings/sunrise.gpg] http://archive.sunrisepi.tech/ubuntu-rdk-sim focal main" | sudo    tee /etc/apt/sources.list.d/sunrise.list > /dev/null
+sudo curl -sSL http://sunrise.horizon.cc/keys/sunrise.gpg -o /usr/share/keyrings/sunrise.gpg
+echo "deb [arch=amd64 signed-by=/usr/share/keyrings/sunrise.gpg] http://sunrise.horizon.cc/ubuntu-rdk-sim focal main" | sudo    tee /etc/apt/sources.list.d/sunrise.list > /dev/null
 ```
 
 #### 安装ROS工具包
@@ -294,4 +294,4 @@ A1：如下图所示，vcs import过程中打印.表示成功拉取repo，如果
 
 Q2：条件受限无法从github拉取代码
 
-A2：可以直接在[TogetheROS文件服务器](http://archive.sunrisepi.tech/TogetheROS/source_code/)中选择下载需要的版本代码。例如`tros_2.0.0_source_code.tar.gz`文件对应于tros.b 2.0.0版本。
+A2：可以直接在[TogetheROS文件服务器](http://sunrise.horizon.cc/TogetheROS/source_code/)中选择下载需要的版本代码。例如`tros_2.0.0_source_code.tar.gz`文件对应于tros.b 2.0.0版本。
