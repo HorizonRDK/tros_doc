@@ -27,7 +27,9 @@ SLAM建图案例：[4.1 SLAM建图](../../apps/slam)
 
 | 平台                  | 运行方式     |
 | --------------------- | ------------ |
-| RDK X3, RDK X3 Module | Ubuntu 20.04 |
+| RDK X3, RDK X3 Module, RDK Ultra | Ubuntu 20.04 |
+
+**注意**：SuperPoint优化只支持RDK X3和RDK X3 Module平台。
 
 ## 准备工作
 
@@ -95,7 +97,7 @@ sudo apt-get install ros-$ROS_DISTRO-realsense2-description -y
 
 安装完毕后，我们启动Realsense相机作为图像发布节点，视觉SLAM节点作为图像订阅者，订阅图像话题并发布位姿和点云等信息。
 
-接下来，我们使用root账户（密码：root）登录RDK X3，启动Realsense D435i相机，否则权限不足无法正常启动相机。
+接下来，我们使用root账户（密码：root）登录RDK，启动Realsense D435i相机，否则权限不足无法正常启动相机。
 
 ```bash
 source /opt/tros/setup.bash
