@@ -331,3 +331,13 @@ root@ubuntu:~#
 问题原因：如果RDK上已经启动过nginx服务，例如运行过RDK中的WEB展示示例（不带端口号，此时在浏览器中输入http://IP地址能够打开页面），再启动tros.b的WEB展示示例时不会再启动nginx服务，因此指定端口号会打开页面失败。	
 
 解决方法：kill掉RDK上正在运行的nginx进程或者重启RDK。
+
+## WEB浏览器只显示图像，无感知结果渲染
+
+1、检查web node启动命令是否开启渲染感知结果功能。详细参数说明查看[hobot_websocket的README](https://github.com/HorizonRDK/hobot_websocket#%E5%8F%82%E6%95%B0)
+
+2、检查web node启动终端是否有错误log输出，如果有请按照提示信息进行排查。
+
+3、使用`ros2 topic echo [话题名]`命令确认是否有感知结果数据。
+
+4、使用`ps -x`命令检查是否有启动多个web node，如果有请使用`kill`命令停止所有web node进程后再启动。
