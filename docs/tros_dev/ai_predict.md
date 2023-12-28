@@ -28,7 +28,7 @@ sidebar_position: 2
 
 3 可以通过网络访问地平线RDK的PC。
 
-关于`hobot_dnn`的详细使用说明可以参考`hobot_dnn`代码中的[README.md](https://github.com/HorizonRDK/hobot_dnn/-/blob/develop/README.md)和[接口说明文档](https://github.com/HorizonRDK/hobot_dnn/-/blob/develop/docs/API-Manual/API-Manual.md)。hobot_dnn的使用逻辑流程如下：
+关于`hobot_dnn`的详细使用说明可以参考`hobot_dnn`代码中的[README.md](https://github.com/HorizonRDK/hobot_dnn/blob/develop/README.md)和[接口说明文档](https://github.com/HorizonRDK/hobot_dnn/blob/develop/dnn_node/docs/API-Manual/API-Manual.md)。hobot_dnn的使用逻辑流程如下：
 
 ![](./image/ai_predict/dnnnode_workflow.jpg)
 
@@ -1200,7 +1200,7 @@ disappeared_targets: []
 
 本章节介绍了如何使用地平线提供的模型，基于`hobot_dnn`创建并运行一个人体检测的算法推理示例。使用从摄像头发布的图片，获取算法输出并在PC端浏览器上实时渲染展示图片和算法推理结果。
 
-用户可以参考`hobot_dnn`中的[README.md](https://github.com/HorizonRDK/hobot_dnn/-/blob/develop/README.md)和[接口说明文档](https://github.com/HorizonRDK/hobot_dnn/-/blob/develop/docs/API-Manual/API-Manual.md)，了解更丰富的算法推理功能。
+用户可以参考`hobot_dnn`中的[README.md](https://github.com/HorizonRDK/hobot_dnn/blob/develop/README.md)和[接口说明文档](https://github.com/HorizonRDK/hobot_dnn/blob/develop/docs/API-Manual/API-Manual.md)，了解更丰富的算法推理功能。
 
 ## 算法wokflow构建
 
