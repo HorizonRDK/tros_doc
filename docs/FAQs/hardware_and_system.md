@@ -4,7 +4,7 @@ sidebar_position: 1
 
 # 6.1 硬件和系统
 
-认证配件及购买链接请参考[认证配件清单](https://developer.horizon.cc/documents_rdk/hardware/rdk_x3_module#%E8%AE%A4%E8%AF%81%E9%85%8D%E4%BB%B6%E6%B8%85%E5%8D%95)
+认证配件及购买链接请参考[认证配件清单](https://developer.horizon.cc/documents_rdk/hardware_development/rdk_x3/accessory)
 
 详细请参考[地平线RDK套件用户手册的常见问题](https://developer.horizon.cc/documents_rdk/category/common_questions)
 
