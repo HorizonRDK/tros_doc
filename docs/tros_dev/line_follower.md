@@ -41,7 +41,7 @@ sidebar_position: 6
    - 算法工具链docker获取方式
 `wget -c ftp://vrftp.horizon.ai/Open_Explorer_gcc_9.3.0/2.3.3/x3pi_toolchain/ai_toolchain_2.3.3.tar.gz`
    - 工程源码
-`https://github.com/HorizonRDK/line_follower/-/tree/develop`
+`https://github.com/HorizonRDK/line_follower/tree/develop`
   
 ## 使用介绍
 
