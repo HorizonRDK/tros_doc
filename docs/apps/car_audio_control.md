@@ -61,19 +61,16 @@ ros2 launch turtlebot3_gazebo empty_world.launch.py
 
 地平线RDK平台启动程序：
 
-1. 拷贝音频配置文件和加载音频驱动
+1. 拷贝音频配置文件
 
     ```shell
     # 从tros.b的安装路径中拷贝出运行示例需要的配置文件。
     cp -r /opt/tros/lib/hobot_audio/config/ .
-
-    # 加载音频驱动，设备启动之后只需要加载一次
-    bash config/audio.sh
     ```
 
 2. 确认麦克风设备
 
-    麦克风设备号通过配置文件 *config/audio_config.json* 中 `micphone_name` 字段设置，默认为"hw:0,0"，表示音频设备Card0 Device0。若加载音频驱动时无其他音频设备连接，则无需修改该字段。若加载音频驱动时有其他音频设备连接，例如USB麦克风或带麦克风功能的USB摄像头，则需要修改该字段为对应的设备号，设备号可通过命令 `ls /dev/snd` 查看。
+    麦克风设备号通过配置文件 *config/audio_config.json* 中 `micphone_name` 字段设置，默认为"hw:0,0"，表示音频设备Card0 Device0，设备号可通过命令 `ls /dev/snd` 查看。
 
 3. 启动程序
 
