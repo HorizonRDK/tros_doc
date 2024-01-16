@@ -86,7 +86,7 @@ sidebar_position: 6
 
 #### 配置音频板
 
-首次使用音频板需要使用`srpi-config`进行配置，配置方法参考RDK用户手册[音频转接板](TODO)章节。
+首次使用音频板需要使用`srpi-config`进行配置，配置方法参考RDK用户手册[音频转接板](https://developer.horizon.cc/documents_rdk/hardware_development/rdk_x3/audio_board)章节。
 
 ## 使用介绍
 
@@ -154,7 +154,7 @@ sidebar_position: 6
    ```
 
    需要确认的配置有：麦克风设备号，麦克风阵列类型，以及是否需要发布ASR结果。
-   - **麦克风设备号**通过`micphone_name`字段设置，默认为"hw:0,0"，表示音频设备Card0 Device0，设备号可通过命令 `ls /dev/snd` 查看。
+   - **麦克风设备号**通过`micphone_name`字段设置，默认为"hw:0,0"，表示音频设备Card0 Device0，设备号可通过命令 `ls /dev/snd` 查看如："pcmC0D1c"；最后字母c表示capture设备，C0表示Card0，D1表示Device1，修改参数为"hw:0,1"。
    - **麦克风阵列类型**通过`mic_type`字段设置，默认值为`0`，表示环形麦克风阵列。如果使用线形麦克风阵列，需要修改该字段为`1`。
    - **ASR输出**通过`asr_mode`字段设置，默认值为`0`，表示不输出ASR结果。若要开启ASR结果输出，需要将该字段改为`1`或`2`，其中`1`表示唤醒后进行一次ASR识别并发布结果，`2`表示一直进行ASR识别并发布结果。
 
