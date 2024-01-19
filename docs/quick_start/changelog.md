@@ -4,6 +4,19 @@ sidebar_position: 6
 
 # 1.6 版本发布记录
 
+## 版本号：v2.1.2
+
+新增功能：
+
+- 重构hobot_usb_cam，支持更多format配置和转码。
+- `hobot_audio`更新语音SDK，同时支持2mic和4mic麦克风板;增加micphone_name配置设备ID号。
+
+问题修复：
+
+- `hobot_rgbd_cam` node修复发送数据消息step字段设置错误问题。
+- `hobot_tts`更新音频播放函数调用，解决新版本系统播放失败问题。
+- `hobot_llm`删除config设备树文件，以及更新README，新版本系统可通过命令工具设置ION内存大小。
+
 ## 版本号：2.1.1
 
 新增功能：
