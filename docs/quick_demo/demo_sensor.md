@@ -36,7 +36,7 @@ sidebar_position: 1
 
 1. 确认X86平台系统为Ubuntu 20.04，且已成功安装tros.b
 
-### 使用方式
+### 使用方式（默认usb_pixel_format为mjpeg）
 
 地平线RDK和X86平台使用方式相同，其中以地平线RDK平台为例：
 
@@ -54,10 +54,26 @@ sidebar_position: 1
 3. 如程序输出如下信息，说明节点已成功启动
 
     ```text
-    [INFO] [launch]: All log files can be found below_/root/.ros/log/2023-06-28-15-57-55-803135-ubuntu-4740
+    [INFO] [launch]: All log files can be found below /root/.ros/log/2024-01-18-19-44-39-419588-ubuntu-3951
     [INFO] [launch]: Default logging verbosity is set to INFO
-    [INFO] [hobot_usb_cam-1]: process started with pid [4742]
-    [hobot_usb_cam-1] [ERROR] [1687939076.180076645] [hobot_usb_cam]: Camera calibration file: /opt/tros/lib/hobot_usb_cam/config/usb_camera_calibration.yaml does not exist! Please makee sure the calibration file path is correct andthe calibration file exists!
+    [INFO] [hobot_usb_cam-1]: process started with pid [3953]
+    [hobot_usb_cam-1] [WARN] [1705578280.808870437] [hobot_usb_cam]: framerate: 30
+    [hobot_usb_cam-1] [WARN] [1705578280.809851560] [hobot_usb_cam]: pixel_format_name: mjpeg
+    [hobot_usb_cam-1] [WARN] [1705578280.936383062] [hobot_usb_cam]: Camera calibration file: [/opt/tros/lib/hobot_usb_cam/config/usb_camera_calibration.yaml] does not exist!
+    [hobot_usb_cam-1] If you need calibration msg, please make sure the calibration file path is correct and the calibration file exists!
+    [hobot_usb_cam-1] [WARN] [1705578280.936697507] [hobot_usb_cam]: This devices supproted formats:
+    [hobot_usb_cam-1] [WARN] [1705578280.936858791] [hobot_usb_cam]:        Motion-JPEG: 640 x 480 (30 Hz)
+    [hobot_usb_cam-1] [WARN] [1705578280.936912830] [hobot_usb_cam]:        Motion-JPEG: 1920 x 1080 (30 Hz)
+    [hobot_usb_cam-1] [WARN] [1705578280.936960328] [hobot_usb_cam]:        Motion-JPEG: 320 x 240 (30 Hz)
+    [hobot_usb_cam-1] [WARN] [1705578280.937007285] [hobot_usb_cam]:        Motion-JPEG: 800 x 600 (30 Hz)
+    [hobot_usb_cam-1] [WARN] [1705578280.937053241] [hobot_usb_cam]:        Motion-JPEG: 1280 x 720 (30 Hz)
+    [hobot_usb_cam-1] [WARN] [1705578280.937098906] [hobot_usb_cam]:        Motion-JPEG: 1024 x 576 (30 Hz)
+    [hobot_usb_cam-1] [WARN] [1705578280.937144528] [hobot_usb_cam]:        YUYV 4:2:2: 640 x 480 (30 Hz)
+    [hobot_usb_cam-1] [WARN] [1705578280.937190068] [hobot_usb_cam]:        YUYV 4:2:2: 1920 x 1080 (5 Hz)
+    [hobot_usb_cam-1] [WARN] [1705578280.937235858] [hobot_usb_cam]:        YUYV 4:2:2: 320 x 240 (30 Hz)
+    [hobot_usb_cam-1] [WARN] [1705578280.937282064] [hobot_usb_cam]:        YUYV 4:2:2: 800 x 600 (20 Hz)
+    [hobot_usb_cam-1] [WARN] [1705578280.937328020] [hobot_usb_cam]:        YUYV 4:2:2: 1280 x 720 (10 Hz)
+    [hobot_usb_cam-1] [WARN] [1705578280.937373518] [hobot_usb_cam]:        YUYV 4:2:2: 1024 x 576 (15 Hz)
     ```
 
 4. Web端查看USB摄像头图像，另起一个终端：
@@ -72,6 +88,67 @@ sidebar_position: 1
 5. PC打开浏览器（chrome/firefox/edge）输入<http://IP:8000>（IP为地平线RDK IP地址），点击左上方Web端展示即可查看USB摄像头实时画面
     ![image-usb-camera](./image/demo_sensor/usb_cam_pic.png)
 
+### 使用方式2（usb_pixel_format为yuyv2rgb）
+地平线RDK和X86平台使用方式相同，其中以地平线RDK平台为例：
+
+1. 通过SSH登录地平线RDK，确认USB摄像头设备名称，这里以`/dev/video8`为例
+
+2. 并通过下述命令启动USB摄像头
+
+    ```bash
+    # 配置 tros.b 环境：
+    source /opt/tros/setup.bash
+    # launch方式启动：
+    ros2 launch hobot_usb_cam hobot_usb_cam.launch.py usb_video_device:=/dev/video8 usb_pixel_format:=yuyv2rgb usb_image_width:=640 usb_image_height:=480
+    ```
+
+3. 如程序输出如下信息，说明节点已成功启动
+
+    ```text
+    [INFO] [launch]: All log files can be found below /root/.ros/log/2024-01-18-19-44-39-419588-ubuntu-3951
+    [INFO] [launch]: Default logging verbosity is set to INFO
+    [INFO] [hobot_usb_cam-1]: process started with pid [3953]
+    [hobot_usb_cam-1] [WARN] [1705578280.808870437] [hobot_usb_cam]: framerate: 30
+    [hobot_usb_cam-1] [WARN] [1705578280.809851560] [hobot_usb_cam]: pixel_format_name: yuyv2rgb
+    [hobot_usb_cam-1] [WARN] [1705578280.936383062] [hobot_usb_cam]: Camera calibration file: [/opt/tros/lib/hobot_usb_cam/config/usb_camera_calibration.yaml] does not exist!
+    [hobot_usb_cam-1] If you need calibration msg, please make sure the calibration file path is correct and the calibration file exists!
+    [hobot_usb_cam-1] [WARN] [1705578280.936697507] [hobot_usb_cam]: This devices supproted formats:
+    [hobot_usb_cam-1] [WARN] [1705578280.936858791] [hobot_usb_cam]:        Motion-JPEG: 640 x 480 (30 Hz)
+    [hobot_usb_cam-1] [WARN] [1705578280.936912830] [hobot_usb_cam]:        Motion-JPEG: 1920 x 1080 (30 Hz)
+    [hobot_usb_cam-1] [WARN] [1705578280.936960328] [hobot_usb_cam]:        Motion-JPEG: 320 x 240 (30 Hz)
+    [hobot_usb_cam-1] [WARN] [1705578280.937007285] [hobot_usb_cam]:        Motion-JPEG: 800 x 600 (30 Hz)
+    [hobot_usb_cam-1] [WARN] [1705578280.937053241] [hobot_usb_cam]:        Motion-JPEG: 1280 x 720 (30 Hz)
+    [hobot_usb_cam-1] [WARN] [1705578280.937098906] [hobot_usb_cam]:        Motion-JPEG: 1024 x 576 (30 Hz)
+    [hobot_usb_cam-1] [WARN] [1705578280.937144528] [hobot_usb_cam]:        YUYV 4:2:2: 640 x 480 (30 Hz)
+    [hobot_usb_cam-1] [WARN] [1705578280.937190068] [hobot_usb_cam]:        YUYV 4:2:2: 1920 x 1080 (5 Hz)
+    [hobot_usb_cam-1] [WARN] [1705578280.937235858] [hobot_usb_cam]:        YUYV 4:2:2: 320 x 240 (30 Hz)
+    [hobot_usb_cam-1] [WARN] [1705578280.937282064] [hobot_usb_cam]:        YUYV 4:2:2: 800 x 600 (20 Hz)
+    [hobot_usb_cam-1] [WARN] [1705578280.937328020] [hobot_usb_cam]:        YUYV 4:2:2: 1280 x 720 (10 Hz)
+    [hobot_usb_cam-1] [WARN] [1705578280.937373518] [hobot_usb_cam]:        YUYV 4:2:2: 1024 x 576 (15 Hz)
+    ```
+
+4. 通过hobot codec进行编码成mjpeg
+
+    ```bash
+    # 配置 tros.b 环境：
+    source /opt/tros/setup.bash
+    # launch方式启动：
+    ros2 launch hobot_codec hobot_codec_encode.launch.py codec_in_mode:=ros codec_in_format:=rgb8 codec_out_mode:=ros codec_sub_topic:=/image codec_pub_topic:=/image_mjpeg
+    ```
+
+5. Web端查看USB摄像头图像，另起一个终端：
+
+    ```bash
+    # 配置 tros.b 环境：
+    source /opt/tros/setup.bash
+    # 启动websocket
+    ros2 launch websocket websocket.launch.py websocket_image_topic:=/image_mjpeg websocket_only_show_image:=true
+    ```
+
+6. PC打开浏览器（chrome/firefox/edge）输入<http://IP:8000>（IP为地平线RDK IP地址），点击左上方Web端展示即可查看USB摄像头实时画面
+    ![image-usb-camera](./image/demo_sensor/usb_cam_pic.png)
+
+
 ### 注意事项
 
 1. USB摄像头需要进行标定，并设置相机标定文件的读取路径，否则无法发布相机内参，但不影响其它功能
@@ -85,6 +162,30 @@ sidebar_position: 1
     ```
 
 3. 对于X86平台，如果Ubuntu 20.04系统运行在虚拟机中，需要在`虚拟机设置`中将`USB控制器`的`USB兼容性`设置为`USB 3.1`。
+4. pixel_format配置的更改
+
+   hobot_usb_cam支持一下配置集：
+   "mjpeg","mjpeg-compressed","mjpeg2rgb","rgb8","yuyv","yuyv2rgb","uyvy","uyvy2rgb","m4202rgb","mono8","mono16","y102mono8"
+   
+   通过第一种的默认参数启动usb camera查询设备硬件所支持支持的formats，如下log：
+
+    ```text
+    [hobot_usb_cam-1] [WARN] [1705548544.174669672] [hobot_usb_cam]: This devices supproted formats:
+    [hobot_usb_cam-1] [WARN] [1705548544.174844917] [hobot_usb_cam]:        Motion-JPEG: 640 x 480 (30 Hz)
+    [hobot_usb_cam-1] [WARN] [1705548544.174903166] [hobot_usb_cam]:        Motion-JPEG: 1920 x 1080 (30 Hz)
+    [hobot_usb_cam-1] [WARN] [1705548544.174950581] [hobot_usb_cam]:        Motion-JPEG: 320 x 240 (30 Hz)
+    [hobot_usb_cam-1] [WARN] [1705548544.174996788] [hobot_usb_cam]:        Motion-JPEG: 800 x 600 (30 Hz)
+    [hobot_usb_cam-1] [WARN] [1705548544.175043412] [hobot_usb_cam]:        Motion-JPEG: 1280 x 720 (30 Hz)
+    [hobot_usb_cam-1] [WARN] [1705548544.175089161] [hobot_usb_cam]:        Motion-JPEG: 1024 x 576 (30 Hz)
+    [hobot_usb_cam-1] [WARN] [1705548544.175135035] [hobot_usb_cam]:        YUYV 4:2:2: 640 x 480 (30 Hz)
+    [hobot_usb_cam-1] [WARN] [1705548544.175180325] [hobot_usb_cam]:        YUYV 4:2:2: 1920 x 1080 (5 Hz)
+    [hobot_usb_cam-1] [WARN] [1705548544.175226449] [hobot_usb_cam]:        YUYV 4:2:2: 320 x 240 (30 Hz)
+    [hobot_usb_cam-1] [WARN] [1705548544.175272365] [hobot_usb_cam]:        YUYV 4:2:2: 800 x 600 (20 Hz)
+    [hobot_usb_cam-1] [WARN] [1705548544.175318697] [hobot_usb_cam]:        YUYV 4:2:2: 1280 x 720 (10 Hz)
+    [hobot_usb_cam-1] [WARN] [1705548544.175365195] [hobot_usb_cam]:        YUYV 4:2:2: 1024 x 576 (15 Hz)
+    ```
+    a.查询usb camera支持的图像格式，如上述log，log显示支持mjpeg和YUYV;
+    b.则只能设置"mjpeg","mjpeg-compressed","mjpeg2rgb","yuyv","yuyv2rgb"；否则hobot_usb_cam程序退出。
 
 ## MIPI图像采集
 
