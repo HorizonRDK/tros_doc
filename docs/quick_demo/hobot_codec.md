@@ -70,7 +70,7 @@ sidebar_position: 3
     source /opt/tros/setup.bash
 
     //从tros.b的安装路径中拷贝出运行示例需要的图片文件
-    cp -r /opt/tros/lib/hobot_image_publisher/config/ .
+    cp -r /opt/tros/${TROS_DISTRO}/lib/hobot_image_publisher/config/ .
 
     // 启动图像发布节点
     

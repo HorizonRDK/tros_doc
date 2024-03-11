@@ -71,7 +71,7 @@ package对外发布包含语义分割和目标检测信息的算法msg，用户�
 source /opt/tros/setup.bash
 
 # 从tros.b的安装路径中拷贝出运行示例需要的配置文件。
-cp -r /opt/tros/lib/parking_perception/config/ .
+cp -r /opt/tros/${TROS_DISTRO}/lib/parking_perception/config/ .
 
 # 配置MIPI摄像头
 export CAM_TYPE=mipi
@@ -87,7 +87,7 @@ ros2 launch parking_perception parking_perception.launch.py
 source /opt/tros/setup.bash
 
 # 从tros的安装路径中拷贝出运行示例需要的配置文件。
-cp -r /opt/tros/lib/parking_perception/config/ .
+cp -r /opt/tros/${TROS_DISTRO}/lib/parking_perception/config/ .
 
 # 配置USB摄像头
 export CAM_TYPE=usb
@@ -103,7 +103,7 @@ ros2 launch parking_perception parking_perception.launch.py
 source /opt/tros/setup.bash
 
 # 从tros的安装路径中拷贝出运行示例需要的配置文件。
-cp -r /opt/tros/lib/parking_perception/config/ .
+cp -r /opt/tros/${TROS_DISTRO}/lib/parking_perception/config/ .
 
 # 配置回灌图片
 export CAM_TYPE=fb
@@ -121,7 +121,7 @@ ros2 launch parking_perception parking_perception.launch.py
 source /opt/tros/setup.bash
 
 # 从tros的安装路径中拷贝出运行示例需要的配置文件。
-cp -r /opt/tros/lib/parking_perception/config/ .
+cp -r /opt/tros/${TROS_DISTRO}/lib/parking_perception/config/ .
 
 # 配置回灌图片
 export CAM_TYPE=fb

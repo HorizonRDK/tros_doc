@@ -65,7 +65,7 @@ sudo bash -c 'echo 1 > /sys/devices/system/cpu/cpufreq/boost'
 # 使能X3 CPU性能模式
 sudo bash -c 'echo performance > /sys/devices/system/cpu/cpufreq/policy0/scaling_governor'
 # 进入ORB_SLAM3项目目录
-cd /opt/tros/share/orb_slam3
+cd /opt/tros/${TROS_DISTRO}/share/orb_slam3
 # 解压数据集，V2_01_easy.zip数据集需自行下载！
 unzip V2_01_easy.zip -d V2_01_easy
 # 解压词袋库
@@ -119,7 +119,7 @@ sudo bash -c 'echo 1 > /sys/devices/system/cpu/cpufreq/boost'
 # 使能X3 CPU性能模式
 sudo bash -c 'echo performance > /sys/devices/system/cpu/cpufreq/policy0/scaling_governor'
 # 进入工作目录
-cd /opt/tros/share/orb_slam3
+cd /opt/tros/${TROS_DISTRO}/share/orb_slam3
 # 解压词袋库
 tar -xvf ./Vocabulary/ORBvoc.txt.tar.gz
 # 启动 ORB-SLAM3单目处理节点
@@ -140,7 +140,7 @@ X3端的视觉SLAM节点启动并接收到相机图像数据后开始打印当�
 
 众所周知，深度学习方法具有传统算法无法比拟的优势和潜力，尤其是在检测和分类任务的稳定性、效率和精度方面，深度学习方法表现出了惊人的优势。在视觉SLAM领域，也涌现出了很多使用深度学习方法代替传统SLAM前端和后端的工作，并表现出明显的优势。
 
-其中SuperPoint和SuperGlue就是典型。SuperPoint是一款自监督深度学习网络模型，能够同时提取图像特征点的位置以及描述子。Tros.b整合SuperPoint与ORB-SLAM3，开发者可以在/opt/tros/share/orb_slam3/Examples/\*/*.yaml配置文件里自由切换使用的特征点提取方法。如下图所示，使用的特征点提取算法为“SUPERPOINT”：
+其中SuperPoint和SuperGlue就是典型。SuperPoint是一款自监督深度学习网络模型，能够同时提取图像特征点的位置以及描述子。Tros.b整合SuperPoint与ORB-SLAM3，开发者可以在/opt/tros/${TROS_DISTRO}/share/orb_slam3/Examples/\*/*.yaml配置文件里自由切换使用的特征点提取方法。如下图所示，使用的特征点提取算法为“SUPERPOINT”：
 ![](./image/box_adv/superpoint.png)
 
 使用Superpoint特征提取算法的结果如下图所示，可以看到，特征点提取非常稠密，检测出了物体的轮廓。

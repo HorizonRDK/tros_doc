@@ -75,7 +75,7 @@ Linux镜像rootfs经过最小剪裁，无法支持板端编译。
 source /opt/tros/setup.bash
 
 # 从tros.b的安装路径中拷贝出运行示例需要的配置文件。config中为example使用的模型，回灌使用的本地图片
-cp -r /opt/tros/lib/dnn_node_example/config/ .
+cp -r /opt/tros/${TROS_DISTRO}/lib/dnn_node_example/config/ .
 
 # 使用本地jpg格式图片进行回灌预测，并存储渲染后的图片
 ros2 launch dnn_node_example dnn_node_example_feedback.launch.py
@@ -166,7 +166,7 @@ config  example
 export LD_LIBRARY_PATH=${LD_LIBRARY_PATH}:/opt/tros/lib/
 
 # 从tros.b的安装路径中拷贝出运行示例需要的配置文件。config中为example使用的模型，回灌使用的本地图片
-cp -r /opt/tros/lib/dnn_node_example/config/ .
+cp -r /opt/tros/${TROS_DISTRO}/lib/dnn_node_example/config/ .
 
 # 使用本地jpg格式图片进行回灌预测，并存储渲染后的图片
 /opt/tros/lib/dnn_node_example/example --ros-args -p feed_type:=0 -p image_type:=0 -p dump_render_img:=1

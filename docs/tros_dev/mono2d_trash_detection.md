@@ -121,7 +121,7 @@ package对外发布包含语义分割和目标检测信息的算法msg，用户�
 source /opt/tros/setup.bash
 
 # 从tros的安装路径中拷贝出运行示例需要的配置文件。
-cp -r /opt/tros/lib/mono2d_trash_detection/config/ .
+cp -r /opt/tros/${TROS_DISTRO}/lib/mono2d_trash_detection/config/ .
 
 # 配置MIPI摄像头
 export CAM_TYPE=mipi
@@ -137,7 +137,7 @@ ros2 launch dnn_node_example dnn_node_example.launch.py dnn_example_config_file:
 source /opt/tros/setup.bash
 
 # 从tros的安装路径中拷贝出运行示例需要的配置文件。
-cp -r /opt/tros/lib/mono2d_trash_detection/config/ .
+cp -r /opt/tros/${TROS_DISTRO}/lib/mono2d_trash_detection/config/ .
 
 # 配置USB摄像头
 export CAM_TYPE=usb
@@ -153,7 +153,7 @@ ros2 launch dnn_node_example dnn_node_example.launch.py dnn_example_config_file:
 source /opt/tros/setup.bash
 
 # 从tros的安装路径中拷贝出运行示例需要的配置文件。
-cp -r /opt/tros/lib/mono2d_trash_detection/config/ .
+cp -r /opt/tros/${TROS_DISTRO}/lib/mono2d_trash_detection/config/ .
 
 # 启动launch文件
 ros2 launch dnn_node_example dnn_node_example_feedback.launch.py dnn_example_config_file:=config/ppyoloworkconfig.json dnn_example_image:=config/trashDet0028.jpg
@@ -168,7 +168,7 @@ ros2 launch dnn_node_example dnn_node_example_feedback.launch.py dnn_example_con
 source /opt/tros/setup.bash
 
 # 从tros的安装路径中拷贝出运行示例需要的配置文件。
-cp -r /opt/tros/lib/mono2d_trash_detection/config/ .
+cp -r /opt/tros/${TROS_DISTRO}/lib/mono2d_trash_detection/config/ .
 
 # 启动垃圾检测pkg，将渲染图片保存到本地
 ros2 run dnn_node_example example --ros-args -p feed_type:=0 -p image:=config/trashDet0028.jpg -p image_type:=0 -p dump_render_img:=1 -p dnn_example_config_file:=config/ppyoloworkconfig.json

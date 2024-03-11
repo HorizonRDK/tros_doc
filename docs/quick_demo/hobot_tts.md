@@ -35,7 +35,7 @@ sidebar_position: 8
 
     ```bash
     wget http://sunrise.horizon.cc/tts-model/tts_model.tar.gz
-    sudo tar -xf tts_model.tar.gz -C /opt/tros/lib/hobot_tts/
+    sudo tar -xf tts_model.tar.gz -C /opt/tros/${TROS_DISTRO}/lib/hobot_tts/
     ```
 
 2. 运行如下命令检查音频设备是否正常：

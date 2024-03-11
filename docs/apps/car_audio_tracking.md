@@ -82,7 +82,7 @@ ros2 launch turtlebot3_gazebo empty_world.launch.py
 
     ```shell
     # 从tros.b的安装路径中拷贝出运行示例需要的配置文件。
-    cp -r /opt/tros/lib/hobot_audio/config/ .
+    cp -r /opt/tros/${TROS_DISTRO}/lib/hobot_audio/config/ .
     ```
 
 2. 确认麦克风设备

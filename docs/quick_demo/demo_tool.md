@@ -54,7 +54,7 @@ sidebar_position: 7
 source /opt/tros/setup.bash
 
 # 从tros.b的安装路径中拷贝出运行示例需要的图片文件
-cp -r /opt/tros/lib/hobot_image_publisher/config/ .
+cp -r /opt/tros/${TROS_DISTRO}/lib/hobot_image_publisher/config/ .
 
 # 启动launch文件
 ros2 launch hobot_image_publisher hobot_image_publisher_demo.launch.py
@@ -90,7 +90,7 @@ webserver has launch
 source /opt/tros/setup.bash
 
 # 从tros.b的安装路径中拷贝出运行示例需要的图片文件
-cp -r /opt/tros/lib/hobot_image_publisher/config/ .
+cp -r /opt/tros/${TROS_DISTRO}/lib/hobot_image_publisher/config/ .
 
 # 启动launch文件
 ros2 launch hobot_image_publisher hobot_image_publisher_videolist_demo.launch.py
@@ -103,10 +103,10 @@ ros2 launch hobot_image_publisher hobot_image_publisher_videolist_demo.launch.py
 source /opt/tros/setup.bash
 
 # 从tros.b的安装路径中拷贝出运行示例需要的图片文件
-cp -r /opt/tros/lib/hobot_image_publisher/config/ .
+cp -r /opt/tros/${TROS_DISTRO}/lib/hobot_image_publisher/config/ .
 
 # 启动图片发布节点，使用本地MP4格式视频文件进行发布（可以根据自己的需求进行参数配置），暂不支持Web端显示
-/opt/tros/lib/hobot_image_publisher/hobot_image_pub --ros-args -p image_source:=./config/video.list -p fps:=30 -p image_format:=mp4
+/opt/tros/${TROS_DISTRO}/lib/hobot_image_publisher/hobot_image_pub --ros-args -p image_source:=./config/video.list -p fps:=30 -p image_format:=mp4
 ```
 
 ### 视频发布结果分析
@@ -240,8 +240,8 @@ struct Config {
 source /opt/tros/setup.bash
 
 # 从tros的安装路径中拷贝出运行示例需要的配置文件。
-cp -r /opt/tros/lib/mono2d_trash_detection/config/ .
-cp -r /opt/tros/lib/trigger_node_example/config/ .
+cp -r /opt/tros/${TROS_DISTRO}/lib/mono2d_trash_detection/config/ .
+cp -r /opt/tros/${TROS_DISTRO}/lib/trigger_node_example/config/ .
 
 # 配置MIPI摄像头
 export CAM_TYPE=mipi
@@ -257,8 +257,8 @@ ros2 launch trigger_node_example hobot_trigger_example.launch.py
 source /opt/tros/setup.bash
 
 # 从tros的安装路径中拷贝出运行示例需要的配置文件。
-cp -r /opt/tros/lib/mono2d_trash_detection/config/ .
-cp -r /opt/tros/lib/trigger_node_example/config/ .
+cp -r /opt/tros/${TROS_DISTRO}/lib/mono2d_trash_detection/config/ .
+cp -r /opt/tros/${TROS_DISTRO}/lib/trigger_node_example/config/ .
 
 # 配置USB摄像头
 export CAM_TYPE=usb

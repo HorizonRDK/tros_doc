@@ -96,7 +96,7 @@ Web展示用于预览摄像头图像（JPEG格式）和算法效果，通过网�
 
    - 使用`lsof -i:8000`命令查看8000端口占用进程，使用`kill <PID>`关闭占用8000端口进程，然后重新启动websocket即可。
 
-   - 若用户不想停止当前正在占用8000端口的服务，可以修改 */opt/tros/lib/websocket/webservice/conf/nginx.conf* 配置文件中的`listen`端口号，改为大于1024且未使用的端口号。修改端口号后，浏览器端使用的URL也要同步修改。
+   - 若用户不想停止当前正在占用8000端口的服务，可以修改 */opt/tros/${TROS_DISTRO}/lib/websocket/webservice/conf/nginx.conf* 配置文件中的`listen`端口号，改为大于1024且未使用的端口号。修改端口号后，浏览器端使用的URL也要同步修改。
 
 ## HDMI展示
 
@@ -304,7 +304,8 @@ TogetheROS.Bot兼容ROS2 foxy版本，支持通过RQt预览压缩格式图像，
 #### 地平线RDK平台
 
 1. 通过SSH登录开发板，启动板端相关程序
-    a. 启动F37 camera
+   
+   a. 启动F37 camera
 
    ```shell
    source /opt/tros/setup.bash
@@ -317,7 +318,7 @@ TogetheROS.Bot兼容ROS2 foxy版本，支持通过RQt预览压缩格式图像，
    ```shell
    source /opt/tros/setup.bash
 
-   ros2 launch hobot_codec hobot_codec_encode.launch.py codec_out_format:=jpeg-compressed codec_pub_topic:=/image_raw/compressed
+   ros2 launch hobot_codec hobot_codec_encode.launch.py codec_out_format:=jpeg codec_pub_topic:=/image_raw/compressed
    ```
 
 2. 如程序输出如下信息，说明节点已成功启动

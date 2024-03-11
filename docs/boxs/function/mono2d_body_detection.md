@@ -68,7 +68,7 @@ sidebar_position: 1
 source /opt/tros/setup.bash
 
 # 从tros.b的安装路径中拷贝出运行示例需要的配置文件。
-cp -r /opt/tros/lib/mono2d_body_detection/config/ .
+cp -r /opt/tros/${TROS_DISTRO}/lib/mono2d_body_detection/config/ .
 
 # 配置MIPI摄像头
 export CAM_TYPE=mipi
@@ -84,7 +84,7 @@ ros2 launch mono2d_body_detection mono2d_body_detection.launch.py
 source /opt/tros/setup.bash
 
 # 从tros.b的安装路径中拷贝出运行示例需要的配置文件。
-cp -r /opt/tros/lib/mono2d_body_detection/config/ .
+cp -r /opt/tros/${TROS_DISTRO}/lib/mono2d_body_detection/config/ .
 
 # 配置USB摄像头
 export CAM_TYPE=usb
@@ -100,8 +100,8 @@ ros2 launch mono2d_body_detection mono2d_body_detection.launch.py
 source /opt/tros/setup.bash
 
 # 从tros.b的安装路径中拷贝出运行示例需要的配置文件。
-cp -r /opt/tros/lib/mono2d_body_detection/config/ .
-cp -r /opt/tros/lib/dnn_node_example/config/ .
+cp -r /opt/tros/${TROS_DISTRO}/lib/mono2d_body_detection/config/ .
+cp -r /opt/tros/${TROS_DISTRO}/lib/dnn_node_example/config/ .
 
 # 配置本地回灌图片
 export CAM_TYPE=fb
@@ -122,8 +122,8 @@ ros2 launch mono2d_body_detection mono2d_body_detection.launch.py
 source /opt/tros/setup.bash
 
 # 从tros.b的安装路径中拷贝出运行示例需要的配置文件。
-cp -r /opt/tros/lib/mono2d_body_detection/config/ .
-cp -r /opt/tros/lib/dnn_node_example/config/ .
+cp -r /opt/tros/${TROS_DISTRO}/lib/mono2d_body_detection/config/ .
+cp -r /opt/tros/${TROS_DISTRO}/lib/dnn_node_example/config/ .
 
 # 配置本地回灌图片
 export CAM_TYPE=fb

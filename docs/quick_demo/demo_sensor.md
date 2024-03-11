@@ -59,8 +59,6 @@ sidebar_position: 1
     [INFO] [hobot_usb_cam-1]: process started with pid [3953]
     [hobot_usb_cam-1] [WARN] [1705578280.808870437] [hobot_usb_cam]: framerate: 30
     [hobot_usb_cam-1] [WARN] [1705578280.809851560] [hobot_usb_cam]: pixel_format_name: mjpeg
-    [hobot_usb_cam-1] [WARN] [1705578280.936383062] [hobot_usb_cam]: Camera calibration file: [/opt/tros/lib/hobot_usb_cam/config/usb_camera_calibration.yaml] does not exist!
-    [hobot_usb_cam-1] If you need calibration msg, please make sure the calibration file path is correct and the calibration file exists!
     [hobot_usb_cam-1] [WARN] [1705578280.936697507] [hobot_usb_cam]: This devices supproted formats:
     [hobot_usb_cam-1] [WARN] [1705578280.936858791] [hobot_usb_cam]:        Motion-JPEG: 640 x 480 (30 Hz)
     [hobot_usb_cam-1] [WARN] [1705578280.936912830] [hobot_usb_cam]:        Motion-JPEG: 1920 x 1080 (30 Hz)
@@ -110,8 +108,6 @@ sidebar_position: 1
     [INFO] [hobot_usb_cam-1]: process started with pid [3953]
     [hobot_usb_cam-1] [WARN] [1705578280.808870437] [hobot_usb_cam]: framerate: 30
     [hobot_usb_cam-1] [WARN] [1705578280.809851560] [hobot_usb_cam]: pixel_format_name: yuyv2rgb
-    [hobot_usb_cam-1] [WARN] [1705578280.936383062] [hobot_usb_cam]: Camera calibration file: [/opt/tros/lib/hobot_usb_cam/config/usb_camera_calibration.yaml] does not exist!
-    [hobot_usb_cam-1] If you need calibration msg, please make sure the calibration file path is correct and the calibration file exists!
     [hobot_usb_cam-1] [WARN] [1705578280.936697507] [hobot_usb_cam]: This devices supproted formats:
     [hobot_usb_cam-1] [WARN] [1705578280.936858791] [hobot_usb_cam]:        Motion-JPEG: 640 x 480 (30 Hz)
     [hobot_usb_cam-1] [WARN] [1705578280.936912830] [hobot_usb_cam]:        Motion-JPEG: 1920 x 1080 (30 Hz)
@@ -162,10 +158,11 @@ sidebar_position: 1
     ```
 
 3. 对于X86平台，如果Ubuntu 20.04系统运行在虚拟机中，需要在`虚拟机设置`中将`USB控制器`的`USB兼容性`设置为`USB 3.1`。
+
 4. pixel_format配置的更改
 
-   hobot_usb_cam支持一下配置集：
-   "mjpeg","mjpeg-compressed","mjpeg2rgb","rgb8","yuyv","yuyv2rgb","uyvy","uyvy2rgb","m4202rgb","mono8","mono16","y102mono8"
+   hobot_usb_cam支持以下配置集：
+   "mjpeg","mjpeg2rgb","rgb8","yuyv","yuyv2rgb","uyvy","uyvy2rgb","m4202rgb","mono8","mono16","y102mono8"
    
    通过第一种的默认参数启动usb camera查询设备硬件所支持支持的formats，如下log：
 
@@ -184,8 +181,10 @@ sidebar_position: 1
     [hobot_usb_cam-1] [WARN] [1705548544.175318697] [hobot_usb_cam]:        YUYV 4:2:2: 1280 x 720 (10 Hz)
     [hobot_usb_cam-1] [WARN] [1705548544.175365195] [hobot_usb_cam]:        YUYV 4:2:2: 1024 x 576 (15 Hz)
     ```
+
     a.查询usb camera支持的图像格式，如上述log，log显示支持mjpeg和YUYV;
-    b.则只能设置"mjpeg","mjpeg-compressed","mjpeg2rgb","yuyv","yuyv2rgb"；否则hobot_usb_cam程序退出。
+
+    b.则只能设置"mjpeg","mjpeg2rgb","yuyv","yuyv2rgb"；否则hobot_usb_cam程序退出。
 
 ## MIPI图像采集
 
@@ -229,7 +228,7 @@ sidebar_position: 1
 
 下面以 F37 为例，介绍摄像头数据获取和预览的方法：
 
-1. 通过 SSH 登录地平线RDK，确定摄像头型号，这里以`F37`为例，确定相机标定文件的读取路径，这里以`/opt/tros/lib/mipi_cam/config/F37_calibration.yaml`为例
+1. 通过 SSH 登录地平线RDK，确定摄像头型号，这里以`F37`为例，确定相机标定文件的读取路径，这里以`/opt/tros/${TROS_DISTRO}/lib/mipi_cam/config/F37_calibration.yaml`为例
 
 2. 并通过下述命令启动 hobot_sensor 节点  
 
@@ -237,7 +236,7 @@ sidebar_position: 1
     # 配置 tros.b 环境：
     source /opt/tros/setup.bash
     # launch 方式启动
-    ros2 launch mipi_cam mipi_cam.launch.py mipi_video_device:=F37 mipi_camera_calibration_file_path:=/opt/tros/lib/mipi_cam/config/F37_calibration.yaml
+    ros2 launch mipi_cam mipi_cam.launch.py mipi_video_device:=F37 mipi_camera_calibration_file_path:=/opt/tros/${TROS_DISTRO}/lib/mipi_cam/config/F37_calibration.yaml
     ```
 
 3. 如程序输出如下信息，说明节点已成功启动
@@ -337,7 +336,7 @@ sidebar_position: 1
     # 配置 tros.b 环境：
     source /opt/tros/setup.bash
     # launch 方式启动
-    ros2 launch mipi_cam mipi_cam.launch.py mipi_video_device:=GC4663 mipi_camera_calibration_file_path:=/opt/tros/lib/mipi_cam/config/GC4663_calibration.yaml
+    ros2 launch mipi_cam mipi_cam.launch.py mipi_video_device:=GC4663 mipi_camera_calibration_file_path:=/opt/tros/${TROS_DISTRO}/lib/mipi_cam/config/GC4663_calibration.yaml
     ```
 
 2. 摄像头插拔注意事项
@@ -401,7 +400,7 @@ sidebar_position: 1
     ```shell
     # 配置 tros.b 环境：
     source /opt/tros/setup.bash
-    cp -r /opt/tros/lib/rgbd_sensor/parameter .
+    cp -r /opt/tros/${TROS_DISTRO}/lib/rgbd_sensor/parameter .
     # lanuch 方式启动
     ros2 launch rgbd_sensor rgbd_sensor.launch.py
     ```

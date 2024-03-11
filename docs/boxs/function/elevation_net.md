@@ -43,7 +43,7 @@ elevation_net是基于hobot_dnn package开发的高程网络检测算法示例�
 source /opt/tros/setup.bash
 
 # 从tros.b的安装路径中拷贝出运行示例需要的配置文件。
-cp -r /opt/tros/lib/elevation_net/config/ .
+cp -r /opt/tros/${TROS_DISTRO}/lib/elevation_net/config/ .
 
 # 启动launch文件
 ros2 launch elevation_net elevation_net.launch.py
@@ -56,7 +56,7 @@ ros2 launch elevation_net elevation_net.launch.py
 source /opt/tros/setup.bash
 
 # 从tros.b的安装路径中拷贝出运行示例需要的配置文件。
-cp -r /opt/tros/lib/elevation_net/config/ .
+cp -r /opt/tros/${TROS_DISTRO}/lib/elevation_net/config/ .
 
 # 启动launch文件
 ros2 launch elevation_net elevation_net.launch.py

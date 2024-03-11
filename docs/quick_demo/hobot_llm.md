@@ -39,7 +39,7 @@ sidebar_position: 9
 wget http://sunrise.horizon.cc/llm-model/llm_model.tar.gz
 
 # 解压
-sudo tar -xf llm_model.tar.gz -C /opt/tros/lib/hobot_llm/
+sudo tar -xf llm_model.tar.gz -C /opt/tros/${TROS_DISTRO}/lib/hobot_llm/
 ```
 
 使用命令`srpi-config`修改ION memory大小为1.7GB，设置方法参考RDK用户手册配置工具`srpi-config`使用指南[Performance Options](https://developer.horizon.cc/documents_rdk/configuration/srpi-config#performance-options)章节。

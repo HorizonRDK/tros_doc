@@ -59,7 +59,7 @@ mono3d_indoor_detection package是基于hobot_dnn package开发的室内物体3D
 source /opt/tros/setup.bash
 
 # 从tros.b的安装路径中拷贝出运行示例需要的配置文件。
-cp -r /opt/tros/lib/mono3d_indoor_detection/config/ .
+cp -r /opt/tros/${TROS_DISTRO}/lib/mono3d_indoor_detection/config/ .
 
 # 启动launch文件
 ros2 launch mono3d_indoor_detection mono3d_indoor_detection.launch.py 
@@ -72,7 +72,7 @@ ros2 launch mono3d_indoor_detection mono3d_indoor_detection.launch.py
 source /opt/tros/setup.bash
 
 # 从tros.b的安装路径中拷贝出运行示例需要的配置文件。
-cp -r /opt/tros/lib/mono3d_indoor_detection/config/ .
+cp -r /opt/tros/${TROS_DISTRO}/lib/mono3d_indoor_detection/config/ .
 
 # 启动launch文件
 ros2 launch mono3d_indoor_detection mono3d_indoor_detection.launch.py 
