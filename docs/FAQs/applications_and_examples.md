@@ -20,7 +20,6 @@ sudo chmod 0600 swap
 sudo mkswap -f swap 
 sudo swapon swap 
 free
-
 ```
 
 ## 如何运行GC4633摄像头示例？
@@ -58,7 +57,7 @@ Linux镜像rootfs经过最小剪裁，无法支持板端编译。
 
 在Linux镜像上，这三步分别为：
 
-1、使用`export LD_LIBRARY_PATH`命令配置`tros.b`环境
+1、使用`export LD_LIBRARY_PATH`命令配置`tros.b`环境；使用`export ROS_LOG_DIR`命令修改存储log文件的路径。
 
 2、拷贝需要的配置文件到执行路径下
 
@@ -164,6 +163,7 @@ config  example
 ```shell
 # 配置tros.b环境
 export LD_LIBRARY_PATH=${LD_LIBRARY_PATH}:/opt/tros/lib/
+export ROS_LOG_DIR=/userdata/
 
 # 从tros.b的安装路径中拷贝出运行示例需要的配置文件。config中为example使用的模型，回灌使用的本地图片
 cp -r /opt/tros/${TROS_DISTRO}/lib/dnn_node_example/config/ .
@@ -171,6 +171,25 @@ cp -r /opt/tros/${TROS_DISTRO}/lib/dnn_node_example/config/ .
 # 使用本地jpg格式图片进行回灌预测，并存储渲染后的图片
 /opt/tros/lib/dnn_node_example/example --ros-args -p feed_type:=0 -p image_type:=0 -p dump_render_img:=1
 ```
+
+:::tip
+除了使用环境变量`ROS_LOG_DIR`设置log路径外，还可以通过启动参数`--ros-args --disable-external-lib-logs`禁止node输出log到
+文件。
+
+使用举例：
+```bash
+# 配置tros.b环境
+export LD_LIBRARY_PATH=${LD_LIBRARY_PATH}:/opt/tros/lib/
+
+# 从tros.b的安装路径中拷贝出运行示例需要的配置文件。config中为example使用的模型，回灌使用的本地图片
+cp -r /opt/tros/${TROS_DISTRO}/lib/dnn_node_example/config/ .
+
+# 使用本地jpg格式图片进行回灌预测，并存储渲染后的图片
+/opt/tros/lib/dnn_node_example/example --ros-args --disable-external-lib-logs --ros-args -p feed_type:=0 -p image_type:=0 -p dump_render_img:=1
+```
+
+详细说明参考[About-Logging](https://docs.ros.org/en/humble/Concepts/Intermediate/About-Logging.html)。
+:::
 
 ## 如何查找launch启动脚本所在路径
 
