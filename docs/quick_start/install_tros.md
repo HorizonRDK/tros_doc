@@ -4,6 +4,11 @@ sidebar_position: 2
 
 # 1.2 apt安装与升级
 
+```mdx-code-block
+import Tabs from '@theme/Tabs';
+import TabItem from '@theme/TabItem';
+```
+
 本章节介绍地平线RDK和X86平台如何使用apt安装TogetheROS.Bot。
 
 ## 地平线RDK平台
@@ -15,19 +20,16 @@ sidebar_position: 2
 - 地平线RDK能够正常访问互联网
 - 地平线RDK能够远程ssh
 
-**注意**
+:::caution**注意**
+- **2.x版本tros.b仅支持2.x版本系统镜像，[1.x版本tros.b](https://developer.horizon.cc/api/v1/fileData/TogetherROS/index.html)仅支持1.x版本系统。**
+- **如果您使用的是1.x版本系统镜像，需要将[系统升级](./preparation)到2.x版本。**
+- **系统和tros.b版本号查看方法以及详细说明，请查看[FAQs](../FAQs/hardware_and_system.md)。**
 
 | 依赖关系    | 1.x tros.b  | 2.x tros.b |
 | -----------| ------------| ------------|
 | 1.x系统镜像 |       √     |       x     |
 | 2.x系统镜像 |       x     |       √     |
-
-- **2.x版本tros.b仅支持2.x版本系统镜像，[1.x版本tros.b](https://developer.horizon.cc/api/v1/fileData/TogetherROS/index.html)仅支持1.x版本系统。**
-
-- **如果您使用的是1.x版本系统镜像，需要将[系统升级](./preparation)到2.x版本。**
-
-- **系统和tros.b版本号查看方法以及详细说明，请查看[FAQs](../FAQs/hardware_and_system.md)。**
-
+:::
 
 ### 安装tros.b
 
@@ -122,12 +124,10 @@ Description: TogetheROS Bot
 
    ```bash
    sudo apt update
-   
    sudo apt install tros
    ```
 
-**注意**
-
+:::caution**注意**
 - **如果您的X86平台已安装1.x版本tros.b，请先使用命令`sudo apt remove tros`删除后再安装2.x版本tros.b**。
-
 - **关于如何查看tros.b版本号，请查看[FAQs](../FAQs/hardware_and_system.md)**。
+:::

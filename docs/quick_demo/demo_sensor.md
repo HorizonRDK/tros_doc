@@ -3,6 +3,11 @@ sidebar_position: 1
 ---
 # 2.1 数据采集
 
+```mdx-code-block
+import Tabs from '@theme/Tabs';
+import TabItem from '@theme/TabItem';
+```
+
 ## USB图像采集
 
 ### 功能介绍
@@ -15,16 +20,17 @@ sidebar_position: 1
 
 | 平台    | 运行方式     |
 | ------- | ------------ |
-| RDK X3, RDK X3 Module, RDK Ultra| Ubuntu 20.04 |
-| X86     | Ubuntu 20.04 |
+| RDK X3, RDK X3 Module | Ubuntu 20.04 (Foxy), Ubuntu 22.04 (Humble) |
+| RDK Ultra | Ubuntu 20.04 (Foxy) |
+| X86     | Ubuntu 20.04 (Foxy) |
 
 ### 准备工作
 
 #### 地平线RDK平台
 
-1. 确认手中USB摄像头工作正常，将USB摄像头接入地平线RDKUSB插槽
+1. 确认手中USB摄像头工作正常，将USB摄像头接入地平线RDK的USB插槽
 
-2. 地平线RDK已烧录好地平线提供的Ubuntu 20.04系统镜像
+2. 地平线RDK已烧录好地平线提供的Ubuntu 20.04/Ubuntu 22.04系统镜像
 
 3. 地平线RDK已成功安装tros.b
 
@@ -44,9 +50,28 @@ sidebar_position: 1
 
 2. 并通过下述命令启动USB摄像头
 
+    <Tabs groupId="tros-distro">
+    <TabItem value="foxy" label="Foxy">
+
     ```bash
-    # 配置 tros.b 环境：
+    # 配置tros.b环境
     source /opt/tros/setup.bash
+    ```
+
+    </TabItem>
+
+    <TabItem value="humble" label="Humble">
+
+    ```bash
+    # 配置tros.b环境
+    source /opt/tros/humble/setup.bash
+    ```
+
+    </TabItem>
+
+    </Tabs>
+
+    ```bash
     # launch方式启动：
     ros2 launch hobot_usb_cam hobot_usb_cam.launch.py usb_video_device:=/dev/video8
     ```
@@ -76,9 +101,28 @@ sidebar_position: 1
 
 4. Web端查看USB摄像头图像，另起一个终端：
 
+    <Tabs groupId="tros-distro">
+    <TabItem value="foxy" label="Foxy">
+
     ```bash
-    # 配置 tros.b 环境：
+    # 配置tros.b环境
     source /opt/tros/setup.bash
+    ```
+
+    </TabItem>
+
+    <TabItem value="humble" label="Humble">
+
+    ```bash
+    # 配置tros.b环境
+    source /opt/tros/humble/setup.bash
+    ```
+
+    </TabItem>
+
+    </Tabs>
+
+    ```bash
     # 启动websocket
     ros2 launch websocket websocket.launch.py websocket_image_topic:=/image websocket_only_show_image:=true
     ```
@@ -93,9 +137,28 @@ sidebar_position: 1
 
 2. 并通过下述命令启动USB摄像头
 
+    <Tabs groupId="tros-distro">
+    <TabItem value="foxy" label="Foxy">
+
     ```bash
-    # 配置 tros.b 环境：
+    # 配置tros.b环境
     source /opt/tros/setup.bash
+    ```
+
+    </TabItem>
+
+    <TabItem value="humble" label="Humble">
+
+    ```bash
+    # 配置tros.b环境
+    source /opt/tros/humble/setup.bash
+    ```
+
+    </TabItem>
+
+    </Tabs>
+
+    ```bash
     # launch方式启动：
     ros2 launch hobot_usb_cam hobot_usb_cam.launch.py usb_video_device:=/dev/video8 usb_pixel_format:=yuyv2rgb usb_image_width:=640 usb_image_height:=480
     ```
@@ -125,18 +188,56 @@ sidebar_position: 1
 
 4. 通过hobot codec进行编码成mjpeg
 
+    <Tabs groupId="tros-distro">
+    <TabItem value="foxy" label="Foxy">
+
     ```bash
-    # 配置 tros.b 环境：
+    # 配置tros.b环境
     source /opt/tros/setup.bash
+    ```
+
+    </TabItem>
+
+    <TabItem value="humble" label="Humble">
+
+    ```bash
+    # 配置tros.b环境
+    source /opt/tros/humble/setup.bash
+    ```
+
+    </TabItem>
+
+    </Tabs>
+
+    ```bash
     # launch方式启动：
     ros2 launch hobot_codec hobot_codec_encode.launch.py codec_in_mode:=ros codec_in_format:=rgb8 codec_out_mode:=ros codec_sub_topic:=/image codec_pub_topic:=/image_mjpeg
     ```
 
 5. Web端查看USB摄像头图像，另起一个终端：
 
+    <Tabs groupId="tros-distro">
+    <TabItem value="foxy" label="Foxy">
+
     ```bash
-    # 配置 tros.b 环境：
+    # 配置tros.b环境
     source /opt/tros/setup.bash
+    ```
+
+    </TabItem>
+
+    <TabItem value="humble" label="Humble">
+
+    ```bash
+    # 配置tros.b环境
+    source /opt/tros/humble/setup.bash
+    ```
+
+    </TabItem>
+
+    </Tabs>
+
+    ```bash
     # 启动websocket
     ros2 launch websocket websocket.launch.py websocket_image_topic:=/image_mjpeg websocket_only_show_image:=true
     ```
@@ -150,9 +251,28 @@ sidebar_position: 1
 1. USB摄像头需要进行标定，并设置相机标定文件的读取路径，否则无法发布相机内参，但不影响其它功能
 2. 设置相机标定文件读取路径，具体步骤如下：
 
+    <Tabs groupId="tros-distro">
+    <TabItem value="foxy" label="Foxy">
+
     ```bash
-    # 配置 tros.b 环境：
+    # 配置tros.b环境
     source /opt/tros/setup.bash
+    ```
+
+    </TabItem>
+
+    <TabItem value="humble" label="Humble">
+
+    ```bash
+    # 配置tros.b环境
+    source /opt/tros/humble/setup.bash
+    ```
+
+    </TabItem>
+
+    </Tabs>
+
+    ```bash
     # launch 方式启动
     ros2 launch hobot_usb_cam hobot_usb_cam.launch.py usb_camera_calibration_file_path:=（实际标定文件绝对路径）
     ```
@@ -204,9 +324,10 @@ sidebar_position: 1
 
 ### 支持平台
 
-| 平台   | 运行方式      | 示例功能                          |
-| ------ | ------------- | --------------------------------- |
-|RDK X3, RDK X3 Module, RDK Ultra| Ubuntu 20.04  | 启动MIPI摄像头，并通过Web展示图像 |
+| 平台   | 运行方式      |
+| ------ | ------------- |
+| RDK X3, RDK X3 Module | Ubuntu 20.04 (Foxy), Ubuntu 22.04 (Humble)  |
+| RDK Ultra | Ubuntu 20.04 (Foxy) |
 
 ### 准备工作
 
@@ -216,7 +337,7 @@ sidebar_position: 1
 
     ![image-X3-PI-Camera](./image/demo_sensor/image-X3-PI-Camera.png)
 
-2. 地平线RDK已烧录好地平线提供的Ubuntu 20.04系统镜像
+2. 地平线RDK已烧录好地平线提供的Ubuntu 20.04/Ubuntu 22.04系统镜像
 
 3. 地平线RDK已成功安装tros.b
 
@@ -232,9 +353,28 @@ sidebar_position: 1
 
 2. 并通过下述命令启动 hobot_sensor 节点  
 
-    ```shell
-    # 配置 tros.b 环境：
+    <Tabs groupId="tros-distro">
+    <TabItem value="foxy" label="Foxy">
+
+    ```bash
+    # 配置tros.b环境
     source /opt/tros/setup.bash
+    ```
+
+    </TabItem>
+
+    <TabItem value="humble" label="Humble">
+
+    ```bash
+    # 配置tros.b环境
+    source /opt/tros/humble/setup.bash
+    ```
+
+    </TabItem>
+
+    </Tabs>
+
+    ```shell
     # launch 方式启动
     ros2 launch mipi_cam mipi_cam.launch.py mipi_video_device:=F37 mipi_camera_calibration_file_path:=/opt/tros/${TROS_DISTRO}/lib/mipi_cam/config/F37_calibration.yaml
     ```
@@ -250,14 +390,32 @@ sidebar_position: 1
 
 4. Web端查看 F37 摄像头图像，由于发布原始数据，需要编码JPEG图像，另起两个终端：一个进行订阅 MIPI 数据编码为JPEG，一个用webservice发布
 
-    ```shell
-    # 一个终端编码
+    <Tabs groupId="tros-distro">
+    <TabItem value="foxy" label="Foxy">
+
+    ```bash
+    # 配置tros.b环境
     source /opt/tros/setup.bash
+    ```
+
+    </TabItem>
+
+    <TabItem value="humble" label="Humble">
+
+    ```bash
+    # 配置tros.b环境
+    source /opt/tros/humble/setup.bash
+    ```
+
+    </TabItem>
+
+    </Tabs>
+
+    ```shell
     # 启动编码
     ros2 launch hobot_codec hobot_codec_encode.launch.py
 
     # 再起一个终端
-    source /opt/tros/setup.bash
     # 启动websocket
     ros2 launch websocket websocket.launch.py websocket_image_topic:=/image_jpeg websocket_only_show_image:=true
     ```
@@ -332,9 +490,28 @@ sidebar_position: 1
 
 1. mipi_cam提供F37以及GC4663两种摄像头的标定文件，默认读取F37的标定文件`F37_calibration.yaml`，如使用GC4663，请更改相机标定文件的读取路径，具体步骤如下：
 
-    ```shell
-    # 配置 tros.b 环境：
+    <Tabs groupId="tros-distro">
+    <TabItem value="foxy" label="Foxy">
+
+    ```bash
+    # 配置tros.b环境
     source /opt/tros/setup.bash
+    ```
+
+    </TabItem>
+
+    <TabItem value="humble" label="Humble">
+
+    ```bash
+    # 配置tros.b环境
+    source /opt/tros/humble/setup.bash
+    ```
+
+    </TabItem>
+
+    </Tabs>
+
+    ```shell
     # launch 方式启动
     ros2 launch mipi_cam mipi_cam.launch.py mipi_video_device:=GC4663 mipi_camera_calibration_file_path:=/opt/tros/${TROS_DISTRO}/lib/mipi_cam/config/GC4663_calibration.yaml
     ```
@@ -346,7 +523,7 @@ sidebar_position: 1
 3. 如遇到hobot_sensor节点启动异常，可通过下述步骤进行问题排查：
     - 检查硬件连接
     - 是否设置 tros.b 环境
-    - 参数是否正确，具体参考 Hobot_Sensors README.md
+    - 参数是否正确，具体参考[README.md](https://github.com/HorizonRDK/hobot_mipi_cam/blob/develop/README.md)
 
 ## RGBD图像采集
 
@@ -364,7 +541,7 @@ sidebar_position: 1
 
 | 平台   | 运行方式      | 示例功能                                           |
 | ------ | ------------- | -------------------------------------------------- |
-|RDK X3| Ubuntu 20.04  | 启动RGBD摄像头，并在PC端通过rviz2预览RGB图和深度图 |
+|RDK X3| Ubuntu 20.04 (Foxy), Ubuntu 22.04 (Humble)  | 启动RGBD摄像头，并在PC端通过rviz2预览RGB图和深度图 |
 
 **注意：仅支持RDK X3，RDK X3 Module暂不支持。**
 
@@ -377,7 +554,7 @@ sidebar_position: 1
     ![hobot_rgbd](./image/demo_sensor/hobot_rgbd.png)
 
     **注意：RGBD模组需要额外转接板才能接到地平线RDK X3上**。
-2. 地平线RDK已烧录好地平线提供的Ubuntu 20.04系统镜像。
+2. 地平线RDK已烧录好地平线提供的Ubuntu 20.04/Ubuntu 22.04系统镜像。
 
 3. 地平线RDK已成功安装tros.b
 
@@ -397,9 +574,28 @@ sidebar_position: 1
 
 1. 通过SSH登录地平线RDK，并通过下述命令启动hobot_sensor节点
 
-    ```shell
-    # 配置 tros.b 环境：
+    <Tabs groupId="tros-distro">
+    <TabItem value="foxy" label="Foxy">
+
+    ```bash
+    # 配置tros.b环境
     source /opt/tros/setup.bash
+    ```
+
+    </TabItem>
+
+    <TabItem value="humble" label="Humble">
+
+    ```bash
+    # 配置tros.b环境
+    source /opt/tros/humble/setup.bash
+    ```
+
+    </TabItem>
+
+    </Tabs>
+
+    ```shell
     cp -r /opt/tros/${TROS_DISTRO}/lib/rgbd_sensor/parameter .
     # lanuch 方式启动
     ros2 launch rgbd_sensor rgbd_sensor.launch.py

@@ -4,6 +4,11 @@ sidebar_position: 3
 
 # 1.3 源码安装
 
+```mdx-code-block
+import Tabs from '@theme/Tabs';
+import TabItem from '@theme/TabItem';
+```
+
 本章节介绍地平线RDK和X86平台如何通过源码安装TogetheROS.Bot。
 
 ## 地平线RDK平台

@@ -4,6 +4,11 @@ sidebar_position: 6
 
 # 2.6 模型推理
 
+```mdx-code-block
+import Tabs from '@theme/Tabs';
+import TabItem from '@theme/TabItem';
+```
+
 ## 功能介绍
 
 本章节介绍模型推理功能的使用，输入一张本地图片进行推理，得到渲染后的图片并保存在本地。
@@ -14,8 +19,8 @@ sidebar_position: 6
 
 | 平台    | 运行方式     |
 | ------- | ------------ |
-| RDK X3, RDK X3 Module| Ubuntu 20.04 |
-| X86     | Ubuntu 20.04 |
+| RDK X3, RDK X3 Module| Ubuntu 20.04 (Foxy) |
+| X86     | Ubuntu 20.04 (Foxy) |
 
 ***RDK Ultra模型推理功能体验参考[3. Boxs算法仓库](../category/boxs/)。***
 
@@ -23,7 +28,7 @@ sidebar_position: 6
 
 ### 地平线RDK平台
 
-1. 地平线RDK已烧录好地平线提供的Ubuntu 20.04系统镜像。
+1. 地平线RDK已烧录好地平线提供的Ubuntu 20.04/Ubuntu 22.04系统镜像。
 
 2. 地平线RDK已成功安装TogetheROS.Bot。
 
@@ -35,10 +40,28 @@ sidebar_position: 6
 
 使用hobot_dnn配置文件中的本地JPEG格式图片和模型（FCOS目标检测模型，支持的目标检测类型包括人、动物、水果、交通工具等共80种类型），通过回灌进行推理，并存储渲染后的图片。
 
-```shell
+<Tabs groupId="tros-distro">
+<TabItem value="foxy" label="Foxy">
+
+```bash
 # 配置tros.b环境
 source /opt/tros/setup.bash
+```
 
+</TabItem>
+
+<TabItem value="humble" label="Humble">
+
+```bash
+# 配置tros.b环境
+source /opt/tros/humble/setup.bash
+```
+
+</TabItem>
+
+</Tabs>
+
+```shell
 # 从tros.b的安装路径中拷贝出运行示例需要的配置文件。config中为example使用的模型，回灌使用的本地图片
 cp -r /opt/tros/${TROS_DISTRO}/lib/dnn_node_example/config/ .
 

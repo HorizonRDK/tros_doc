@@ -65,9 +65,9 @@ uint32 MAX_SIZE=4194304
 返回到`~/dev_ws/src/hbmem_pubsub`目录，修改`package.xml`，在`<buildtool_depend>ament_cmake</buildtool_depend>`下面添加以下内容：
 
 ```xml
-  <build_depend>rosidl_default_generators</build_depend>
-  <exec_depend>rosidl_default_runtime</exec_depend>
-  <member_of_group>rosidl_interface_packages</member_of_group>
+<build_depend>rosidl_default_generators</build_depend>
+<exec_depend>rosidl_default_runtime</exec_depend>
+<member_of_group>rosidl_interface_packages</member_of_group>
 ```
 
 #### 2.3 编译脚本

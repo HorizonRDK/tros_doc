@@ -3,6 +3,11 @@ sidebar_position: 5
 ---
 # 单目高程网络检测
 
+```mdx-code-block
+import Tabs from '@theme/Tabs';
+import TabItem from '@theme/TabItem';
+```
+
 ## 功能介绍
 
 elevation_net是基于hobot_dnn package开发的高程网络检测算法示例，在地平线的地平线RDK上使用高程网络模型和室内数据利用BPU进行模型推理，从而得到算法推理结果。
@@ -15,14 +20,14 @@ elevation_net是基于hobot_dnn package开发的高程网络检测算法示例�
 
 | 平台                  | 运行方式     | 示例功能                               |
 | --------------------- | ------------ | -------------------------------------- |
-| RDK X3, RDK X3 Module | Ubuntu 20.04 | · 启动本地回灌，推理渲染结果保存在本地 |
-| X86                   | Ubuntu 20.04 | · 启动本地回灌，推理渲染结果保存在本地 |
+| RDK X3, RDK X3 Module | Ubuntu 20.04 (Foxy), Ubuntu 22.04 (Humble) | · 启动本地回灌，推理渲染结果保存在本地 |
+| X86                   | Ubuntu 20.04 (Foxy) | · 启动本地回灌，推理渲染结果保存在本地 |
 
 ## 准备工作
 
 ### 地平线RDK平台
 
-1. 地平线RDK已烧录好地平线提供的Ubuntu 20.04系统镜像。
+1. 地平线RDK已烧录好地平线提供的Ubuntu 20.04/Ubuntu 22.04系统镜像。
 
 2. 地平线RDK已成功安装TogetheROS.Bot。
 
@@ -38,6 +43,9 @@ elevation_net是基于hobot_dnn package开发的高程网络检测算法示例�
 
 ### 地平线RDK平台
 
+<Tabs groupId="tros-distro">
+<TabItem value="foxy" label="Foxy">
+
 ```shell
 # 配置ROS2环境
 source /opt/tros/setup.bash
@@ -49,10 +57,29 @@ cp -r /opt/tros/${TROS_DISTRO}/lib/elevation_net/config/ .
 ros2 launch elevation_net elevation_net.launch.py
 ```
 
-### X86平台
+</TabItem>
+
+<TabItem value="humble" label="Humble">
 
 ```shell
 # 配置ROS2环境
+source /opt/tros/humble/setup.bash
+
+# 从tros.b的安装路径中拷贝出运行示例需要的配置文件。
+cp -r /opt/tros/${TROS_DISTRO}/lib/elevation_net/config/ .
+
+# 启动launch文件
+ros2 launch elevation_net elevation_net.launch.py
+```
+
+</TabItem>
+
+</Tabs>
+
+### X86平台
+
+```bash
+# 配置tros.b环境
 source /opt/tros/setup.bash
 
 # 从tros.b的安装路径中拷贝出运行示例需要的配置文件。

@@ -4,6 +4,11 @@ sidebar_position: 2
 
 # 4.2 Navigation2
 
+```mdx-code-block
+import Tabs from '@theme/Tabs';
+import TabItem from '@theme/TabItem';
+```
+
 ## 功能介绍
 
 Nav2（Navigation2）是ROS2中自带的导航框架，旨在寻找一种安全的方式让移动机器人从A点移动到B点。Nav2也可以应用于其他机器人导航应用，例如动态点跟踪，在这个过程中需要完成动态路径规划、计算电机速度、避免障碍等。
@@ -15,13 +20,13 @@ Nav2（Navigation2）是ROS2中自带的导航框架，旨在寻找一种安全�
 
 | 平台    | 运行方式     | 示例功能                       |
 | ------- | ------------ | ------------------------------ |
-| RDK X3, RDK X3 Module | Ubuntu 20.04 | PC端启动仿真环境，并在地平线RDK启动导航功能，最后通过Rviz2展示导航效果 |
+| RDK X3, RDK X3 Module | Ubuntu 20.04 (Foxy), Ubuntu 22.04 (Humble) | PC端启动仿真环境，并在地平线RDK启动导航功能，最后通过Rviz2展示导航效果 |
 
 ## 准备工作
 
 ### 地平线RDK平台
 
-1. 地平线RDK已烧录好地平线提供的Ubuntu 20.04镜像。
+1. 地平线RDK已烧录好地平线提供的Ubuntu 20.04/Ubuntu 22.04系统镜像。
 
 2. 地平线RDK已成功安装tros.b。
 
@@ -68,9 +73,28 @@ Nav2（Navigation2）是ROS2中自带的导航框架，旨在寻找一种安全�
 
 2. **地平线RDK**启动导航功能
 
-   ```shell
-   source /opt/tros/setup.bash
+   <Tabs groupId="tros-distro">
+   <TabItem value="foxy" label="Foxy">
 
+   ```bash
+   # 配置tros.b环境
+   source /opt/tros/setup.bash
+   ```
+
+   </TabItem>
+
+   <TabItem value="humble" label="Humble">
+
+   ```bash
+   # 配置tros.b环境
+   source /opt/tros/humble/setup.bash
+   ```
+
+   </TabItem>
+
+   </Tabs>
+
+   ```shell
    ros2 launch nav2_bringup bringup_launch.py use_sim_time:=True map:=/opt/ros/foxy/share/nav2_bringup/maps/turtlebot3_world.yaml
    ```
 

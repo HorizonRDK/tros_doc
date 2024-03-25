@@ -4,6 +4,11 @@ sidebar_position: 5
 
 # 1.5 使用ROS2 package
 
+```mdx-code-block
+import Tabs from '@theme/Tabs';
+import TabItem from '@theme/TabItem';
+```
+
 前提：已成功安装TogetheROS.Bot
 
 tros.b foxy版本接口完全兼容，能够复用ROS丰富工具包，这里以安装和使用ROS foxy版本ros-foxy-image-transport为例介绍如何在tros.b中使用ROS package。

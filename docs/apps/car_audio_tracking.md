@@ -4,6 +4,11 @@ sidebar_position: 7
 
 # 4.7 语音追踪控制小车运动
 
+```mdx-code-block
+import Tabs from '@theme/Tabs';
+import TabItem from '@theme/TabItem';
+```
+
 ## 功能介绍
 
 语音追踪控制小车运动功能根据声源定位的DOA角度信息控制机器人转向声源方向，并且控制机器人向前移动。此功能需要搭配地平线机器人操作系统的智能语音模块一起使用。当用户说出智能语音识别模块配置的唤醒词唤醒设备之后，语音追踪控制小车功能会激活，后续用户说出唤醒词或者配置的命令词，智能语音识别模块会输出声源的DOA角度信息，此模块收到DOA角度信息之后会控制消息转向声源方向，并且前进一定距离。
@@ -30,7 +35,7 @@ App以PC端Gazebo仿真环境下的虚拟小车举例，发布的控制指令也
 
 | 平台    | 运行方式      | 示例功能                       |
 | ------- | ------------ | ------------------------------ |
-| RDK X3| Ubuntu 20.04 | 启动智能语音模块解析语音信息并进行语音追踪通过Gazebo展示追踪效果 |
+| RDK X3 | Ubuntu 20.04 (Foxy), Ubuntu 22.04 (Humble) | 启动智能语音模块解析语音信息并进行语音追踪通过Gazebo展示追踪效果 |
 
 **注意：仅支持RDK X3，RDK X3 Module暂不支持。**
 
@@ -38,7 +43,7 @@ App以PC端Gazebo仿真环境下的虚拟小车举例，发布的控制指令也
 
 ### 地平线RDK平台
 
-1. 地平线RDK已烧录好地平线提供的Ubuntu 20.04系统镜像。
+1. 地平线RDK已烧录好地平线提供的Ubuntu 20.04/Ubuntu 22.04系统镜像。
 
 2. 地平线RDK已成功安装TogetheROS.Bot。
 
@@ -91,10 +96,28 @@ ros2 launch turtlebot3_gazebo empty_world.launch.py
 
 3. 启动程序
 
-    ```shell
+    <Tabs groupId="tros-distro">
+    <TabItem value="foxy" label="Foxy">
+
+    ```bash
     # 配置tros.b环境
     source /opt/tros/setup.bash
+    ```
 
+    </TabItem>
+
+    <TabItem value="humble" label="Humble">
+
+    ```bash
+    # 配置tros.b环境
+    source /opt/tros/humble/setup.bash
+    ```
+
+    </TabItem>
+
+    </Tabs>
+
+    ```shell
     # 启动launch文件，并指定小车正前方对应的语音DOA角度，以90为例
     ros2 launch audio_tracking audio_tracking.launch.py car_front_audio_angle:=90
     ```

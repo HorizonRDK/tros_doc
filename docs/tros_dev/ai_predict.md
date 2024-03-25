@@ -16,7 +16,7 @@ sidebar_position: 2
 
 1 地平线RDK开发板，并且已安装好相关软件，包括：
 
-- 地平线提供的Ubuntu 20.04系统镜像。
+- 地平线提供的Ubuntu 20.04/Ubuntu 22.04系统镜像。
 
 - tros.b软件包。
 
@@ -1217,7 +1217,7 @@ ROS2的节点（[Node](http://docs.ros.org/en/foxy/Tutorials/Beginner-CLI-Tools/
 
 1 地平线RDK开发板，并且已安装好相关软件，包括：
 
-- 地平线提供的Ubuntu 20.04系统镜像。
+- 地平线提供的Ubuntu 20.04/Ubuntu 22.04系统镜像。
 
 - tros.b软件包。
 
@@ -1225,7 +1225,7 @@ ROS2的节点（[Node](http://docs.ros.org/en/foxy/Tutorials/Beginner-CLI-Tools/
 
 3 和地平线RDK在同一网段（有线或者连接同一无线网，IP地址前三段需保持一致）的PC，PC端需要安装的环境包括：
 
-  - Ubuntu 20.04系统
+  - Ubuntu 20.04/Ubuntu 22.04系统
 
   - [ROS2 Foxy桌面版](https://docs.ros.org/en/foxy/Installation/Ubuntu-Install-Debians.html)
 

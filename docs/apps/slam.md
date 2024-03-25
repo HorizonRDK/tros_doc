@@ -4,6 +4,11 @@ sidebar_position: 1
 
 # 4.1 SLAM建图
 
+```mdx-code-block
+import Tabs from '@theme/Tabs';
+import TabItem from '@theme/TabItem';
+```
+
 ## 功能介绍
 
 SLAM指即时定位与地图构建（Simultaneous Localization and Mapping，简称SLAM）。
@@ -12,15 +17,16 @@ SLAM指即时定位与地图构建（Simultaneous Localization and Mapping，简
 
 ## 支持平台
 
-| 平台    | 运行方式     | 示例功能                       |
-| ------- | ------------ | ------------------------------ |
-| RDK X3, RDK X3 Module, RDK Ultra| Ubuntu 20.04 | PC端启动仿真环境，并在地平线RDK进行SLAM建图，最后通过Rviz2展示建图效果 |
+| 平台    | 运行方式     |
+| ------- | ------------ |
+| RDK X3, RDK X3 Module | Ubuntu 20.04 (Foxy), Ubuntu 22.04 (Humble) |
+| RDK Ultra | Ubuntu 22.04 |
 
 ## 准备工作
 
 ### 地平线RDK平台
 
-1. 地平线RDK已烧录好地平线提供的Ubuntu 20.04镜像。
+1. 地平线RDK已烧录好地平线提供的Ubuntu 20.04/Ubuntu 22.04系统镜像。
 
 2. 地平线RDK已成功安装TogetheROS.Bot。
 
@@ -73,10 +79,28 @@ ros2 launch turtlebot3_bringup rviz2.launch.py
 
 地平线RDK板端运行SLAM-Toolbox：
 
+<Tabs groupId="tros-distro">
+<TabItem value="foxy" label="Foxy">
+
 ```bash
 # 配置tros.b环境
 source /opt/tros/setup.bash
+```
 
+</TabItem>
+
+<TabItem value="humble" label="Humble">
+
+```bash
+# 配置tros.b环境
+source /opt/tros/humble/setup.bash
+```
+
+</TabItem>
+
+</Tabs>
+
+```bash
 #启动SLAM launch文件
 ros2 launch slam_toolbox online_sync_launch.py
 ```

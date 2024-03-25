@@ -4,6 +4,11 @@ sidebar_position: 6
 
 # 4.6 语音控制小车运动
 
+```mdx-code-block
+import Tabs from '@theme/Tabs';
+import TabItem from '@theme/TabItem';
+```
+
 ## 功能介绍
 
 语音控制小车运动功能通过语音控制机器人向前、向后、向左、向右运动，需要搭配地平线机器人操作系统的智能语音模块一起使用。流程如下图：
@@ -18,7 +23,7 @@ APP以PC端Gazebo仿真环境下的虚拟小车举例，发布的控制指令也
 
 | 平台     | 运行方式      | 示例功能                       |
 | -------- | ------------ | ------------------------------ |
-| RDK X3 | Ubuntu 20.04 | 启动智能语音模块解析语音信息并进行语音控制，通过Gazebo展示控制效果 |
+| RDK X3 | Ubuntu 20.04 (Foxy), Ubuntu 22.04 (Humble) | 启动智能语音模块解析语音信息并进行语音控制，通过Gazebo展示控制效果 |
 
 **注意：仅支持RDK X3，RDK X3 Module暂不支持。**
 
@@ -26,7 +31,7 @@ APP以PC端Gazebo仿真环境下的虚拟小车举例，发布的控制指令也
 
 ### 地平线RDK平台
 
-1. 地平线RDK已烧录好地平线提供的Ubuntu 20.04镜像。
+1. 地平线RDK已烧录好地平线提供的Ubuntu 20.04/Ubuntu 22.04镜像。
 
 2. 地平线RDK已成功安装TogetheROS.Bot。
 
@@ -74,10 +79,28 @@ ros2 launch turtlebot3_gazebo empty_world.launch.py
 
 3. 启动程序
 
-    ```shell
+    <Tabs groupId="tros-distro">
+    <TabItem value="foxy" label="Foxy">
+
+    ```bash
     # 配置tros.b环境
     source /opt/tros/setup.bash
+    ```
 
+    </TabItem>
+
+    <TabItem value="humble" label="Humble">
+
+    ```bash
+    # 配置tros.b环境
+    source /opt/tros/humble/setup.bash
+    ```
+
+    </TabItem>
+
+    </Tabs>
+
+    ```shell
     #启动launch文件
     ros2 launch audio_control audio_control.launch.py
     ```

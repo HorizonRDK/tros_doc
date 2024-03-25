@@ -4,6 +4,11 @@ sidebar_position: 8
 
 # 4.8 小车车位寻找
 
+```mdx-code-block
+import Tabs from '@theme/Tabs';
+import TabItem from '@theme/TabItem';
+```
+
 ## 功能介绍
 
 车位寻找控制App功能为通过车位检测算法指导机器人运动到停车位，包括左右旋转和前后平移运动。App由MIPI图像采集、车位检测算法、车位寻找控制策略、图像编解码、Web展示端组成，流程如下图：
@@ -18,7 +23,7 @@ App通过车位寻找控制策略发布的控制指令直接控制实物小车�
 
 | 平台    | 运行方式      | 示例功能                       |
 | ------- | ------------ | ------------------------------ |
-| RDK X3, RDK X3 Module | Ubuntu 20.04 | 启动MIPI/USB摄像头获取图像，并进行停车区域检测和车位寻找，最后通过实车运动展示寻找效果 |
+| RDK X3, RDK X3 Module | Ubuntu 20.04 (Foxy), Ubuntu 22.04 (Humble) | 启动MIPI/USB摄像头获取图像，并进行停车区域检测和车位寻找，最后通过实车运动展示寻找效果 |
 
 ## 设计说明
 
@@ -52,7 +57,7 @@ App通过车位寻找控制策略发布的控制指令直接控制实物小车�
 
 ### 地平线RDK平台
 
-1. 地平线RDK已烧录好地平线提供的Ubuntu 20.04系统镜像。
+1. 地平线RDK已烧录好地平线提供的Ubuntu 20.04/Ubuntu 22.04系统镜像。
 
 2. 地平线RDK已成功安装TogetheROS.Bot。
 
@@ -74,11 +79,28 @@ APP启动后可以在PC端浏览器上渲染显示sensor发布的图片和对应
 
 启动古月居小车，在地平线RDK上运行控制下位机节点：
 
+<Tabs groupId="tros-distro">
+<TabItem value="foxy" label="Foxy">
+
 ```shell
 source /opt/tros/setup.bash
 source /userdata/originbot/local_setup.bash
 ros2 run originbot_base originbot_base
 ```
+
+</TabItem>
+
+<TabItem value="humble" label="Humble">
+
+```shell
+source /opt/tros/humle/setup.bash
+source /userdata/originbot/local_setup.bash
+ros2 run originbot_base originbot_base
+```
+
+</TabItem>
+
+</Tabs>
 
 启动成功后，地平线RDK输出log信息：
 
@@ -94,6 +116,9 @@ Loading parameters:
 
 **使用MIPI摄像头发布图片**
 
+<Tabs groupId="tros-distro">
+<TabItem value="foxy" label="Foxy">
+
 ```shell
 # 配置tros.b环境
 source /opt/tros/setup.bash
@@ -108,7 +133,32 @@ export CAM_TYPE=mipi
 ros2 launch parking_search parking_search.launch.py
 ```
 
+</TabItem>
+
+<TabItem value="humble" label="Humble">
+
+```shell
+# 配置tros.b环境
+source /opt/tros/humble/setup.bash
+
+# 从tros.b的安装路径中拷贝出运行示例需要的配置文件。
+cp -r /opt/tros/${TROS_DISTRO}/lib/parking_perception/config/ .
+
+# 配置MIPI摄像头
+export CAM_TYPE=mipi
+
+# 启动launch文件
+ros2 launch parking_search parking_search.launch.py
+```
+
+</TabItem>
+
+</Tabs>
+
 **使用USB摄像头发布图片**
+
+<Tabs groupId="tros-distro">
+<TabItem value="foxy" label="Foxy">
 
 ```shell
 # 配置tros.b环境
@@ -123,6 +173,28 @@ export CAM_TYPE=usb
 # 启动launch文件
 ros2 launch parking_search parking_search.launch.py
 ```
+
+</TabItem>
+
+<TabItem value="humble" label="Humble">
+
+```shell
+# 配置tros.b环境
+source /opt/tros/humble/setup.bash
+
+# 从tros.b的安装路径中拷贝出运行示例需要的配置文件。
+cp -r /opt/tros/${TROS_DISTRO}/lib/parking_perception/config/ .
+
+# 配置USB摄像头
+export CAM_TYPE=usb
+
+# 启动launch文件
+ros2 launch parking_search parking_search.launch.py
+```
+
+</TabItem>
+
+</Tabs>
 
 ## 结果分析
 

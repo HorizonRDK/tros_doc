@@ -3,6 +3,11 @@ sidebar_position: 6
 ---
 # 智能语音
 
+```mdx-code-block
+import Tabs from '@theme/Tabs';
+import TabItem from '@theme/TabItem';
+```
+
 ## 功能介绍
 
 地平线智能语音算法采用本地离线模式，订阅音频数据后送给BPU处理，然后发布**唤醒、命令词识别**、**声源定位DOA角度信息**以及**语音ASR识别结果**等消息。智能语音功能的实现对应于TogetheROS.Bot的**hobot_audio** package，适用于地平线RDK配套的环形和线形四麦阵列。
@@ -17,13 +22,13 @@ sidebar_position: 6
 
 | 平台   | 运行方式     | 示例功能                           |
 | ------ | ------------ | ---------------------------------- |
-| RDK X3 | Ubuntu 20.04 | 启动音频模块算法，并在终端显示结果 |
+| RDK X3 | Ubuntu 20.04 (Foxy), Ubuntu 22.04 (Humble) | 启动音频模块算法，并在终端显示结果 |
 
 **注意：仅支持RDK X3，RDK X3 Module暂不支持。**
 
 ## 准备工作
 
-1. 地平线RDK已烧录好地平线提供的Ubuntu 20.04系统镜像。
+1. 地平线RDK已烧录好地平线提供的Ubuntu 20.04/Ubuntu 22.04系统镜像。
 2. 地平线RDK已成功安装TogetheROS.Bot。
 3. 地平线RDK已成功安装智能语音算法包，安装命令：`apt update; apt install tros-hobot-audio`。
 4. 按照以下方法在地平线RDK上接好环形或线形四麦音频板。
@@ -160,6 +165,9 @@ sidebar_position: 6
 
 3. 配置tros.b环境和启动应用
 
+<Tabs groupId="tros-distro">
+<TabItem value="foxy" label="Foxy">
+
    ```shell
    # 配置tros.b环境
    source /opt/tros/setup.bash
@@ -170,6 +178,25 @@ sidebar_position: 6
    #启动launch文件
    ros2 launch hobot_audio hobot_audio.launch.py
    ```
+
+</TabItem>
+
+<TabItem value="humble" label="Humble">
+
+   ```shell
+   # 配置tros.b环境
+   source /opt/tros/humble/setup.bash
+
+   # 屏蔽调式打印信息
+   export GLOG_minloglevel=3
+
+   #启动launch文件
+   ros2 launch hobot_audio hobot_audio.launch.py
+   ```
+
+</TabItem>
+
+</Tabs>
 
 ## 结果分析
 

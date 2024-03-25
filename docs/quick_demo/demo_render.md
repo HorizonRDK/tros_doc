@@ -4,6 +4,11 @@ sidebar_position: 2
 
 # 2.2 数据展示
 
+```mdx-code-block
+import Tabs from '@theme/Tabs';
+import TabItem from '@theme/TabItem';
+```
+
 ## Web展示
 
 ### 功能介绍
@@ -16,8 +21,9 @@ Web展示用于预览摄像头图像（JPEG格式）和算法效果，通过网�
 
 | 平台    | 运行方式      | 示例功能                       |
 | ------- | ------------- | ------------------------------ |
-| RDK X3, RDK X3 Module, RDK Ultra| Ubuntu 20.04  | 启动MIPI摄像头人体检测并通过Web展示图像和算法效果 |
-| X86     | Ubuntu 20.04  | 启动USB摄像头，并通过Web展示图像 |
+| RDK X3, RDK X3 Module | Ubuntu 20.04 (Foxy), Ubuntu 22.04 (Humble)  | 启动MIPI摄像头人体检测并通过Web展示图像和算法效果 |
+| RDK Ultra | Ubuntu 20.04 (Foxy) | 启动MIPI摄像头人体检测并通过Web展示图像和算法效果 |
+| X86     | Ubuntu 20.04 (Foxy) | 启动USB摄像头，并通过Web展示图像 |
 
 ### 准备工作
 
@@ -43,25 +49,82 @@ Web展示用于预览摄像头图像（JPEG格式）和算法效果，通过网�
 
     a. 启动mipi_cam
 
-    ```shell
-    source /opt/tros/setup.bash
+   <Tabs groupId="tros-distro">
+   <TabItem value="foxy" label="Foxy">
 
+   ```bash
+   # 配置tros.b环境
+   source /opt/tros/setup.bash
+   ```
+
+   </TabItem>
+
+   <TabItem value="humble" label="Humble">
+
+   ```bash
+   # 配置tros.b环境
+   source /opt/tros/humble/setup.bash
+   ```
+
+   </TabItem>
+
+   </Tabs>
+
+    ```shell
     ros2 launch mipi_cam mipi_cam.launch.py mipi_video_device:=F37
     ```
 
     b. 启动编码
 
-    ```shell
-    source /opt/tros/setup.bash
+   <Tabs groupId="tros-distro">
+   <TabItem value="foxy" label="Foxy">
 
+   ```bash
+   # 配置tros.b环境
+   source /opt/tros/setup.bash
+   ```
+
+   </TabItem>
+
+   <TabItem value="humble" label="Humble">
+
+   ```bash
+   # 配置tros.b环境
+   source /opt/tros/humble/setup.bash
+   ```
+
+   </TabItem>
+
+   </Tabs>
+
+    ```shell
     ros2 launch hobot_codec hobot_codec_encode.launch.py
     ```
 
     c. 启动websocket
 
-    ```shell
-    source /opt/tros/setup.bash
+   <Tabs groupId="tros-distro">
+   <TabItem value="foxy" label="Foxy">
 
+   ```bash
+   # 配置tros.b环境
+   source /opt/tros/setup.bash
+   ```
+
+   </TabItem>
+
+   <TabItem value="humble" label="Humble">
+
+   ```bash
+   # 配置tros.b环境
+   source /opt/tros/humble/setup.bash
+   ```
+
+   </TabItem>
+
+   </Tabs>
+
+    ```shell
     ros2 launch websocket websocket.launch.py websocket_image_topic:=/image_jpeg websocket_only_show_image:=true
     ```
 
@@ -73,18 +136,56 @@ Web展示用于预览摄像头图像（JPEG格式）和算法效果，通过网�
 
 1. 启动hobot_usb_cam节点
 
-    ```shell
-    source /opt/tros/setup.bash
+   <Tabs groupId="tros-distro">
+   <TabItem value="foxy" label="Foxy">
 
+   ```bash
+   # 配置tros.b环境
+   source /opt/tros/setup.bash
+   ```
+
+   </TabItem>
+
+   <TabItem value="humble" label="Humble">
+
+   ```bash
+   # 配置tros.b环境
+   source /opt/tros/humble/setup.bash
+   ```
+
+   </TabItem>
+
+   </Tabs>
+
+    ```shell
     # usb_video_device需要更改为实际usb摄像头video节点
     ros2 launch hobot_usb_cam hobot_usb_cam.launch.py usb_image_width:=1280 usb_image_height:=720 usb_video_device:=/dev/video0
     ```
 
 2. 启动websocket节点
 
-    ```shell
-    source /opt/tros/setup.bash
+   <Tabs groupId="tros-distro">
+   <TabItem value="foxy" label="Foxy">
 
+   ```bash
+   # 配置tros.b环境
+   source /opt/tros/setup.bash
+   ```
+
+   </TabItem>
+
+   <TabItem value="humble" label="Humble">
+
+   ```bash
+   # 配置tros.b环境
+   source /opt/tros/humble/setup.bash
+   ```
+
+   </TabItem>
+
+   </Tabs>
+
+    ```shell
     ros2 launch websocket websocket.launch.py websocket_image_topic:=/image websocket_only_show_image:=true
     ```
 
@@ -110,13 +211,13 @@ Web展示用于预览摄像头图像（JPEG格式）和算法效果，通过网�
 
 | 平台     | 运行方式     | 示例功能                       |
 | -------- | ------------ | ------------------------------ |
-| RDK X3, RDK X3 Module | Ubuntu 20.04 | 启动MIPI摄像头，并通过HDMI展示图像 |
+| RDK X3, RDK X3 Module | Ubuntu 20.04 (Foxy), Ubuntu 22.04 (Humble) | 启动MIPI摄像头，并通过HDMI展示图像 |
 
 ### 准备工作
 
 #### 地平线RDK平台
 
-1. 地平线RDK已烧录好地平线提供的Ubuntu 20.04系统镜像。
+1. 地平线RDK已烧录好地平线提供的Ubuntu 20.04/Ubuntu 22.04系统镜像。
 
 2. 地平线RDK已成功安装TogetheROS.Bot。
 
@@ -128,10 +229,28 @@ Web展示用于预览摄像头图像（JPEG格式）和算法效果，通过网�
 
 通过SSH登录开发板，启动板端相关程序：
 
-```shell
+<Tabs groupId="tros-distro">
+<TabItem value="foxy" label="Foxy">
+
+```bash
 # 配置tros.b环境
 source /opt/tros/setup.bash
+```
 
+</TabItem>
+
+<TabItem value="humble" label="Humble">
+
+```bash
+# 配置tros.b环境
+source /opt/tros/humble/setup.bash
+```
+
+</TabItem>
+
+</Tabs>
+
+```shell
 # HDMI图像渲染
 ros2 launch hobot_hdmi hobot_hdmi.launch.py device:=F37
 ```
@@ -154,19 +273,20 @@ ros2 launch hobot_hdmi hobot_hdmi.launch.py device:=F37
 
 ### 功能介绍
 
-TogetheROS.Bot兼容ROS2 foxy版本，为了方便预览图像效果，可以通过RViz2获取图像。
+TogetheROS.Bot兼容ROS2 foxy/humble版本，为了方便预览图像效果，可以通过RViz2获取图像。
 
 ### 支持平台
 
-| 平台    | 运行方式      | 示例功能                       |
-| ------- | ------------- | ------------------------------ |
-| RDK X3, RDK X3 Module, RDK Ultra| Ubuntu 20.04  | 启动MIPI摄像头获取图像，在PC上使用RViz2预览 |
+| 平台    | 运行方式      |
+| ------- | ------------- |
+| RDK X3, RDK X3 Module | Ubuntu 20.04 (Foxy), Ubuntu 22.04 (Humble)  |
+| RDK Ultra | Ubuntu 20.04 (Foxy) |
 
 ### 准备工作
 
 #### 地平线RDK平台
 
-1. 地平线RDK已烧录好地平线提供的Ubuntu 20.04系统镜像。
+1. 地平线RDK已烧录好地平线提供的Ubuntu 20.04/Ubuntu 22.04系统镜像。
 
 2. 地平线RDK已成功安装tros.b。
 
@@ -182,9 +302,28 @@ TogetheROS.Bot兼容ROS2 foxy版本，为了方便预览图像效果，可以通
 
 1. 通过SSH登录开发板，启动板端相关程序
 
-   ```shell
+   <Tabs groupId="tros-distro">
+   <TabItem value="foxy" label="Foxy">
+
+   ```bash
    # 配置tros.b环境
    source /opt/tros/setup.bash
+   ```
+
+   </TabItem>
+
+   <TabItem value="humble" label="Humble">
+
+   ```bash
+   # 配置tros.b环境
+   source /opt/tros/humble/setup.bash
+   ```
+
+   </TabItem>
+
+   </Tabs>
+
+   ```shell
    # 启动F37 camera发布BGR8格式图像
    ros2 launch mipi_cam mipi_cam.launch.py mipi_out_format:=bgr8 mipi_image_width:=480 mipi_image_height:=272 mipi_io_method:=ros mipi_video_device:=F37
    ```
@@ -201,9 +340,28 @@ TogetheROS.Bot兼容ROS2 foxy版本，为了方便预览图像效果，可以通
 
 3. 地平线RDK新建一个窗口，查询话题命令及返回结果如下：
 
-   ```shell
+   <Tabs groupId="tros-distro">
+   <TabItem value="foxy" label="Foxy">
+
+   ```bash
    # 配置tros.b环境
    source /opt/tros/setup.bash
+   ```
+
+   </TabItem>
+
+   <TabItem value="humble" label="Humble">
+
+   ```bash
+   # 配置tros.b环境
+   source /opt/tros/humble/setup.bash
+   ```
+
+   </TabItem>
+
+   </Tabs>
+
+   ```shell
    # 查询topic
    ros2 topic list
    ```
@@ -256,8 +414,28 @@ TogetheROS.Bot兼容ROS2 foxy版本，为了方便预览图像效果，可以通
 
    - 检查RDK X3是否正常pub图像
 
-      ```shell
+      <Tabs groupId="tros-distro">
+      <TabItem value="foxy" label="Foxy">
+
+      ```bash
+      # 配置tros.b环境
       source /opt/tros/setup.bash
+      ```
+
+      </TabItem>
+
+      <TabItem value="humble" label="Humble">
+
+      ```bash
+      # 配置tros.b环境
+      source /opt/tros/humble/setup.bash
+      ```
+
+      </TabItem>
+
+      </Tabs>
+
+      ```shell
       ros2 topic list
       ```
 
@@ -283,13 +461,13 @@ TogetheROS.Bot兼容ROS2 foxy版本，支持通过RQt预览压缩格式图像，
 
 | 平台    | 运行方式      | 示例功能                       |
 | ------- | ------------- | ------------------------------ |
-| RDK X3, RDK X3 Module, RDK Ultra| Ubuntu 20.04  | 启动MIPI摄像头获取图像，在PC上使用RQt预览 |
+| RDK X3, RDK X3 Module, RDK Ultra| Ubuntu 20.04 (Foxy), Ubuntu 22.04 (Humble)  | 启动MIPI摄像头获取图像，在PC上使用RQt预览 |
 
 ### 准备工作
 
 #### 地平线RDK平台
 
-1. 地平线RDK已烧录好地平线提供的Ubuntu 20.04系统镜像。
+1. 地平线RDK已烧录好地平线提供的Ubuntu 20.04/Ubuntu 22.04系统镜像。
 
 2. 地平线RDK已成功安装tros.b。
 
@@ -307,17 +485,55 @@ TogetheROS.Bot兼容ROS2 foxy版本，支持通过RQt预览压缩格式图像，
    
    a. 启动F37 camera
 
-   ```shell
-   source /opt/tros/setup.bash
+   <Tabs groupId="tros-distro">
+   <TabItem value="foxy" label="Foxy">
 
+   ```bash
+   # 配置tros.b环境
+   source /opt/tros/setup.bash
+   ```
+
+   </TabItem>
+
+   <TabItem value="humble" label="Humble">
+
+   ```bash
+   # 配置tros.b环境
+   source /opt/tros/humble/setup.bash
+   ```
+
+   </TabItem>
+
+   </Tabs>
+
+   ```shell
    ros2 launch mipi_cam mipi_cam.launch.py mipi_image_width:=640 mipi_image_height:=480 mipi_video_device:=F37
    ```
 
    b. 启动hobot_codec, 发布compressed格式图像
 
-   ```shell
-   source /opt/tros/setup.bash
+   <Tabs groupId="tros-distro">
+   <TabItem value="foxy" label="Foxy">
 
+   ```bash
+   # 配置tros.b环境
+   source /opt/tros/setup.bash
+   ```
+
+   </TabItem>
+
+   <TabItem value="humble" label="Humble">
+
+   ```bash
+   # 配置tros.b环境
+   source /opt/tros/humble/setup.bash
+   ```
+
+   </TabItem>
+
+   </Tabs>
+
+   ```shell
    ros2 launch hobot_codec hobot_codec_encode.launch.py codec_out_format:=jpeg codec_pub_topic:=/image_raw/compressed
    ```
 
@@ -354,8 +570,28 @@ TogetheROS.Bot兼容ROS2 foxy版本，支持通过RQt预览压缩格式图像，
 
    - 检查地平线RDK是否正常pub图像
 
-      ```shell
+      <Tabs groupId="tros-distro">
+      <TabItem value="foxy" label="Foxy">
+
+      ```bash
+      # 配置tros.b环境
       source /opt/tros/setup.bash
+      ```
+
+      </TabItem>
+
+      <TabItem value="humble" label="Humble">
+
+      ```bash
+      # 配置tros.b环境
+      source /opt/tros/humble/setup.bash
+      ```
+
+      </TabItem>
+
+      </Tabs>
+
+      ```shell
       ros2 topic list
       ```
 
@@ -387,10 +623,10 @@ Foxglove是一个开源的工具包，包括线上和线下版。旨在简化机
 
 ### 支持平台
 
-| 平台    | 运行方式      | 示例功能                       |
-| ------- | ------------- | ------------------------------ |
-| RDK X3, RDK X3 Module | Ubuntu 20.04  | 启动本地回灌，通用物体检测并通过Foxglove展示图像和算法效果 |
-| X86     | Ubuntu 20.04  | 启动本地回灌，通用物体检测并通过Foxglove展示图像和算法效果 |
+| 平台    | 运行方式      |
+| ------- | ------------- |
+| RDK X3, RDK X3 Module | Ubuntu 20.04 (Foxy), Ubuntu 22.04 (Humble)  |
+| X86     | Ubuntu 20.04 (Foxy) |
 
 ### 准备工作
 
@@ -412,9 +648,28 @@ Foxglove是一个开源的工具包，包括线上和线下版。旨在简化机
 
 1. 通过SSH登录地平线RDK平台，启动板端相关程序：
 
-```shell
-source /opt/tros/setup.bash
+<Tabs groupId="tros-distro">
+<TabItem value="foxy" label="Foxy">
 
+```bash
+# 配置tros.b环境
+source /opt/tros/setup.bash
+```
+
+</TabItem>
+
+<TabItem value="humble" label="Humble">
+
+```bash
+# 配置tros.b环境
+source /opt/tros/humble/setup.bash
+```
+
+</TabItem>
+
+</Tabs>
+
+```shell
 export CAM_TYPE=fb
 
 ros2 launch hobot_visualization hobot_vis_render.launch.py
@@ -422,9 +677,28 @@ ros2 launch hobot_visualization hobot_vis_render.launch.py
 
 同时，利用ssh登录另一个终端，在板端记录话题信息：
 
-```shell
-source /opt/tros/setup.bash
+<Tabs groupId="tros-distro">
+<TabItem value="foxy" label="Foxy">
 
+```bash
+# 配置tros.b环境
+source /opt/tros/setup.bash
+```
+
+</TabItem>
+
+<TabItem value="humble" label="Humble">
+
+```bash
+# 配置tros.b环境
+source /opt/tros/humble/setup.bash
+```
+
+</TabItem>
+
+</Tabs>
+
+```shell
 # 记录rosbag数据，会生成在当前工作目录下
 ros2 bag record -a
 ```

@@ -3,6 +3,11 @@ sidebar_position: 7
 ---
 # 视觉SLAM算法
 
+```mdx-code-block
+import Tabs from '@theme/Tabs';
+import TabItem from '@theme/TabItem';
+```
+
 ## 功能介绍
 
 SLAM指定位与地图构建（Simultaneous Localization and Mapping，简称SLAM）,ORB-SLAM3是其中研究较多的算法之一。TogetheROS.Bot为了方便开发者开发基于视觉SLAM的应用，集成、改进和优化了ORB-SLAM3。
@@ -27,13 +32,14 @@ SLAM建图案例：[4.1 SLAM建图](../../apps/slam)
 
 | 平台                  | 运行方式     |
 | --------------------- | ------------ |
-| RDK X3, RDK X3 Module, RDK Ultra | Ubuntu 20.04 |
+| RDK X3, RDK X3 Module | Ubuntu 20.04 (Foxy), Ubuntu 22.04 (Humble) |
+| RDK Ultra | Ubuntu 20.04 (Foxy) |
 
 **注意**：SuperPoint优化只支持RDK X3和RDK X3 Module平台。
 
 ## 准备工作
 
-1. 地平线RDK已烧录好地平线提供的Ubuntu 20.04系统镜像。
+1. 地平线RDK已烧录好地平线提供的Ubuntu 20.04/Ubuntu 22.04系统镜像。
 
 2. 地平线RDK已成功安装tros.bot。
 
@@ -57,9 +63,29 @@ ORB-SLAM3项目本身集成了多种类型的测试程序，比如单/双目以�
 
 运行命令：
 
+<Tabs groupId="tros-distro">
+<TabItem value="foxy" label="Foxy">
+
 ```bash
 # 配置tros.b环境
 source /opt/tros/setup.bash
+```
+
+</TabItem>
+
+<TabItem value="humble" label="Humble">
+
+```bash
+# 配置tros.b环境
+source /opt/tros/humble/setup.bash
+```
+
+</TabItem>
+
+</Tabs>
+
+```bash
+# 配置tros.b环境
 # X3 CPU超频至1.5GHz
 sudo bash -c 'echo 1 > /sys/devices/system/cpu/cpufreq/boost'
 # 使能X3 CPU性能模式
@@ -86,7 +112,7 @@ tros.b基于ORB-SLAM3和ROS2开发了一套示例程序，集成了图像和IMU�
 最新版本的镜像在内核打上了RealSense 系列相机的UVC和HID驱动补丁，直接使用apt命令安装RealSense SDK以及ROS2 package后即可直接使用测试程序。ROS2的package与tros.b的并存的安装方法见[1.5 使用ROS2 package](../../quick_start/ros_pkg.md)
 
 ```bash
-# 显示ROS当前版本，如果显示为空，请source /opt/tros/setup.bash
+# 显示ROS当前版本，如果显示为空，请source /opt/tros/setup.bash或者source /opt/tros/humble/setup.bash
 echo $ROS_DISTRO 
 # 安装RealSense SDK
 sudo apt-get install ros-$ROS_DISTRO-librealsense2* -y 
@@ -99,9 +125,28 @@ sudo apt-get install ros-$ROS_DISTRO-realsense2-description -y
 
 接下来，我们使用root账户（密码：root）登录RDK，启动Realsense D435i相机，否则权限不足无法正常启动相机。
 
-```bash
-source /opt/tros/setup.bash
+<Tabs groupId="tros-distro">
+<TabItem value="foxy" label="Foxy">
 
+```bash
+# 配置tros.b环境
+source /opt/tros/setup.bash
+```
+
+</TabItem>
+
+<TabItem value="humble" label="Humble">
+
+```bash
+# 配置tros.b环境
+source /opt/tros/humble/setup.bash
+```
+
+</TabItem>
+
+</Tabs>
+
+```bash
 # 启动D435i，发布图像数据
 ros2 launch realsense2_camera rs_launch.py enable_depth:=false enable_color:=false enable_infra1:=true depth_module.profile:=640x480x15 
 ```
@@ -111,9 +156,29 @@ ros2 launch realsense2_camera rs_launch.py enable_depth:=false enable_color:=fal
 
 下一步，我们启动视觉SLAM节点：
 
+<Tabs groupId="tros-distro">
+<TabItem value="foxy" label="Foxy">
+
 ```bash
 # 配置tros.b环境
 source /opt/tros/setup.bash
+```
+
+</TabItem>
+
+<TabItem value="humble" label="Humble">
+
+```bash
+# 配置tros.b环境
+source /opt/tros/humble/setup.bash
+```
+
+</TabItem>
+
+</Tabs>
+
+
+```bash
 # X3 CPU超频至1.5GHz
 sudo bash -c 'echo 1 > /sys/devices/system/cpu/cpufreq/boost'
 # 使能X3 CPU性能模式
