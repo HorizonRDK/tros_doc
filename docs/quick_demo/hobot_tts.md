@@ -19,7 +19,7 @@ import TabItem from '@theme/TabItem';
 
 | 平台    | 运行方式     | 示例功能                       |
 | ------- | ------------ | ------------------------------ |
-| RDK X3 | Ubuntu 20.04 (Foxy) | 订阅文本消息，然后转化为语音数据，最后播放出去 |
+| RDK X3 | Ubuntu 20.04 (Foxy), Ubuntu 22.04 (Humble) | 订阅文本消息，然后转化为语音数据，最后播放出去 |
 
 **注意：仅支持RDK X3，RDK X3 Module暂不支持。**
 
@@ -37,6 +37,25 @@ import TabItem from '@theme/TabItem';
 ### 地平线RDK平台
 
 1. 首次运行需要下载模型文件并解压，详细命令如下：
+
+    <Tabs groupId="tros-distro">
+    <TabItem value="foxy" label="Foxy">
+
+    ```bash
+    # 配置tros.b环境
+    source /opt/tros/setup.bash
+    ```
+
+    </TabItem>
+    <TabItem value="humble" label="Humble">
+
+    ```bash
+    # 配置tros.b环境
+    source /opt/tros/humble/setup.bash
+    ```
+
+    </TabItem>
+    </Tabs>
 
     ```bash
     wget http://sunrise.horizon.cc/tts-model/tts_model.tar.gz

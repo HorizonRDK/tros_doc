@@ -132,12 +132,31 @@ import TabItem from '@theme/TabItem';
 
 1. 拷贝配置文件
 
+ <Tabs groupId="tros-distro">
+ <TabItem value="foxy" label="Foxy">
+
+    ```bash
+    # 配置tros.b环境
+    source /opt/tros/setup.bash
+    ```
+
+ </TabItem>
+ <TabItem value="humble" label="Humble">
+
+    ```bash
+    # 配置tros.b环境
+    source /opt/tros/humble/setup.bash
+    ```
+
+ </TabItem>
+ </Tabs>
+
    ```shell
    # 从tros.b的安装路径中拷贝出运行示例需要的配置文件，若已拷贝则可忽略
    cp -r /opt/tros/${TROS_DISTRO}/lib/hobot_audio/config/ .
    ```
 
-2. 确认配置文件
+1. 确认配置文件
 
    配置文件 *config/audio_config.json* 默认配置如下：
 
@@ -163,7 +182,7 @@ import TabItem from '@theme/TabItem';
    - **麦克风阵列类型**通过`mic_type`字段设置，默认值为`0`，表示环形麦克风阵列。如果使用线形麦克风阵列，需要修改该字段为`1`。
    - **ASR输出**通过`asr_mode`字段设置，默认值为`0`，表示不输出ASR结果。若要开启ASR结果输出，需要将该字段改为`1`或`2`，其中`1`表示唤醒后进行一次ASR识别并发布结果，`2`表示一直进行ASR识别并发布结果。
 
-3. 配置tros.b环境和启动应用
+2. 配置tros.b环境和启动应用
 
 <Tabs groupId="tros-distro">
 <TabItem value="foxy" label="Foxy">

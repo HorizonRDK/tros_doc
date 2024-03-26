@@ -111,8 +111,26 @@ tros.b基于ORB-SLAM3和ROS2开发了一套示例程序，集成了图像和IMU�
 
 最新版本的镜像在内核打上了RealSense 系列相机的UVC和HID驱动补丁，直接使用apt命令安装RealSense SDK以及ROS2 package后即可直接使用测试程序。ROS2的package与tros.b的并存的安装方法见[1.5 使用ROS2 package](../../quick_start/ros_pkg.md)
 
+ <Tabs groupId="tros-distro">
+ <TabItem value="foxy" label="Foxy">
+
+ ```bash
+ # 配置tros.b环境
+ source /opt/tros/setup.bash
+ ```
+
+ </TabItem>
+ <TabItem value="humble" label="Humble">
+
+ ```bash
+ # 配置tros.b环境
+ source /opt/tros/humble/setup.bash
+ ```
+
+ </TabItem>
+ </Tabs>
+
 ```bash
-# 显示ROS当前版本，如果显示为空，请source /opt/tros/setup.bash或者source /opt/tros/humble/setup.bash
 echo $ROS_DISTRO 
 # 安装RealSense SDK
 sudo apt-get install ros-$ROS_DISTRO-librealsense2* -y 

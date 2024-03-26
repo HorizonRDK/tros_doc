@@ -425,8 +425,24 @@ import TabItem from '@theme/TabItem';
 
 6. 在PC机上查询相机内参（具体数据以读取的相机标定文件为准），命令及结果如下:
 
+<Tabs groupId="tros-distro">
+<TabItem value="foxy" label="Foxy">
+
+   ```shell
+   root@ubuntu:~# source /opt/ros/foxy/setup.bash
+   ```
+
+</TabItem>
+<TabItem value="humble" label="Humble">
+
+   ```shell
+   root@ubuntu:~# source /opt/ros/humble/setup.bash
+   ```
+
+</TabItem>
+</Tabs>
+
     ```shell
-    root@ubuntu:~# source /opt/ros/foxy/setup.bash
     root@ubuntu:~# ros2 topic echo /camera_info
         header:
     stamp:
@@ -669,8 +685,24 @@ import TabItem from '@theme/TabItem';
 
 3. PC机上查询当前话题，查询命令及返回结果如下：
 
+<Tabs groupId="tros-distro">
+<TabItem value="foxy" label="Foxy">
+
+   ```shell
+   source /opt/ros/foxy/setup.bash
+   ```
+
+</TabItem>
+<TabItem value="humble" label="Humble">
+
+   ```shell
+   source /opt/ros/humble/setup.bash
+   ```
+
+</TabItem>
+</Tabs>
+
     ```bash
-    source /opt/ros/foxy/setup.bash
     ros2 topic list
     ```
 
@@ -696,8 +728,24 @@ import TabItem from '@theme/TabItem';
 
 4. PC机上订阅话题，并预览摄像头数据
 
+<Tabs groupId="tros-distro">
+<TabItem value="foxy" label="Foxy">
+
+   ```shell
+   source /opt/ros/foxy/setup.bash
+   ```
+
+</TabItem>
+<TabItem value="humble" label="Humble">
+
+   ```shell
+   source /opt/ros/humble/setup.bash
+   ```
+
+</TabItem>
+</Tabs>
+
     ```bash
-    source /opt/ros/foxy/setup.bash
     ros2 run rviz2 rviz2
     ```
 
@@ -707,8 +755,24 @@ import TabItem from '@theme/TabItem';
 
 5. 在PC机上查询相机内参
 
+<Tabs groupId="tros-distro">
+<TabItem value="foxy" label="Foxy">
+
+   ```shell
+   source /opt/ros/foxy/setup.bash
+   ```
+
+</TabItem>
+<TabItem value="humble" label="Humble">
+
+   ```shell
+   source /opt/ros/humble/setup.bash
+   ```
+
+</TabItem>
+</Tabs>
+
     ```bash
-    source /opt/ros/foxy/setup.bash
     ros2 topic echo /rgbd_CP3AM/color/camera_info
     ```
 

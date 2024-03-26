@@ -19,7 +19,7 @@ import TabItem from '@theme/TabItem';
 
 | 平台                            | 运行方式     | 示例功能           |
 | ------------------------------- | ------------ | ------------------ |
-| RDK X3, RDK X3 Module (4GB内存) | Ubuntu 20.04 (Foxy) | 端侧大语言模型体验 |
+| RDK X3, RDK X3 Module (4GB内存) | Ubuntu 20.04 (Foxy), Ubuntu 22.04 (Humble) | 端侧大语言模型体验 |
 
 **注意：仅支持RDK X3，RDK X3 Module 4GB内存版本。**
 
@@ -38,6 +38,25 @@ import TabItem from '@theme/TabItem';
 ### 地平线RDK平台
 
 运行程序前，需要下载模型文件并解压，命令如下：
+
+ <Tabs groupId="tros-distro">
+ <TabItem value="foxy" label="Foxy">
+
+ ```bash
+ # 配置tros.b环境
+ source /opt/tros/setup.bash
+ ```
+
+ </TabItem>
+ <TabItem value="humble" label="Humble">
+
+ ```bash
+ # 配置tros.b环境
+ source /opt/tros/humble/setup.bash
+ ```
+
+ </TabItem>
+ </Tabs>
 
 ```bash
 # 下载模型文件

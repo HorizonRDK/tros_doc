@@ -377,9 +377,25 @@ TogetheROS.Bot兼容ROS2 foxy/humble版本，为了方便预览图像效果，�
 
 4. PC机上查询当前话题，查询命令及返回结果如下：
 
+<Tabs groupId="tros-distro">
+<TabItem value="foxy" label="Foxy">
+
+   ```shell
+   source /opt/ros/foxy/setup.bash
+   ```
+
+</TabItem>
+<TabItem value="humble" label="Humble">
+
+   ```shell
+   source /opt/ros/humble/setup.bash
+   ```
+
+</TabItem>
+</Tabs>
+
    ```shell
    # 配置ROS2环境
-   source /opt/ros/foxy/setup.bash
    ros2 topic list
    ```
 
@@ -392,11 +408,27 @@ TogetheROS.Bot兼容ROS2 foxy/humble版本，为了方便预览图像效果，�
    /rosout
    ```
 
-5. PC机上订阅话题，并预览摄像头数据；
+1. PC机上订阅话题，并预览摄像头数据；
+
+<Tabs groupId="tros-distro">
+<TabItem value="foxy" label="Foxy">
+
+   ```shell
+   source /opt/ros/foxy/setup.bash
+   ```
+
+</TabItem>
+<TabItem value="humble" label="Humble">
+
+   ```shell
+   source /opt/ros/humble/setup.bash
+   ```
+
+</TabItem>
+</Tabs>
 
    ```shell
    # 配置ROS2环境
-   source /opt/ros/foxy/setup.bash
    ros2 run rviz2 rviz2
    ```
 
@@ -554,9 +586,25 @@ TogetheROS.Bot兼容ROS2 foxy版本，支持通过RQt预览压缩格式图像，
 
 3. PC机上订阅话题，并预览摄像头数据；
 
+<Tabs groupId="tros-distro">
+<TabItem value="foxy" label="Foxy">
+
+   ```shell
+   source /opt/ros/foxy/setup.bash
+   ```
+
+</TabItem>
+<TabItem value="humble" label="Humble">
+
+   ```shell
+   source /opt/ros/humble/setup.bash
+   ```
+
+</TabItem>
+</Tabs>
+
    ```shell
    # 配置ROS2环境
-   source /opt/ros/foxy/setup.bash
    ros2 run rqt_image_view rqt_image_view
    ```
 

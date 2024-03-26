@@ -20,7 +20,7 @@ import TabItem from '@theme/TabItem';
 
 | 平台    | 运行方式     | 示例功能                       |
 | ------- | ------------ | ------------------------------ |
-| RDK X3, RDK X3 Module| Ubuntu 20.04 (Foxy) | 读取ToF图片，进行高斯滤波 |
+| RDK X3, RDK X3 Module| Ubuntu 20.04 (Foxy), Ubuntu 22.04 (Humble) | 读取ToF图片，进行高斯滤波 |
 
 ### 准备工作
 
@@ -307,7 +307,7 @@ error sum:8.43744e+06,max:1,mean_error:0.430833　//均值滤波单张图片总�
 
 | 平台    | 运行方式      | 示例功能                       |
 | ------- | ------------- | ------------------------------ |
-| RDK X3, RDK X3 Module| Ubuntu 20.04  | 读取图片，进行抠图 |
+| RDK X3, RDK X3 Module| Ubuntu 20.04 (Foxy), Ubuntu 22.04 (Humble) | 读取图片，进行抠图 |
 
 ### 准备工作
 
@@ -381,10 +381,11 @@ ros2 launch hobot_cv hobot_cv_crop.launch.py
 
 ### 支持平台
 
-| 平台    | 运行方式      | 示例功能                       |
-| ------- | ------------- | ------------------------------ |
-| RDK X3, RDK X3 Module, RDK Ultra| Ubuntu 20.04  | 读取图片，进行缩放 |
-| X86     | Ubuntu 20.04 (Foxy) | 读取图片，进行缩放 |
+| 平台    | 运行方式      |
+| ------- | ------------- |
+| RDK X3, RDK X3 Module | Ubuntu 20.04 (Foxy), Ubuntu 22.04 (Humble)  |
+| RDK Ultra| Ubuntu 20.04 (Foxy)  |
+| X86     | Ubuntu 20.04 (Foxy) |
 
 ### 准备工作
 
@@ -488,7 +489,7 @@ rotate实现图像旋转功能，暂时只支持NV12格式的图片，支持的�
 
 | 平台    | 运行方式      | 示例功能                       |
 | ------- | ------------- | ------------------------------ |
-| RDK X3, RDK X3 Module| Ubuntu 20.04  | 读取图片，进行旋转 |
+| RDK X3, RDK X3 Module| Ubuntu 20.04 (Foxy), Ubuntu 22.04 (Humble) | 读取图片，进行旋转 |
 
 ### 准备工作
 
@@ -586,7 +587,7 @@ sudo bash -c 'echo performance > /sys/devices/system/cpu/cpufreq/policy0/scaling
 
 | 平台    | 运行方式      | 示例功能                       |
 | ------- | ------------- | ------------------------------ |
-| RDK X3, RDK X3 Module| Ubuntu 20.04  | 读取图片，进行金字塔缩放 |
+| RDK X3, RDK X3 Module| Ubuntu 20.04 (Foxy), Ubuntu 22.04 (Humble) | 读取图片，进行金字塔缩放 |
 
 ### 准备工作
 

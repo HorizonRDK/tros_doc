@@ -39,8 +39,19 @@ import TabItem from '@theme/TabItem';
 
 4. 和地平线RDK在同一网段（有线或者连接同一无线网，IP地址前三段需保持一致）的PC，PC端需要安装的环境包括：
 
-   - Ubuntu 20.04/Ubuntu 22.04系统
-   - [ROS2 Foxy桌面版](https://docs.ros.org/en/foxy/Installation/Ubuntu-Install-Debians.html)
+<Tabs groupId="tros-distro">
+<TabItem value="foxy" label="Foxy">
+
+   - Ubuntu 20.04系统和[ROS2 Foxy桌面版](https://docs.ros.org/en/foxy/Installation/Ubuntu-Install-Debians.html)
+
+</TabItem>
+<TabItem value="humble" label="Humble">
+
+   - Ubuntu 22.04系统和[ROS2 Humble桌面版](https://docs.ros.org/en/humble/Installation/Ubuntu-Install-Debians.html)
+
+</TabItem>
+</Tabs>
+
    - 算法工具链OE包获取方式
 `wget -c ftp://vrftp.horizon.ai/Open_Explorer_gcc_9.3.0/2.3.3/horizon_xj3_open_explorer_v2.3.3_20220727.tar.gz`
    - 算法工具链docker获取方式
@@ -110,9 +121,25 @@ ros2 launch mipi_cam mipi_cam.launch.py mipi_out_format:=bgr8 mipi_io_method:=mm
 
 PC上运行
 
+<Tabs groupId="tros-distro">
+<TabItem value="foxy" label="Foxy">
+
+```bash
+source  /opt/ros/foxy/setup.bash
+```
+
+</TabItem>
+<TabItem value="humble" label="Humble">
+
+```bash
+source  /opt/ros/humble/setup.bash
+```
+
+</TabItem>
+</Tabs>
+
 ```shell
 export RMW_IMPLEMENTATION=rmw_cyclonedds_cpp
-source  /opt/ros/foxy/setup.bash
 # 编译line_follower_model，进入line_follower_model目录
 colcon build --packages-select line_follower_model
 # 加载编译出的line_follower_model
@@ -152,8 +179,24 @@ pip3 install torch torchvision torchaudio --extra-index-url https://download.pyt
 
 PC上运行
 
-```shell
+<Tabs groupId="tros-distro">
+<TabItem value="foxy" label="Foxy">
+
+```bash
 source  /opt/ros/foxy/setup.bash
+```
+
+</TabItem>
+<TabItem value="humble" label="Humble">
+
+```bash
+source  /opt/ros/humble/setup.bash
+```
+
+</TabItem>
+</Tabs>
+
+```shell
 # 编译line_follower_model，进入line_follower_model目录
 colcon build --packages-select line_follower_model
 # 加载编译出的line_follower_model

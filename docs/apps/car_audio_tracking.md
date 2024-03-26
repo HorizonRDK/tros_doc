@@ -53,15 +53,32 @@ App以PC端Gazebo仿真环境下的虚拟小车举例，发布的控制指令也
 
 5. 和地平线RDK在同一网段（有线或者连接同一无线网，IP地址前三段需保持一致）的PC，PC端需要安装的环境包括：
 
-   - Ubuntu 20.04系统
-   - [ROS2 Foxy桌面版](https://docs.ros.org/en/foxy/Installation/Ubuntu-Install-Debians.html)
+ <Tabs groupId="tros-distro">
+ <TabItem value="foxy" label="Foxy">
+
+   - Ubuntu 20.04系统和[ROS2 Foxy桌面版](https://docs.ros.org/en/foxy/Installation/Ubuntu-Install-Debians.html)
    - Gazebo和Turtlebot3相关的功能包，安装方法：
 
-     ```shell
-     sudo apt-get install ros-foxy-gazebo-*
-     sudo apt install ros-foxy-turtlebot3
-     sudo apt install ros-foxy-turtlebot3-simulations
-     ```
+    ```shell
+    sudo apt-get install ros-foxy-gazebo-*
+    sudo apt install ros-foxy-turtlebot3
+    sudo apt install ros-foxy-turtlebot3-simulations
+    ```
+
+ </TabItem>
+ <TabItem value="humble" label="Humble">
+
+   - Ubuntu 22.04系统和[ROS2 Humble桌面版](https://docs.ros.org/en/humble/Installation/Ubuntu-Install-Debians.html)
+   - Gazebo和Turtlebot3相关的功能包，安装方法：
+
+    ```shell
+    sudo apt-get install ros-humble-gazebo-*
+    sudo apt install ros-humble-turtlebot3
+    sudo apt install ros-humble-turtlebot3-simulations
+    ```
+
+ </TabItem>
+ </Tabs>
 
 ## 使用介绍
 
@@ -71,8 +88,24 @@ App以PC端Gazebo仿真环境下的虚拟小车举例，发布的控制指令也
 
 PC端启动仿真环境：
 
+<Tabs groupId="tros-distro">
+<TabItem value="foxy" label="Foxy">
+
 ```shell
 source /opt/ros/foxy/setup.bash
+```
+
+</TabItem>
+<TabItem value="humble" label="Humble">
+
+```shell
+source /opt/ros/humble/setup.bash
+```
+
+</TabItem>
+</Tabs>
+
+```shell
 export TURTLEBOT3_MODEL=burger
 ros2 launch turtlebot3_gazebo empty_world.launch.py
 ```
@@ -84,6 +117,25 @@ ros2 launch turtlebot3_gazebo empty_world.launch.py
 地平线RDK平台启动程序：
 
 1. 拷贝音频配置文件和加载音频驱动
+
+ <Tabs groupId="tros-distro">
+ <TabItem value="foxy" label="Foxy">
+
+    ```bash
+    # 配置tros.b环境
+    source /opt/tros/setup.bash
+    ```
+
+ </TabItem>
+ <TabItem value="humble" label="Humble">
+
+    ```bash
+    # 配置tros.b环境
+    source /opt/tros/humble/setup.bash
+    ```
+
+ </TabItem>
+ </Tabs>
 
     ```shell
     # 从tros.b的安装路径中拷贝出运行示例需要的配置文件。
