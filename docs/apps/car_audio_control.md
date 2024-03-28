@@ -35,7 +35,26 @@ APP以PC端Gazebo仿真环境下的虚拟小车举例，发布的控制指令也
 
 2. 地平线RDK已成功安装TogetheROS.Bot。
 
-3. 地平线RDK已成功安装智能语音算法包，安装命令：`apt update; apt install tros-hobot-audio`。
+3. 地平线RDK已成功安装智能语音算法包，安装命令：
+
+   <Tabs groupId="tros-distro">
+   <TabItem value="foxy" label="Foxy">
+
+   ```bash
+   sudo apt update
+   sudo apt install tros-hobot-audio
+   ```
+
+   </TabItem>
+   <TabItem value="humble" label="Humble">
+
+   ```bash
+   sudo apt update
+   sudo apt install tros-humble-hobot-audio
+   ```
+
+   </TabItem>
+   </Tabs>
 
 4. 地平线RDK已成功接好适配的音频板（可参考[智能语音章节](../boxs/box_adv#智能语音)）。
 

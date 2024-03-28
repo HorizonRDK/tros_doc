@@ -51,7 +51,26 @@ TogetheROS.Bot提供了灵活、高效的零拷贝功能，可以显著降低大
    echo performance > /sys/devices/system/cpu/cpufreq/policy0/scaling_governor 
    ```
 
-2. 地平线RDK已成功安装performance_test工具包，安装命令：`apt update; apt install tros-performance-test`。
+2. 地平线RDK已成功安装performance_test工具包，安装命令：
+
+   <Tabs groupId="tros-distro">
+   <TabItem value="foxy" label="Foxy">
+
+   ```bash
+   sudo apt update
+   sudo apt install tros-performance-test
+   ```
+
+   </TabItem>
+   <TabItem value="humble" label="Humble">
+
+   ```bash
+   sudo apt update
+   sudo apt install tros-humble-performance-test
+   ```
+
+   </TabItem>
+   </Tabs>
 
 ### 使用介绍
 

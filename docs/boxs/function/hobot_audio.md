@@ -30,7 +30,27 @@ import TabItem from '@theme/TabItem';
 
 1. 地平线RDK已烧录好地平线提供的Ubuntu 20.04/Ubuntu 22.04系统镜像。
 2. 地平线RDK已成功安装TogetheROS.Bot。
-3. 地平线RDK已成功安装智能语音算法包，安装命令：`apt update; apt install tros-hobot-audio`。
+3. 地平线RDK已成功安装智能语音算法包，安装命令：
+
+   <Tabs groupId="tros-distro">
+   <TabItem value="foxy" label="Foxy">
+
+   ```bash
+   sudo apt update
+   sudo apt install tros-hobot-audio
+   ```
+
+   </TabItem>
+   <TabItem value="humble" label="Humble">
+
+   ```bash
+   sudo apt update
+   sudo apt install tros-humble-hobot-audio
+   ```
+
+   </TabItem>
+   </Tabs>
+   
 4. 按照以下方法在地平线RDK上接好环形或线形四麦音频板。
 
 ### 连接音频板

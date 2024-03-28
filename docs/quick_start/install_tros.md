@@ -35,13 +35,32 @@ import TabItem from '@theme/TabItem';
 
 **注意：这里使用的地平线RDK IP为10.64.61.241，安装时需要根据自己的地平线RDK IP进行替换**
 
-登录地平线RDK
+登录地平线RDK：
 
 ```shell
 ssh root@10.64.61.241
 ```
 
-安装tros.b功能包，`sudo apt update; sudo apt install tros`
+安装tros.b功能包：
+
+<Tabs groupId="tros-distro">
+<TabItem value="foxy" label="Foxy">
+
+```bash
+sudo apt update
+sudo apt install tros
+```
+
+</TabItem>
+<TabItem value="humble" label="Humble">
+
+```bash
+sudo apt update
+sudo apt install tros-humble
+```
+
+</TabItem>
+</Tabs>
 
 **注意：如果您运行安装命令后提示`E: Unmet dependencies. Try 'apt --fix-broken install' with no packages (or specify a solution).`，先执行`apt --fix-broken install`命令安装相关依赖后再安装tros.b。**
 

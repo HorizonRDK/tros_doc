@@ -43,13 +43,32 @@ SLAM建图案例：[4.1 SLAM建图](../../apps/slam)
 
 2. 地平线RDK已成功安装tros.bot。
 
-3. 地平线RDK已成功安装ORB-SLAM3算法包，安装命令：`apt update; apt install tros-orb-slam3 tros-orb-slam3-example-ros2`。
+3. 地平线RDK已成功安装ORB-SLAM3算法包，安装命令：
 
-4. 地平线RDK已安装RealSense D435i相机。
+   <Tabs groupId="tros-distro">
+   <TabItem value="foxy" label="Foxy">
 
-5. 开源数据集EuRoC。
+   ```bash
+   sudo apt update
+   sudo apt install tros-orb-slam3 tros-orb-slam3-example-ros2
+   ```
 
-6. 和地平线RDK在同一网段的PC，PC已安装Ubuntu 20.04系统、ROS2 Foxy桌面版和数据可视化工具Rviz2。
+   </TabItem>
+   <TabItem value="humble" label="Humble">
+
+   ```bash
+   sudo apt update
+   sudo apt install tros-humble-orb-slam3 tros-humble-orb-slam3-example-ros2
+   ```
+
+   </TabItem>
+   </Tabs>
+
+5. 地平线RDK已安装RealSense D435i相机。
+
+6. 开源数据集EuRoC。
+
+7. 和地平线RDK在同一网段的PC，PC已安装Ubuntu 20.04 & ROS2 Foxy桌面版/Ubuntu 22.04 & ROS2 Humble桌面版，数据可视化工具Rviz2。
 
 ## 使用介绍
 

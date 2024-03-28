@@ -34,6 +34,10 @@ sidebar_position: 2
 
 在不了解`hobot_dnn`使用流程的情况下，用户也可以按照本章节流程使用`hobot_dnn`开发出模型推理示例。
 
+:::info
+本章节以下内容使用tros.b Foxy版本举例说明，如果您使用的是tros.b Humble版本，只需将`source /opt/tros/setup.bash`命令替换为`source /opt/tros/humble/setup.bash`。
+:::
+
 ### 任务内容
 
 #### 1 创建package
@@ -1210,7 +1214,7 @@ ROS2的节点（[Node](http://docs.ros.org/en/foxy/Tutorials/Beginner-CLI-Tools/
 
 地平线TogetheROS.Bot软件栈中包含丰富的机器人开发组件和算法Node，其中传感Node支持从摄像头采集图像数据并发布，用于感知算法推理使用。感知算法库中的人手框检测算法Node使用图像数据进行推理，输出人手框检测结果；人手关键点检测算法Node使用图像数据和人手框检测结果推理输出人手关键点检测结果。因此人手关键点检测算法Node需要基于Topic通信，订阅人手框检测算法Node发布的人手框消息。
 
-通过阅读本章节，用户可以在地平线RDK上使用\tros.b中的传感Node、人手框检测和人手关键点检测算法Node，基于ROS2 Topic通信，串联起传感和感知Node，实现开发复杂机器人算法应用的目标。
+通过阅读本章节，用户可以在地平线RDK上使用tros.b中的传感Node、人手框检测和人手关键点检测算法Node，基于ROS2 Topic通信，串联起传感和感知Node，实现开发复杂机器人算法应用的目标。
 
 
 ### 前置条件
