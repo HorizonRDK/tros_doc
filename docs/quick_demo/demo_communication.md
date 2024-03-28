@@ -25,6 +25,11 @@ TogetheROS.Bot提供了灵活、高效的零拷贝功能，可以显著降低大
   - <https://github.com/HorizonRDK/rcl_interfaces>
   - <https://github.com/HorizonRDK/benchmark>
 
+:::info
+- tros.b Foxy版本基于ROS2 Foxy新增了“zero-copy”功能。
+- tros.b Humble版本使用的是ROS2 Humble的“zero-copy”功能。
+:::
+
 ### 支持平台
 
 | 平台    | 运行方式      |
