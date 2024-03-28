@@ -29,7 +29,7 @@ import TabItem from '@theme/TabItem';
 
 1. 地平线RDK已烧录好地平线提供的Ubuntu 20.04/Ubuntu 22.04系统镜像。
 2. 地平线RDK已成功安装TogetheROS.Bot。
-3. 已有地平线适配的音频驱动板，并参考[智能语音章节](../boxs/box_adv#智能语音)搭建好环境。
+3. 已有地平线适配的音频驱动板，并参考[智能语音章节](../boxs/function/hobot_audio.md)搭建好环境。
 4. 音频板耳机接口连接耳机或音响。
 
 ## 使用方式
