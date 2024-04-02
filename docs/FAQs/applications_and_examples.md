@@ -380,6 +380,8 @@ export RMW_FASTRTPS_USE_QOS_FROM_XML=1
 
 以上命令同样适用于Ubuntu系统。
 
+环境变量的说明参考[ROS 2 using Fast DDS middleware](https://fast-dds.docs.eprosima.com/en/latest/fastdds/ros2/ros2.html)。
+
 **检查是否使用零拷贝传输数据**
 
 启动程序后，使用命令查看是否有内存映射文件生成，如果有说明已经使用零拷贝传输数据：
