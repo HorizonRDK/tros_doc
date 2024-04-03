@@ -127,9 +127,9 @@ using namespace std::chrono_literals;
 class MinimalHbmemPublisher  : public rclcpp::Node {
  public:
   MinimalHbmemPublisher () : Node("minimal_hbmem_publisher"), count_(0) {
-    // 创建publisher_hbmem，topic为"topic"，QOS为KEEPLAST(10)，以及默认的可靠传输
+    // 创建publisher_hbmem，topic为"topic"
     publisher_ = this->create_publisher_hbmem<hbmem_pubsub::msg::SampleMessage>(
-        "topic", 10);
+        "topic", rclcpp::SensorDataQoS());
 
     // 定时器，每隔40毫秒调用一次timer_callback进行消息发送
     timer_ = this->create_wall_timer(
@@ -203,9 +203,9 @@ using namespace std::chrono_literals;
 class MinimalHbmemPublisher  : public rclcpp::Node {
  public:
   MinimalHbmemPublisher () : Node("minimal_hbmem_publisher"), count_(0) {
-    // 创建publisher_hbmem，topic为"topic"，QOS为KEEPLAST(10)，以及默认的可靠传输
+    // 创建publisher_hbmem，topic为"topic"
     publisher_ = this->create_publisher<hbmem_pubsub::msg::SampleMessage>(
-        "topic", 10);
+        "topic", rclcpp::SensorDataQoS());
 
     // 定时器，每隔40毫秒调用一次timer_callback进行消息发送
     timer_ = this->create_wall_timer(
@@ -308,11 +308,11 @@ install(TARGETS
 class MinimalHbmemSubscriber  : public rclcpp::Node {
  public:
   MinimalHbmemSubscriber () : Node("minimal_hbmem_subscriber") {
-    // 创建subscription_hbmem，topic为"sample"，QOS为KEEPLAST(10)，以及默认的可靠传输
+    // 创建subscription_hbmem，topic为"sample"
     // 消息回调函数为topic_callback
     subscription_ =
         this->create_subscription_hbmem<hbmem_pubsub::msg::SampleMessage>(
-            "topic", 10,
+            "topic", rclcpp::SensorDataQoS(),
             std::bind(&MinimalHbmemSubscriber ::topic_callback, this,
                       std::placeholders::_1));
   }
@@ -359,11 +359,11 @@ int main(int argc, char * argv[])
 class MinimalHbmemSubscriber  : public rclcpp::Node {
  public:
   MinimalHbmemSubscriber () : Node("minimal_hbmem_subscriber") {
-    // 创建subscription_hbmem，topic为"sample"，QOS为KEEPLAST(10)，以及默认的可靠传输
+    // 创建subscription_hbmem，topic为"sample"
     // 消息回调函数为topic_callback
     subscription_ =
         this->create_subscription<hbmem_pubsub::msg::SampleMessage>(
-            "topic", 10,
+            "topic", rclcpp::SensorDataQoS(),
             std::bind(&MinimalHbmemSubscriber ::topic_callback, this,
                       std::placeholders::_1));
   }
@@ -669,6 +669,7 @@ ros2 run hbmem_pubsub listener
 
 - QOS History只支持KEEPLAST，不支持KEEPALL，且KEEPLAST不能设置太大，有内存限制，目前设置为最大占用256M内存
 - 传输的消息大小是固定的，即消息的`sizeof`值是不变的，不能包含可变长度类型数据，例如：string，动态数组
+- 对于TROS Humble版本，推荐QOS Reliability使用RMW_QOS_POLICY_RELIABILITY_BEST_EFFORT（建议直接使用rclcpp::SensorDataQoS()设置QOS），RMW_QOS_POLICY_RELIABILITY_RELIABLE在多种通信方式下存在稳定性问题。
 - 只能用于同一设备进程间通信，不可跨设备传输
 - publisher消息要先获取再赋值发送，且要判断是否获取成功
 - subscriber收到的消息有效期仅限回调函数中，不能在回调函数之外使用

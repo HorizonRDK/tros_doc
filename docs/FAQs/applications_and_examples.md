@@ -361,7 +361,7 @@ root@ubuntu:~#
 
 4、使用`ps -x`命令检查是否有启动多个web node，如果有请使用`kill`命令停止所有web node进程后再启动。
 
-## tros Humble版本启用零拷贝
+## TROS Humble版本使用零拷贝
 
 **Ubuntu系统**
 
@@ -467,4 +467,10 @@ hobot_cod 2514211 root mem    REG   0,17    21656 18149313 /dev/shm/fast_datasha
 
 **禁用零拷贝功能**
 
-禁用零拷贝功能配置参考[how-to-disable-loaned-messages](https://docs.ros.org/en/humble/How-To-Guides/Configure-ZeroCopy-loaned-messages.html#how-to-disable-loaned-messages)。
+通过环境变量`ROS_DISABLE_LOANED_MESSAGES`禁止零拷贝功能，具有最高控制优先级：
+
+```bash
+export ROS_DISABLE_LOANED_MESSAGES=1
+```
+
+禁用零拷贝功能配置详细说明参考[how-to-disable-loaned-messages](https://docs.ros.org/en/humble/How-To-Guides/Configure-ZeroCopy-loaned-messages.html#how-to-disable-loaned-messages)。
