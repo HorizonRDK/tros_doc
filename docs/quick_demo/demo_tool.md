@@ -211,7 +211,7 @@ trigger_node package 是地平线基于ROS2开发的Trigger基础模块，用于
 
 | 平台    | 运行方式      | 示例功能                       |
 | ------- | ------------ | ------------------------------ |
-| RDK X3, RDK X3 Module| Ubuntu 20.04 (Foxy) | · 启动MIPI/USB摄像头，触发记录的rosbag数据记录在本地 |
+| RDK X3, RDK X3 Module| Ubuntu 20.04 (Foxy), Ubuntu 22.04 (Humble) | · 启动MIPI/USB摄像头，触发记录的rosbag数据记录在本地 |
 
 ### 使用说明
 
@@ -311,6 +311,9 @@ source /opt/tros/setup.bash
 <TabItem value="humble" label="Humble">
 
 ```bash
+# 安装mcap包
+apt install ros-humble-rosbag2-storage-mcap
+
 # 配置tros.b环境
 source /opt/tros/humble/setup.bash
 ```
