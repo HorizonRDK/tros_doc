@@ -4,7 +4,33 @@ sidebar_position: 6
 
 # 1.6 版本发布记录
 
-## 版本号：2.1.3
+## tros-humble
+
+### 版本号：2.2.0
+
+功能变更：
+
+- 基于TROS Foxy 2.1.3版本，适配Ubuntu 22.04系统和ROS2 Humble。
+- TROS的安装路径由**`/opt/tros`**变更为**`/opt/tros/humble`**，和ROS2的安装路径层级和命名保持一致。
+- 不再提供`tros-ros-base`安装包（包含rclcpp、rclpy、ros2cli等ROS2基础功能包），使用标准的ROS2发行包，安装TROS Humble时自动安装依赖的ROS2 Humble。
+- 使用ROS2 fastdds的零拷贝通信功能，涉及到数据采集、图像编解码、算法示例等使用到图像数据的模块。
+- 零拷贝通信使用的QoS的Reliability由`RMW_QOS_POLICY_RELIABILITY_RELIABLE`（rclcpp::QoS()）变更为`RMW_QOS_POLICY_RELIABILITY_BEST_EFFORT`（rclcpp::SensorDataQoS()），避免使用零拷贝时潜在的稳定性风险。
+- 重构`hobot_dnn`，使用更底层的板端推理框架`libdnn`，不再使用`easydnn`。
+- `hobot_audio`升级语音算法SDK，使用更底层的板端推理框架`libdnn`，不再使用`easydnn`。
+- `hobot_trigger`适配ROS2 Humble版本rosbag2。
+
+新增功能：
+- `robot_dev_config`新增bloom编译和打包的脚本，用于ARM平台编译和打包TROS。
+- `hobot_mipi_cam` node新增frame_ts_type配置项，支持realtime（用于计算通信延迟）和sensor（默认，用于传感器的时间戳同步）配置参数。
+- 新增`hobot_shm` node，用于配置ROS2零拷贝环境。
+
+问题修复：
+- 修复编译器升级引入的兼容性问题。
+- 修复板端编译部分ROS2 pkg存在的路径依赖问题。
+
+## tros-foxy
+
+### 版本号：2.1.3
 
 功能变更：
 
@@ -13,7 +39,7 @@ sidebar_position: 6
 - 引入表示TROS发行版的环境变量TROS_DISTRO，执行`source /opt/tros/setup.bash`/`source /opt/tros/local_setup.bash`命令后，环境变量`TROS_DISTRO`的值为空。hobot_codec, hobot_audio, hobot_mipi_cam, hobot_usb_cam等模块使用的配置文件路径由`/opt/tros/lib`变更为`/opt/tros/${TROS_DISTRO}/lib`。
 
 
-## 版本号：2.1.2
+### 版本号：2.1.2
 
 新增功能：
 
@@ -26,7 +52,7 @@ sidebar_position: 6
 - `hobot_tts`更新音频播放函数调用，解决新版本系统播放失败问题。
 - `hobot_llm`删除config设备树文件，以及更新README，新版本系统可通过命令工具设置ION内存大小。
 
-## 版本号：2.1.1
+### 版本号：2.1.1
 
 新增功能：
 
@@ -36,7 +62,7 @@ sidebar_position: 6
 
 - 文本转语音`hobot_tts` node，修复某些字符导致应用退出问题。
 
-## 版本号：2.1.0
+### 版本号：2.1.0
 
 功能变更：
 
@@ -54,7 +80,7 @@ sidebar_position: 6
 - MIPI图像采集`hobot_mipi_cam` node修复发送RGB格式数据消息step字段设置错误问题。
 
 
-## 版本号：2.0.2
+### 版本号：2.0.2
 
 功能变更：
 
@@ -73,7 +99,7 @@ sidebar_position: 6
 - 修复数据可视化消息转换`hobot_visualization` node的launch启动文件配置无效的问题。
 
 
-## 版本号：2.0-Release（2.0.1）
+### 版本号：2.0-Release（2.0.1）
 
 功能变更：
 
@@ -103,7 +129,7 @@ sidebar_position: 6
 - 修复orb_slam3算法编译脚本路径错误导致的编译失败问题。
 
 
-## 版本号：2.0-Beta（2.0.0）
+### 版本号：2.0-Beta（2.0.0）
 
 2.0-Beta（2.0.0）是第一个2.x版本tros.b，建议[1.x版本tros.b](https://developer.horizon.cc/api/v1/fileData/TogetherROS/index.html)的用户升级到2.x版本。
 
