@@ -92,6 +92,10 @@ sudo apt upgrade
 
 查看当前tros.b版本
 
+
+<Tabs groupId="tros-distro">
+<TabItem value="foxy" label="Foxy">
+
 ```bash
 root@ubuntu:~# apt show tros
 Package: tros
@@ -107,6 +111,30 @@ Description: TogetheROS Bot
 ```
 
 可以看到当前tros.b版本已升级为2.0.0版本
+
+</TabItem>
+<TabItem value="humble" label="Humble">
+
+```bash
+root@ubuntu:~# apt show tros-humble
+Package: tros-humble
+Version: 2.2.0-jammy.20240410.221258
+Priority: optional
+Section: misc
+Maintainer: zhuo <zhuo.wang@horizon.cc>
+Installed-Size: 44.0 kB
+Depends: hobot-models-basic, tros-humble-ai-msgs, tros-humble-audio-control, tros-humble-audio-msg, tros-humble-   audio-tracking, tros-humble-base, tros-humble-body-tracking, tros-humble-dnn-benchmark-example, tros-humble-dnn-   node, tros-humble-dnn-node-example, tros-humble-dnn-node-sample, tros-humble-elevation-net, tros-humble-gesture-   control, tros-humble-hand-gesture-detection, tros-humble-hand-lmk-detection, tros-humble-hbm-img-msgs, tros-humb   le-hobot-audio, tros-humble-hobot-chatbot, tros-humble-hobot-codec, tros-humble-hobot-cv, tros-humble-hobot-fall   down-detection, tros-humble-hobot-hdmi, tros-humble-hobot-image-publisher, tros-humble-hobot-llm, tros-humble-ho   bot-mot, tros-humble-hobot-shm, tros-humble-hobot-tts, tros-humble-hobot-usb-cam, tros-humble-hobot-vio, tros-hu   mble-hobot-visualization, tros-humble-img-msgs, tros-humble-imu-sensor, tros-humble-line-follower-model, tros-hu   mble-line-follower-perception, tros-humble-mipi-cam, tros-humble-mono2d-body-detection, tros-humble-mono2d-trash   -detection, tros-humble-mono3d-indoor-detection, tros-humble-parking-perception, tros-humble-parking-search, tro   s-humble-rgbd-sensor, tros-humble-websocket, tros-humble-ros-workspace
+Download-Size: 5,546 B
+APT-Manual-Installed: yes
+APT-Sources: http://sunrise.horizon.cc/ubuntu-rdk jammy/main arm64 Packages
+Description: TogetheROS Bot
+
+```
+
+可以看到当前tros.b版本已升级为2.2.0版本
+
+</TabItem>
+</Tabs>
 
 ## X86平台
 
