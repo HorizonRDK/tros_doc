@@ -376,6 +376,7 @@ root@ubuntu:~#
 export RMW_IMPLEMENTATION=rmw_fastrtps_cpp
 export FASTRTPS_DEFAULT_PROFILES_FILE=/opt/tros/humble/lib/hobot_shm/config/shm_fastdds.xml
 export RMW_FASTRTPS_USE_QOS_FROM_XML=1
+export ROS_DISABLE_LOANED_MESSAGES=0
 ```
 
 以上命令同样适用于Ubuntu系统。
@@ -399,6 +400,7 @@ root@ubuntu:~# source /opt/tros/humble/setup.bash
 root@ubuntu:~# export RMW_IMPLEMENTATION=rmw_fastrtps_cpp
 root@ubuntu:~# export FASTRTPS_DEFAULT_PROFILES_FILE=/opt/tros/humble/lib/hobot_shm/config/shm_fastdds.xml
 root@ubuntu:~# export RMW_FASTRTPS_USE_QOS_FROM_XML=1
+root@ubuntu:~# export ROS_DISABLE_LOANED_MESSAGES=0
 root@ubuntu:~# ll -thr /dev/shm/fast_datasharing* /dev/shm/fastrtps_*
 ls: cannot access '/dev/shm/fast_datasharing*': No such file or directory
 ls: cannot access '/dev/shm/fastrtps_*': No such file or directory
