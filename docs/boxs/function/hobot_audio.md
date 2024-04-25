@@ -24,7 +24,6 @@ import TabItem from '@theme/TabItem';
 | ------ | ------------ | ---------------------------------- |
 | RDK X3 | Ubuntu 20.04 (Foxy), Ubuntu 22.04 (Humble) | 启动音频模块算法，并在终端显示结果 |
 
-**注意：仅支持RDK X3，RDK X3 Module暂不支持。**
 
 ## 准备工作
 
