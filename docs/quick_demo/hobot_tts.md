@@ -24,7 +24,7 @@ sidebar_position: 8
 
 1. 地平线RDK已烧录好地平线提供的Ubuntu 20.04系统镜像。
 2. 地平线RDK已成功安装TogetheROS.Bot。
-3. 已有地平线适配的音频驱动板，并参考[智能语音章节](../boxs/box_adv#智能语音)搭建好环境。
+3. 已有地平线适配的音频驱动板，并参考[智能语音章节](../boxs/function/hobot_audio)搭建好环境。
 4. 音频板耳机接口连接耳机或音响。
 
 ## 使用方式
@@ -46,6 +46,12 @@ sidebar_position: 8
     ```
 
     如果出现类似`pcmC0D1p`音频播放设备则表示设备正常。
+
+   :::caution
+   首次使用音频板需要使用`srpi-config`进行配置，否则无法识别出音频设备。
+   
+   配置方法参考RDK用户手册[音频转接板](https://developer.horizon.cc/documents_rdk/hardware_development/rdk_x3/audio_board)章节。
+   :::
 
 3. 启动hobot_tts程序
 
