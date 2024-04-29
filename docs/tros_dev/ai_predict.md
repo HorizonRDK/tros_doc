@@ -971,7 +971,7 @@ source ./install/setup.bash
 
 # 从tros.b的安装路径中拷贝出运行示例需要的配置文件。
 # 模型文件
-mkdir -p config && cp /opt/tros/lib/dnn_benchmark_example/config/multitask_body_kps_960x544.hbm config/
+mkdir -p config && cp /opt/tros/lib/dnn_benchmark_example/config/X3/multitask_body_kps_960x544.hbm config/
 # 多目标跟踪配置文件
 cp -r /opt/tros/${TROS_DISTRO}/lib/hobot_mot/config/iou2_method_param.json config/
 
@@ -1000,7 +1000,7 @@ def generate_launch_description():
         PythonLaunchDescriptionSource(
             os.path.join(
                 get_package_share_directory('websocket'),
-                'launch/hobot_websocket_service.launch.py'))
+                'launch/websocket_service.launch.py'))
     )
 
     return LaunchDescription([
