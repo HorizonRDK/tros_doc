@@ -66,7 +66,7 @@ wget http://sunrise.horizon.cc/llm-model/llm_model.tar.gz
 sudo tar -xf llm_model.tar.gz -C /opt/tros/${TROS_DISTRO}/lib/hobot_llm/
 ```
 
-使用命令`srpi-config`修改ION memory大小为1.7GB，设置方法参考RDK用户手册配置工具`srpi-config`使用指南[Performance Options](https://developer.horizon.cc/documents_rdk/configuration/srpi-config#performance-options)章节。
+使用命令`srpi-config`修改ION memory大小为1.9GB，设置方法参考RDK用户手册配置工具`srpi-config`使用指南[Performance Options](https://developer.horizon.cc/documents_rdk/configuration/srpi-config#performance-options)章节。
 
 重启后设置CPU最高频率为1.5GHz，以及调度模式为`performance`，命令如下：
 
@@ -193,4 +193,4 @@ ros2 run hobot_llm hobot_llm_chat
 
 ## 注意事项
 
-确认开发板内存为4GB，同时修改ION memory大小为1.7GB，否则会导致模型加载失败。
+确认开发板内存为4GB，同时修改ION memory大小为1.9GB，否则会导致模型加载失败。
