@@ -971,9 +971,9 @@ source ./install/setup.bash
 
 # 从tros.b的安装路径中拷贝出运行示例需要的配置文件。
 # 模型文件
-mkdir -p config && cp /opt/tros/lib/dnn_benchmark_example/config/multitask_body_kps_960x544.hbm config/
+mkdir -p config && cp /opt/tros/lib/dnn_benchmark_example/config/X3/multitask_body_kps_960x544.hbm config/
 # 多目标跟踪配置文件
-cp -r /opt/tros/lib/hobot_mot/config/iou2_method_param.json config/
+cp -r /opt/tros/${TROS_DISTRO}/lib/hobot_mot/config/iou2_method_param.json config/
 
 
 # 运行cpp_dnn_demo pkg
@@ -1000,7 +1000,7 @@ def generate_launch_description():
         PythonLaunchDescriptionSource(
             os.path.join(
                 get_package_share_directory('websocket'),
-                'launch/hobot_websocket_service.launch.py'))
+                'launch/websocket_service.launch.py'))
     )
 
     return LaunchDescription([
@@ -1255,7 +1255,7 @@ ros2 run mipi_cam mipi_cam --ros-args -p out_format:=nv12 -p image_width:=960 -p
 # 配置tros.b环境
 source /opt/tros/setup.bash
 # 从tros.b的安装路径中拷贝出运行示例需要的配置文件。
-cp -r /opt/tros/lib/mono2d_body_detection/config/ .
+cp -r /opt/tros/${TROS_DISTRO}/lib/mono2d_body_detection/config/ .
 # 启动Node
 ros2 run mono2d_body_detection mono2d_body_detection --ros-args --log-level warn --ros-args -p ai_msg_pub_topic_name:=hobot_hand_detection
 ```
@@ -1270,7 +1270,7 @@ ros2 run mono2d_body_detection mono2d_body_detection --ros-args --log-level warn
 # 配置tros.b环境
 source /opt/tros/setup.bash
 # 从tros.b的安装路径中拷贝出运行示例需要的配置文件。
-cp -r /opt/tros/lib/hand_lmk_detection/config/ .
+cp -r /opt/tros/${TROS_DISTRO}/lib/hand_lmk_detection/config/ .
 # 启动Node
 ros2 run hand_lmk_detection hand_lmk_detection --ros-args --log-level warn --ros-args -p ai_msg_pub_topic_name:=hobot_hand_lmk_detection -p ai_msg_sub_topic_name:=hobot_hand_detection
 ```

@@ -39,9 +39,9 @@ sidebar_position: 3
 
 下面以 JPEG 编码为例，介绍从摄像头或图像发布工具获取NV12格式图片数据，经过JPEG压缩编码后，实现在PC的Web端预览图片。
 
-1. 获取YUV数据，并启动JPGE编码：
+### 地平线RDK平台
 
-    **地平线RDK平台**
+1. 获取YUV数据，并启动JPGE编码：
 
     通过SSH登录地平线RDK，使用mipi_cam作为数据来源，配置hobot_codec输入为NV12格式，输出为JPEG格式，可修改mipi_cam为实际使用的sensor型号。
 
@@ -61,7 +61,20 @@ sidebar_position: 3
     ros2 launch hobot_codec hobot_codec.launch.py codec_in_mode:=shared_mem codec_in_format:=nv12 codec_out_mode:=ros codec_out_format:=jpeg codec_sub_topic:=/hbmem_img codec_pub_topic:=/image_jpeg
     ```
 
-    **X86平台**
+2. Web端查看JPEG编码图像，另起一个终端：
+
+    ```shell
+    source /opt/tros/setup.bash
+    ros2 launch websocket websocket.launch.py websocket_image_topic:=/image_jpeg websocket_only_show_image:=true
+    ```
+
+3. PC打开浏览器（chrome/firefox/edge）输入<http://IP:8000>，IP为地平线RDK/X86设备IP地址，点击左上方Web端展示即可查看JPEG编码的实时画面
+
+    ![web-f37-codec](./image/hobot_codec/web-f37-codec.png "实时图像")
+
+### X86平台
+
+1. 获取YUV数据，并启动JPGE编码：
 
     a. 启动图像发布节点
 
@@ -70,7 +83,7 @@ sidebar_position: 3
     source /opt/tros/setup.bash
 
     //从tros.b的安装路径中拷贝出运行示例需要的图片文件
-    cp -r /opt/tros/lib/hobot_image_publisher/config/ .
+    cp -r /opt/tros/${TROS_DISTRO}/lib/hobot_image_publisher/config/ .
 
     // 启动图像发布节点
     
@@ -92,9 +105,7 @@ sidebar_position: 3
     ros2 launch websocket websocket.launch.py websocket_image_topic:=/image_jpeg websocket_only_show_image:=true
     ```
 
-3. PC打开浏览器（chrome/firefox/edge）输入<http://IP:8000>，IP为地平线RDK/X86设备IP地址，点击左上方Web端展示即可查看JPEG编码的实时画面
-
-    ![web-f37-codec](./image/hobot_codec/web-f37-codec.png "实时图像")
+3. PC打开浏览器（chrome/firefox/edge）输入<http://IP:8000>，IP为地平线RDK/X86设备IP地址，点击左上方Web端展示即可查看JPEG编码的实时画面。
 
 ## 注意事项
 

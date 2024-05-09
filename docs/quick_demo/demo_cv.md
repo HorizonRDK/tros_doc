@@ -66,7 +66,7 @@ package中提供了简单测试程序，输入为本地的ToF图片，调用hobo
 source /opt/tros/setup.bash
 
 # 从tros.b的安装路径中拷贝出运行示例需要的模型和配置文件。
-cp -r /opt/tros/lib/hobot_cv/config/ .
+cp -r /opt/tros/${TROS_DISTRO}/lib/hobot_cv/config/ .
 
 # 启动BPU加速测试程序pkg
 ros2 launch hobot_cv hobot_cv_gaussian_blur.launch.py
@@ -212,7 +212,7 @@ package中提供了简单测试程序，输入为本地的ToF图片，调用hobo
 source /opt/tros/setup.bash
 
 # 从TogetheROS的安装路径中拷贝出运行示例需要的配置文件。
-cp -r /opt/tros/lib/hobot_cv/config/ .
+cp -r /opt/tros/${TROS_DISTRO}/lib/hobot_cv/config/ .
 
 # 启动测试程序pkg
 ros2 launch hobot_cv hobot_cv_neon_blur.launch.py
@@ -285,7 +285,7 @@ error sum:8.43744e+06,max:1,mean_error:0.430833　//均值滤波单张图片总�
 source /opt/tros/setup.bash
 
 # 从tros.b的安装路径中拷贝出运行示例需要的模型和配置文件。
-cp -r /opt/tros/lib/hobot_cv/config/ .
+cp -r /opt/tros/${TROS_DISTRO}/lib/hobot_cv/config/ .
 
 # 启动launch文件
 ros2 launch hobot_cv hobot_cv_crop.launch.py
@@ -347,7 +347,7 @@ ros2 launch hobot_cv hobot_cv_crop.launch.py
 source /opt/tros/setup.bash
 
 # 从TogetheROS的安装路径中拷贝出运行示例需要的模型和配置文件。
-cp -r /opt/tros/lib/hobot_cv/config/ .
+cp -r /opt/tros/${TROS_DISTRO}/lib/hobot_cv/config/ .
 
 # 启动launch文件
 ros2 launch hobot_cv hobot_cv_resize.launch.py
@@ -429,7 +429,7 @@ rotate实现图像旋转功能，暂时只支持NV12格式的图片，支持的�
 source /opt/tros/setup.bash
 
 # 从tros.b的安装路径中拷贝出运行示例需要的模型和配置文件。
-cp -r /opt/tros/lib/hobot_cv/config/ .
+cp -r /opt/tros/${TROS_DISTRO}/lib/hobot_cv/config/ .
 
 # 启动launch文件
 ros2 launch hobot_cv hobot_cv_rotate.launch.py
@@ -508,7 +508,7 @@ sudo bash -c 'echo performance > /sys/devices/system/cpu/cpufreq/policy0/scaling
 source /opt/tros/setup.bash
 
 # 从tros.b的安装路径中拷贝出运行示例需要的模型和配置文件。
-cp -r /opt/tros/lib/hobot_cv/config/ .
+cp -r /opt/tros/${TROS_DISTRO}/lib/hobot_cv/config/ .
 
 # 启动launch文件
 ros2 launch hobot_cv hobot_cv_pyramid.launch.py
