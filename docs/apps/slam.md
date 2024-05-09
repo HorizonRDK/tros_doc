@@ -49,7 +49,23 @@ SLAM指即时定位与地图构建（Simultaneous Localization and Mapping，简
  </TabItem>
  </Tabs>
 
-1. 和地平线RDK在同一网段的PC，PC已安装Ubuntu 20.04/Ubuntu 22.04系统、ROS2桌面版和仿真环境Gazebo，数据可视化工具Rviz2。
+:::caution
+ 如果安装失败，并且报错如下：
+
+ ```bash
+   The following packages have unmet dependencies:
+    ros-foxy-slam-toolbox : Depends: ros-foxy-nav2-map-server but it is not going to be installed
+   E: Unable to correct problems, you have held broken packages.
+ ```
+
+ 请执行以下命令后再安装：
+ 
+   apt update
+
+   sudo apt install libwebp6=0.6.1-2ubuntu0.20.04.3
+:::
+
+4. 和地平线RDK在同一网段的PC，PC已安装Ubuntu 20.04/Ubuntu 22.04系统、ROS2桌面版和仿真环境Gazebo，数据可视化工具Rviz2。
 
  <Tabs groupId="tros-distro">
  <TabItem value="foxy" label="Foxy">
