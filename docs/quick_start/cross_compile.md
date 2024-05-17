@@ -24,6 +24,9 @@ import TabItem from '@theme/TabItem';
 
 该部分操作均在开发机的docker内完成。
 
+<Tabs groupId="tros-distro">
+<TabItem value="foxy" label="Foxy">
+
 ```shell
 ## 创建目录
 cd  /mnt/data/kairui.wang/test
@@ -37,6 +40,28 @@ sudo docker images
 ## 启动docker挂载目录
 sudo docker run -it --entrypoint="/bin/bash" -v PC本地目录:docker目录 imageID，这里以 sudo docker run -it --entrypoint="/bin/bash" -v /mnt/data/kairui.wang/test:/mnt/test 9c2ca340973e 为例
 ```
+
+</TabItem>
+<TabItem value="humble" label="Humble">
+
+
+```shell
+## 创建目录
+cd  /mnt/data/kairui.wang/test
+mkdir -p cc_ws/tros_ws/src
+## 获取交叉编译用docker
+wget http://sunrise.horizon.cc/TogetheROS/cross_compile_docker/pc_tros_ubuntu22.04_v1.0.0.tar.gz
+## 加载docker镜像
+sudo docker load --input pc_tros_ubuntu22.04_v1.0.0.tar.gz 
+## 查看pc_tros对应的image ID
+sudo docker images
+## 启动docker挂载目录
+sudo docker run -it --entrypoint="/bin/bash" -v PC本地目录:docker目录 imageID，这里以 sudo docker run -it --entrypoint="/bin/bash" -v /mnt/data/kairui.wang/test:/mnt/test 9c2ca340973e 为例
+```
+
+</TabItem>
+</Tabs>
+
 
 #### 2 获取tros.b源码
 
