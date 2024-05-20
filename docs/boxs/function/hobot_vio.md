@@ -3,6 +3,11 @@ sidebar_position: 12
 ---
 # 视觉惯性里程计算法
 
+```mdx-code-block
+import Tabs from '@theme/Tabs';
+import TabItem from '@theme/TabItem';
+```
+
 ## 功能介绍
 
 视觉惯性里程计（Visual Inertial Odometry，VIO）是融合相机与惯性测量单元（Inertial Measurement Unit，IMU）数据实现机器人定位的算法。VIO定位算法具有成本低、适用环境广等优点，在室外环境下能够有效弥补卫星定位中遮挡、多路径干扰等失效场景。优秀、鲁棒的VIO算法是实现室外高精度导航定位的关键。
@@ -13,11 +18,12 @@ sidebar_position: 12
 
 | 平台   | 运行方式     | 示例功能                                                     |
 | ------ | ------------ | ------------------------------------------------------------ |
-| RDK X3, RDK X3 Module, RDK Ultra | Ubuntu 20.04 | 使用realsense的图像和IMU数据作为算法输入，算法输出机器人运动轨迹，轨迹可在PC的rviz2上可视化 |
+| RDK X3, RDK X3 Module | Ubuntu 20.04 (Foxy), Ubuntu 22.04 (Humble) | 使用realsense的图像和IMU数据作为算法输入，算法输出机器人运动轨迹，轨迹可在PC的rviz2上可视化 |
+| RDK Ultra | Ubuntu 20.04 (Foxy) | 使用realsense的图像和IMU数据作为算法输入，算法输出机器人运动轨迹，轨迹可在PC的rviz2上可视化 |
 
 ## 准备工作
 
-1. RDK已烧录好地平线提供的Ubuntu 20.04系统镜像。
+1. RDK已烧录好地平线提供的Ubuntu 20.04/Ubuntu 22.04系统镜像。
 
 2. RDK已成功安装TogetheROS.Bot和Realsense的ROS2 Package。
 
@@ -46,10 +52,29 @@ sidebar_position: 12
 
 启动命令：
 
-```shell
+
+<Tabs groupId="tros-distro">
+<TabItem value="foxy" label="Foxy">
+
+```bash
 # 配置tros.b环境
 source /opt/tros/setup.bash
+```
 
+</TabItem>
+
+<TabItem value="humble" label="Humble">
+
+```bash
+# 配置tros.b环境
+source /opt/tros/humble/setup.bash
+```
+
+</TabItem>
+
+</Tabs>
+
+```shell
 ros2 launch hobot_vio hobot_vio.launch.py 
 ```
 

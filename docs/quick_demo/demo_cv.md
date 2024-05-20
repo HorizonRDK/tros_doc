@@ -3,6 +3,11 @@ sidebar_position: 4
 ---
 # 2.4 图像处理加速
 
+```mdx-code-block
+import Tabs from '@theme/Tabs';
+import TabItem from '@theme/TabItem';
+```
+
 ## 高斯滤波
 
 ### 功能介绍
@@ -15,13 +20,13 @@ sidebar_position: 4
 
 | 平台    | 运行方式     | 示例功能                       |
 | ------- | ------------ | ------------------------------ |
-| RDK X3, RDK X3 Module| Ubuntu 20.04 | 读取ToF图片，进行高斯滤波 |
+| RDK X3, RDK X3 Module| Ubuntu 20.04 (Foxy), Ubuntu 22.04 (Humble) | 读取ToF图片，进行高斯滤波 |
 
 ### 准备工作
 
 #### 地平线RDK平台
 
-1. 地平线RDK已烧录好地平线提供的Ubuntu 20.04系统镜像。
+1. 地平线RDK已烧录好地平线提供的Ubuntu 20.04/Ubuntu 22.04系统镜像。
 
 2. 地平线RDK已成功安装TogetheROS.Bot。
 
@@ -61,10 +66,28 @@ package中提供了简单测试程序，输入为本地的ToF图片，调用hobo
 
 #### 地平线RDK平台
 
-```shell
+<Tabs groupId="tros-distro">
+<TabItem value="foxy" label="Foxy">
+
+```bash
 # 配置tros.b环境
 source /opt/tros/setup.bash
+```
 
+</TabItem>
+
+<TabItem value="humble" label="Humble">
+
+```bash
+# 配置tros.b环境
+source /opt/tros/humble/setup.bash
+```
+
+</TabItem>
+
+</Tabs>
+
+```shell
 # 从tros.b的安装路径中拷贝出运行示例需要的模型和配置文件。
 cp -r /opt/tros/${TROS_DISTRO}/lib/hobot_cv/config/ .
 
@@ -183,13 +206,13 @@ hobot_cv高斯滤波NEON加速与opencv高斯滤波性能对比结果如下：
 
 | 平台    | 运行方式      | 示例功能                       |
 | ------- | ------------- | ------------------------------ |
-| RDK X3, RDK X3 Module| Ubuntu 20.04  | 读取ToF图片，进行均值滤波 |
+| RDK X3, RDK X3 Module | Ubuntu 20.04 (Foxy), Ubuntu 22.04 (Humble) | 读取ToF图片，进行均值滤波 |
 
 ### 准备工作
 
 #### 地平线RDK平台
 
-1. 地平线RDK已烧录好地平线提供的Ubuntu 20.04系统镜像。
+1. 地平线RDK已烧录好地平线提供的Ubuntu 20.04/Ubuntu 22.04系统镜像。
 
 2. 地平线RDK已成功安装TogetheROS.Bot。
 
@@ -207,10 +230,28 @@ package中提供了简单测试程序，输入为本地的ToF图片，调用hobo
 
 #### 地平线RDK平台
 
-```shell
-# 配置TogetheROS环境
-source /opt/tros/setup.bash
+<Tabs groupId="tros-distro">
+<TabItem value="foxy" label="Foxy">
 
+```bash
+# 配置tros.b环境
+source /opt/tros/setup.bash
+```
+
+</TabItem>
+
+<TabItem value="humble" label="Humble">
+
+```bash
+# 配置tros.b环境
+source /opt/tros/humble/setup.bash
+```
+
+</TabItem>
+
+</Tabs>
+
+```shell
 # 从TogetheROS的安装路径中拷贝出运行示例需要的配置文件。
 cp -r /opt/tros/${TROS_DISTRO}/lib/hobot_cv/config/ .
 
@@ -266,13 +307,13 @@ error sum:8.43744e+06,max:1,mean_error:0.430833　//均值滤波单张图片总�
 
 | 平台    | 运行方式      | 示例功能                       |
 | ------- | ------------- | ------------------------------ |
-| RDK X3, RDK X3 Module| Ubuntu 20.04  | 读取图片，进行抠图 |
+| RDK X3, RDK X3 Module| Ubuntu 20.04 (Foxy), Ubuntu 22.04 (Humble) | 读取图片，进行抠图 |
 
 ### 准备工作
 
 #### 地平线RDK平台
 
-1. 地平线RDK已烧录好地平线提供的Ubuntu 20.04系统镜像。
+1. 地平线RDK已烧录好地平线提供的Ubuntu 20.04/Ubuntu 22.04系统镜像。
 
 2. 地平线RDK已成功安装TogetheROS.Bot。
 
@@ -280,10 +321,29 @@ error sum:8.43744e+06,max:1,mean_error:0.430833　//均值滤波单张图片总�
 
 #### 地平线RDK平台
 
-```shell
+
+<Tabs groupId="tros-distro">
+<TabItem value="foxy" label="Foxy">
+
+```bash
 # 配置tros.b环境
 source /opt/tros/setup.bash
+```
 
+</TabItem>
+
+<TabItem value="humble" label="Humble">
+
+```bash
+# 配置tros.b环境
+source /opt/tros/humble/setup.bash
+```
+
+</TabItem>
+
+</Tabs>
+
+```shell
 # 从tros.b的安装路径中拷贝出运行示例需要的模型和配置文件。
 cp -r /opt/tros/${TROS_DISTRO}/lib/hobot_cv/config/ .
 
@@ -321,16 +381,17 @@ ros2 launch hobot_cv hobot_cv_crop.launch.py
 
 ### 支持平台
 
-| 平台    | 运行方式      | 示例功能                       |
-| ------- | ------------- | ------------------------------ |
-| RDK X3, RDK X3 Module, RDK Ultra| Ubuntu 20.04  | 读取图片，进行缩放 |
-| X86     | Ubuntu 20.04 | 读取图片，进行缩放 |
+| 平台    | 运行方式      |
+| ------- | ------------- |
+| RDK X3, RDK X3 Module | Ubuntu 20.04 (Foxy), Ubuntu 22.04 (Humble)  |
+| RDK Ultra| Ubuntu 20.04 (Foxy)  |
+| X86     | Ubuntu 20.04 (Foxy) |
 
 ### 准备工作
 
 #### 地平线RDK平台
 
-1. 地平线RDK已烧录好地平线提供的Ubuntu 20.04系统镜像。
+1. 地平线RDK已烧录好地平线提供的Ubuntu 20.04/Ubuntu 22.04系统镜像。
 
 2. 地平线RDK已成功安装TogetheROS.Bot。
 
@@ -342,10 +403,28 @@ ros2 launch hobot_cv hobot_cv_crop.launch.py
 
 #### 地平线RDK/X86
 
-```shell
-# 配置TogetheROS环境
-source /opt/tros/setup.bash
+<Tabs groupId="tros-distro">
+<TabItem value="foxy" label="Foxy">
 
+```bash
+# 配置tros.b环境
+source /opt/tros/setup.bash
+```
+
+</TabItem>
+
+<TabItem value="humble" label="Humble">
+
+```bash
+# 配置tros.b环境
+source /opt/tros/humble/setup.bash
+```
+
+</TabItem>
+
+</Tabs>
+
+```shell
 # 从TogetheROS的安装路径中拷贝出运行示例需要的模型和配置文件。
 cp -r /opt/tros/${TROS_DISTRO}/lib/hobot_cv/config/ .
 
@@ -410,13 +489,13 @@ rotate实现图像旋转功能，暂时只支持NV12格式的图片，支持的�
 
 | 平台    | 运行方式      | 示例功能                       |
 | ------- | ------------- | ------------------------------ |
-| RDK X3, RDK X3 Module| Ubuntu 20.04  | 读取图片，进行旋转 |
+| RDK X3, RDK X3 Module| Ubuntu 20.04 (Foxy), Ubuntu 22.04 (Humble) | 读取图片，进行旋转 |
 
 ### 准备工作
 
 #### 地平线RDK平台
 
-1. 地平线RDK已烧录好地平线提供的Ubuntu 20.04系统镜像。
+1. 地平线RDK已烧录好地平线提供的Ubuntu 20.04/Ubuntu 22.04系统镜像。
 
 2. 地平线RDK已成功安装TogetheROS.Bot。
 
@@ -424,10 +503,29 @@ rotate实现图像旋转功能，暂时只支持NV12格式的图片，支持的�
 
 #### 地平线RDK平台
 
-```shell
+
+<Tabs groupId="tros-distro">
+<TabItem value="foxy" label="Foxy">
+
+```bash
 # 配置tros.b环境
 source /opt/tros/setup.bash
+```
 
+</TabItem>
+
+<TabItem value="humble" label="Humble">
+
+```bash
+# 配置tros.b环境
+source /opt/tros/humble/setup.bash
+```
+
+</TabItem>
+
+</Tabs>
+
+```shell
 # 从tros.b的安装路径中拷贝出运行示例需要的模型和配置文件。
 cp -r /opt/tros/${TROS_DISTRO}/lib/hobot_cv/config/ .
 
@@ -489,13 +587,13 @@ sudo bash -c 'echo performance > /sys/devices/system/cpu/cpufreq/policy0/scaling
 
 | 平台    | 运行方式      | 示例功能                       |
 | ------- | ------------- | ------------------------------ |
-| RDK X3, RDK X3 Module| Ubuntu 20.04  | 读取图片，进行金字塔缩放 |
+| RDK X3, RDK X3 Module| Ubuntu 20.04 (Foxy), Ubuntu 22.04 (Humble) | 读取图片，进行金字塔缩放 |
 
 ### 准备工作
 
 #### 地平线RDK平台
 
-1. 地平线RDK已烧录好地平线提供的Ubuntu 20.04系统镜像。
+1. 地平线RDK已烧录好地平线提供的Ubuntu 20.04/Ubuntu 22.04系统镜像。
 
 2. 地平线RDK已成功安装TogetheROS.Bot。
 
@@ -503,10 +601,29 @@ sudo bash -c 'echo performance > /sys/devices/system/cpu/cpufreq/policy0/scaling
 
 #### 地平线RDK平台
 
-```shell
+
+<Tabs groupId="tros-distro">
+<TabItem value="foxy" label="Foxy">
+
+```bash
 # 配置tros.b环境
 source /opt/tros/setup.bash
+```
 
+</TabItem>
+
+<TabItem value="humble" label="Humble">
+
+```bash
+# 配置tros.b环境
+source /opt/tros/humble/setup.bash
+```
+
+</TabItem>
+
+</Tabs>
+
+```shell
 # 从tros.b的安装路径中拷贝出运行示例需要的模型和配置文件。
 cp -r /opt/tros/${TROS_DISTRO}/lib/hobot_cv/config/ .
 

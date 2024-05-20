@@ -4,6 +4,11 @@ sidebar_position: 7
 
 # 2.7 工具
 
+```mdx-code-block
+import Tabs from '@theme/Tabs';
+import TabItem from '@theme/TabItem';
+```
+
 ## 图像发布工具
 
 ### 功能介绍
@@ -20,18 +25,20 @@ sidebar_position: 7
 
 | 平台    | 运行方式     |
 | ------- | ------------ |
-| RDK X3, RDK X3 Module, RDK Ultra| Ubuntu 20.04 |
-| X86     | Ubuntu 20.04 |
+| RDK X3, RDK X3 Module | Ubuntu 20.04 (Foxy), Ubuntu 22.04 (Humble) |
+| RDK Ultra | Ubuntu 20.04 (Foxy) |
+| X86     | Ubuntu 20.04 (Foxy) |
 
-***X86平台不支持将H.264、H.265视频解码为NV12格式，因此H.264、H.265视频发布功能无法在X86平台展示。***
-
-***RDK Ultra不支持将H.264视频解码为NV12格式，因此H.264视频发布功能无法在RDK Ultra平台展示。***
+:::caution
+X86平台不支持将H.264、H.265视频解码为NV12格式，因此H.264、H.265视频发布功能无法在X86平台展示。
+RDK Ultra不支持将H.264视频解码为NV12格式，因此H.264视频发布功能无法在RDK Ultra平台展示。
+:::
 
 ### 准备工作
 
 #### 地平线RDK平台
 
-1. 地平线RDK已烧录好地平线提供的Ubuntu 20.04系统镜像
+1. 地平线RDK已烧录好地平线提供的Ubuntu 20.04/Ubuntu 22.04系统镜像
 
 2. 地平线RDK已成功安装tros.b
 
@@ -49,10 +56,28 @@ sidebar_position: 7
 
 #### 地平线RDK/X86平台
 
-```shell
+<Tabs groupId="tros-distro">
+<TabItem value="foxy" label="Foxy">
+
+```bash
 # 配置tros.b环境
 source /opt/tros/setup.bash
+```
 
+</TabItem>
+
+<TabItem value="humble" label="Humble">
+
+```bash
+# 配置tros.b环境
+source /opt/tros/humble/setup.bash
+```
+
+</TabItem>
+
+</Tabs>
+
+```shell
 # 从tros.b的安装路径中拷贝出运行示例需要的图片文件
 cp -r /opt/tros/${TROS_DISTRO}/lib/hobot_image_publisher/config/ .
 
@@ -85,10 +110,29 @@ webserver has launch
 
 #### 地平线RDK平台
 
-```shell
+
+<Tabs groupId="tros-distro">
+<TabItem value="foxy" label="Foxy">
+
+```bash
 # 配置tros.b环境
 source /opt/tros/setup.bash
+```
 
+</TabItem>
+
+<TabItem value="humble" label="Humble">
+
+```bash
+# 配置tros.b环境
+source /opt/tros/humble/setup.bash
+```
+
+</TabItem>
+
+</Tabs>
+
+```shell
 # 从tros.b的安装路径中拷贝出运行示例需要的图片文件
 cp -r /opt/tros/${TROS_DISTRO}/lib/hobot_image_publisher/config/ .
 
@@ -98,10 +142,29 @@ ros2 launch hobot_image_publisher hobot_image_publisher_videolist_demo.launch.py
 
 #### X86平台
 
-```shell
+
+<Tabs groupId="tros-distro">
+<TabItem value="foxy" label="Foxy">
+
+```bash
 # 配置tros.b环境
 source /opt/tros/setup.bash
+```
 
+</TabItem>
+
+<TabItem value="humble" label="Humble">
+
+```bash
+# 配置tros.b环境
+source /opt/tros/humble/setup.bash
+```
+
+</TabItem>
+
+</Tabs>
+
+```shell
 # 从tros.b的安装路径中拷贝出运行示例需要的图片文件
 cp -r /opt/tros/${TROS_DISTRO}/lib/hobot_image_publisher/config/ .
 
@@ -148,7 +211,7 @@ trigger_node package 是地平线基于ROS2开发的Trigger基础模块，用于
 
 | 平台    | 运行方式      | 示例功能                       |
 | ------- | ------------ | ------------------------------ |
-| RDK X3, RDK X3 Module| Ubuntu 20.04 | · 启动MIPI/USB摄像头，触发记录的rosbag数据记录在本地 |
+| RDK X3, RDK X3 Module| Ubuntu 20.04 (Foxy), Ubuntu 22.04 (Humble) | · 启动MIPI/USB摄像头，触发记录的rosbag数据记录在本地 |
 
 ### 使用说明
 
@@ -225,7 +288,7 @@ struct Config {
 
 #### 地平线RDK平台
 
-1. 地平线RDK已烧录好地平线提供的Ubuntu 20.04系统镜像。
+1. 地平线RDK已烧录好地平线提供的Ubuntu 20.04/Ubuntu 22.04系统镜像。
 
 2. 地平线RDK已成功安装TogetheROS.Bot。
 
@@ -235,10 +298,31 @@ struct Config {
 
 **使用MIPI摄像头发布图片**
 
-```shell
-# 配置ROS2环境
-source /opt/tros/setup.bash
+<Tabs groupId="tros-distro">
+<TabItem value="foxy" label="Foxy">
 
+```bash
+# 配置tros.b环境
+source /opt/tros/setup.bash
+```
+
+</TabItem>
+
+<TabItem value="humble" label="Humble">
+
+```bash
+# 安装mcap包
+apt install ros-humble-rosbag2-storage-mcap
+
+# 配置tros.b环境
+source /opt/tros/humble/setup.bash
+```
+
+</TabItem>
+
+</Tabs>
+
+```shell
 # 从tros的安装路径中拷贝出运行示例需要的配置文件。
 cp -r /opt/tros/${TROS_DISTRO}/lib/mono2d_trash_detection/config/ .
 cp -r /opt/tros/${TROS_DISTRO}/lib/trigger_node_example/config/ .
@@ -252,10 +336,28 @@ ros2 launch trigger_node_example hobot_trigger_example.launch.py
 
 **使用usb摄像头发布图片**
 
-```shell
-# 配置ROS2环境
-source /opt/tros/setup.bash
+<Tabs groupId="tros-distro">
+<TabItem value="foxy" label="Foxy">
 
+```bash
+# 配置tros.b环境
+source /opt/tros/setup.bash
+```
+
+</TabItem>
+
+<TabItem value="humble" label="Humble">
+
+```bash
+# 配置tros.b环境
+source /opt/tros/humble/setup.bash
+```
+
+</TabItem>
+
+</Tabs>
+
+```shell
 # 从tros的安装路径中拷贝出运行示例需要的配置文件。
 cp -r /opt/tros/${TROS_DISTRO}/lib/mono2d_trash_detection/config/ .
 cp -r /opt/tros/${TROS_DISTRO}/lib/trigger_node_example/config/ .
@@ -333,10 +435,29 @@ Trigger模块支持由其他节点下发Trigger任务,控制Trigger配置。下�
 ##### 运行
 
 在前面启动Trigger节点基础上,在另一个终端,发布话题名为"/hobot_agent"的std_msg话题消息。
-```shell
+
+<Tabs groupId="tros-distro">
+<TabItem value="foxy" label="Foxy">
+
+```bash
 # 配置tros.b环境
 source /opt/tros/setup.bash
+```
 
+</TabItem>
+
+<TabItem value="humble" label="Humble">
+
+```bash
+# 配置tros.b环境
+source /opt/tros/humble/setup.bash
+```
+
+</TabItem>
+
+</Tabs>
+
+```shell
 # 发布话题名为"/hobot_agent"的std_msg话题消息
 ros2 topic pub /hobot_agent std_msgs/String "data: '{\"version\":\"v0.0.1_20230421\",\"trigger_status\":true,\"strategy\":[{\"src_module_id\":203,\"trigger_type\":1110,\"status\":true,\"level\":1,\"desc\":\"test\",\"duration_ts_back\":5000,\"duration_ts_front\":3000}]}'"
 ```

@@ -18,9 +18,10 @@ sidebar_position: 4
 
 ## 支持平台
 
-| 平台    | 运行方式 | 示例功能           |
-| ------- | ---------| ------------------ |
-| RDK X3, RDK X3 Module, RDK Ultra| Ubuntu 20.04    | 展示如何生成火焰图 |
+| 平台    | 运行方式 |
+| ------- | ---------|
+| RDK X3, RDK X3 Module | Ubuntu 20.04 (Foxy), Ubuntu 22.04 (Humble)    |
+| RDK Ultra| Ubuntu 20.04 (Foxy) |
 
 ## 准备工作
 

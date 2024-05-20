@@ -4,6 +4,11 @@ sidebar_position: 6
 
 # 4.6 语音控制小车运动
 
+```mdx-code-block
+import Tabs from '@theme/Tabs';
+import TabItem from '@theme/TabItem';
+```
+
 ## 功能介绍
 
 语音控制小车运动功能通过语音控制机器人向前、向后、向左、向右运动，需要搭配地平线机器人操作系统的智能语音模块一起使用。流程如下图：
@@ -18,7 +23,7 @@ APP以PC端Gazebo仿真环境下的虚拟小车举例，发布的控制指令也
 
 | 平台     | 运行方式      | 示例功能                       |
 | -------- | ------------ | ------------------------------ |
-| RDK X3 | Ubuntu 20.04 | 启动智能语音模块解析语音信息并进行语音控制，通过Gazebo展示控制效果 |
+| RDK X3 | Ubuntu 20.04 (Foxy), Ubuntu 22.04 (Humble) | 启动智能语音模块解析语音信息并进行语音控制，通过Gazebo展示控制效果 |
 
 **注意：仅支持RDK X3，RDK X3 Module暂不支持。**
 
@@ -26,17 +31,39 @@ APP以PC端Gazebo仿真环境下的虚拟小车举例，发布的控制指令也
 
 ### 地平线RDK平台
 
-1. 地平线RDK已烧录好地平线提供的Ubuntu 20.04镜像。
+1. 地平线RDK已烧录好地平线提供的Ubuntu 20.04/Ubuntu 22.04镜像。
 
 2. 地平线RDK已成功安装TogetheROS.Bot。
 
-3. 地平线RDK已成功安装智能语音算法包，安装命令：`apt update; apt install tros-hobot-audio`。
+3. 地平线RDK已成功安装智能语音算法包，安装命令：
 
-4. 地平线RDK已成功接好适配的音频板（可参考[智能语音章节](../boxs/box_adv#智能语音)）。
+   <Tabs groupId="tros-distro">
+   <TabItem value="foxy" label="Foxy">
+
+   ```bash
+   sudo apt update
+   sudo apt install tros-hobot-audio
+   ```
+
+   </TabItem>
+   <TabItem value="humble" label="Humble">
+
+   ```bash
+   sudo apt update
+   sudo apt install tros-humble-hobot-audio
+   ```
+
+   </TabItem>
+   </Tabs>
+
+4. 地平线RDK已成功接好适配的音频板（可参考[智能语音章节](../boxs/function/hobot_audio.md)）。
 
 5. 和地平线RDK在同一网段（有线或者连接同一无线网，IP地址前三段需保持一致）的PC，PC端需要安装的环境包括：
 
-   - [ROS2 Foxy桌面版](https://docs.ros.org/en/foxy/Installation/Ubuntu-Install-Debians.html)
+ <Tabs groupId="tros-distro">
+ <TabItem value="foxy" label="Foxy">
+
+   - Ubuntu 20.04系统和[ROS2 Foxy桌面版](https://docs.ros.org/en/foxy/Installation/Ubuntu-Install-Debians.html)
    - Gazebo和Turtlebot3相关的功能包，安装方法：
 
     ```shell
@@ -45,12 +72,43 @@ APP以PC端Gazebo仿真环境下的虚拟小车举例，发布的控制指令也
     sudo apt install ros-foxy-turtlebot3-simulations
     ```
 
+ </TabItem>
+ <TabItem value="humble" label="Humble">
+
+   - Ubuntu 22.04系统和[ROS2 Humble桌面版](https://docs.ros.org/en/humble/Installation/Ubuntu-Install-Debians.html)
+   - Gazebo和Turtlebot3相关的功能包，安装方法：
+
+    ```shell
+    sudo apt-get install ros-humble-gazebo-*
+    sudo apt install ros-humble-turtlebot3
+    sudo apt install ros-humble-turtlebot3-simulations
+    ```
+
+ </TabItem>
+ </Tabs>
+
 ## 使用介绍
 
 PC端启动仿真环境：
 
+<Tabs groupId="tros-distro">
+<TabItem value="foxy" label="Foxy">
+
 ```shell
 source /opt/ros/foxy/setup.bash
+```
+
+</TabItem>
+<TabItem value="humble" label="Humble">
+
+```shell
+source /opt/ros/humble/setup.bash
+```
+
+</TabItem>
+</Tabs>
+
+```shell
 export TURTLEBOT3_MODEL=burger
 ros2 launch turtlebot3_gazebo empty_world.launch.py
 ```
@@ -63,6 +121,25 @@ ros2 launch turtlebot3_gazebo empty_world.launch.py
 
 1. 拷贝音频配置文件
 
+ <Tabs groupId="tros-distro">
+ <TabItem value="foxy" label="Foxy">
+
+    ```bash
+    # 配置tros.b环境
+    source /opt/tros/setup.bash
+    ```
+
+ </TabItem>
+ <TabItem value="humble" label="Humble">
+
+    ```bash
+    # 配置tros.b环境
+    source /opt/tros/humble/setup.bash
+    ```
+
+ </TabItem>
+ </Tabs>
+
     ```shell
     # 从tros.b的安装路径中拷贝出运行示例需要的配置文件。
     cp -r /opt/tros/${TROS_DISTRO}/lib/hobot_audio/config/ .
@@ -74,10 +151,28 @@ ros2 launch turtlebot3_gazebo empty_world.launch.py
 
 3. 启动程序
 
-    ```shell
+    <Tabs groupId="tros-distro">
+    <TabItem value="foxy" label="Foxy">
+
+    ```bash
     # 配置tros.b环境
     source /opt/tros/setup.bash
+    ```
 
+    </TabItem>
+
+    <TabItem value="humble" label="Humble">
+
+    ```bash
+    # 配置tros.b环境
+    source /opt/tros/humble/setup.bash
+    ```
+
+    </TabItem>
+
+    </Tabs>
+
+    ```shell
     #启动launch文件
     ros2 launch audio_control audio_control.launch.py
     ```

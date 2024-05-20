@@ -4,6 +4,11 @@ sidebar_position: 4
 
 # 4.4 小车人体跟随
 
+```mdx-code-block
+import Tabs from '@theme/Tabs';
+import TabItem from '@theme/TabItem';
+```
+
 ## 功能介绍
 
 小车人体跟随App功能为控制机器人跟随人体移动，App由MIPI图像采集、人体检测和跟踪、人体跟随策略、图像编解码、Web展示端组成，流程如下图：
@@ -16,15 +21,16 @@ App以PC端Gazebo仿真环境下的虚拟小车举例，发布的控制指令也
 
 ## 支持平台
 
-| 平台    | 运行方式      | 示例功能                       |
-| ------- | ------------ | ------------------------------ |
-| RDK X3, RDK X3 Module, RDK Ultra| Ubuntu 20.04 | 启动MIPI/USB摄像头获取图像，并进行人体关键点检测以及人体跟踪，最后通过Gazebo展示跟随效果 |
+| 平台    | 运行方式      |
+| ------- | ------------ |
+| RDK X3, RDK X3 Module | Ubuntu 20.04 (Foxy), Ubuntu 22.04 (Humble)|
+| RDK Ultra | Ubuntu 20.04 (Foxy) |
 
 ## 准备工作
 
 ### 地平线RDK平台
 
-1. 地平线RDK已烧录好地平线提供的Ubuntu 20.04系统镜像。
+1. 地平线RDK已烧录好地平线提供的Ubuntu 20.04/Ubuntu 22.04系统镜像。
 
 2. 地平线RDK已成功安装TogetheROS.Bot。
 
@@ -32,8 +38,10 @@ App以PC端Gazebo仿真环境下的虚拟小车举例，发布的控制指令也
 
 4. 和地平线RDK在同一网段（有线或者连接同一无线网，IP地址前三段需保持一致）的PC，PC端需要安装的环境包括：
 
-   - Ubuntu 20.04系统
-   - [ROS2 Foxy桌面版](https://docs.ros.org/en/foxy/Installation/Ubuntu-Install-Debians.html)
+ <Tabs groupId="tros-distro">
+ <TabItem value="foxy" label="Foxy">
+
+   - Ubuntu 20.04系统和[ROS2 Foxy桌面版](https://docs.ros.org/en/foxy/Installation/Ubuntu-Install-Debians.html)
    - Gazebo和Turtlebot3相关的功能包，安装方法：
 
     ```shell
@@ -41,6 +49,21 @@ App以PC端Gazebo仿真环境下的虚拟小车举例，发布的控制指令也
     sudo apt install ros-foxy-turtlebot3
     sudo apt install ros-foxy-turtlebot3-simulations
     ```
+
+ </TabItem>
+ <TabItem value="humble" label="Humble">
+
+   - Ubuntu 22.04系统和[ROS2 Humble桌面版](https://docs.ros.org/en/humble/Installation/Ubuntu-Install-Debians.html)
+   - Gazebo和Turtlebot3相关的功能包，安装方法：
+
+    ```shell
+    sudo apt-get install ros-humble-gazebo-*
+    sudo apt install ros-humble-turtlebot3
+    sudo apt install ros-humble-turtlebot3-simulations
+    ```
+
+ </TabItem>
+ </Tabs>
 
 ## 使用介绍
 
@@ -52,8 +75,24 @@ APP启动后可以在PC端浏览器上渲染显示sensor发布的图片和对应
 
 PC端启动仿真环境：
 
+<Tabs groupId="tros-distro">
+<TabItem value="foxy" label="Foxy">
+
 ```shell
 source /opt/ros/foxy/setup.bash
+```
+
+</TabItem>
+<TabItem value="humble" label="Humble">
+
+```shell
+source /opt/ros/humble/setup.bash
+```
+
+</TabItem>
+</Tabs>
+
+```shell
 export TURTLEBOT3_MODEL=burger
 ros2 launch turtlebot3_gazebo empty_world.launch.py
 ```
@@ -64,6 +103,9 @@ ros2 launch turtlebot3_gazebo empty_world.launch.py
 
 
 **使用mipi摄像头发布图片**
+
+<Tabs groupId="tros-distro">
+<TabItem value="foxy" label="Foxy">
 
 ```shell
 # 配置tros.b环境
@@ -79,7 +121,32 @@ export CAM_TYPE=mipi
 ros2 launch body_tracking body_tracking_without_gesture.launch.py
 ```
 
+</TabItem>
+
+<TabItem value="humble" label="Humble">
+
+```shell
+# 配置tros.b环境
+source /opt/tros/humble/setup.bash
+
+# 从TogetheROS的安装路径中拷贝出运行示例需要的配置文件。
+cp -r /opt/tros/${TROS_DISTRO}/lib/mono2d_body_detection/config/ .
+
+# 配置MIPI摄像头
+export CAM_TYPE=mipi
+
+# 启动launch文件
+ros2 launch body_tracking body_tracking_without_gesture.launch.py
+```
+
+</TabItem>
+
+</Tabs>
+
 **使用USB摄像头发布图片**
+
+<Tabs groupId="tros-distro">
+<TabItem value="foxy" label="Foxy">
 
 ```shell
 # 配置tros.b环境
@@ -94,6 +161,28 @@ export CAM_TYPE=usb
 # 启动launch文件
 ros2 launch body_tracking body_tracking_without_gesture.launch.py
 ```
+
+</TabItem>
+
+<TabItem value="humble" label="Humble">
+
+```shell
+# 配置tros.b环境
+source /opt/tros/humble/setup.bash
+
+# 从tros.b的安装路径中拷贝出运行示例需要的配置文件。
+cp -r /opt/tros/${TROS_DISTRO}/lib/mono2d_body_detection/config/ .
+
+# 配置USB摄像头
+export CAM_TYPE=usb
+
+# 启动launch文件
+ros2 launch body_tracking body_tracking_without_gesture.launch.py
+```
+
+</TabItem>
+
+</Tabs>
 
 ## 结果分析
 

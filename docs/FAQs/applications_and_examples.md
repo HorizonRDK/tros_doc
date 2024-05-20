@@ -20,7 +20,6 @@ sudo chmod 0600 swap
 sudo mkswap -f swap 
 sudo swapon swap 
 free
-
 ```
 
 ## 如何运行GC4633摄像头示例？
@@ -58,7 +57,7 @@ Linux镜像rootfs经过最小剪裁，无法支持板端编译。
 
 在Linux镜像上，这三步分别为：
 
-1、使用`export LD_LIBRARY_PATH`命令配置`tros.b`环境
+1、使用`export LD_LIBRARY_PATH`命令配置`tros.b`环境；使用`export ROS_LOG_DIR`命令修改存储log文件的路径。
 
 2、拷贝需要的配置文件到执行路径下
 
@@ -164,6 +163,7 @@ config  example
 ```shell
 # 配置tros.b环境
 export LD_LIBRARY_PATH=${LD_LIBRARY_PATH}:/opt/tros/lib/
+export ROS_LOG_DIR=/userdata/
 
 # 从tros.b的安装路径中拷贝出运行示例需要的配置文件。config中为example使用的模型，回灌使用的本地图片
 cp -r /opt/tros/${TROS_DISTRO}/lib/dnn_node_example/config/ .
@@ -171,6 +171,25 @@ cp -r /opt/tros/${TROS_DISTRO}/lib/dnn_node_example/config/ .
 # 使用本地jpg格式图片进行回灌预测，并存储渲染后的图片
 /opt/tros/lib/dnn_node_example/example --ros-args -p feed_type:=0 -p image_type:=0 -p dump_render_img:=1
 ```
+
+:::tip
+除了使用环境变量`ROS_LOG_DIR`设置log路径外，还可以通过启动参数`--ros-args --disable-external-lib-logs`禁止node输出log到
+文件。
+
+使用举例：
+```bash
+# 配置tros.b环境
+export LD_LIBRARY_PATH=${LD_LIBRARY_PATH}:/opt/tros/lib/
+
+# 从tros.b的安装路径中拷贝出运行示例需要的配置文件。config中为example使用的模型，回灌使用的本地图片
+cp -r /opt/tros/${TROS_DISTRO}/lib/dnn_node_example/config/ .
+
+# 使用本地jpg格式图片进行回灌预测，并存储渲染后的图片
+/opt/tros/lib/dnn_node_example/example --ros-args --disable-external-lib-logs --ros-args -p feed_type:=0 -p image_type:=0 -p dump_render_img:=1
+```
+
+详细说明参考[About-Logging](https://docs.ros.org/en/humble/Concepts/Intermediate/About-Logging.html)。
+:::
 
 ## 如何查找launch启动脚本所在路径
 
@@ -341,3 +360,119 @@ root@ubuntu:~#
 3、使用`ros2 topic echo [话题名]`命令确认是否有感知结果数据。
 
 4、使用`ps -x`命令检查是否有启动多个web node，如果有请使用`kill`命令停止所有web node进程后再启动。
+
+## TROS Humble版本使用零拷贝
+
+**Ubuntu系统**
+
+参考[hobot_shm](https://github.com/HorizonRDK/hobot_shm/blob/develop/README_cn.md
+)的使用说明。
+
+**Linux系统**
+
+使用以下命令设置零拷贝环境：
+
+```bash
+export RMW_IMPLEMENTATION=rmw_fastrtps_cpp
+export FASTRTPS_DEFAULT_PROFILES_FILE=/opt/tros/humble/lib/hobot_shm/config/shm_fastdds.xml
+export RMW_FASTRTPS_USE_QOS_FROM_XML=1
+export ROS_DISABLE_LOANED_MESSAGES=0
+```
+
+以上命令同样适用于Ubuntu系统。
+
+环境变量的说明参考[ROS 2 using Fast DDS middleware](https://fast-dds.docs.eprosima.com/en/latest/fastdds/ros2/ros2.html)。
+
+**检查是否使用零拷贝传输数据**
+
+启动程序后，使用命令查看是否有内存映射文件生成，如果有说明已经使用零拷贝传输数据：
+
+```bash
+ll -thr /dev/shm/fast_datasharing* /dev/shm/fastrtps_*
+```
+
+使用举例：
+
+- 设置零拷贝环境
+
+```bash
+root@ubuntu:~# source /opt/tros/humble/setup.bash
+root@ubuntu:~# export RMW_IMPLEMENTATION=rmw_fastrtps_cpp
+root@ubuntu:~# export FASTRTPS_DEFAULT_PROFILES_FILE=/opt/tros/humble/lib/hobot_shm/config/shm_fastdds.xml
+root@ubuntu:~# export RMW_FASTRTPS_USE_QOS_FROM_XML=1
+root@ubuntu:~# export ROS_DISABLE_LOANED_MESSAGES=0
+root@ubuntu:~# ll -thr /dev/shm/fast_datasharing* /dev/shm/fastrtps_*
+ls: cannot access '/dev/shm/fast_datasharing*': No such file or directory
+ls: cannot access '/dev/shm/fastrtps_*': No such file or directory
+```
+
+可以看到，只设置零拷贝环境的情况下没有生成内存映射文件，因为内存映射文件需要由程序创建。
+
+- 运行mipi_cam node通过零拷贝发布数据
+
+```bash
+source /opt/tros/humble/setup.bash
+ros2 launch mipi_cam mipi_cam.launch.py mipi_video_device:=F37
+```
+
+- 再次查看内存映射文件
+
+```bash
+root@ubuntu:~# ll -thr /dev/shm/fast_datasharing* /dev/shm/fastrtps_*
+-rw-r--r-- 1 root root    0 Mar 26 14:01 /dev/shm/fastrtps_311b4cf8328b77f9_el
+-rw-r--r-- 1 root root 537K Mar 26 14:01 /dev/shm/fastrtps_311b4cf8328b77f9
+-rw-r--r-- 1 root root  36M Mar 26 14:01 /dev/shm/fast_datasharing_01.0f.1d.90.d8.ac.a8.ff.01.00.00.00_0.0.1f.3
+-rw-r--r-- 1 root root    0 Mar 26 14:17 /dev/shm/fastrtps_eef6d2045292439c_el
+-rw-r--r-- 1 root root 537K Mar 26 14:17 /dev/shm/fastrtps_eef6d2045292439c
+-rw-r--r-- 1 root root    0 Mar 26 14:17 /dev/shm/fastrtps_port17913_el
+-rw-r--r-- 1 root root  52K Mar 26 14:17 /dev/shm/fastrtps_port17913
+-rw-r--r-- 1 root root  36M Mar 26 14:17 /dev/shm/fast_datasharing_01.0f.1d.90.21.42.cb.90.01.00.00.00_0.0.1f.3
+```
+
+以上log显示，启用零拷贝功能并且运行mipi_cam node后，在/dev/shm目录下出现了多个文件，说明mipi_cam node**支持使用零拷贝**发布数据。
+
+- 启动零拷贝消息订阅
+
+```bash
+source /opt/tros/humble/setup.bash
+ros2 launch hobot_codec hobot_codec.launch.py codec_in_mode:=shared_mem codec_in_format:=nv12 codec_out_mode:=ros codec_out_format:=jpeg codec_sub_topic:=/hbmem_img codec_pub_topic:=/image_jpeg
+```
+
+- 再次查看内存映射文件
+
+```bash
+root@ubuntu:~# ll -thr /dev/shm/fast_datasharing* /dev/shm/fastrtps_*
+-rw-r--r-- 1 root root    0 Mar 26 14:01 /dev/shm/fastrtps_311b4cf8328b77f9_el
+-rw-r--r-- 1 root root 537K Mar 26 14:01 /dev/shm/fastrtps_311b4cf8328b77f9
+-rw-r--r-- 1 root root  36M Mar 26 14:01 /dev/shm/fast_datasharing_01.0f.1d.90.d8.ac.a8.ff.01.00.00.00_0.0.1f.3
+-rw-r--r-- 1 root root    0 Mar 26 14:17 /dev/shm/fastrtps_eef6d2045292439c_el
+-rw-r--r-- 1 root root 537K Mar 26 14:17 /dev/shm/fastrtps_eef6d2045292439c
+-rw-r--r-- 1 root root    0 Mar 26 14:17 /dev/shm/fastrtps_port17913_el
+-rw-r--r-- 1 root root  52K Mar 26 14:17 /dev/shm/fastrtps_port17913
+-rw-r--r-- 1 root root  36M Mar 26 14:17 /dev/shm/fast_datasharing_01.0f.1d.90.21.42.cb.90.01.00.00.00_0.0.1f.3
+-rw-r--r-- 1 root root    0 Mar 26 14:19 /dev/shm/fastrtps_dbda9faf3f77dee0_el
+-rw-r--r-- 1 root root 537K Mar 26 14:19 /dev/shm/fastrtps_dbda9faf3f77dee0
+-rw-r--r-- 1 root root    0 Mar 26 14:19 /dev/shm/fastrtps_port17915_el
+-rw-r--r-- 1 root root  52K Mar 26 14:19 /dev/shm/fastrtps_port17915
+-rw-r--r-- 1 root root  22K Mar 26 14:19 /dev/shm/fast_datasharing_01.0f.1d.90.23.5d.bd.63.01.00.00.00_0.0.1e.4
+root@ubuntu:~#
+root@ubuntu:~# lsof /dev/shm/fast_datasharing*
+COMMAND       PID USER  FD   TYPE DEVICE SIZE/OFF     NODE NAME
+mipi_cam  2507297 root mem    REG   0,17 37327756 18131245 /dev/shm/fast_datasharing_01.0f.1d.90.21.42.cb.90.01.00.00.00_0.0.1f.3
+mipi_cam  2507297 root mem    REG   0,17    21656 18149313 /dev/shm/fast_datasharing_01.0f.1d.90.23.5d.bd.63.01.00.00.00_0.0.1e.4
+hobot_cod 2514211 root mem    REG   0,17 37327756 18131245 /dev/shm/fast_datasharing_01.0f.1d.90.21.42.cb.90.01.00.00.00_0.0.1f.3
+hobot_cod 2514211 root mem    REG   0,17    21656 18149313 /dev/shm/fast_datasharing_01.0f.1d.90.23.5d.bd.63.01.00.00.00_0.0.1e.4
+```
+
+可以看到，/dev/shm目录下出现了新的内存映射文件，并且这些文件被mipi_cam和hobot_codec进程占用，说明hobot_codec node在通过零拷贝订阅mipi_cam node发布的数据。
+
+
+**禁用零拷贝功能**
+
+通过环境变量`ROS_DISABLE_LOANED_MESSAGES`禁止零拷贝功能，具有最高控制优先级：
+
+```bash
+export ROS_DISABLE_LOANED_MESSAGES=1
+```
+
+禁用零拷贝功能配置详细说明参考[how-to-disable-loaned-messages](https://docs.ros.org/en/humble/How-To-Guides/Configure-ZeroCopy-loaned-messages.html#how-to-disable-loaned-messages)。

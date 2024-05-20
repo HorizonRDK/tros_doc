@@ -4,6 +4,11 @@ sidebar_position: 9
 
 # 2.9 大语言模型
 
+```mdx-code-block
+import Tabs from '@theme/Tabs';
+import TabItem from '@theme/TabItem';
+```
+
 ## 功能介绍
 
 本章节介如何在地平线RDK平台体验端侧Large Language Model (LLM)。
@@ -14,7 +19,7 @@ sidebar_position: 9
 
 | 平台                            | 运行方式     | 示例功能           |
 | ------------------------------- | ------------ | ------------------ |
-| RDK X3, RDK X3 Module (4GB内存) | Ubuntu 20.04 | 端侧大语言模型体验 |
+| RDK X3, RDK X3 Module (4GB内存) | Ubuntu 20.04 (Foxy), Ubuntu 22.04 (Humble) | 端侧大语言模型体验 |
 
 **注意：仅支持RDK X3，RDK X3 Module 4GB内存版本。**
 
@@ -23,7 +28,7 @@ sidebar_position: 9
 ### 地平线RDK平台
 
 1. 地平线RDK为4GB内存版本
-2. 地平线RDK已烧录好地平线提供的Ubuntu 20.04系统镜像。
+2. 地平线RDK已烧录好地平线提供的Ubuntu 20.04/Ubuntu 22.04系统镜像。
 3. 地平线RDK已成功安装TogetheROS.Bot。
 4. 安装transformers，命令为 `pip3 install transformers -i https://pypi.tuna.tsinghua.edu.cn/simple`。
 5. 更新hobot-dnn，命令为 `sudo apt update; sudo apt install hobot-dnn`。
@@ -33,6 +38,25 @@ sidebar_position: 9
 ### 地平线RDK平台
 
 运行程序前，需要下载模型文件并解压，命令如下：
+
+ <Tabs groupId="tros-distro">
+ <TabItem value="foxy" label="Foxy">
+
+ ```bash
+ # 配置tros.b环境
+ source /opt/tros/setup.bash
+ ```
+
+ </TabItem>
+ <TabItem value="humble" label="Humble">
+
+ ```bash
+ # 配置tros.b环境
+ source /opt/tros/humble/setup.bash
+ ```
+
+ </TabItem>
+ </Tabs>
 
 ```bash
 # 下载模型文件
@@ -55,9 +79,28 @@ sudo bash -c 'echo performance > /sys/devices/system/cpu/cpufreq/policy0/scaling
 
 #### 终端交互体验
 
-```bash
-source /opt/tros/setup.bash
+<Tabs groupId="tros-distro">
+<TabItem value="foxy" label="Foxy">
 
+```bash
+# 配置tros.b环境
+source /opt/tros/setup.bash
+```
+
+</TabItem>
+
+<TabItem value="humble" label="Humble">
+
+```bash
+# 配置tros.b环境
+source /opt/tros/humble/setup.bash
+```
+
+</TabItem>
+
+</Tabs>
+
+```bash
 ros2 run hobot_llm hobot_llm_chat
 ```
 
@@ -67,25 +110,82 @@ ros2 run hobot_llm hobot_llm_chat
 
 1. 启动 hobot_llm
 
-    ```bash
-    source /opt/tros/setup.bash
+    <Tabs groupId="tros-distro">
+    <TabItem value="foxy" label="Foxy">
 
+    ```bash
+    # 配置tros.b环境
+    source /opt/tros/setup.bash
+    ```
+
+    </TabItem>
+
+    <TabItem value="humble" label="Humble">
+
+    ```bash
+    # 配置tros.b环境
+    source /opt/tros/humble/setup.bash
+    ```
+
+    </TabItem>
+
+    </Tabs>
+
+    ```bash
     ros2 run hobot_llm hobot_llm
     ```
 
 2. 新开一个终端订阅输出结果topic
 
-    ```bash
-    source /opt/tros/setup.bash
+    <Tabs groupId="tros-distro">
+    <TabItem value="foxy" label="Foxy">
 
+    ```bash
+    # 配置tros.b环境
+    source /opt/tros/setup.bash
+    ```
+
+    </TabItem>
+
+    <TabItem value="humble" label="Humble">
+
+    ```bash
+    # 配置tros.b环境
+    source /opt/tros/humble/setup.bash
+    ```
+
+    </TabItem>
+
+    </Tabs>
+
+    ```bash
     ros2 topic echo /text_result
     ```
 
 3. 新开一个终端发布消息
 
-    ```bash
-    source /opt/tros/setup.bash
+    <Tabs groupId="tros-distro">
+    <TabItem value="foxy" label="Foxy">
 
+    ```bash
+    # 配置tros.b环境
+    source /opt/tros/setup.bash
+    ```
+
+    </TabItem>
+
+    <TabItem value="humble" label="Humble">
+
+    ```bash
+    # 配置tros.b环境
+    source /opt/tros/humble/setup.bash
+    ```
+
+    </TabItem>
+
+    </Tabs>
+
+    ```bash
     ros2 topic pub --once /text_query std_msgs/msg/String "{data: ""中国的首都是哪里""}"
     ```
 

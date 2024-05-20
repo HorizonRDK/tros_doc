@@ -4,6 +4,11 @@ sidebar_position: 5
 
 # 2.5 数据通信
 
+```mdx-code-block
+import Tabs from '@theme/Tabs';
+import TabItem from '@theme/TabItem';
+```
+
 ## 零拷贝
 
 ### 功能介绍
@@ -15,15 +20,25 @@ TogetheROS.Bot提供了灵活、高效的零拷贝功能，可以显著降低大
 - 驻留内存（resident memory）：包括堆分配内存、共享内存以及用于系统内部的栈内存
 - 样本统计（sample statistics）：包括每次实验发送、接收以及丢失的消息数量
 
-代码仓库：<https://github.com/HorizonRDK/rclcpp>，<https://github.com/HorizonRDK/rcl_interfaces>
+代码仓库：
+  - <https://github.com/HorizonRDK/rclcpp>
+  - <https://github.com/HorizonRDK/rcl_interfaces>
+  - <https://github.com/HorizonRDK/benchmark>
+
+:::info
+- tros.b Foxy版本基于ROS2 Foxy新增了“zero-copy”功能。
+- tros.b Humble版本使用的是ROS2 Humble的“zero-copy”功能。
+:::
 
 ### 支持平台
 
-| 平台    | 运行方式      | 示例功能                       |
-| ------- | ------------ | ------------------------------ |
-| RDK X3, RDK X3 Module | Ubuntu 20.04 | 展示零拷贝性能指标测试结果 |
+| 平台    | 运行方式      |
+| ------- | ------------ |
+| RDK X3, RDK X3 Module | Ubuntu 20.04 (Foxy), Ubuntu 22.04 (Humble) |
 
+:::caution
 ***RDK Ultra平台支持零拷贝数据通信，暂未提供零拷贝性能指标测试安装包。***
+:::
 
 ### 准备工作
 
@@ -36,7 +51,26 @@ TogetheROS.Bot提供了灵活、高效的零拷贝功能，可以显著降低大
    echo performance > /sys/devices/system/cpu/cpufreq/policy0/scaling_governor 
    ```
 
-2. 地平线RDK已成功安装performance_test工具包，安装命令：`apt update; apt install tros-performance-test`。
+2. 地平线RDK已成功安装performance_test工具包，安装命令：
+
+   <Tabs groupId="tros-distro">
+   <TabItem value="foxy" label="Foxy">
+
+   ```bash
+   sudo apt update
+   sudo apt install tros-performance-test
+   ```
+
+   </TabItem>
+   <TabItem value="humble" label="Humble">
+
+   ```bash
+   sudo apt update
+   sudo apt install tros-humble-performance-test
+   ```
+
+   </TabItem>
+   </Tabs>
 
 ### 使用介绍
 
@@ -44,10 +78,24 @@ TogetheROS.Bot提供了灵活、高效的零拷贝功能，可以显著降低大
 
 1. 不开启零拷贝功能的4M数据传输测试，命令如下：
 
+ <Tabs groupId="tros-distro">
+ <TabItem value="foxy" label="Foxy">
+
     ```bash
     source /opt/tros/setup.bash
     ros2 run performance_test perf_test --reliable --keep-last --history-depth 10 -s 1 -m Array4m -r 100 --max-runtime 30
     ```
+
+ </TabItem>
+ <TabItem value="humble" label="Humble">
+
+    ```bash
+    source /opt/tros/humble/setup.bash
+    ros2 run performance_test perf_test --reliable --keep-last --history-depth 10 -s 1 -m Array4m -r 100 --max-runtime 30
+    ```
+
+ </TabItem>
+ </Tabs>
 
     **测试结果如下**：
 
@@ -89,12 +137,30 @@ TogetheROS.Bot提供了灵活、高效的零拷贝功能，可以显著降低大
     Maximum runtime reached. Exiting.
     ```
 
-2. 开启零拷贝功能(加入--zero-copy参数)的4M数据传输测试，命令如下：
+1. 开启零拷贝功能(加入--zero-copy参数)的4M数据传输测试，命令如下：
 
-      ```bash
-      source /opt/tros/setup.bash
-      ros2 run performance_test perf_test --zero-copy --reliable --keep-last --history-depth 10 -s 1 -m Array4m -r 100 --max-runtime 30
-      ```
+ <Tabs groupId="tros-distro">
+ <TabItem value="foxy" label="Foxy">
+
+    ```bash
+    source /opt/tros/setup.bash
+    ros2 run performance_test perf_test --zero-copy --reliable --keep-last --history-depth 10 -s 1 -m Array4m -r 100 --max-runtime 30
+    ```
+
+ </TabItem>
+ <TabItem value="humble" label="Humble">
+
+    ```bash
+    source /opt/tros/humble/setup.bash
+    export RMW_IMPLEMENTATION=rmw_fastrtps_cpp
+    export FASTRTPS_DEFAULT_PROFILES_FILE=/opt/tros/humble/lib/hobot_shm/config/shm_fastdds.xml
+    export RMW_FASTRTPS_USE_QOS_FROM_XML=1
+    export ROS_DISABLE_LOANED_MESSAGES=0
+    ros2 run performance_test perf_test --zero-copy --reliable --keep-last --history-depth 10 -s 1 -m Array4m -r 100 --max-runtime 30
+    ```
+
+ </TabItem>
+ </Tabs>
 
     **测试结果如下**：
 

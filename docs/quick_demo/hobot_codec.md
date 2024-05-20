@@ -4,6 +4,11 @@ sidebar_position: 3
 
 # 2.3 图像编解码
 
+```mdx-code-block
+import Tabs from '@theme/Tabs';
+import TabItem from '@theme/TabItem';
+```
+
 ## 功能介绍
 
 图像编解码功能与ROS image_transport package类似，地平线RDK采用硬件单元加速MJPEG/H264/H265与BGR8/RGB8/NV12格式之间转换，可以大幅降低CPU占用的同时提升格式转换效率，X86平台仅支持MJPEG与BGR8/RGB8/NV12格式之间的转换。
@@ -14,8 +19,9 @@ sidebar_position: 3
 
 | 平台    | 运行方式     | 示例功能                       |
 | ------- | ------------ | ------------------------------ |
-| RDK X3, RDK X3 Module, RDK Ultra| Ubuntu 20.04 | 启动MIPI摄像头获取图像，然后进行图像编码，最后通过Web展示 |
-| X86     | Ubuntu 20.04 | 使用图像发布工具发布YUV图像，然后进行图像编码，最后通过Web展示 |
+| RDK X3, RDK X3 Module | Ubuntu 20.04 (Foxy), Ubuntu 22.04 (Humble) | 启动MIPI摄像头获取图像，然后进行图像编码，最后通过Web展示 |
+| RDK Ultra | Ubuntu 20.04 (Foxy) | 启动MIPI摄像头获取图像，然后进行图像编码，最后通过Web展示 |
+| X86     | Ubuntu 20.04 (Foxy) | 使用图像发布工具发布YUV图像，然后进行图像编码，最后通过Web展示 |
 
 ***RDK Ultra不支持H.264视频编码格式。***
 
@@ -23,7 +29,7 @@ sidebar_position: 3
 
 ### 地平线RDK平台
 
-1. 地平线RDK已烧录好地平线提供的Ubuntu 20.04系统镜像。
+1. 地平线RDK已烧录好地平线提供的Ubuntu 20.04/Ubuntu 22.04系统镜像。
 
 2. 地平线RDK已成功安装TogetheROS.Bot。
 
@@ -47,17 +53,55 @@ sidebar_position: 3
 
     a. 启动mipi_cam
 
-    ```shell
-    source /opt/tros/setup.bash
+    <Tabs groupId="tros-distro">
+    <TabItem value="foxy" label="Foxy">
 
+    ```bash
+    # 配置tros.b环境
+    source /opt/tros/setup.bash
+    ```
+
+    </TabItem>
+
+    <TabItem value="humble" label="Humble">
+
+    ```bash
+    # 配置tros.b环境
+    source /opt/tros/humble/setup.bash
+    ```
+
+    </TabItem>
+
+    </Tabs>
+
+    ```shell
     ros2 launch mipi_cam mipi_cam.launch.py mipi_video_device:=F37
     ```
 
     b. 启动hobot_codec编码
 
-    ```shell
-    source /opt/tros/setup.bash
+    <Tabs groupId="tros-distro">
+    <TabItem value="foxy" label="Foxy">
 
+    ```bash
+    # 配置tros.b环境
+    source /opt/tros/setup.bash
+    ```
+
+    </TabItem>
+
+    <TabItem value="humble" label="Humble">
+
+    ```bash
+    # 配置tros.b环境
+    source /opt/tros/humble/setup.bash
+    ```
+
+    </TabItem>
+
+    </Tabs>
+
+    ```shell
     ros2 launch hobot_codec hobot_codec.launch.py codec_in_mode:=shared_mem codec_in_format:=nv12 codec_out_mode:=ros codec_out_format:=jpeg codec_sub_topic:=/hbmem_img codec_pub_topic:=/image_jpeg
     ```
 
@@ -78,10 +122,28 @@ sidebar_position: 3
 
     a. 启动图像发布节点
 
-    ```shell
-    // 配置 tros.b 环境：
-    source /opt/tros/setup.bash
+    <Tabs groupId="tros-distro">
+    <TabItem value="foxy" label="Foxy">
 
+    ```bash
+    # 配置tros.b环境
+    source /opt/tros/setup.bash
+    ```
+
+    </TabItem>
+
+    <TabItem value="humble" label="Humble">
+
+    ```bash
+    # 配置tros.b环境
+    source /opt/tros/humble/setup.bash
+    ```
+
+    </TabItem>
+
+    </Tabs>
+
+    ```shell
     //从tros.b的安装路径中拷贝出运行示例需要的图片文件
     cp -r /opt/tros/${TROS_DISTRO}/lib/hobot_image_publisher/config/ .
 
@@ -92,16 +154,55 @@ sidebar_position: 3
 
     b. 启动JPEG图片编码&发布pkg
 
-    ```shell
-    source /opt/tros/setup.bash
+    <Tabs groupId="tros-distro">
+    <TabItem value="foxy" label="Foxy">
 
+    ```bash
+    # 配置tros.b环境
+    source /opt/tros/setup.bash
+    ```
+
+    </TabItem>
+
+    <TabItem value="humble" label="Humble">
+
+    ```bash
+    # 配置tros.b环境
+    source /opt/tros/humble/setup.bash
+    ```
+
+    </TabItem>
+
+    </Tabs>
+
+    ```shell
     ros2 launch hobot_codec hobot_codec.launch.py codec_in_mode:=shared_mem codec_in_format:=nv12 codec_out_mode:=ros codec_out_format:=jpeg codec_sub_topic:=/hbmem_img codec_pub_topic:=/image_jpeg
     ```
 
 2. Web端查看JPEG编码图像，另起一个终端：
 
-    ```shell
+    <Tabs groupId="tros-distro">
+    <TabItem value="foxy" label="Foxy">
+
+    ```bash
+    # 配置tros.b环境
     source /opt/tros/setup.bash
+    ```
+
+    </TabItem>
+
+    <TabItem value="humble" label="Humble">
+
+    ```bash
+    # 配置tros.b环境
+    source /opt/tros/humble/setup.bash
+    ```
+
+    </TabItem>
+
+    </Tabs>
+
+    ```shell
     ros2 launch websocket websocket.launch.py websocket_image_topic:=/image_jpeg websocket_only_show_image:=true
     ```
 

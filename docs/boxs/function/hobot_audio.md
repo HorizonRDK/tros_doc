@@ -3,6 +3,11 @@ sidebar_position: 6
 ---
 # 智能语音
 
+```mdx-code-block
+import Tabs from '@theme/Tabs';
+import TabItem from '@theme/TabItem';
+```
+
 ## 功能介绍
 
 地平线智能语音算法采用本地离线模式，订阅音频数据后送给BPU处理，然后发布**唤醒、命令词识别**、**声源定位DOA角度信息**以及**语音ASR识别结果**等消息。智能语音功能的实现对应于TogetheROS.Bot的**hobot_audio** package，适用于地平线RDK配套的环形和线形四麦阵列。
@@ -17,14 +22,33 @@ sidebar_position: 6
 
 | 平台   | 运行方式     | 示例功能                           |
 | ------ | ------------ | ---------------------------------- |
-| RDK X3, RDK X3 Module | Ubuntu 20.04 | 启动音频模块算法，并在终端显示结果 |
-
+| RDK X3 | Ubuntu 20.04 (Foxy), Ubuntu 22.04 (Humble) | 启动音频模块算法，并在终端显示结果 |
 
 ## 准备工作
 
-1. 地平线RDK已烧录好地平线提供的Ubuntu 20.04系统镜像。
+1. 地平线RDK已烧录好地平线提供的Ubuntu 20.04/Ubuntu 22.04系统镜像。
 2. 地平线RDK已成功安装TogetheROS.Bot。
-3. 地平线RDK已成功安装智能语音算法包，安装命令：`apt update; apt install tros-hobot-audio`。
+3. 地平线RDK已成功安装智能语音算法包，安装命令：
+
+   <Tabs groupId="tros-distro">
+   <TabItem value="foxy" label="Foxy">
+
+   ```bash
+   sudo apt update
+   sudo apt install tros-hobot-audio
+   ```
+
+   </TabItem>
+   <TabItem value="humble" label="Humble">
+
+   ```bash
+   sudo apt update
+   sudo apt install tros-humble-hobot-audio
+   ```
+
+   </TabItem>
+   </Tabs>
+   
 4. 按照以下方法在地平线RDK上接好环形或线形四麦音频板。
 
 ### 连接音频板
@@ -126,12 +150,31 @@ sidebar_position: 6
 
 1. 拷贝配置文件
 
+ <Tabs groupId="tros-distro">
+ <TabItem value="foxy" label="Foxy">
+
+    ```bash
+    # 配置tros.b环境
+    source /opt/tros/setup.bash
+    ```
+
+ </TabItem>
+ <TabItem value="humble" label="Humble">
+
+    ```bash
+    # 配置tros.b环境
+    source /opt/tros/humble/setup.bash
+    ```
+
+ </TabItem>
+ </Tabs>
+
    ```shell
    # 从tros.b的安装路径中拷贝出运行示例需要的配置文件，若已拷贝则可忽略
    cp -r /opt/tros/${TROS_DISTRO}/lib/hobot_audio/config/ .
    ```
 
-2. 确认配置文件
+1. 确认配置文件
 
    配置文件 *config/audio_config.json* 默认配置如下：
 
@@ -157,7 +200,10 @@ sidebar_position: 6
    - **麦克风阵列类型**通过`mic_type`字段设置，默认值为`0`，表示环形麦克风阵列。如果使用线形麦克风阵列，需要修改该字段为`1`。
    - **ASR输出**通过`asr_mode`字段设置，默认值为`0`，表示不输出ASR结果。若要开启ASR结果输出，需要将该字段改为`1`或`2`，其中`1`表示唤醒后进行一次ASR识别并发布结果，`2`表示一直进行ASR识别并发布结果。
 
-3. 配置tros.b环境和启动应用
+2. 配置tros.b环境和启动应用
+
+<Tabs groupId="tros-distro">
+<TabItem value="foxy" label="Foxy">
 
    ```shell
    # 配置tros.b环境
@@ -169,6 +215,25 @@ sidebar_position: 6
    #启动launch文件
    ros2 launch hobot_audio hobot_audio.launch.py
    ```
+
+</TabItem>
+
+<TabItem value="humble" label="Humble">
+
+   ```shell
+   # 配置tros.b环境
+   source /opt/tros/humble/setup.bash
+
+   # 屏蔽调式打印信息
+   export GLOG_minloglevel=3
+
+   #启动launch文件
+   ros2 launch hobot_audio hobot_audio.launch.py
+   ```
+
+</TabItem>
+
+</Tabs>
 
 ## 结果分析
 

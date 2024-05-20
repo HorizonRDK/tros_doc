@@ -17,7 +17,7 @@ sidebar_position: 11
 
 | 平台      | 运行方式     | 示例功能                                |
 | --------- | ------------ | --------------------------------------- |
-| RDK Ultra | Ubuntu 20.04 | 使用本地回灌，并通过web展示推理渲染结果 |
+| RDK Ultra | Ubuntu 20.04 (Foxy) | 使用本地回灌，并通过web展示推理渲染结果 |
 
 ## 准备工作
 
@@ -35,7 +35,8 @@ sidebar_position: 11
 
 启动命令：
 
-```shell
+
+```bash
 # 配置tros.b环境
 source /opt/tros/setup.bash
 

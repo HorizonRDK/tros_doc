@@ -4,6 +4,11 @@ sidebar_position: 6
 
 # 5.6 深度学习巡线小车
 
+```mdx-code-block
+import Tabs from '@theme/Tabs';
+import TabItem from '@theme/TabItem';
+```
+
 ## 功能介绍
 ![](./image/line_follower/demo.png)
 
@@ -20,13 +25,13 @@ sidebar_position: 6
 
 | 平台     | 运行方式     | 示例功能                       |
 | -------- | ------------ | ------------------------------ |
-| RDK X3, RDK X3 Module | Ubuntu 20.04 | 启动MIPI摄像头获取图像，并进行引导线检测和小车控制，最后通过实车运动展示巡线效果 |
+| RDK X3, RDK X3 Module | Ubuntu 20.04 (Foxy), Ubuntu 22.04 (Humble) | 启动MIPI摄像头获取图像，并进行引导线检测和小车控制，最后通过实车运动展示巡线效果 |
 
 ## 准备工作
 
 ### 地平线RDK平台
 
-1. 地平线RDK已烧录好地平线提供的Ubuntu 20.04系统镜像。
+1. 地平线RDK已烧录好地平线提供的Ubuntu 20.04/Ubuntu 22.04系统镜像。
 
 2. 地平线RDK已成功安装TogetheROS.Bot。
 
@@ -34,8 +39,19 @@ sidebar_position: 6
 
 4. 和地平线RDK在同一网段（有线或者连接同一无线网，IP地址前三段需保持一致）的PC，PC端需要安装的环境包括：
 
-   - Ubuntu 20.04系统
-   - [ROS2 Foxy桌面版](https://docs.ros.org/en/foxy/Installation/Ubuntu-Install-Debians.html)
+<Tabs groupId="tros-distro">
+<TabItem value="foxy" label="Foxy">
+
+   - Ubuntu 20.04系统和[ROS2 Foxy桌面版](https://docs.ros.org/en/foxy/Installation/Ubuntu-Install-Debians.html)
+
+</TabItem>
+<TabItem value="humble" label="Humble">
+
+   - Ubuntu 22.04系统和[ROS2 Humble桌面版](https://docs.ros.org/en/humble/Installation/Ubuntu-Install-Debians.html)
+
+</TabItem>
+</Tabs>
+
    - 算法工具链OE包获取方式
 `wget -c ftp://vrftp.horizon.ai/Open_Explorer_gcc_9.3.0/2.3.3/horizon_xj3_open_explorer_v2.3.3_20220727.tar.gz`
    - 算法工具链docker获取方式
@@ -77,18 +93,53 @@ PC用于进行数据标注以及训练，为了提高效率这里采用地平线
 
 地平线RDK上启动mipi_cam，选用的摄像头模组为F37，输出图像格式为BGR8，分辨率为960x544，消息通信方式为非零拷贝方式
 
+<Tabs groupId="tros-distro">
+<TabItem value="foxy" label="Foxy">
+
+```bash
+# 配置tros.b环境
+source /opt/tros/setup.bash
+```
+
+</TabItem>
+
+<TabItem value="humble" label="Humble">
+
+```bash
+# 配置tros.b环境
+source /opt/tros/humble/setup.bash
+```
+
+</TabItem>
+
+</Tabs>
+
 ```shell
 export RMW_IMPLEMENTATION=rmw_cyclonedds_cpp
-source /opt/tros/setup.bash
-
 ros2 launch mipi_cam mipi_cam.launch.py mipi_out_format:=bgr8 mipi_io_method:=mmap
 ```
 
 PC上运行
 
+<Tabs groupId="tros-distro">
+<TabItem value="foxy" label="Foxy">
+
+```bash
+source  /opt/ros/foxy/setup.bash
+```
+
+</TabItem>
+<TabItem value="humble" label="Humble">
+
+```bash
+source  /opt/ros/humble/setup.bash
+```
+
+</TabItem>
+</Tabs>
+
 ```shell
 export RMW_IMPLEMENTATION=rmw_cyclonedds_cpp
-source  /opt/ros/foxy/setup.bash
 # 编译line_follower_model，进入line_follower_model目录
 colcon build --packages-select line_follower_model
 # 加载编译出的line_follower_model
@@ -128,8 +179,24 @@ pip3 install torch torchvision torchaudio --extra-index-url https://download.pyt
 
 PC上运行
 
-```shell
+<Tabs groupId="tros-distro">
+<TabItem value="foxy" label="Foxy">
+
+```bash
 source  /opt/ros/foxy/setup.bash
+```
+
+</TabItem>
+<TabItem value="humble" label="Humble">
+
+```bash
+source  /opt/ros/humble/setup.bash
+```
+
+</TabItem>
+</Tabs>
+
+```shell
 # 编译line_follower_model，进入line_follower_model目录
 colcon build --packages-select line_follower_model
 # 加载编译出的line_follower_model
@@ -232,8 +299,28 @@ pytorch训练得到的浮点模型如果直接运行在地平线RDK上效率会�
 
 将line_follower_perception文件夹和编译生成的定点模型拷贝至板端执行
 
-```shell
+<Tabs groupId="tros-distro">
+<TabItem value="foxy" label="Foxy">
+
+```bash
+# 配置tros.b环境
 source /opt/tros/setup.bash
+```
+
+</TabItem>
+
+<TabItem value="humble" label="Humble">
+
+```bash
+# 配置tros.b环境
+source /opt/tros/humble/setup.bash
+```
+
+</TabItem>
+
+</Tabs>
+
+```shell
 #在line_follower_perception文件夹路径下执行
 clocon build --packages-select line_follower_perception
 ```
@@ -247,8 +334,28 @@ ros2 run line_follower_perception line_follower_perception --ros-args -p model_p
 
 运行mipi_cam
 
-```shell
+<Tabs groupId="tros-distro">
+<TabItem value="foxy" label="Foxy">
+
+```bash
+# 配置tros.b环境
 source /opt/tros/setup.bash
+```
+
+</TabItem>
+
+<TabItem value="humble" label="Humble">
+
+```bash
+# 配置tros.b环境
+source /opt/tros/humble/setup.bash
+```
+
+</TabItem>
+
+</Tabs>
+
+```shell
 ros2 launch mipi_cam mipi_cam.launch.py &
 ```
 

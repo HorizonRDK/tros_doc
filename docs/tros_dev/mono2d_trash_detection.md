@@ -4,6 +4,11 @@ sidebar_position: 5
 
 # 5.5 垃圾检测
 
+```mdx-code-block
+import Tabs from '@theme/Tabs';
+import TabItem from '@theme/TabItem';
+```
+
 ## 功能介绍
 
 mono2d_trash_detection package 是基于 hobot_dnn package 开发的2D垃圾目标检测算法示例。与以往功能展示不同，本示例将以2D垃圾检测任务为例，展示如何基于开源框架训练模型、地平线工具链转换模型、地平线机器人操作系统完成算法全流程部署工作。
@@ -28,8 +33,8 @@ mono2d_trash_detection package 是基于 hobot_dnn package 开发的2D垃圾目�
 
 | 平台    | 运行方式      | 示例功能                       |
 | ------- | ------------ | ------------------------------ |
-| RDK X3, RDK X3 Module| Ubuntu 20.04 | · 启动MIPI/USB摄像头/本地回灌，推理渲染结果在Web显示/保存在本地 |
-| X86     | Ubuntu 20.04 | · 启动本地回灌，推理渲染结果在Web显示/保存在本地 |
+| RDK X3, RDK X3 Module| Ubuntu 20.04 (Foxy), Ubuntu 22.04 (Humble) | · 启动MIPI/USB摄像头/本地回灌，推理渲染结果在Web显示/保存在本地 |
+| X86     | Ubuntu 20.04 (Foxy) | · 启动本地回灌，推理渲染结果在Web显示/保存在本地 |
 
 ## 准备工作
 
@@ -43,7 +48,7 @@ mono2d_trash_detection package 是基于 hobot_dnn package 开发的2D垃圾目�
 
 ### 地平线RDK平台
 
-1. 地平线RDK已烧录好地平线提供的Ubuntu 20.04系统镜像。
+1. 地平线RDK已烧录好地平线提供的Ubuntu 20.04/Ubuntu 22.04系统镜像。
 
 2. 地平线RDK已成功安装TogetheROS.Bot。
 
@@ -116,10 +121,28 @@ package对外发布包含语义分割和目标检测信息的算法msg，用户�
 
 **使用MIPI摄像头发布图片**
 
-```shell
-# 配置ROS2环境
-source /opt/tros/setup.bash
+<Tabs groupId="tros-distro">
+<TabItem value="foxy" label="Foxy">
 
+```bash
+# 配置tros.b环境
+source /opt/tros/setup.bash
+```
+
+</TabItem>
+
+<TabItem value="humble" label="Humble">
+
+```bash
+# 配置tros.b环境
+source /opt/tros/humble/setup.bash
+```
+
+</TabItem>
+
+</Tabs>
+
+```shell
 # 从tros的安装路径中拷贝出运行示例需要的配置文件。
 cp -r /opt/tros/${TROS_DISTRO}/lib/mono2d_trash_detection/config/ .
 
@@ -132,10 +155,28 @@ ros2 launch dnn_node_example dnn_node_example.launch.py dnn_example_config_file:
 
 **使用usb摄像头发布图片**
 
-```shell
-# 配置ROS2环境
-source /opt/tros/setup.bash
+<Tabs groupId="tros-distro">
+<TabItem value="foxy" label="Foxy">
 
+```bash
+# 配置tros.b环境
+source /opt/tros/setup.bash
+```
+
+</TabItem>
+
+<TabItem value="humble" label="Humble">
+
+```bash
+# 配置tros.b环境
+source /opt/tros/humble/setup.bash
+```
+
+</TabItem>
+
+</Tabs>
+
+```shell
 # 从tros的安装路径中拷贝出运行示例需要的配置文件。
 cp -r /opt/tros/${TROS_DISTRO}/lib/mono2d_trash_detection/config/ .
 
@@ -148,10 +189,28 @@ ros2 launch dnn_node_example dnn_node_example.launch.py dnn_example_config_file:
 
 **使用单张回灌图片**
 
-```shell
-# 配置ROS2环境
-source /opt/tros/setup.bash
+<Tabs groupId="tros-distro">
+<TabItem value="foxy" label="Foxy">
 
+```bash
+# 配置tros.b环境
+source /opt/tros/setup.bash
+```
+
+</TabItem>
+
+<TabItem value="humble" label="Humble">
+
+```bash
+# 配置tros.b环境
+source /opt/tros/humble/setup.bash
+```
+
+</TabItem>
+
+</Tabs>
+
+```shell
 # 从tros的安装路径中拷贝出运行示例需要的配置文件。
 cp -r /opt/tros/${TROS_DISTRO}/lib/mono2d_trash_detection/config/ .
 
@@ -163,10 +222,28 @@ ros2 launch dnn_node_example dnn_node_example_feedback.launch.py dnn_example_con
 
 **使用单张回灌图片**
 
-```shell
-# 配置ROS2环境
-source /opt/tros/setup.bash
+<Tabs groupId="tros-distro">
+<TabItem value="foxy" label="Foxy">
 
+```bash
+# 配置tros.b环境
+source /opt/tros/setup.bash
+```
+
+</TabItem>
+
+<TabItem value="humble" label="Humble">
+
+```bash
+# 配置tros.b环境
+source /opt/tros/humble/setup.bash
+```
+
+</TabItem>
+
+</Tabs>
+
+```shell
 # 从tros的安装路径中拷贝出运行示例需要的配置文件。
 cp -r /opt/tros/${TROS_DISTRO}/lib/mono2d_trash_detection/config/ .
 

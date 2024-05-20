@@ -4,6 +4,11 @@ sidebar_position: 3
 
 # 4.3 姿态检测
 
+```mdx-code-block
+import Tabs from '@theme/Tabs';
+import TabItem from '@theme/TabItem';
+```
+
 ## 功能介绍
 
 姿态检测App通过订阅摄像头发布的图片消息，检测出人体关键点后分析人体姿态，并发布姿态事件。
@@ -18,13 +23,14 @@ sidebar_position: 3
 
 | 平台     | 运行方式     | 示例功能                       |
 | -------- | ------------ | ------------------------------ |
-| RDK X3, RDK X3 Module, RDK UltraUbuntu 20.04 | 启动MIPI/USB摄像头获取图像，并进行人体关键点检测以及姿态检测，最后通过Web展示图像和算法效果，发布姿态事件 |
+| RDK X3, RDK X3 Module | Ubuntu 20.04 (Foxy), Ubuntu 22.04 (Humble) | 启动MIPI/USB摄像头获取图像，并进行人体关键点检测以及姿态检测，最后通过Web展示图像和算法效果，发布姿态事件 |
+| RDK Ultra | Ubuntu 20.04 (Foxy) | 启动MIPI/USB摄像头获取图像，并进行人体关键点检测以及姿态检测，最后通过Web展示图像和算法效果，发布姿态事件 |
 
 ## 准备工作
 
 ### 地平线RDK平台
 
-1. 地平线RDK已烧录好地平线提供的Ubuntu 20.04镜像。
+1. 地平线RDK已烧录好地平线提供的Ubuntu 20.04/Ubuntu 22.04系统镜像。
 
 2. 地平线RDK已成功安装TogetheROS.Bot。
 
@@ -42,6 +48,9 @@ sidebar_position: 3
 
 **使用mipi摄像头发布图片**
 
+<Tabs groupId="tros-distro">
+<TabItem value="foxy" label="Foxy">
+
 ```shell
 # 配置tros.b环境
 source /opt/tros/setup.bash
@@ -56,7 +65,32 @@ export CAM_TYPE=mipi
 ros2 launch hobot_falldown_detection hobot_falldown_detection.launch.py
 ```
 
+</TabItem>
+
+<TabItem value="humble" label="Humble">
+
+```shell
+# 配置tros.b环境
+source /opt/tros/humble/setup.bash
+
+# 从tros.b的安装路径中拷贝出运行示例需要的配置文件。
+cp -r /opt/tros/${TROS_DISTRO}/lib/mono2d_body_detection/config/ .
+
+# 配置MIPI摄像头
+export CAM_TYPE=mipi
+
+# 启动launch文件
+ros2 launch hobot_falldown_detection hobot_falldown_detection.launch.py
+```
+
+</TabItem>
+
+</Tabs>
+
 **使用USB摄像头发布图片**
+
+<Tabs groupId="tros-distro">
+<TabItem value="foxy" label="Foxy">
 
 ```shell
 # 配置tros.b环境
@@ -71,6 +105,28 @@ export CAM_TYPE=usb
 # 启动launch文件
 ros2 launch hobot_falldown_detection hobot_falldown_detection.launch.py
 ```
+
+</TabItem>
+
+<TabItem value="humble" label="Humble">
+
+```shell
+# 配置tros.b环境
+source /opt/tros/humble/setup.bash
+
+# 从tros.b的安装路径中拷贝出运行示例需要的配置文件。
+cp -r /opt/tros/${TROS_DISTRO}/lib/mono2d_body_detection/config/ .
+
+# 配置USB摄像头
+export CAM_TYPE=usb
+
+# 启动launch文件
+ros2 launch hobot_falldown_detection hobot_falldown_detection.launch.py
+```
+
+</TabItem>
+
+</Tabs>
 
 运行命令中的参数说明，参考hobot_falldown_detection package源码中的README.md。
 
