@@ -69,6 +69,9 @@ sudo docker run -it --entrypoint="/bin/bash" -v PC本地目录:docker目录 imag
 
 这里以docker中/mnt/test目录为例。
 
+<Tabs groupId="tros-distro">
+<TabItem value="foxy" label="Foxy">
+
 ```shell
 cd /mnt/test/cc_ws/tros_ws
 ## 获取配置文件
@@ -78,6 +81,23 @@ git clone https://github.com/HorizonRDK/robot_dev_config.git -b foxy
 ## 拉取代码
 vcs-import src < ./robot_dev_config/ros2_release.repos 
 ```
+
+</TabItem>
+<TabItem value="humble" label="Humble">
+
+
+```shell
+cd /mnt/test/cc_ws/tros_ws
+## 获取配置文件
+git clone https://github.com/HorizonRDK/robot_dev_config.git -b develop 
+## 执行cd robot_dev_config，使用 git tag --list 命令查看可用的发布版本
+## 使用 git reset --hard [tag号] 命令指定发布版本。详细说明参考本页面 编译指定版本tros.b 内容
+## 拉取代码
+vcs-import src < ./robot_dev_config/ros2_release.repos 
+```
+
+</TabItem>
+</Tabs>
 
 整个工程目录结构如下
 
@@ -123,7 +143,7 @@ bash ./robot_dev_config/build.sh -p Rdkultra
 
 ```bash
 ## 获取配置文件
-git clone https://github.com/HorizonRDK/robot_dev_config.git -b foxy 
+git clone https://github.com/HorizonRDK/robot_dev_config.git
 cd robot_dev_config
 ## 查看可用的发布版本
 git tag --list
