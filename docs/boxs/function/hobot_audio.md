@@ -24,7 +24,6 @@ import TabItem from '@theme/TabItem';
 | ------ | ------------ | ---------------------------------- |
 | RDK X3 | Ubuntu 20.04 (Foxy), Ubuntu 22.04 (Humble) | 启动音频模块算法，并在终端显示结果 |
 
-
 ## 准备工作
 
 1. 地平线RDK已烧录好地平线提供的Ubuntu 20.04/Ubuntu 22.04系统镜像。
