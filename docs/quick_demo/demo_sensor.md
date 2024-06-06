@@ -843,3 +843,130 @@ import TabItem from '@theme/TabItem';
 1. 检查硬件连接
 2. 是否设置tros.b环境
 3. 参数是否正确，具体参考Hobot_Sensors README.md
+
+## RealSense图像采集
+
+### 功能介绍
+
+双目相机是机器人开发常用的传感器，经常扮演着机器人“眼睛”的角色。双目相机在机器人上的应用涵盖了多个方面，例如导航避障、目标识别、三维重建、人机交互等。地平线RDK平台也支持市面上常见的双目相机，例如RealSense、Orbbec等系列相机。
+
+目前RealSense和Orbbec的双目相机在ROS上的使用是按照如下架构实现的，首先需要不同硬件平台上编译的SDK库文件，相机的SDK提供了相机启动、相机设置等API接口，在此基础上，再进行ROS封装，即可实现ROS调用相机。
+
+所以，双目相机ROS功能包的一般安装流程是：首先安装相机的SDK库文件，然后安装相机的ROS封装功能包。
+
+![stereo-camera-ros-arch](./image/demo_sensor/stereo-camera-ros-arch.png)
+
+本节介绍RealSense相机在地平线RDK平台上的使用方法。
+
+### 支持平台
+
+| 平台    | 运行方式     |
+| ------- | ------------ |
+| RDK X3, RDK X3 Module | Ubuntu 20.04 (Foxy), Ubuntu 22.04 (Humble) |
+| RDK Ultra | Ubuntu 20.04 (Foxy) |
+
+### 准备工作
+
+#### 地平线RDK平台
+
+1. 确认手中RealSense相机工作正常，将提供USB数据线接入地平线RDK的USB插槽
+2. 地平线RDK已烧录好地平线提供的Ubuntu 20.04/Ubuntu 22.04系统镜像
+3. 地平线RDK已成功安装tros.b
+4. 确认PC机能够通过网络访问地平线RDK
+
+### 使用方式
+
+最新版本的镜像在内核打上了RealSense系列相机的UVC和HID驱动补丁，直接使用apt命令安装RealSense SDK2.0以及RealSense ROS wrapper后，即可在地平线RDK平台使用Realsense系列相机。
+
+此处列出RealSense SDK2.0和RealSense ROS wrapper的GitHub仓库，本教程也是参考这两个仓库编写，用户可以查看仓库中更为详细的教程。
+
+- RealSense SDK2.0：https://github.com/IntelRealSense/librealsense
+- RealSense ROS wrapper：https://github.com/IntelRealSense/realsense-ros/tree/ros2-development
+
+#### 1. 通过串口或者SSH登录地平线RDK，确认ROS的版本
+
+<Tabs groupId="tros-distro">
+<TabItem value="foxy" label="Foxy">
+
+   ```shell
+   # 配置tros.b环境
+   source /opt/tros/setup.bash
+   # 打印ros版本的环境变量
+   echo $ROS_DISTRO
+   ```
+
+</TabItem>
+<TabItem value="humble" label="Humble">
+
+   ```shell
+   # 配置tros.b环境
+   source /opt/tros/humble/setup.bash
+   source /opt/ros/humble/setup.bash
+   # 打印ros版本的环境变量
+   echo $ROS_DISTRO
+   ```
+
+</TabItem>
+</Tabs>
+
+#### 2. apt安装RealSense SDK2.0以及RealSense ROS2 wrapper
+
+```shell
+# 安装RealSense SDK2.0
+sudo apt-get install ros-$ROS_DISTRO-librealsense2* -y 
+# 安装RealSense ROS2 wrapper
+sudo apt-get install ros-$ROS_DISTRO-realsense2-* -y
+```
+
+通过apt安装是直接安装了RealSense的二进制可执行程序，除此方法外，还可以下载RealSense SDK2.0和RealSense ROS wrapper的源码自行编译安装，具体流程可参考RealSense ROS wrapper的GitHub仓库。
+
+#### 3. RealSense相机启动
+
+安装完毕后，即可通过ROS命令启动RealSense相机：
+
+```shell
+ros2 launch realsense2_camera rs_launch.py
+```
+
+![realsense-start-up-log](./image/demo_sensor/realsense-start-up-log.png)
+
+可以通过`ros2 topic list`查看RealSense发布的话题，默认参数启动RealSense相机只会开启相机的深度数据流和RGB数据流。
+
+![realsense-basic-topic](./image/demo_sensor/realsense-basic-topic.png)
+
+
+RealSense ROS wrapper提供了很多可设置参数，例如`enable_infra1:=true`和`pointcloud.enable:=true`会开启相机的左IR数据流和点云数据流。
+
+```shell
+ros2 launch realsense2_camera rs_launch.py enable_infra1:=true pointcloud.enable:=true
+```
+
+![realsense-ir-pointcloud-topic](./image/demo_sensor/realsense-ir-pointcloud-topic.png)
+
+![realsense-image](./image/demo_sensor/realsense-image.png)
+
+更多的参数的设置可参考RealSense ROS wrapper的GitHub仓库。
+
+#### 4. 深度和RGB对齐
+
+在实际的应用中，经常需要双目相机的深度图对齐彩色图，RealSense也提供了对应的启动方式。
+
+```shell
+ros2 launch realsense2_camera rs_launch.py enable_rgbd:=true enable_sync:=true align_depth.enable:=true enable_color:=true enable_depth:=true 
+```
+
+![realsense-d2c-topic](./image/demo_sensor/realsense-d2c-topic.png)
+
+![realsense-image-align](./image/demo_sensor/realsense-image-align.png)
+
+#### 5. 图像和点云的显示
+
+要显示RealSense的图像和点云，有多种方式，可参考[2.2 数据展示](./demo_render.md)，例如可以在PC机上使用`rviz2`显示，这种方式需要确认PC机能够通过网络访问地平线RDK，数据通过网络传输，压力较大，可能会出现卡顿的现象。
+
+![realsense-rviz2](./image/demo_sensor/realsense-rviz2.png)
+
+推荐直接在RDK上直接读取数据，确认出流是否正常，可以通过`ros2 topic echo topic_name`打印数据或者编写代码订阅相应话题。
+
+![realsense-topic-echo](./image/demo_sensor/realsense-topic-echo.png)
+
+
