@@ -876,7 +876,7 @@ import TabItem from '@theme/TabItem';
 
 ### 使用方式
 
-最新版本的镜像在内核打上了RealSense系列相机的UVC和HID驱动补丁，直接使用apt命令安装RealSense SDK2.0以及RealSense ROS wrapper后，即可在地平线RDK平台使用Realsense系列相机。
+直接使用apt命令安装RealSense SDK2.0以及RealSense ROS wrapper后，即可在地平线RDK平台使用Realsense系列相机。
 
 此处列出RealSense SDK2.0和RealSense ROS wrapper的GitHub仓库，本教程也是参考这两个仓库编写，用户可以查看仓库中更为详细的教程。
 
@@ -901,7 +901,6 @@ import TabItem from '@theme/TabItem';
    ```shell
    # 配置tros.b环境
    source /opt/tros/humble/setup.bash
-   source /opt/ros/humble/setup.bash
    # 打印ros版本的环境变量
    echo $ROS_DISTRO
    ```
@@ -917,8 +916,6 @@ sudo apt-get install ros-$ROS_DISTRO-librealsense2* -y
 # 安装RealSense ROS2 wrapper
 sudo apt-get install ros-$ROS_DISTRO-realsense2-* -y
 ```
-
-通过apt安装是直接安装了RealSense的二进制可执行程序，除此方法外，还可以下载RealSense SDK2.0和RealSense ROS wrapper的源码自行编译安装，具体流程可参考RealSense ROS wrapper的GitHub仓库。
 
 #### 3. RealSense相机启动
 
