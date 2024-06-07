@@ -942,7 +942,14 @@ ros2 launch realsense2_camera rs_launch.py enable_infra1:=true pointcloud.enable
 
 ![realsense-image](./image/demo_sensor/realsense-image.png)
 
-更多的参数的设置可参考RealSense ROS wrapper的GitHub仓库。
+此外RealSense还开启了一些服务，可以通过`ros2 service list`查看，例如可以通过服务查询相机的序列号、固件版本等信息。
+
+```shell
+ros2 service call /camera/device_info realsense2_camera_msgs/srv/DeviceInfo
+```
+
+更多话题和服务的相关设置可参考RealSense ROS wrapper的GitHub仓库。
+
 
 #### 4. 深度和RGB对齐
 
@@ -966,4 +973,200 @@ ros2 launch realsense2_camera rs_launch.py enable_rgbd:=true enable_sync:=true a
 
 ![realsense-topic-echo](./image/demo_sensor/realsense-topic-echo.png)
 
+## Orbbec图像采集
+
+### 功能介绍
+
+双目相机是机器人开发常用的传感器，经常扮演着机器人“眼睛”的角色。双目相机在机器人上的应用涵盖了多个方面，例如导航避障、目标识别、三维重建、人机交互等。地平线RDK平台也支持市面上常见的双目相机，例如RealSense、Orbbec等系列相机。
+
+目前RealSense和Orbbec的双目相机在ROS上的使用是按照如下架构实现的，首先需要不同硬件平台上编译的SDK库文件，相机的SDK提供了相机启动、相机设置等API接口，在此基础上，再进行ROS封装，即可实现ROS调用相机。
+
+所以，双目相机ROS功能包的一般安装流程是：首先安装相机的SDK库文件，然后安装相机的ROS封装功能包。
+
+![stereo-camera-ros-arch](./image/demo_sensor/stereo-camera-ros-arch.png)
+
+本节介绍Orbbec相机在地平线RDK平台上的使用方法。
+
+### 支持平台
+
+| 平台    | 运行方式     |
+| ------- | ------------ |
+| RDK X3, RDK X3 Module | Ubuntu 20.04 (Foxy), Ubuntu 22.04 (Humble) |
+| RDK Ultra | Ubuntu 20.04 (Foxy) |
+
+### 准备工作
+
+#### 地平线RDK平台
+
+1. 确认手中Orbbec相机工作正常，将提供USB数据线接入地平线RDK的<font color="red"><b>USB3.0</b></font>插槽（目前发现USB2.0可能存在无法启动的问题）
+2. 地平线RDK已烧录好地平线提供的Ubuntu 20.04/Ubuntu 22.04系统镜像
+3. 地平线RDK已成功安装tros.b
+4. 确认PC机能够通过网络访问地平线RDK
+
+### 使用方式
+
+目前Orbbec相机不支持直接使用apt命令安装SDK库文件以及ROS wrapper功能包，需要下载源码编译后才能在地平线RDK平台运行。
+
+此处列出Orbbec SDK和Orbbec ROS2 wrapper的GitHub仓库，本教程也是参考这两个仓库编写，用户可以查看仓库中更为详细的教程。
+
+- Orbbec SDK：https://github.com/orbbec/OrbbecSDK
+- Orbbec ROS2 wrapper：https://github.com/orbbec/OrbbecSDK_ROS2
+
+#### 1. 通过串口或者SSH登录地平线RDK，确认ROS的版本
+
+<Tabs groupId="tros-distro">
+<TabItem value="foxy" label="Foxy">
+
+   ```shell
+   # 配置tros.b环境
+   source /opt/tros/setup.bash
+   # 打印ros版本的环境变量
+   echo $ROS_DISTRO
+   ```
+
+</TabItem>
+<TabItem value="humble" label="Humble">
+
+   ```shell
+   # 配置tros.b环境
+   source /opt/tros/humble/setup.bash
+   # 打印ros版本的环境变量
+   echo $ROS_DISTRO
+   ```
+
+</TabItem>
+</Tabs>
+
+#### 2. 下载Orbbec ROS2 wrapper源码进行编译
+
+```shell
+# 先创建一个ros工作区
+mkdir -p tros_ws/src
+cd tros_ws/src
+
+# 下载Orbbec ROS2 wrapper源码到tros_ws/src目录
+git clone https://github.com/orbbec/OrbbecSDK_ROS2.git
+```
+
+注意，OrbbecSDK_ROS2这个仓库已经包含了Orbbec相机的SDK库文件，在`OrbbecSDK_ROS2/orbbec_camera/SDK`目录下，在地平线RDK平台编译的过程中会依赖`arm64`的版本。
+
+下载好源码，接下来就要进行编译，但编译该程序至少需要4GB以上的内存，在地平线RDK平台可能会出现内存不足的情况，导致编译失败。
+
+解决的方案有两个:
+
+1. 设置swap空间，充当临时内存
+2. 使用交叉编译，在PC上编译，然后在地平线RDK上运行
+
+方案1的优点是操作简单，并且可以在地平线RDK平台上直接编译，但缺点是由于地平线RDK平台性能有限，编译速度较慢，例如在RDK X3平台上编译耗时需要30分钟。方案2的优点是编译速度快，但缺点是搭建交叉编译环境较为复杂。本教程介绍方案1的实现，方案2可参考教程：[交叉编译环境部署](https://developer.horizon.cc/forumDetail/112555549341653662)。
+
+下面介绍swap空间的使用方式：
+
+```shell
+# 创建一个4GB的swap文件，该文件位于/swapfile目录
+sudo dd if=/dev/zero of=/swapfile bs=1M count=4096
+# 出于安全考虑，将Swap文件的权限设置为只有root用户可以读取和写入
+sudo chmod 600 /swapfile
+# 使用mkswap命令将文件格式化为swap空间
+sudo mkswap /swapfile
+# 使用swapon命令启用swap文件
+sudo swapon /swapfile
+```
+
+![swapfile](./image/demo_sensor/swapfile.png)
+
+设置好swap空间后，可以使用`swapon --show`、`free -h`或`htop`命令查看当前的swap使用情况，例如使用`htop`命令查看：
+
+![htop-swap](./image/demo_sensor/htop-swap.png)
+
+这样设置只是临时生效，断电重启后swap空间会失效，如果希望系统重启后仍然使用这个swap文件，可以重新执行一下`sudo swapon /swapfile`，或者将其添加到`/etc/fstab文`件中。
+
+```shell
+# 通过vim打开/etc/fstab
+sudo vim /etc/fstab
+# 添加以下行，保存退出
+/swapfile none swap sw 0 0
+# 执行sync刷新一下缓存，确保所有数据已正确地写入磁盘
+sync
+```
+
+![etc-fstab](./image/demo_sensor/etc-fstab.png)
+
+如果要删除swap空间的话，可以执行如下命令。
+
+```shell
+# 使用swapoff命令禁用Swap文件
+sudo swapoff /swapfile
+# 删除swap文件
+sudo rm -rf /swapfile
+# 如果在/etc/fstab添加了swap文件的条目，则需要移除该条目
+sudo vim /etc/fstab
+# 删除以下行
+/swapfile none swap sw 0 0
+```
+
+通过以上操作开启swap空间后，就可以进行编译了。
+
+```shell
+# 回到ros的工作空间
+cd tros_ws
+# 执行colcon编译，编译时间较久，请耐心等待
+colcon build
+```
+
+在RDK X3平台的编译结果：
+
+![orbbec-ros-colcon-build](./image/demo_sensor/orbbec-ros-colcon-build.png)
+
+#### 3. Orbbec相机启动
+
+编译完毕后，即可通过ROS命令启动Orbbec相机，OrbbecSDK_ROS2有Orbbec所有相机的启动文件，包括Orbbec的Astra系列、Dabai系列、Gemini系列，只需要对应的launch文件即可启动，本教程以Gemini2相机为例。
+
+```shell
+cd tros_ws
+source ./install/setup.bash
+ros2 launch orbbec_camera gemini2.launch.py
+```
+
+![orbbec-start-up-log](./image/demo_sensor/orbbec-start-up-log.png)
+
+可以通过`ros2 topic list`查看Gemini2发布的话题，默认参数启动Gemini2相机会开启相机的深度数据流、RGB数据流、IR数据流和点云数据流。
+
+![orbbec-topic-echo](./image/demo_sensor/orbbec-topic-list.png)
+
+Orbbec ROS2 wrapper提供了很多可设置参数，例如`enable_point_cloud:=false`和`enable_colored_point_cloud:=false`会关闭相机的点云数据流。
+
+此外Orbbec相机还开启了一些服务，可以通过`ros2 service list`查看，例如可以通过服务查询相机的SDK版本、查询或设置曝光时间和增益、开启或关闭激光等，例如：
+
+```shell
+# 查询SDK版本
+ros2 service call /camera/get_sdk_version orbbec_camera_msgs/srv/GetString '{}'
+# 关闭彩色相机自动曝光
+ros2 service call /camera/set_color_auto_exposure std_srvs/srv/SetBool '{data: false}'
+# 开启激光
+ros2 service call  /camera/set_laser_enable std_srvs/srv/SetBool '{data: true}'
+```
+
+更多话题和服务的相关设置可参考RealSense ROS wrapper的GitHub仓库。
+
+#### 4. 深度和RGB对齐
+
+在实际的应用中，经常需要双目相机的深度图对齐彩色图，Orbbec也提供了对应的启动方式。
+
+```shell
+cd tros_ws
+source ./install/setup.bash
+ros2 launch orbbec_camera gemini2.launch.py depth_registration:=true
+```
+
+![orbbec-image-align](./image/demo_sensor/orbbec-image-align.png)
+
+#### 5. 图像和点云的显示
+
+要显示Orbbec的图像和点云，有多种方式，可参考[2.2 数据展示](./demo_render.md)，例如可以在PC机上使用`rviz2`显示，这种方式需要确认PC机能够通过网络访问地平线RDK，数据通过网络传输，压力较大，可能会出现卡顿的现象。
+
+![orbbec-rviz2](./image/demo_sensor/orbbec-rviz2.png)
+
+推荐直接在RDK上直接读取数据，确认出流是否正常，可以通过`ros2 topic echo topic_name`打印数据或者编写代码订阅相应话题。
+
+![orbbec-topic-echo.png](./image/demo_sensor/orbbec-topic-echo.png)
 
