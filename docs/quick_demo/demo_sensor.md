@@ -973,7 +973,7 @@ ros2 launch realsense2_camera rs_launch.py enable_rgbd:=true enable_sync:=true a
 
 ![realsense-topic-echo](./image/demo_sensor/realsense-topic-echo.png)
 
-## Orbbec图像采集
+## Orbbec相机图像采集
 
 ### 功能介绍
 
@@ -1146,7 +1146,7 @@ ros2 service call /camera/set_color_auto_exposure std_srvs/srv/SetBool '{data: f
 ros2 service call  /camera/set_laser_enable std_srvs/srv/SetBool '{data: true}'
 ```
 
-更多话题和服务的相关设置可参考RealSense ROS wrapper的GitHub仓库。
+更多话题和服务的相关设置可参考Orbbec ROS2 wrapper的GitHub仓库。
 
 #### 4. 深度和RGB对齐
 
